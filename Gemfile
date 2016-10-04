@@ -66,3 +66,7 @@ gem 'pundit'
 gem 'devise'
 
 gem 'aasm'
+
+gem 'refile'
+
+gem 'faker'

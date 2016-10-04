@@ -4,6 +4,9 @@ class CreateOverlays < ActiveRecord::Migration
       t.string :title
       t.float :lat
       t.float :lng
+      t.timestamp :date_from
+      t.timestamp :date_to
+
       t.text :description
       t.references :overlay_type, index: true, foreign_key: true
 
