@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-%(Image Video Text File).each do |type|
+%w(Image Video Text File).each do |type|
   ContentType.create(name: type)
 end
 
-%(Tile Polygon Data).each do |overlay_type|
+%w(Tile Polygon Data).each do |overlay_type|
   OverlayType.create(name: overlay_type)
 end
 
@@ -21,8 +21,8 @@ end
 end
 
 groups = UserGroup.all
-User.each do |user|
-  user.groups << groups.sample(2)
+User.all.each do |user|
+  user.user_groups << groups.sample(2)
 end
 
 100.times do |i|
@@ -30,6 +30,7 @@ end
   date_to = date_from.advance(years: rand(20..2000), months: rand(0..12), days: rand(0..28))
   date_to = 19.years.ago if date_to.future?
   p = Pin.create(
+    user: User.all.sample,
     title: Faker::Hipster.sentence(3),
     lat: -(rand(0.246207..0.337809)),
     lng: rand(51.575242..51.591722),
@@ -39,6 +40,12 @@ end
 
   p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
 end
+
+
+
+
+
+
 
 
 

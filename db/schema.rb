@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004143103) do
+ActiveRecord::Schema.define(version: 20161004154319) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20161004143103) do
     t.string   "title",           limit: 255
     t.float    "lat",             limit: 24
     t.float    "lng",             limit: 24
+    t.datetime "date_from"
+    t.datetime "date_to"
     t.text     "description",     limit: 65535
     t.integer  "overlay_type_id", limit: 4
     t.datetime "created_at",                    null: false
@@ -97,9 +99,32 @@ ActiveRecord::Schema.define(version: 20161004143103) do
     t.string   "title",      limit: 255
     t.datetime "date_from"
     t.datetime "date_to"
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id", using: :btree
+
+  create_table "user_collections", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.integer  "collection_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "user_collections", ["collection_id"], name: "index_user_collections_on_collection_id", using: :btree
+  add_index "user_collections", ["user_id"], name: "index_user_collections_on_user_id", using: :btree
+
+  create_table "user_group_collections", force: :cascade do |t|
+    t.integer  "user_group_id", limit: 4
+    t.integer  "collection_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "user_group_collections", ["collection_id"], name: "index_user_group_collections_on_collection_id", using: :btree
+  add_index "user_group_collections", ["user_group_id"], name: "index_user_group_collections_on_user_group_id", using: :btree
 
   create_table "user_group_users", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -147,6 +172,11 @@ ActiveRecord::Schema.define(version: 20161004143103) do
   add_foreign_key "overlays", "overlay_types"
   add_foreign_key "pin_content_entries", "content_entries"
   add_foreign_key "pin_content_entries", "pins"
+  add_foreign_key "pins", "users"
+  add_foreign_key "user_collections", "collections"
+  add_foreign_key "user_collections", "users"
+  add_foreign_key "user_group_collections", "collections"
+  add_foreign_key "user_group_collections", "user_groups"
   add_foreign_key "user_group_users", "user_groups"
   add_foreign_key "user_group_users", "users"
 end
