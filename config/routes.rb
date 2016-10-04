@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-          # IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
+  devise_for :users
+  #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
 match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
