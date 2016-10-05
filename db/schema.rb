@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004154319) do
+ActiveRecord::Schema.define(version: 20161005092627) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
     t.integer  "collection_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "aasm_state",    limit: 255
   end
 
   add_index "collection_pins", ["collection_id"], name: "index_collection_pins_on_collection_id", using: :btree

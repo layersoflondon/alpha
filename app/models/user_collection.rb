@@ -1,6 +1,6 @@
 class UserCollection < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :collection
+  belongs_to :user, inverse_of: :user_collections
+  belongs_to :collection, inverse_of: :user_collections
 
   validates :user, :collection, presence: true
   validates :collection, uniqueness: true

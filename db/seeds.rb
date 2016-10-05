@@ -41,6 +41,22 @@ end
   p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
 end
 
+User.all.each do |user|
+  rand(0..3).times do |i|
+    c = user.collections.create(name: Faker::Commerce.department)
+    c.pins << Pin.all.sample(rand(1..5))
+  end
+end
+
+UserGroup.all.each do |group|
+  rand(0..3).times do |i|
+    c = group.collections.create(name: Faker::Company.catch_phrase)
+    c.pins << Pin.all.sample(rand(1..5))
+  end
+end
+
+
+
 
 
 
