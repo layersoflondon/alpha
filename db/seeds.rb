@@ -7,14 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 %w(Image Video Text File).each do |type|
+  puts "Creating content type #{type}"
   ContentType.create(name: type)
 end
 
 %w(Tile Polygon Data).each do |overlay_type|
+  puts "Creating overlay type #{overlay_type}"
   OverlayType.create(name: overlay_type)
 end
 
 25.times do |i|
+  puts "Creating user and group #{i}"
   User.create(email: "user+#{i}@test", password: "password", password_confirmation: "password")
 
   UserGroup.create(name: Faker::Educator.secondary_school.gsub("Secodary","Secondary"))
@@ -22,6 +25,7 @@ end
 
 groups = UserGroup.all
 User.all.each do |user|
+  puts "Adding groups to users"
   user.user_groups << groups.sample(2)
 end
 
@@ -37,6 +41,7 @@ end
     date_from: date_from,
     date_to: date_to
   )
+  puts "Added pin #{p.title}"
 
   p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
 end
@@ -44,6 +49,7 @@ end
 User.all.each do |user|
   rand(0..3).times do |i|
     c = user.collections.create(name: Faker::Commerce.department)
+    puts "Adding collection #{c.name} for user #{user.email}"
     c.pins << Pin.all.sample(rand(1..5))
   end
 end
@@ -51,6 +57,7 @@ end
 UserGroup.all.each do |group|
   rand(0..3).times do |i|
     c = group.collections.create(name: Faker::Company.catch_phrase)
+    puts "Adding collection #{c.name} for user group #{group.name}"
     c.pins << Pin.all.sample(rand(1..5))
   end
 end

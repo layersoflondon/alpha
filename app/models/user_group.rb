@@ -5,11 +5,11 @@ class UserGroup < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :user_group_collections, inverse_of: :user_group
-  has_many :collections, through: :user_group_collections
+  has_many :user_group_collections, inverse_of: :user_group, dependent: :destroy
+  has_many :collections, through: :user_group_collections, dependent: :destroy
 
-  before_destroy do
-    collections.destroy_all
-  end
+  # before_destroy do
+  #   collections.destroy_all
+  # end
 
 end
