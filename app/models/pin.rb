@@ -1,4 +1,5 @@
 class Pin < ActiveRecord::Base
+  include AASM
   belongs_to :user
 
   has_one :pin_content_entry
@@ -8,5 +9,25 @@ class Pin < ActiveRecord::Base
   has_many :collections, through: :collection_pins
 
   validates :title, :lat, :lng, :date_from, :user, presence: true
+
+  aasm do
+    state :pending, initial: true
+    state :accepted
+    state :rejected
+    state :flagged
+
+    event :accept do
+      transitions from: :pending, to: :accepted
+    end
+
+    event :reject do
+      transitions from: [:pending, :accepted], to: :rejected
+    end
+
+    event :flag do
+      transitions from: [:pending, :accepted, :rejected], to: :flagged
+    end
+
+  end
 
 end

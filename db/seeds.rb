@@ -18,7 +18,7 @@ end
 
 25.times do |i|
   puts "Creating user and group #{i}"
-  User.create(email: "user+#{i}@test", password: "password", password_confirmation: "password")
+  User.create(email: "user+#{i}@test", password: "password", password_confirmation: "password", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
 
   UserGroup.create(name: Faker::Educator.secondary_school.gsub("Secodary","Secondary"))
 end

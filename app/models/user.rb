@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
 
   has_many :user_collections, inverse_of: :user, dependent: :destroy
   has_many :collections, through: :user_collections
+
+  validates :first_name, :last_name, presence: true
 end

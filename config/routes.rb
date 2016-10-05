@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,
+             controllers: {registrations: 'registrations'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
 match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"
