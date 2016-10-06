@@ -1,0 +1,57 @@
+
+@import "normalize.min";
+@import "colors";
+@import "mixins";
+@import "base";
+
+@import "modules/m-filters";
+@import "modules/m-type-filter";
+@import "modules/m-date-filter";
+@import "modules/m-overlays-list";
+@import "modules/m-panels";
+@import "modules/m-sidebar";
+@import "modules/m-collections-panel";
+@import "modules/m-search-panel";
+@import "modules/m-popover";
+@import "modules/m-controls";
+@import "modules/m-update";
+@import "modules/m-add-pin";
+
+@import "vendor/jquery.range.css";
+
+body {
+  font-size:12px;
+}
+
+.m-map {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  background:url('map.png') center/cover;
+  z-index:-1;
+}
+
+.m-map .pins ul {
+  @include unlist;
+}
+
+.m-map .pins li .marker {
+  width:20px;
+  height:20px;
+  background:$red;
+  border-radius:100px;
+}
+
+.m-map .pins > ul > li {
+  position:absolute;
+}
+
+.m-map .pins > ul > li:nth-child(5) { left:30%; top:70% }
+.m-map .pins > ul > li:nth-child(2) { left:45%; top:60% }
+.m-map .pins > ul > li:nth-child(3) { left:70%; top:10% }
+.m-map .pins > ul > li:nth-child(4) { left:30%; top:20% }
+.m-map .pins > ul > li:nth-child(1) { left:77%; top:38% }
+.m-map .pins > ul > li:nth-child(6) { left:70%; top:70% }
+.m-map .pins > ul > li:nth-child(7) { left:90%; top:40% }

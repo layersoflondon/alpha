@@ -1,0 +1,36 @@
+
+/* Panels */
+
+.m-panels {
+  clear: both;
+}
+
+.m-panels .tabs {
+  @include unlist;
+  @include clearfix;
+  background: #eee;
+  padding-top:6px;
+}
+
+.m-panels .tabs li {
+  float:left;
+  margin-right:1px;
+}
+
+.m-panels .tabs li.is-current a {
+  background:white;
+}
+
+.m-panels .tabs li.is-current a {
+  background:white;
+}
+
+.m-panels .tabs li a {
+  background:#ddd;
+  padding:10px;
+  display: block;
+}
+
+.m-panels .tabs li a:focus {
+  outline:none;
+}

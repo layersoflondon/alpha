@@ -1,0 +1,12 @@
+
+/* Sidebar */
+
+.m-sidebar {
+  width: 330px;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background:white;
+  @include clearfix;
+} 

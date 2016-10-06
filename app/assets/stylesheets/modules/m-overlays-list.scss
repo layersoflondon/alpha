@@ -1,0 +1,30 @@
+
+/* Overlays list */
+
+.m-overlays-list {
+	background:white;
+  padding:20px;
+}
+
+.m-overlays-list ul {
+  @include unlist;
+  @include element-list;
+}
+
+/* .m-overlays-list li {
+  margin-bottom:1em;
+  padding-left: 30px;
+}
+
+.m-overlays-list form {
+  float:left;
+  margin-left: -30px;
+}
+
+.m-overlays-list h3 {
+  margin:0;
+}
+
+.m-overlays-list p {
+  margin:0;
+} */

@@ -1,0 +1,69 @@
+
+/* Add pin */
+
+.m-add-pin {
+	position:absolute;
+  top:0;
+  left:0;
+  padding:40px;
+  z-index: 10;
+  background:#eee;
+  width: 50%;
+}
+
+.m-add-pin label {
+  display:block;
+  margin-bottom:0.4em;
+  font-weight: bold;
+}
+
+.m-add-pin .dates {
+  clear:both;
+}
+
+.m-add-pin .dates .from,
+.m-add-pin .dates .to {
+  width:45%;
+  float:left;
+}
+
+.m-add-pin .dates p {
+  float: left;
+  text-align:center;
+  width:10%;
+}
+
+.m-add-pin .dates .form-group {
+  width:33.333333%;
+  float:left;
+  padding-right:10px;
+}
+
+.m-add-pin .dates .form-group input {
+  max-width:100%;
+  box-sizing: border-box;
+}
+
+.m-add-pin .form-group-title input {
+  width:100%;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.m-add-pin .form-group-upload {
+  display: inline-block;
+  width: 220px;
+}
+
+.m-add-pin .form-group-description {
+  float:left;
+  width:50%;
+}
+
+.m-add-pin .form-group-description text-area {
+  width:100%;
+}
+
+.m-add-pin input[type="submit"] {
+  float:right;
+}
