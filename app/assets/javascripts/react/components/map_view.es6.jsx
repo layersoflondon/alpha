@@ -9,4 +9,3 @@ class MapView extends React.Component {
     );
   }
 }
-

@@ -2,7 +2,7 @@
 
     <%= react_component("MapContainer") %>
 
-<div class="m-map">
+<div class="m-map" style="display: none">
 
     <div class="pins">
         <ul>
@@ -76,7 +76,7 @@
 
 </div>
 
-<div class="m-sidebar">
+<div class="m-sidebar" style="display: none">
     <div class="m-filters">
 
         <div class="basic">
@@ -128,7 +128,6 @@
                         </div>
                     </div>
                 </form>
-
             </div>
 
         </div>
@@ -230,7 +229,7 @@
 
         <div class="m-overlays-list">
             <ul>
-                <li>   
+                <li>
                     <form>
                         <div class="form-group">
                             <div class="form-check">
@@ -243,7 +242,7 @@
                     <h3>RAF Aerial View</h3>
                     <p>1456 – 2016</p>
                 </li>
-                <li>   
+                <li>
                     <form>
                         <div class="form-group">
                             <div class="form-check">
@@ -256,7 +255,7 @@
                     <h3>RAF Aerial View</h3>
                     <p>1456 – 2016</p>
                 </li>
-                <li>   
+                <li>
                     <form>
                         <div class="form-group">
                             <div class="form-check">
@@ -269,7 +268,7 @@
                     <h3>RAF Aerial View</h3>
                     <p>1456 – 2016</p>
                 </li>
-                <li>   
+                <li>
                     <form>
                         <div class="form-group">
                             <div class="form-check">
@@ -357,10 +356,9 @@
         </div>
 
     </div>
-
 </div>
 
-<div class="m-controls">
+<div class="m-controls" style="display: none">
     <div class="add-pin"><button>Add pin</button></div>
     <div class="zoom-controls">
         <button>+</button>
@@ -368,15 +366,15 @@
     </div>
 </div>
 
-<div class="m-add-pin">
+<div class="m-add-pin" style="display: none">
 
 </div>
 
-<div class="m-update">
+<div class="m-update" style="display: none">
     <button>Update results</button>
 </div>
 
-    <div id="map-container"></div>
+    <div id="map-container" style="display: none"></div>
 
 <% end %>
 

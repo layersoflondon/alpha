@@ -1,6 +1,7 @@
 class MapNavigation extends React.Component {
   render () {
-    return <div />;
+    return (
+      <div>map nav</div>
+    );
   }
 }
-

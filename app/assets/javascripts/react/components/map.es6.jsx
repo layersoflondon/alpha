@@ -4,18 +4,17 @@ class Map extends React.Component {
         <div>
             <UpdateResultsControl />
             <AddPinControl />
-            <MapControlsContainer>
-                <MapNavigation />
+            <MapControlsContainer />
 
-            </MapControlsContainer>
-            <PinContainer>
-                <Pin>
-                    <PinContent />
-                </Pin>
-            </PinContainer>
+            <div className="pins">
+              <ul>
+                <PinContainer />
+                <PinContainer expanded={true} />
+              </ul>
+            </div>
+
             <Overlay />
         </div>
     );
   }
 }
-

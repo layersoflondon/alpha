@@ -5,15 +5,10 @@ class SearchTab extends React.Component {
             <input type="text" />
             <button>Go</button>
 
-            <PlaceResultsContainer>
-                <PlaceResult />
-            </PlaceResultsContainer>
+            <PlaceResultsContainer />
 
-            <PinResultsContainer>
-                <PinResult />
-            </PinResultsContainer>
+            <PinResultsContainer />
         </div>
     );
   }
 }
-

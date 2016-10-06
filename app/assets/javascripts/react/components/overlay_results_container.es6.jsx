@@ -1,6 +1,11 @@
 class OverlayResultsContainer extends React.Component {
   render () {
-    return <div />;
+    return (
+      <div className="m-overlays-list">
+        <OverlayResult />
+        <OverlayResult />
+        <OverlayResult />
+      </div>
+    );
   }
 }
-
