@@ -1,0 +1,15 @@
+
+
+/* Filters */
+
+.m-filters {
+  background:white;
+  padding:20px 20px 40px 20px;
+  @include clearfix;
+  //float:left;
+  //width:33.333333%;
+}
+
+.m-filters .show-filter-link {
+  float:right;
+}

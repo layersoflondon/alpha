@@ -1,7 +1,446 @@
 <% content_for :template do %>
-    <p>This template is in <%= __FILE__ %></p>
+<!-- <p>This template is in <%= __FILE__ %></p> -->
 
-    <%= yield %>
+<%= yield %>
+
+<div class="m-map">
+
+    <div class="pins">
+        <ul>
+            <li>
+                <div class="m-popover">
+                    <h3>Barking park</h3>
+                    <a class="back-link">Back</a>
+                    <div class="window">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                                    <h3>Aenean vitae tincidunt arcu.</h3>
+                                    <p>Pinned 20th Sept 2016</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="marker"></div>
+            </li>
+            <li>
+                <div class="m-popover">
+                    <h3>Barking park</h3>
+                    <p><a href="#">See all pins for this location</a> or <a href="#">add a pin</a></p>
+                </div>
+                <div class="marker"></div>
+            </li>
+            <li><div class="marker"></div></li>
+            <li><div class="marker"></div></li>
+            <li><div class="marker"></div></li>
+            <li><div class="marker"></div></li>
+            <li><div class="marker"></div></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="m-sidebar">
+    <div class="m-filters">
+
+        <div class="basic">
+
+            <a class="show-filter-link show-filter-link-advanced" href="#">More filters</a>
+
+            <div class="m-date-filter">
+                <h2>Date range</h2>
+                <form>
+                    <input type="hidden" class="range-slider" value="1460,2016" />
+                </form>
+            </div>
+
+        </div>
+
+        <div class="advanced">
+
+            <a class="show-filter-link show-filter-link-basic">Basic filters</a>
+
+            <div class="m-type-filter">
+                <h2>Types</h2>
+                <form>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="">
+                                Overlays
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="">
+                                Pins
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="">
+                                With video
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="">
+                                With audio
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="m-panels">
+
+        <ul class="tabs">
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Overlays</a></li>
+            <li><a href="#">Collections</a></li>
+        </ul>
+
+        <div class="m-search-panel">
+
+            <div class="free-text-search">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Search" />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" placeholder="Go" value="Go" />
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label>
+                                <input class="form-check-input" type="checkbox" value="">
+                                This area only
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="results results-places">
+                <h3>Places</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <h3>The Leys</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <h3>Valence House Museum</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <h3>Gascoigne Estate</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#">See more</a>
+            </div>
+
+            <div class="results results-pins">
+                <h3>Pins</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="m-overlays-list">
+            <ul>
+                <li>   
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <h3>RAF Aerial View</h3>
+                    <p>1456 – 2016</p>
+                </li>
+                <li>   
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <h3>RAF Aerial View</h3>
+                    <p>1456 – 2016</p>
+                </li>
+                <li>   
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <h3>RAF Aerial View</h3>
+                    <p>1456 – 2016</p>
+                </li>
+                <li>   
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <h3>RAF Aerial View</h3>
+                    <p>1456 – 2016</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="m-collections-panel">
+
+            <div class="list">
+                <p>8 collections in this area</p>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <h3>Parks of Barking</h3>
+                            <p>A collection of all Barking parks.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Parks of Barking</h3>
+                            <p>A collection of all Barking parks.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Parks of Barking</h3>
+                            <p>A collection of all Barking parks.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Parks of Barking</h3>
+                            <p>A collection of all Barking parks.</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="detail">
+                <a class="back" href="#">Back</a>
+                <h3>Parks of Barking</h3>
+                <p>A collection of all Barking parks.</p>
+                <h4>4 pins, created by J. Smith</h4>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-map-pin" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                            <h3>Maybrook Place</h3>
+                            <p>Dagenham</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="m-controls">
+    <div class="add-pin"><button>Add pin</button></div>
+    <div class="zoom-controls">
+        <button>+</button>
+        <button>-</button>
+    </div>
+</div>
+
+<div class="m-add-pin">
+    <form>
+        <div class="form-group form-group-title">
+            <label>Pin title</label>
+            <input type="text" placeholder="What will you call this pin?" />
+        </div>
+        <div class="form-group form-group-description">
+            <label>Description</label>
+            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." /></textarea>
+        </div>
+        <div class="form-group">
+            <label>Link</label>
+            <input type="text" placeholder="http://www.example.com" />
+        </div>
+        <div class="form-group form-group-upload">
+            <label>Add image/audio</label>
+            <input type="file" placeholder="http://www.example.com" />
+        </div>
+        <div class="form-group">
+            <label>Add video (YouTube URL)</label>
+            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu" />
+        </div>
+        <div class="dates">
+            <div class="from">
+                <div class="form-group">
+                    <label>Day</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Month</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" />
+                </div>
+            </div>
+            <p>to</p>
+            <div class="to">
+
+                <div class="form-group">
+                    <label>Day</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Month</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Add to collection</label>
+            <select>
+                <option>Collection 1</option>
+                <option>Collection 2</option>
+                <option>Collection 3</option>
+                <option>Collection 4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" placeholder="Save my pin" />
+        </div>
+    </form>
+</div>
+
+<div class="m-update">
+    <button>Update results</button>
+</div>
 
 <% end %>
 

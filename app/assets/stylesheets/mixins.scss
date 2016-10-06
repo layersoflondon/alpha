@@ -1,0 +1,222 @@
+
+/* Mixins */
+
+@mixin element-list {
+
+  & > li > a {
+    @include transition(all .2s);
+    display: block;
+    padding:6px;
+    margin:-6px -6px -6px -38px;
+    padding-left: 38px;
+  }
+
+  & > li > a:hover {
+    background:#eee;
+  }
+
+  li {
+    margin-bottom: 1em;
+    padding-left: 30px;
+  }
+
+  .icon {
+    float:left;
+    margin-left:-30px;
+    font-size: 1.6em;
+  }
+
+  form {
+    float:left;
+    margin-left: -30px;
+  }
+
+  h3 {
+    margin:0;
+  }
+
+  p {
+    margin:0;
+  }
+
+}
+
+@mixin element-list-no-icons {
+  @include element-list;
+  & > li > a {
+    margin:-6px;
+    padding:6px;
+  }
+  li {
+    padding-left:0;
+  }
+}
+
+@mixin unlist {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+@mixin module-title {
+  font-size:0.8em;
+  text-transform:uppercase;
+  color:#ccc;
+  font-weight:bold;
+  margin-top:0;
+}
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  & {
+
+    @each $property in $properties {
+      #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+      @each $property in $properties {
+        #{$property}: calc(#{px-percent($min-value)} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+      }
+    }
+
+    // IE8, IE9, IE10
+    @media screen\0  {
+      @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+          #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+      }
+    }
+
+    // IE10, IE11+
+    @media screen and (min-width: $min-vw) and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+      @each $property in $properties {
+        #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+      }
+    }
+
+    // Edge Version of above
+    @supports (-ms-accelerator:true) {
+      @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+          #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+      }
+    }
+
+    @media screen and (min-width: $max-vw) {
+      @each $property in $properties {
+        #{$property}: $max-value;
+      }
+    }
+
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function px-percent($value) {
+  @return (strip-unit($value) / 16 ) * 100%
+}
+
+@mixin mq($point) {
+  @if $point==wide {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  @else if $point==large {
+    @media (max-width: 1199px) and (min-width: 992px) {
+      @content;
+    }
+  }
+  @else if $point==medium {
+    @media (max-width: 991px) and (min-width: 768px) {
+      @content;
+    }
+  }
+  @else if $point==smartphone {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin kellum() {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  behavior: url('/PIE.htc');
+  position: relative;
+}
+
+@mixin transform($string){
+  -webkit-transform: $string;
+  -moz-transform:    $string;
+  -ms-transform:     $string;
+  -o-transform:      $string;
+  transform:      $string;
+}
+
+@mixin scale ($factor) {
+  -webkit-transform: scale($factor);
+  -moz-transform:    scale($factor);
+  -ms-transform:     scale($factor);
+  -o-transform:      scale($factor);
+  transform:      scale($factor);
+}
+
+@mixin transition($arguments...) {
+  -webkit-transition: $arguments;
+  -moz-transition: $arguments;
+  -o-transition: $arguments;
+  transition: $arguments;
+}
+
+@mixin transition-delay($delay...) {
+  -moz-transition-delay:    $delay;
+  -o-transition-delay:      $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay:         $delay;
+}
+
+@mixin translate ($x, $y:0) {
+  -webkit-transform:       translate($x, $y);
+  -moz-transform:    translate($x, $y);
+  -ms-transform:     translate($x, $y);
+  -o-transform:      translate($x, $y);
+  transform:      translate($x, $y);
+}
+
+@mixin box-shadow ($string) {
+  -webkit-box-shadow: $string;
+  -moz-box-shadow:    $string;
+  box-shadow:         $string;
+}

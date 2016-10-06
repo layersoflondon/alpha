@@ -1,0 +1,26 @@
+
+/* Collections list */
+
+.m-collections-panel {
+	background:white;
+  padding:20px;
+}
+
+
+// List view
+
+.m-collections-panel .list > p {
+  margin:1em 0;
+}
+
+.m-collections-panel .list ul {
+  @include unlist;
+  @include element-list-no-icons;
+}
+
+// Detail view
+
+.m-collections-panel .detail ul {
+  @include unlist;
+  @include element-list;
+}

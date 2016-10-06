@@ -1,0 +1,38 @@
+
+/* List view */
+
+.m-search-panel {
+/*   background:white; */
+  padding:20px;
+}
+
+.m-search-panel ul {
+  @include unlist;
+  @include element-list;
+}
+
+.m-search-panel .free-text-search {
+  margin-bottom:2em;
+  @include clearfix;
+}
+
+.m-search-panel .free-text-search input[type="text"] {
+  width: 190px;
+}
+
+.m-search-panel .free-text-search .form-group {
+  float:left;
+  margin-right:10px;
+}
+
+.m-search-panel .free-text-search .form-group:last-child {
+  clear:left;
+}
+
+.m-search-panel .results {
+  margin-bottom:10px;
+}
+
+.m-search-panel .results > h3 {
+  @include module-title;
+}
