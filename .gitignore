@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 node_modules
+.vagrant
+.idea
+config/secrets.yml
