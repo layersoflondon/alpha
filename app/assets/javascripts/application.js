@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require alt
+//= require react
+//= require react_ujs
+//= require_tree ./react
+

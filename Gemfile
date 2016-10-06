@@ -70,3 +70,12 @@ gem 'aasm'
 gem 'refile'
 
 gem 'faker'
+
+gem 'browserify-rails'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-alt'
+  gem 'rails-assets-react-leaflet'
+end
+
+gem 'react-rails'
