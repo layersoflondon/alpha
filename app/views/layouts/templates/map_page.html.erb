@@ -1,5 +1,7 @@
 <% content_for :template do %>
 
+    <%= react_component("MapContainer") %>
+
 <div class="m-map">
 
     <div class="pins">
@@ -367,72 +369,7 @@
 </div>
 
 <div class="m-add-pin">
-    <form>
-        <div class="form-group form-group-title">
-            <label>Pin title</label>
-            <input type="text" placeholder="What will you call this pin?" />
-        </div>
-        <div class="form-group form-group-description">
-            <label>Description</label>
-            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." /></textarea>
-        </div>
-        <div class="form-group">
-            <label>Link</label>
-            <input type="text" placeholder="http://www.example.com" />
-        </div>
-        <div class="form-group form-group-upload">
-            <label>Add image/audio</label>
-            <input type="file" placeholder="http://www.example.com" />
-        </div>
-        <div class="form-group">
-            <label>Add video (YouTube URL)</label>
-            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu" />
-        </div>
-        <div class="dates">
-            <div class="from">
-                <div class="form-group">
-                    <label>Day</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label>Month</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label>Year</label>
-                    <input type="text" />
-                </div>
-            </div>
-            <p>to</p>
-            <div class="to">
 
-                <div class="form-group">
-                    <label>Day</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label>Month</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label>Year</label>
-                    <input type="text" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Add to collection</label>
-            <select>
-                <option>Collection 1</option>
-                <option>Collection 2</option>
-                <option>Collection 3</option>
-                <option>Collection 4</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <input type="submit" placeholder="Save my pin" />
-        </div>
-    </form>
 </div>
 
 <div class="m-update">
