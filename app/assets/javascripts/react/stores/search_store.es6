@@ -1,1 +1,0 @@
-// var alt = require('../alt');
