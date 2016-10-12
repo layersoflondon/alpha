@@ -55,3 +55,7 @@ body {
 .m-map .pins > ul > li:nth-child(1) { left:77%; top:38% }
 .m-map .pins > ul > li:nth-child(6) { left:70%; top:70% }
 .m-map .pins > ul > li:nth-child(7) { left:90%; top:40% }
+
+header nav.main-navigation {
+  float: left;
+}

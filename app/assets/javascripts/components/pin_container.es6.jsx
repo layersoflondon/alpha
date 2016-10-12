@@ -32,34 +32,6 @@ class PinContainer extends React.Component {
                     <p>Pinned 20th Sept 2016</p>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
-                    <h3>Aenean vitae tincidunt arcu.</h3>
-                    <p>Pinned 20th Sept 2016</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
-                    <h3>Aenean vitae tincidunt arcu.</h3>
-                    <p>Pinned 20th Sept 2016</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
-                    <h3>Aenean vitae tincidunt arcu.</h3>
-                    <p>Pinned 20th Sept 2016</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
-                    <h3>Aenean vitae tincidunt arcu.</h3>
-                    <p>Pinned 20th Sept 2016</p>
-                </a>
-            </li>
         </ul>
     </div>
     `;
@@ -75,7 +47,7 @@ class PinContainer extends React.Component {
         <div className="m-popover">
             <h3>Barking park</h3>
             <div dangerouslySetInnerHTML={content}></div>
-            
+
             <a href="#" onClick={this.switchState.bind(this)}>{switchLabel}</a>
         </div>
         <div className="marker"></div>
