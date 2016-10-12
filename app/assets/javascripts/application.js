@@ -12,8 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require alt
 //= require react
 //= require react_ujs
-//= require_tree ./react
 
+//= require alt
+//= require components
+
+//= require_self
+//= require_tree .
+
+var alt = new Alt();
