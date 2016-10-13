@@ -1,11 +1,12 @@
 class MapView extends React.Component {
   render () {
     return (
-        <div>
-            <Map />
+      <div>
+        <Map />
 
-            <MapControls />
-        </div>
+        <UpdateResultsControl />
+        <MapControlsContainer />
+      </div>
     );
   }
 }

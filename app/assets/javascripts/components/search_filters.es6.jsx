@@ -6,14 +6,14 @@ class SearchFilters extends React.Component {
   }
 
   toggleFilters() {
-    var filter_state = this.state.filters=='basic' ? 'advanced' : 'basic';
-    this.setState({visible_filters: filter_state})
+    var filter_state = this.state.visible_filters=='basic' ? 'advanced' : 'basic';
+    this.setState({visible_filters: filter_state});
   }
 
   render () {
     var date_filters = <DateRange />;
 
-    if( this.state.filters == 'basic' ) {
+    if( this.state.visible_filters == 'basic' ) {
       return (
         <div className="m-filters">
             <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>More filters</a>
@@ -25,6 +25,7 @@ class SearchFilters extends React.Component {
         <div className="m-filters">
             <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>Basic filters</a>
             <DateRange />
+            <br/><br/>
             <AdvancedFilters />
         </div>
       );

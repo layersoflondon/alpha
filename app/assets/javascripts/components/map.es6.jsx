@@ -1,10 +1,8 @@
 class Map extends React.Component {
   render () {
     return (
-        <div>
-            <UpdateResultsControl />
+        <div className="m-map">
             <AddPinControl />
-            <MapControlsContainer />
 
             <div className="pins">
               <ul>
