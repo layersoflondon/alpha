@@ -12,9 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require leaflet
+
 //= require react
 //= require react_ujs
 //= require react-tabs
+//= require vendor/react-leaflet
 
 //= require alt
 //= require components

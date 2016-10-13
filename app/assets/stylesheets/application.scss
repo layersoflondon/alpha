@@ -19,6 +19,7 @@
 @import "modules/m-add-pin";
 
 @import "vendor/jquery.range.css";
+@import "vendor/leaflet.css";
 
 body {
   font-size:12px;
@@ -30,7 +31,7 @@ body {
   right:0;
   bottom:0;
   left:0;
-  background:url('map.png') center/cover;
+  // background:url('map.png') center/cover;
   z-index:-1;
 }
 

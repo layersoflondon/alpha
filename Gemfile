@@ -73,10 +73,11 @@ gem 'faker'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-alt'
-  gem 'rails-assets-react-leaflet'
   gem 'rails-assets-react-tabs'
+  gem 'rails-assets-react-leaflet'
 end
 
 gem 'sprockets-es6'
 gem 'browserify-rails'
 gem 'react-rails'
+gem 'leaflet-rails'
