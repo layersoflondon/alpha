@@ -1,13 +1,11 @@
 class MapContainer extends React.Component {
     render() {
         return (
-            <div className="m-map">
-                <SideBar />
+          <div>
+            <div className="m-map"></div>
 
-                <MapView />
-                <PinForm />
-            </div>
+            <SideBar />
+          </div>
         )
     }
 }
-

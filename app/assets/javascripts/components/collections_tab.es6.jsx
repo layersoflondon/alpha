@@ -1,7 +1,13 @@
 class CollectionsTab extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props;
+  }
+
   render () {
     return (
-        <div>
+        <div className="m-collections-panel">
             <CollectionResultsContainer />
         </div>
     );

@@ -2,10 +2,7 @@ class SearchTab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchStore.getState();
-
-    // bind onChange to this Component
-    this.onChange = this.onChange.bind(this);
+    this.state = props;
   }
 
   fetchSearchResults() {
@@ -14,20 +11,7 @@ class SearchTab extends React.Component {
     return false;
   }
 
-  onChange(state) {
-    this.setState(state);
-  }
-
-  componentDidMount() {
-    SearchStore.listen(this.onChange);
-  }
-  componentWillUnmount() {
-    SearchStore.unlisten(this.onChange);
-  }
-
   render () {
-    console.log("Rendering...", this.state);
-
     if(this.state.errorMessage) {
       return (
         <div>Something is wrong {this.state.errorMessage}</div>
@@ -40,15 +24,15 @@ class SearchTab extends React.Component {
     }
 
     return (
-        <div>
-            <form onSubmit={this.fetchSearchResults.bind(this)}>
-              <input type="text" placeholder="Search" />
-              <button>Go</button>
-            </form>
+      <div className="m-search-panel">
+          <form>
+            <input type="text" placeholder="Search" />
+            <button>Go</button>
+          </form>
 
-            <PlaceResultsContainer />
-            <PinResultsContainer />
-        </div>
+          <PlaceResultsContainer />
+          <PinResultsContainer />
+      </div>
     );
   }
 }

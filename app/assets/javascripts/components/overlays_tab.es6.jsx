@@ -1,7 +1,13 @@
 class OverlaysTab extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = props;
+  }
+
   render () {
     return (
-        <div>
+        <div className="m-overlays-list">
             <OverlayResultsContainer />
         </div>
     );

@@ -74,6 +74,7 @@ gem 'faker'
 source 'https://rails-assets.org' do
   gem 'rails-assets-alt'
   gem 'rails-assets-react-leaflet'
+  gem 'rails-assets-react-tabs'
 end
 
 gem 'sprockets-es6'

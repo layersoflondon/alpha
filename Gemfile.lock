@@ -184,6 +184,7 @@ GEM
       rails-assets-leaflet (~> 0.7.0)
       rails-assets-lodash (~> 4.0.0)
       rails-assets-react
+    rails-assets-react-tabs (0.8.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -299,6 +300,7 @@ DEPENDENCIES
   rails (= 4.2.7.1)
   rails-assets-alt!
   rails-assets-react-leaflet!
+  rails-assets-react-tabs!
   react-rails
   refile
   rooftop
