@@ -1,7 +1,7 @@
 class PinForm extends React.Component {
     render () {
         return (
-            <div>
+            <div style={{display: 'none'}}>
                 <form>
                     <div className="form-group form-group-title">
                         <label>Pin title</label>
@@ -66,4 +66,3 @@ class PinForm extends React.Component {
     );
     }
 }
-

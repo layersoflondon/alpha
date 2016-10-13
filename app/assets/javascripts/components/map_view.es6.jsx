@@ -3,9 +3,6 @@ class MapView extends React.Component {
     return (
       <div>
         <Map />
-
-        <UpdateResultsControl />
-        <MapControlsContainer />
       </div>
     );
   }
