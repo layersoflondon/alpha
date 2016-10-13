@@ -14,13 +14,13 @@ class SearchTab extends React.Component {
   render () {
     return (
       <div className="m-search-panel">
-          <form onSubmit={this.handleSearchSubmit.bind(this)}>
-            <input type="text" placeholder="Search" />
-            <button>Go</button>
-          </form>
+        <form onSubmit={this.handleSearchSubmit.bind(this)}>
+          <input type="text" placeholder="Search" />
+          <button>Go</button>
+        </form>
 
-          <PlaceResultsContainer />
-          <PinResultsContainer />
+        <PlaceResultsContainer />
+        <PinResultsContainer />
       </div>
     );
   }

@@ -4,7 +4,7 @@ class PlaceResult extends React.Component {
       <li>
           <a href="#">
               <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
-              <h3>The Leys</h3>
+              <h3>{this.props.name}</h3>
               <p>Dagenham</p>
           </a>
       </li>

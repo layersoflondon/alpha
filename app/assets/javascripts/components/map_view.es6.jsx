@@ -10,6 +10,7 @@ class MapView extends React.Component {
 
     this.state = MapStore.getState();
 
+    // bind our event handlers
     this.stateChanged = this.stateChanged.bind(this);
   }
 
@@ -41,8 +42,9 @@ class MapView extends React.Component {
   }
 
   render() {
+    console.log("render", this.state.pins);
+
     const position = [this.state.lat, this.state.lng];
-    console.log(this.refs.map);
 
     return (
       <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>

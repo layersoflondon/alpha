@@ -1,15 +1,21 @@
 class MapContainer extends React.Component {
-    render() {
-      return (
-        <div>
-          <MapView />
+  constructor(props) {
+    super(props);
 
-          <SideBar />
+    self.state = {};
+  }
 
-          <UpdateResultsControl />
-          <MapControlsContainer />
-          <AddPinControl />
-        </div>
-      )
-    }
+  render() {
+    return (
+      <div>
+        <MapView />
+
+        <SideBar />
+
+        <UpdateResultsControl />
+        <MapControlsContainer />
+        <AddPinControl />
+      </div>
+    )
+  }
 }

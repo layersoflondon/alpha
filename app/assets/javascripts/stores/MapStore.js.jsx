@@ -4,6 +4,7 @@
       this.lat  = 51.505;
       this.lng  = -0.09;
       this.zoom = 13;
+      this.searching = false;
       this.places = [
         {id: 1, name: "Marker 1"},
         {id: 2, name: "Marker 2"},
@@ -22,13 +23,38 @@
       ];
 
       this.bindListeners({
-        onUpdatePins: MapActions.UPDATE_PINS
+        onFetchSearchResults: MapActions.FETCH_SEARCH_RESULTS,
+        onUpdatePins: MapActions.UPDATE_PINS,
+        onUpdatePlaces: MapActions.UPDATE_PLACES,
+        onUpdateOverlays: MapActions.UPDATE_OVERLAYS,
+        onUpdateCollections: MapActions.UPDATE_COLLECTIONS
       });
+    }
+
+    onFetchSearchResults() {
+      this.searching = true;
+      this.places = [];
+      this.pins   = [];
     }
 
     onUpdatePins(pins) {
       this.pins = pins;
+      this.searching = false;
     }
+
+    onUpdatePlaces(places) {
+      this.places    = places;
+      this.searching = false;
+    }
+
+    onUpdateOverlays(overlays) {
+      this.overlays = overlays;
+    }
+
+    onUpdateCollections(collections) {
+      this.collections = collections;
+    }
+
   }
 
   this.MapStore = alt.createStore(MapStore, 'MapStore');
