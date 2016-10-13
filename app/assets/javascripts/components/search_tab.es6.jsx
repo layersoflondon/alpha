@@ -5,16 +5,16 @@ class SearchTab extends React.Component {
     this.state = props;
   }
 
-  fetchSearchResults() {
-    SearchActions.fetchSearchResults();
+  handleSearchSubmit(e) {
+    e.preventDefault();
 
-    return false;
+    MapActions.fetchSearchResults();
   }
 
   render () {
     return (
       <div className="m-search-panel">
-          <form>
+          <form onSubmit={this.handleSearchSubmit.bind(this)}>
             <input type="text" placeholder="Search" />
             <button>Go</button>
           </form>
