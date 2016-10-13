@@ -55,3 +55,7 @@ class PinContainer extends React.Component {
     );
   }
 }
+
+PinContainer.propTypes = {
+  expanded: React.PropTypes.bool
+};

@@ -31,3 +31,8 @@ class SearchFilters extends React.Component {
     }
   }
 }
+
+SearchFilters.propTypes = {
+  visible_filters: React.PropTypes.string,
+  filters: React.PropTypes.object
+}

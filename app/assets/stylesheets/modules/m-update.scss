@@ -16,6 +16,10 @@
   @include transition(all .2s);
 }
 
+.m-update button[disabled] {
+	opacity: 0.2;
+}
+
 .m-update button:hover {
   background:$blue;
   color:white;

@@ -5,6 +5,8 @@ class MapContainer extends React.Component {
             <div className="m-map"></div>
 
             <SideBar />
+            <MapControlsContainer />
+            <UpdateResultsControl />
           </div>
         )
     }

@@ -4,12 +4,6 @@ var Tabs     = ReactTabs.Tabs,
     TabPanel = ReactTabs.TabPanel;
 
 class FilterTabs extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   handleSelect(index, last) {
     console.log("Selected tab: " + index + ", Last tab: " + last);
   }
