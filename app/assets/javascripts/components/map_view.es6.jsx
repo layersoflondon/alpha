@@ -32,17 +32,11 @@ class MapView extends React.Component {
   }
 
   handleMoved(event) {
-    console.log("Moved!");
-    console.log(event.target.getCenter());
-  }
-  handleZoomed(event) {
-    console.log("Zoomed!");
-    console.log(event.target);
+    FilterStateActions.updateFilterCentre(this.refs.map.state.map.getCenter());
   }
 
-  handleFocusOnPin(pin) {
-    console.log("An event has been triggered to focus the map");
-    // console.log(this.refs.map.panTo())
+  handleZoomed(event) {
+    FilterStateActions.updateFilterBounds(this.refs.map.state.map.getBounds());
   }
 
   shouldComponentUpdate(nextProps, nextState) {

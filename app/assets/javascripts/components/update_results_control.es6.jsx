@@ -15,6 +15,9 @@ class UpdateResultsControl extends React.Component {
   }
 
   stateChanged(state) {
+    console.log("\n\nFilter state: ");
+    console.log(state);
+    console.log("\n\n");
     this.setState({update_disabled: false});
   }
 
