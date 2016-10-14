@@ -75,6 +75,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-alt'
   gem 'rails-assets-react-tabs'
   gem 'rails-assets-react-leaflet'
+  gem 'rails-assets-lodash'
 end
 
 gem 'sprockets-es6'
