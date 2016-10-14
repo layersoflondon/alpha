@@ -1,7 +1,11 @@
 class PinResult extends React.Component {
+  focusMapOnPin(pin) {
+    MapViewActions.focusPin(pin);
+  }
+
   render () {
     return (
-      <li>
+      <li onClick={this.focusMapOnPin.bind(this, this.props.pin)}>
           <a href="#">
               <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
               <h3>{this.props.name}</h3>

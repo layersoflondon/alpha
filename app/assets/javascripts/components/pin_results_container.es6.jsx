@@ -2,16 +2,16 @@ class PinResultsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = MapStore.getState();
+    this.state = SearchStore.getState();
     this.stateChanged = this.stateChanged.bind(this);
   }
 
   componentDidMount() {
-    MapStore.listen(this.stateChanged);
+    SearchStore.listen(this.stateChanged);
   }
 
   componentWillUnmount() {
-    MapStore.unlisten(this.stateChanged);
+    SearchStore.unlisten(this.stateChanged);
   }
 
   stateChanged(state) {
@@ -27,7 +27,7 @@ class PinResultsContainer extends React.Component {
         <h3>{pins_label}</h3>
         <ul>
         {this.state.pins.map(function(pin){
-          return (<PinResult key={pin.id} name={pin.name} />);
+          return (<PinResult key={pin.id} name={pin.name} pin={pin} />);
         })}
         </ul>
       </div>

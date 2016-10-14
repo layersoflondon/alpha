@@ -8,22 +8,26 @@ class MapView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = MapStore.getState();
+    this.state = SearchStore.getState();
+
+    this.map   = null;
 
     // bind our event handlers
     this.stateChanged = this.stateChanged.bind(this);
   }
 
   componentDidMount() {
-    MapStore.listen(this.stateChanged);
+    // map data (markers) state
+    SearchStore.listen(this.stateChanged);
+
+    // map view (position, focussed marker)
+    MapViewStore.listen(this.mapViewStateChanged);
   }
 
   componentWillUnmount() {
-    MapStore.unlisten(this.stateChanged);
-  }
+    SearchStore.unlisten(this.stateChanged);
 
-  stateChanged(state) {
-    this.setState(state);
+    MapViewStore.unlisten(this.mapViewStateChanged);
   }
 
   handleMoved() {
@@ -31,6 +35,10 @@ class MapView extends React.Component {
   }
   handleZoomed() {
     console.log("Zoomed!");
+  }
+
+  handleFocusOnPin(pin) {
+    console.log("An event has been triggered to focus the map on ", pin);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -41,23 +49,30 @@ class MapView extends React.Component {
     return true;
   }
 
-  render() {
-    console.log("render", this.state.pins);
+  stateChanged(state) {
+    this.setState(state);
+  }
 
+  mapViewStateChanged(state) {
+    console.log("\n\n");
+    console.log("The map view state has changed", state);
+    console.log("\n\n");
+  }
+
+  render() {
     const position = [this.state.lat, this.state.lng];
 
-    return (
-      <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-        />
-        <ZoomControl position='bottomright' />
+    var pins = this.state.pins.map(function(pin){
+                 return (<Marker key={pin.id} position={pin.position}><Popup><span>{pin.name}</span></Popup></Marker>);
+               });
 
-        {this.state.pins.map(function(pin){
-          return (<Marker key={pin.id} position={pin.position}><Popup><span>{pin.name}</span></Popup></Marker>);
-        })}
-      </Map>
-    )
+    this.map =  <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
+                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+                  <ZoomControl position='bottomright' />
+
+                  {pins}
+                </Map>;
+
+    return (this.map)
   }
 }
