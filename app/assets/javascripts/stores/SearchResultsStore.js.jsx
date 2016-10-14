@@ -1,5 +1,5 @@
 (() => {
-  class SearchStore {
+  class SearchResultsStore {
     constructor() {
       this.lat  = 51.505;
       this.lng  = -0.09;
@@ -24,11 +24,11 @@
       ];
 
       this.bindListeners({
-        onFetchSearchResults: SearchActions.FETCH_SEARCH_RESULTS,
-        onUpdatePins: SearchActions.UPDATE_PINS,
-        onUpdatePlaces: SearchActions.UPDATE_PLACES,
-        onUpdateOverlays: SearchActions.UPDATE_OVERLAYS,
-        onUpdateCollections: SearchActions.UPDATE_COLLECTIONS
+        onFetchSearchResults: SearchResultsActions.FETCH_SEARCH_RESULTS,
+        onUpdatePins: SearchResultsActions.UPDATE_PINS,
+        onUpdatePlaces: SearchResultsActions.UPDATE_PLACES,
+        onUpdateOverlays: SearchResultsActions.UPDATE_OVERLAYS,
+        onUpdateCollections: SearchResultsActions.UPDATE_COLLECTIONS
       });
     }
 
@@ -58,5 +58,5 @@
 
   }
 
-  this.SearchStore = alt.createStore(SearchStore, 'SearchStore');
+  this.SearchResultsStore = alt.createStore(SearchResultsStore, 'SearchResultsStore');
 })();

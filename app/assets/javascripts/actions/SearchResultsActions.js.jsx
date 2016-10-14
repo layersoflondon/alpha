@@ -1,5 +1,5 @@
 (() => {
-  class SearchActions {
+  class SearchResultsActions {
     fetchSearchResults() {
       return (dispatch) => {
         dispatch();
@@ -39,5 +39,5 @@
     }
   }
 
-  this.SearchActions = alt.createActions(SearchActions);
+  this.SearchResultsActions = alt.createActions(SearchResultsActions);
 })();
