@@ -21,13 +21,13 @@ class MapView extends React.Component {
     SearchStore.listen(this.stateChanged);
 
     // map view (position, focussed marker)
-    MapViewStore.listen(this.mapViewStateChanged);
+    MapStateStore.listen(this.mapViewStateChanged);
   }
 
   componentWillUnmount() {
     SearchStore.unlisten(this.stateChanged);
 
-    MapViewStore.unlisten(this.mapViewStateChanged);
+    MapStateStore.unlisten(this.mapViewStateChanged);
   }
 
   handleMoved() {
@@ -63,7 +63,17 @@ class MapView extends React.Component {
     const position = [this.state.lat, this.state.lng];
 
     var pins = this.state.pins.map(function(pin){
-                 return (<Marker key={pin.id} position={pin.position}><Popup><span>{pin.name}</span></Popup></Marker>);
+                 return (
+                   <Marker key={pin.id} position={pin.position}>
+                     <Popup>
+                       <div>
+                         <span>{pin.name}</span>
+                         <hr/>
+                         {pin.places.map(function(place){return (<p key={place.id}>{place.name}</p>)})}
+                       </div>
+                     </Popup>
+                   </Marker>
+                 );
                });
 
     this.map =  <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
@@ -73,6 +83,6 @@ class MapView extends React.Component {
                   {pins}
                 </Map>;
 
-    return (this.map)
+    return (this.map);
   }
 }

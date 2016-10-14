@@ -7,7 +7,7 @@
         var self = this;
 
         setTimeout(function() {
-          self.emitUpdatedState([{id: 1, name: "This is a newly added pin", position: [51.525, -0.09], places: [{id: 1, name: "Place Marker 1"}, {id: 2, name: "Place Marker 2"}]}]);
+          self.emitUpdatedState([{id: 1, name: "This is a newly added pin", position: [51.525, -0.09], places: [{id: 1, name: "Searched Pin, Place 1"}, {id: 2, name: "Searched Pin, Place 2"}]}]);
         }, 2000);
       }
     }
@@ -16,7 +16,8 @@
       this.updatePins(state);
 
       var places = state.map(function(result){return result.places});
-      places = places.concat.apply([], places);
+      places = _.flatten(places);
+      places = _.uniqBy(places, function(p){return p.id});
 
       this.updatePlaces(places);
     }

@@ -6,9 +6,10 @@
       this.zoom = 13;
       this.searching = false;
       this.places = [
-        {id: 1, name: "Marker 1"},
-        {id: 2, name: "Marker 2"},
-        {id: 3, name: "Marker 3"}
+        {id: 1, name: "Place 1"},
+        {id: 2, name: "Place 2"},
+        {id: 3, name: "Place 3"},
+        {id: 4, name: "Place 4"}
       ];
       this.overlays = [
         {id: 1, name: "An overlay"}
@@ -17,9 +18,9 @@
         {id: 1, name: "A collection"}
       ];
       this.pins = [
-        {id: 1, name: "Pin 1", position: [51.505, -0.09], places: [{id: 1, name: "Marker 1"}]},
-        {id: 2, name: "Pin 2", position: [51.515, -0.11], places: [{id: 1, name: "Marker 1"}, {id: 2, name: "Marker 2"}]},
-        {id: 3, name: "Pin 3", position: [51.525, -0.13], places: [{id: 1, name: "Marker 1"}, {id: 2, name: "Marker 2"}, , {id: 3, name: "Marker 3"}]}
+        {id: 1, name: "Pin 1", position: [51.505, -0.09], places: [{id: 1, name: "Pin 1, Place 1"}]},
+        {id: 2, name: "Pin 2", position: [51.515, -0.11], places: [{id: 1, name: "Pin 2, Place 1"}, {id: 2, name: "Pin 2, Place 2"}]},
+        {id: 3, name: "Pin 3", position: [51.525, -0.13], places: [{id: 1, name: "Pin 3, Place 1"}, {id: 2, name: "Pin 3, Place 2"}, {id: 3, name: "Pin 3, Place 3"}, {id: 4, name: "Pin 3, Place 4"}]}
       ];
 
       this.bindListeners({

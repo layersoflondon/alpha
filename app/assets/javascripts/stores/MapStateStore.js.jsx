@@ -1,9 +1,9 @@
 (() => {
-  class MapViewStore {
+  class MapStateStore {
     constructor() {
       this.focussed_pin = null;
       this.bindListeners({
-        onFocusPin: MapViewActions.FOCUS_PIN
+        onFocusPin: MapStateActions.FOCUS_PIN
       })
     }
 
@@ -12,5 +12,5 @@
     }
   }
 
-  this.MapViewStore = alt.createStore(MapViewStore, 'MapViewStore');
+  this.MapStateStore = alt.createStore(MapStateStore, 'MapStateStore');
 })();

@@ -1,6 +1,6 @@
 class PinResult extends React.Component {
   focusMapOnPin(pin) {
-    MapViewActions.focusPin(pin);
+    MapStateActions.focusPin(pin);
   }
 
   render () {
