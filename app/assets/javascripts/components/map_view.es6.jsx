@@ -8,37 +8,41 @@ class MapView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchStore.getState();
+    this.state = SearchResultsStore.getState();
 
     this.map   = null;
 
     // bind our event handlers
     this.stateChanged = this.stateChanged.bind(this);
+    this.mapViewStateChanged = this.mapViewStateChanged.bind(this);
   }
 
   componentDidMount() {
     // map data (markers) state
-    SearchStore.listen(this.stateChanged);
+    SearchResultsStore.listen(this.stateChanged);
 
     // map view (position, focussed marker)
     MapStateStore.listen(this.mapViewStateChanged);
   }
 
   componentWillUnmount() {
-    SearchStore.unlisten(this.stateChanged);
+    SearchResultsStore.unlisten(this.stateChanged);
 
     MapStateStore.unlisten(this.mapViewStateChanged);
   }
 
-  handleMoved() {
+  handleMoved(event) {
     console.log("Moved!");
+    console.log(event.target.getCenter());
   }
-  handleZoomed() {
+  handleZoomed(event) {
     console.log("Zoomed!");
+    console.log(event.target);
   }
 
   handleFocusOnPin(pin) {
-    console.log("An event has been triggered to focus the map on ", pin);
+    console.log("An event has been triggered to focus the map");
+    // console.log(this.refs.map.panTo())
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -54,34 +58,24 @@ class MapView extends React.Component {
   }
 
   mapViewStateChanged(state) {
-    console.log("\n\n");
-    console.log("The map view state has changed", state);
-    console.log("\n\n");
+    var coords = state.map_position;
+    var latlng = {lat: coords[0], lng: coords[1]};
+    this.refs.map.state.map.panTo(latlng);
   }
 
   render() {
     const position = [this.state.lat, this.state.lng];
 
-    var pins = this.state.pins.map(function(pin){
+    const pins = this.state.pins.map(function(pin) {
                  return (
-                   <Marker key={pin.id} position={pin.position}>
-                     <Popup>
-                       <div>
-                         <span>{pin.name}</span>
-                         <hr/>
-                         {pin.places.map(function(place){return (<p key={place.id}>{place.name}</p>)})}
-                       </div>
-                     </Popup>
-                   </Marker>
+                   <PinContainer key={pin.id} pin={pin} />
                  );
                });
 
-    this.map =  <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
-                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-                  <ZoomControl position='bottomright' />
-
-                  {pins}
-                </Map>;
+    this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
+                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+                 {pins}
+               </Map>;
 
     return (this.map);
   }

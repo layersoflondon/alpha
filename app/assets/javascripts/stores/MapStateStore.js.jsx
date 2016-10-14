@@ -1,14 +1,14 @@
 (() => {
   class MapStateStore {
     constructor() {
-      this.focussed_pin = null;
+      this.map_position = null;
       this.bindListeners({
         onFocusPin: MapStateActions.FOCUS_PIN
       })
     }
 
     onFocusPin(pin) {
-      this.focussed_pin = pin;
+      this.map_position = pin.position;
     }
   }
 

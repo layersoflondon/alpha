@@ -2,22 +2,36 @@ class SearchFilters extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {visible_filters: 'basic', filters: {}};
+    this.state = FilterStateStore.getState()
+    this.stateChanged = this.stateChanged.bind(this);
+  }
+
+  componentDidMount() {
+    FilterStateStore.listen(this.stateChanged);
+  }
+
+  componentWillUnmount() {
+    FilterStateStore.unlisten(this.stateChanged);
+  }
+
+  stateChanged(state) {
+    this.setState(state);
   }
 
   toggleFilters() {
-    var filter_state = this.state.visible_filters=='basic' ? 'advanced' : 'basic';
-    this.setState({visible_filters: filter_state});
+    FilterStateActions.toggleAdvancedFilters(!this.state.advanced_filters_visible);
   }
 
   render () {
     var date_filters = <DateRange />;
 
-    if( this.state.visible_filters == 'basic' ) {
+    if( this.state.advanced_filters_visible ) {
       return (
         <div className="m-filters">
             <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>More filters</a>
             <DateRange />
+            <br/><br/>
+            <AdvancedFilters />
         </div>
       );
     }else {
@@ -25,15 +39,8 @@ class SearchFilters extends React.Component {
         <div className="m-filters">
             <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>Basic filters</a>
             <DateRange />
-            <br/><br/>
-            <AdvancedFilters />
         </div>
       );
     }
   }
-}
-
-SearchFilters.propTypes = {
-  visible_filters: React.PropTypes.string,
-  filters: React.PropTypes.object
 }

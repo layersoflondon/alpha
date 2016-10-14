@@ -2,16 +2,16 @@ class PinResultsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchStore.getState();
+    this.state = SearchResultsStore.getState();
     this.stateChanged = this.stateChanged.bind(this);
   }
 
   componentDidMount() {
-    SearchStore.listen(this.stateChanged);
+    SearchResultsStore.listen(this.stateChanged);
   }
 
   componentWillUnmount() {
-    SearchStore.unlisten(this.stateChanged);
+    SearchResultsStore.unlisten(this.stateChanged);
   }
 
   stateChanged(state) {

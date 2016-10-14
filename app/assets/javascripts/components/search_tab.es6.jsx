@@ -8,7 +8,7 @@ class SearchTab extends React.Component {
   handleSearchSubmit(e) {
     e.preventDefault();
 
-    SearchActions.fetchSearchResults();
+    SearchResultsActions.fetchSearchResults();
   }
 
   render () {
