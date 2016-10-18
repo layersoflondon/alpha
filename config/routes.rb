@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: {registrations: 'registrations'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
-match "/*nested_path", via: [:get], to: "pages#show", as: :page
+
+  get '/fetch', via: [:get], to: "application#fetch"
+  match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
