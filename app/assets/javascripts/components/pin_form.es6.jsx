@@ -29,7 +29,7 @@ class PinForm extends React.Component {
   debugForm(event) {
     event.preventDefault();
 
-    console.log("\n\nForm state: ");
+    console.log("Form state: ");
     console.log(this.state);
     console.log("\n\n");
 
@@ -40,8 +40,6 @@ class PinForm extends React.Component {
   }
 
   render () {
-    console.log(this.state.pin_form_lat_lng);
-
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
 
     return (
@@ -103,7 +101,7 @@ class PinForm extends React.Component {
           <CollectionControl />
 
           <br/>
-          Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng} 
+          Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}
           <div className="form-group">
             <input type="submit" placeholder="Save my pin" />
           </div>
