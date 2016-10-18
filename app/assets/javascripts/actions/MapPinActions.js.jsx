@@ -1,7 +1,19 @@
 (() => {
   class MapPinActions {
+    setPinLocation(latlng) {
+      return latlng;
+    }
+
+    enablePinForm(enable) {
+      return enable;
+    }
+
     togglePinForm(visible) {
       return visible;
+    }
+
+    setPinLocation(latlng) {
+      return latlng;
     }
 
     submitForm() {

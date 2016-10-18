@@ -59,6 +59,14 @@ class MapView extends React.Component {
     this.refs.map.state.map.panTo(latlng);
   }
 
+  triggerAddPinDialog(event) {
+    const latlng = {lat: event.latlng.lat, lng: event.latlng.lng};
+    var add_pin_state = MapPinStore.getState();
+
+    MapPinActions.setPinLocation(latlng);
+    MapPinActions.togglePinForm(add_pin_state.pin_form_enabled);
+  }
+
   render() {
     const position = [this.state.lat, this.state.lng];
 
@@ -77,7 +85,7 @@ class MapView extends React.Component {
       );
     }.bind(this));
 
-    this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
+    this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' />
                  {pins}
                  {overlays}

@@ -5,8 +5,8 @@ class AddPinControl extends React.Component {
 
   togglePinForm() {
     var current_state = MapPinStore.getState();
-    var visible = current_state.pin_form_visible;
-    MapPinActions.togglePinForm(!visible);
+    var enabled = current_state.pin_form_enabled;
+    MapPinActions.enablePinForm(!enabled);
   }
 
   render () {
@@ -16,7 +16,7 @@ class AddPinControl extends React.Component {
         <div className="add-pin">
           <button onClick={this.togglePinForm.bind(this)}>Add pin</button>
         </div>
-        
+
       </div>
     );
   }

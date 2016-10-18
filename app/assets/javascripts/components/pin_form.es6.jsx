@@ -2,23 +2,7 @@ class PinForm extends React.Component {
   constructor(props) {
     super(props);
 
-    var map_pin_store_state = MapPinStore.getState();
-
-    this.state = {
-      title: '',
-      description: '',
-      link_url: '',
-      attachment: null,
-      video_url: '',
-      date_from_day: null,
-      date_from_month: null,
-      date_from_year: null,
-      date_to_day: null,
-      date_to_month: null,
-      date_to_year: null,
-      collections: [],
-      pin_form_visible: map_pin_store_state.pin_form_visible
-    };
+    this.state = MapPinStore.getState();
 
     this.updateAttribute = this.updateAttribute.bind(this);
     this.stateChanged = this.stateChanged.bind(this);
@@ -56,6 +40,8 @@ class PinForm extends React.Component {
   }
 
   render () {
+    console.log(this.state.pin_form_lat_lng);
+
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
 
     return (
@@ -116,6 +102,8 @@ class PinForm extends React.Component {
 
           <CollectionControl />
 
+          <br/>
+          Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng} 
           <div className="form-group">
             <input type="submit" placeholder="Save my pin" />
           </div>
