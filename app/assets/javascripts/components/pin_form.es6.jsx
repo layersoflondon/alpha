@@ -36,6 +36,7 @@ class PinForm extends React.Component {
     var current_state = MapPinStore.getState();
     var visible = current_state.pin_form_visible;
 
+    MapPinActions.resetForm();
     MapPinActions.togglePinForm(!visible);
   }
 
@@ -47,37 +48,37 @@ class PinForm extends React.Component {
         <form onSubmit={this.debugForm.bind(this)}>
           <div className="form-group form-group-title">
             <label>Pin title</label>
-            <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute} data-attribute='title' />
+            <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute} data-attribute='title' value={this.state.title} />
           </div>
           <div className="form-group form-group-description">
             <label>Description</label>
-            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." onChange={this.updateAttribute} data-attribute='description'></textarea>
+            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." value={this.state.description} onChange={this.updateAttribute} data-attribute='description'></textarea>
           </div>
           <div className="form-group">
             <label>Link</label>
-            <input type="text" placeholder="http://www.example.com" onChange={this.updateAttribute} data-attribute='link_url' />
+            <input type="text" placeholder="http://www.example.com" value={this.state.link_url} onChange={this.updateAttribute} data-attribute='link_url' />
           </div>
           <div className="form-group form-group-upload">
             <label>Add image/audio</label>
-            <input type="file" placeholder="http://www.example.com"  onChange={this.updateAttribute} data-attribute='attachment' />
+            <input type="file" placeholder="http://www.example.com" value={this.state.attachment} onChange={this.updateAttribute} data-attribute='attachment' />
           </div>
           <div className="form-group">
             <label>Add video (YouTube URL)</label>
-            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu"  onChange={this.updateAttribute} data-attribute='video_url' />
+            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu" value={this.state.video_url} onChange={this.updateAttribute} data-attribute='video_url' />
           </div>
           <div className="dates">
             <div className="from">
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" onChange={this.updateAttribute} data-attribute='date_from.day'  />
+                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from.day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text"  onChange={this.updateAttribute} data-attribute='date_from.month' />
+                <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute} data-attribute='date_from.month' />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" onChange={this.updateAttribute} data-attribute='date_from.year'  />
+                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from.year'  />
               </div>
             </div>
             <p>to</p>
@@ -85,15 +86,15 @@ class PinForm extends React.Component {
 
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" onChange={this.updateAttribute} data-attribute='date_from.day'  />
+                <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute} data-attribute='date_from.day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text" onChange={this.updateAttribute} data-attribute='date_from.month'  />
+                <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute} data-attribute='date_from.month'  />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" onChange={this.updateAttribute} data-attribute='date_from.year'  />
+                <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute} data-attribute='date_from.year'  />
               </div>
             </div>
           </div>

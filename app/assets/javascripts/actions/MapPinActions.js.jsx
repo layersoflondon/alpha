@@ -16,6 +16,10 @@
       return latlng;
     }
 
+    resetForm() {
+      return true;
+    }
+
     submitForm() {
       console.log("Form submitted...");
     }
