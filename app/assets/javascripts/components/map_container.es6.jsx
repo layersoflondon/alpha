@@ -15,6 +15,8 @@ class MapContainer extends React.Component {
         <UpdateResultsControl />
         <MapControlsContainer />
         <AddPinControl />
+
+        <PinForm />
       </div>
     )
   }
