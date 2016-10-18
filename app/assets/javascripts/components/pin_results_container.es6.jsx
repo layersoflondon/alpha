@@ -15,7 +15,6 @@ class PinResultsContainer extends React.Component {
   }
 
   stateChanged(state) {
-    console.log("PinResultsContainer state changed", state);
     this.setState(state);
   }
 

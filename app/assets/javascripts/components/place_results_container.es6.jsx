@@ -15,7 +15,6 @@ class PlaceResultsContainer extends React.Component {
   }
 
   stateChanged(state) {
-    console.log("PlaceResultsContainer state changed", state);
     this.setState(state);
   }
 
