@@ -2,6 +2,7 @@
   class FilterStateStore {
     constructor() {
       this.advanced_filters_visible = false;
+      this.suppress_update_results_event = false;
       this.centre_point = {};
       this.search_bounds = {};
 
@@ -15,18 +16,23 @@
 
     onToggleAdvancedFilters(visible) {
       this.advanced_filters_visible = visible;
+      this.suppress_update_results_event = true;
     }
 
     onUpdateFilterAttribute() {
       console.log("onUpdateFilterAttribute called", arguments);
+
+      this.suppress_update_results_event = false;
     }
 
     onUpdateFilterCentre(centre_point) {
       this.centre_point = centre_point;
+      this.suppress_update_results_event = false;
     }
 
     onUpdateFilterBounds(bounds) {
       this.search_bounds = bounds;
+      this.suppress_update_results_event = false;
     }
   }
 

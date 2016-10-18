@@ -15,16 +15,21 @@ class UpdateResultsControl extends React.Component {
   }
 
   stateChanged(state) {
-    console.log("\n\nFilter state: ");
-    console.log(state);
-    console.log("\n\n");
-    this.setState({update_disabled: false});
+    if( !state.suppress_update_results_event ) {
+      this.setState({update_disabled: false});
+    }
+  }
+
+  updateResults(event) {
+    event.preventDefault();
+
+    SearchResultsActions.fetchSearchResults();
   }
 
   render () {
     return (
       <div className="m-update">
-        <button disabled={this.state.update_disabled}>Update results</button>
+        <button disabled={this.state.update_disabled} onClick={this.updateResults.bind(this)}>Update results</button>
       </div>
     );
   }
