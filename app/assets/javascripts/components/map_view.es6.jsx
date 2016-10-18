@@ -49,11 +49,13 @@ class MapView extends React.Component {
 
   stateChanged(state) {
     this.setState(state);
+    console.log("state changed");
   }
 
   mapViewStateChanged(state) {
     var coords = state.map_position;
     var latlng = {lat: coords[0], lng: coords[1]};
+
     this.refs.map.state.map.panTo(latlng);
   }
 
@@ -66,9 +68,19 @@ class MapView extends React.Component {
                  );
                });
 
+
+    const overlays = this.state.visible_overlays.map(function(visible_overlay_id) {
+      var overlay_object = _.find(this.state.overlays, function(o){return o.id == visible_overlay_id});
+
+      return (
+        <OverlayContainer key={visible_overlay_id} overlay={overlay_object} />
+      );
+    }.bind(this));
+
     this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)}>
-                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' />
                  {pins}
+                 {overlays}
                </Map>;
 
     return (this.map);

@@ -1,11 +1,17 @@
 class OverlayResultsContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = SearchResultsStore.getState();
+  }
+
   render () {
     return (
-      <div className="m-overlays-list">
-        <OverlayResult />
-        <OverlayResult />
-        <OverlayResult />
-      </div>
+      <ul>
+        {this.state.overlays.map(function(overlay) {
+          return (<OverlayResult id={overlay.id} key={overlay.id} overlay={overlay} />);
+        })}
+      </ul>
     );
   }
 }
