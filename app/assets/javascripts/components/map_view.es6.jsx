@@ -10,7 +10,8 @@ class MapView extends React.Component {
 
     this.state = SearchResultsStore.getState();
 
-    this.map   = null;
+    this.map    = null;
+    this.bounds = [];
 
     // bind our event handlers
     this.stateChanged = this.stateChanged.bind(this);
@@ -32,11 +33,17 @@ class MapView extends React.Component {
   }
 
   handleMoved(event) {
-    FilterStateActions.updateFilterCentre(this.refs.map.state.map.getCenter());
+    const position = this.refs.map.state.map.getCenter();
+
+    FilterStateActions.updateFilterCentre({lat: position.lat, lng: position.lng});
   }
 
   handleZoomed(event) {
-    FilterStateActions.updateFilterBounds(this.refs.map.state.map.getBounds());
+    const position = this.refs.map.state.map.getBounds();
+    const sw = {lat: position._southWest.lat, lng: position._southWest.lng};
+    const ne = {lat: position._southWest.lat, lng: position._southWest.lng};
+
+    FilterStateActions.updateFilterBounds({southWest: sw, northEast: ne});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -44,12 +51,21 @@ class MapView extends React.Component {
     fixme: we should always return false from here and hook into the Leaflet map object
     to update the pins, zoom and position given the nextState properties...
     */
+
+    // var bounds _.map(nextState.pins, function(p) {
+    //   return p.position
+    // });
+    // var bounds = _.map(x, function(y){return y.position
+    var bounds = _.map(this.state.pins, function(p) {return p.position});
+    setTimeout(function(){
+      this.refs.map.state.map.fitBounds(bounds);
+    }.bind(this), 100);
+
     return true;
   }
 
   stateChanged(state) {
     this.setState(state);
-    console.log("state changed");
   }
 
   mapViewStateChanged(state) {
@@ -71,11 +87,10 @@ class MapView extends React.Component {
     const position = [this.state.lat, this.state.lng];
 
     const pins = this.state.pins.map(function(pin) {
-                 return (
-                   <PinContainer key={pin.id} pin={pin} />
-                 );
-               });
-
+      return (
+        <PinContainer key={pin.id} pin={pin} />
+      );
+    });
 
     const overlays = this.state.visible_overlays.map(function(visible_overlay_id) {
       var overlay_object = _.find(this.state.overlays, function(o){return o.id == visible_overlay_id});
