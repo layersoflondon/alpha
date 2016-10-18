@@ -13,15 +13,15 @@ class FilterTabs extends React.Component {
           <Tab><a href="#">Collections</a></Tab>
         </TabList>
 
-        <TabPanel>
+        <TabPanel className="m-search-panel">
           <SearchTab />
         </TabPanel>
 
-        <TabPanel>
+        <TabPanel className="m-overlays-list">
           <OverlaysTab />
         </TabPanel>
 
-        <TabPanel>
+        <TabPanel className="m-collections-panel">
           <CollectionsTab />
         </TabPanel>
 

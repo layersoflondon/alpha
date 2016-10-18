@@ -7,7 +7,7 @@ class CollectionsTab extends React.Component {
 
   render () {
     return (
-        <div className="m-collections-panel">
+        <div className="m-collections-panel-content">
             <CollectionResultsContainer />
         </div>
     );
