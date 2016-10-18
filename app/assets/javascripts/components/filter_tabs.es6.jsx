@@ -10,11 +10,11 @@ class FilterTabs extends React.Component {
 
   render () {
     return (
-      <Tabs onSelect={this.handleSelect.bind(this)} selectedIndex={0}>
-        <TabList>
-          <Tab>Search</Tab>
-          <Tab>Overlays</Tab>
-          <Tab>Collections</Tab>
+      <Tabs onSelect={this.handleSelect.bind(this)} selectedIndex={0} className="m-panels">
+        <TabList className="tabs">
+          <Tab><a href="#">Search</a></Tab>
+          <Tab><a href="#">Overlays</a></Tab>
+          <Tab><a href="#">Collections</a></Tab>
         </TabList>
 
         <TabPanel>

@@ -21,7 +21,7 @@ class PinContainer extends React.Component {
     return (
       <Marker position={this.props.pin.position}>
         <Popup>
-          <div>
+          <div className="m-popover">
             <h3>{this.props.pin.name}</h3>
             <span><a href="#" onClick={this.switchState.bind(this)}>{switchLabel}</a></span>
             {content}

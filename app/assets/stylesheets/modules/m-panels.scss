@@ -17,11 +17,11 @@
   margin-right:1px;
 }
 
-.m-panels .tabs li.is-current a {
+.m-panels .tabs li.ReactTabs__Tab--selected a {
   background:white;
 }
 
-.m-panels .tabs li.is-current a {
+.m-panels .tabs li.ReactTabs__Tab--selected a {
   background:white;
 }
 
@@ -33,4 +33,18 @@
 
 .m-panels .tabs li a:focus {
   outline:none;
+}
+
+//override ReactTabs styles
+.react-tabs [role=tablist] {
+  border: none;
+}
+
+.react-tabs [role=tab] {
+  border: none;
+}
+
+.react-tabs [role=tab].ReactTabs__Tab {
+  border-radius: 0;
+  padding: 0;
 }
