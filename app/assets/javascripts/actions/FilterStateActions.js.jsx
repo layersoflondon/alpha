@@ -4,6 +4,10 @@
       return visible;
     }
 
+    updateSearchQuery(value) {
+      return value;
+    }
+
     updateFilterAttribute(attribute, value) {
       return {attribute: attribute, value: value};
     }
