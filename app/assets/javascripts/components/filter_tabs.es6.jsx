@@ -4,13 +4,9 @@ var Tabs     = ReactTabs.Tabs,
     TabPanel = ReactTabs.TabPanel;
 
 class FilterTabs extends React.Component {
-  handleSelect(index, last) {
-    console.log("Selected tab: " + index + ", Last tab: " + last);
-  }
-
   render () {
     return (
-      <Tabs onSelect={this.handleSelect.bind(this)} selectedIndex={0} className="m-panels">
+      <Tabs selectedIndex={0} className="m-panels">
         <TabList className="tabs">
           <Tab><a href="#">Search</a></Tab>
           <Tab><a href="#">Overlays</a></Tab>
