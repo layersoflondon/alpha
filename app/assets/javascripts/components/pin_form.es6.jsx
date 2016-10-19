@@ -26,12 +26,25 @@ class PinForm extends React.Component {
     this.setState(new_state);
   }
 
-  debugForm(event) {
+  savePinDate(event) {
     event.preventDefault();
 
     console.log("Form state: ");
     console.log(this.state);
     console.log("\n\n");
+
+    var place = {
+      name: this.state.title,
+      location: "Dagenham",
+      resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
+    }
+    var pin = {
+      name: this.state.description,
+      location: "Dagenham",
+      position: [this.state.pin_form_lat_lng.lat, this.state.pin_form_lat_lng.lng],
+      places: [place]
+    };
+    SearchResultsActions.postPin(pin);
 
     var current_state = MapPinStore.getState();
     var visible = current_state.pin_form_visible;
@@ -45,7 +58,7 @@ class PinForm extends React.Component {
 
     return (
       <div className="m-add-pin" style={style}>
-        <form onSubmit={this.debugForm.bind(this)}>
+        <form onSubmit={this.savePinDate.bind(this)}>
           <div className="form-group form-group-title">
             <label>Pin title</label>
             <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute} data-attribute='title' value={this.state.title} />

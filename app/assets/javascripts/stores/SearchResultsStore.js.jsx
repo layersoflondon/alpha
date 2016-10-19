@@ -35,7 +35,8 @@
         onUpdatePlaces: SearchResultsActions.UPDATE_PLACES,
         onUpdateOverlays: SearchResultsActions.UPDATE_OVERLAYS,
         onUpdateCollections: SearchResultsActions.UPDATE_COLLECTIONS,
-        onToggleOverlayVisibility: SearchResultsActions.TOGGLE_OVERLAY_VISIBILITY
+        onToggleOverlayVisibility: SearchResultsActions.TOGGLE_OVERLAY_VISIBILITY,
+        onAddPin: SearchResultsActions.ADD_PIN
       });
     }
 
@@ -82,6 +83,13 @@
       }
 
       this.visible_overlays = overlay_ids;
+    }
+
+    onAddPin(pin) {
+      console.log("Added a new pin!", pin);
+      var pins = this.pins.slice();
+      pins.push(pin);
+      this.pins = pins;
     }
   }
 
