@@ -13,5 +13,8 @@
 
 <%= render 'global/footer' %>
 
+<%= content_for?(:gallery) ? yield(:gallery) : yield %>
+<%= content_for?(:javascript) ? yield(:javascript) : yield %>
+
 </body>
 </html>

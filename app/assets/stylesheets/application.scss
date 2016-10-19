@@ -18,6 +18,8 @@
 @import "modules/m-update";
 @import "modules/m-add-pin";
 
+@import "vendor/gallery/lightgallery";
+
 @import "vendor/jquery.range.css";
 @import "vendor/leaflet.css";
 
@@ -31,6 +33,14 @@ body {
   right:0;
   bottom:0;
   left:330px;
+}
+
+.m-map .m-popover ul {
+  @include unlist;
+}
+
+.m-map .m-popover ul li {
+
 }
 
 .m-map .pins ul {

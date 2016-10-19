@@ -26,7 +26,7 @@ class PinResultsContainer extends React.Component {
         <h3>{pins_label}</h3>
         <ul>
         {this.state.pins.map(function(pin){
-          return (<PinResult key={pin.id} name={pin.name} pin={pin} />);
+          return (<PinResult key={pin.id} pin={pin} />);
         })}
         </ul>
       </div>

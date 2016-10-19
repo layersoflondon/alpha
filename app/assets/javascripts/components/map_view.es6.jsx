@@ -87,7 +87,7 @@ class MapView extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
 
-    const pins = this.state.pins.map(function(pin) {
+    const pin_containers = this.state.pins.map(function(pin) {
       return (
         <PinContainer key={pin.id} pin={pin} />
       );
@@ -102,8 +102,8 @@ class MapView extends React.Component {
     }.bind(this));
 
     this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
-                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' />
-                 {pins}
+                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
+                 {pin_containers}
                  {overlays}
                </Map>;
 

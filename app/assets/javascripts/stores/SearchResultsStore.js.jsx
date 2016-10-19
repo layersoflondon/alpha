@@ -1,28 +1,31 @@
 (() => {
   class SearchResultsStore {
     constructor() {
-      this.lat  = 51.505;
-      this.lng  = -0.09;
+      this.lat  = 51.5421901;
+      this.lng  = 0.0830757;
       this.zoom = 13;
       this.searching = false;
       this.places = [
-        {id: 1, name: "Place 1"},
-        {id: 2, name: "Place 2"},
-        {id: 3, name: "Place 3"},
-        {id: 4, name: "Place 4"}
+        {id: 1, name: "Barking Park", location: "Barking"},
+        {id: 2, name: "Gascoigne Estate", location: "Barking"},
+        {id: 3, name: "Valence House Museum", location: "Dagenham"}
       ];
       this.overlays = [
-        {id: 1, name: "Overlay 1", date_range: "1451 - 2013", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.5268, -0.1000], [51.5168, -0.0780]]},
-        {id: 2, name: "Overlay 2", date_range: "1551 - 201", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.5400, -0.1100], [51.5300, -0.0880]]}
+        {id: 1, name: "RAF Aerial View", date_range: "1451 - 2013", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.544719, 0.085436], [51.534719, 0.055436]]},
+        {id: 2, name: "RAF View", date_range: "1551 - 2010", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.554719, 0.085436], [51.544719, 0.115436]]}
       ];
       this.visible_overlays = [];
       this.collections = [
-        {id: 1, name: "A collection"}
+        {id: 1, name: "Parks of Barking"}
       ];
       this.pins = [
-        {id: 1, name: "Pin 1", position: [51.505, -0.09], places: [{id: 1, name: "Pin 1, Place 1"}]},
-        {id: 2, name: "Pin 2", position: [51.515, -0.11], places: [{id: 1, name: "Pin 2, Place 1"}, {id: 2, name: "Pin 2, Place 2"}]},
-        {id: 3, name: "Pin 3", position: [51.525, -0.13], places: [{id: 1, name: "Pin 3, Place 1"}, {id: 2, name: "Pin 3, Place 2"}, {id: 3, name: "Pin 3, Place 3"}, {id: 4, name: "Pin 3, Place 4"}]}
+        {id: 1, name: "Barking Park", location: "Barking", position: [51.544719, 0.085436], places: [
+          {id: 1, name: "Barking Park Lake", location: "Barking", resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}},
+          {id: 2, name: "Barking Park", location: "Barking", resource: {type: "other", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}},
+          {id: 3, name: "Barking Park Sounds", location: "Barking", resource: {type: "audio", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}}
+        ]},
+        {id: 2, name: "Parsloes Park", location: "Dagenham", position: [51.5437522, 0.1328339], places: []},
+        {id: 3, name: "The Leys", location: "Dagenham", position: [51.5345465, 0.1601853], places: []}
       ];
 
       this.bindListeners({
