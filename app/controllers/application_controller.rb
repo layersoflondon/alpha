@@ -15,9 +15,10 @@ class ApplicationController < ActionController::Base
   before_action :allow_caching
 
   def fetch
+    Rails.logger.info("\n\n#{params.awesome_inspect}\n\n")
     title_prefix = params[:search].try(:[], :search_query).present? ? "#{params[:search].try(:[], :search_query)} " : ""
 
-    pin_places = [{id:1, name: "Pin 3, Place 1"}, {id: 2, name: "Pin 3, Place 2"}, {id:3, name: "Pin 3, Place 3"}, {id:4, name: "Pin 3, Place 4"}]
+    pin_places = [{id:1, name: "#{title_prefix}Pin, Place 1"}, {id: 2, name: "#{title_prefix}Pin, Place 2"}, {id:3, name: "#{title_prefix}Pin, Place 3"}, {id:4, name: "#{title_prefix}Pin, Place 4"}]
 
     json = {
       places: [
@@ -46,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   private
   def generate_latlng
-    [rand(51.100..51.600).round(4), -(rand(0.05..0.25).round(4))]
+    [rand(51.450..51.550).round(4), (rand(-0.06..0.2).round(4))]
   end
 
   def get_navigation_menus
