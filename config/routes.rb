@@ -3,7 +3,12 @@ Rails.application.routes.draw do
              controllers: {registrations: 'registrations'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
 
-  get '/fetch', via: [:get], to: "application#fetch"
+  resources :pins, only: [:index, :show, :create], defaults: {format: :json} do
+    collection do
+      get 'search'
+    end
+  end
+
   match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
