@@ -77,21 +77,21 @@ class PinsController < ApplicationController
        pins: [
           {
              id: 1,
-             name: "#{title_prefix}Pin 1",
+             title: "#{title_prefix}Pin 1",
              location: "Barking",
              position: generate_latlng,
              places: pin_places.sample(rand(pin_places.size))
           },
           {
              id: 2,
-             name: "#{title_prefix}Pin 2",
+             title: "#{title_prefix}Pin 2",
              location: "Dagenham",
              position: generate_latlng,
              places: pin_places.sample(rand(pin_places.size))
           },
           {
              id: 3,
-             name: "#{title_prefix}Pin 3",
+             title: "#{title_prefix}Pin 3",
              location: "Dagenham",
              position: generate_latlng,
              places: pin_places.sample(rand(pin_places.size))
@@ -117,13 +117,13 @@ class PinsController < ApplicationController
       json[:lat]      = barking_position[0]
       json[:lng]      = barking_position[1]
       json[:places]   = [barking_place]
-      json[:pins]     = [{id: 1, name: "Barking Park", location: "Barking", position: barking_position, places: [barking_place]}]
+      json[:pins]     = [{id: 1, title: "Barking Park", location: "Barking", position: barking_position, places: [barking_place]}]
       json[:overlays] = [{id: 1, name: "#{barking_park_title} lake", date_range: "1990 - 2016", url: barking_image, bounds: barking_bounds}]
     end
 
     # UAT Test 3 - Re-label our default content as Sam Morris'
     if title_prefix =~ /Sam Morris/i
-      json[:pins]   = json[:pins].collect{|p| p[:name] = "Sam Morris #{p[:name]}" ; p}
+      json[:pins]   = json[:pins].collect{|p| p[:title] = "Sam Morris #{p[:name]}" ; p}
       json[:places] = json[:places].collect{|p| p[:name] = "Sam Morris #{p[:name]}" ; p}
     end
 
@@ -140,7 +140,7 @@ class PinsController < ApplicationController
       json[:places].push(football_place)
 
       football_pin_id   = json[:pins].last[:id]+1
-      json[:pins].unshift({id: football_pin_id, name: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], places: [football_place]})
+      json[:pins].unshift({id: football_pin_id, title: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], places: [football_place]})
 
       football_overlay_id = json[:overlays].last[:id]+1
       football_image   = "https://spen666.files.wordpress.com/2013/02/20130227-barking-fc-v-afc-wimbledon-035.jpg"
@@ -157,51 +157,38 @@ class PinsController < ApplicationController
 
     Rails.logger.info("\n\nReturning...\n#{json.awesome_inspect}\n\n")
 
+    # add any other matching pins that the user has added
+    if title_prefix.present?
+      pins = User.first.pins.where("title LIKE '%#{title_prefix}%' AND created_at > '#{Date.today.midnight}'")
+    else
+      pins = User.first.pins.where("created_at > '#{Date.today.midnight}'")
+    end
+
+    pins.each do |pin|
+      @pin = pin
+      pin_json = JSON.parse(view_context.render 'pins/pin')
+      json[:pins].push(pin_json)
+    end
+
     return render json: json
   end
 
   def show
-    json = {
-      id: 100,
-      name: "Example pin",
-      location: "Dagenham",
-      position: [51.544787102505786, 0.08600234985351562],
-      places: [
-        {
-          location: "Dagenham",
-          resource: {
-            type: "image",
-            url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"
-          }
-        }
-      ]
-    }
-    return render json: json
+    @pin = Pin.find(params[:id])
   end
 
   def create
     Rails.logger.info(params.awesome_inspect)
-    
-    json = {
-      id: 100,
-      name: "Example pin",
-      location: "Dagenham",
-      position: [51.520707104039275, 0.017681121826171875],
-      places: [
-        {
-          location: "Dagenham",
-          resource: {
-            type: "image",
-            url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"
-          }
-        }
-      ]
-    }
+    Rails.logger.info(pin_params.awesome_inspect)
 
-    return render json: json
+    @pin = Pin.create!(pin_params)
   end
 
   private
+  def pin_params
+    params.require(:pin).permit!
+  end
+
   def generate_latlng
     [rand(51.504719..51.584719).round(20), (rand(-0.06..0.2).round(20))]
   end
