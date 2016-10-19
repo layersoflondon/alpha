@@ -10,6 +10,13 @@ class Pin < ActiveRecord::Base
 
   validates :title, :lat, :lng, :date_from, :user, presence: true
 
+  serialize :data
+
+  attr_accessor :location
+  def pin_data
+    data.present? ? data.values : []
+  end
+
   aasm do
     state :pending, initial: true
     state :accepted
