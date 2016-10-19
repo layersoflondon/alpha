@@ -14,10 +14,19 @@
     }
 
     emitUpdatedState(state) {
+      this.updateCoordinates(state.lat, state.lng);
       this.updatePins(state.pins);
       this.updatePlaces(state.places);
       this.updateOverlays(state.overlays);
       this.updateCollections(state.collections);
+    }
+
+    updateCoordinates(lat, lng) {
+      if( lat && lng ) {
+        return {lat: lat, lng: lng};
+      }
+
+      return false
     }
 
     updatePins(pins) {

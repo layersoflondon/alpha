@@ -27,6 +27,7 @@
 
       this.bindListeners({
         onFetchSearchResults: SearchResultsActions.FETCH_SEARCH_RESULTS,
+        onUpdateCoordinates: SearchResultsActions.UPDATE_COORDINATES,
         onUpdatePins: SearchResultsActions.UPDATE_PINS,
         onUpdatePlaces: SearchResultsActions.UPDATE_PLACES,
         onUpdateOverlays: SearchResultsActions.UPDATE_OVERLAYS,
@@ -40,6 +41,13 @@
       this.places = [];
       this.pins   = [];
       this.overlays = []
+    }
+
+    onUpdateCoordinates(latlng) {
+      if( latlng ) {
+        this.lat = latlng.lat;
+        this.lng = latlng.lng;
+      }
     }
 
     onUpdatePins(pins) {

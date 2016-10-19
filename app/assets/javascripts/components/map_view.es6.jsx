@@ -58,7 +58,8 @@ class MapView extends React.Component {
     // var bounds = _.map(x, function(y){return y.position
     var bounds = _.map(this.state.pins, function(p) {return p.position});
     setTimeout(function(){
-      this.refs.map.state.map.fitBounds(bounds);
+      // this.refs.map.state.map.fitBounds(bounds);
+      this.refs.map.state.map.panTo({lat: this.state.lat, lng: this.state.lng});
     }.bind(this), 100);
 
     return true;
