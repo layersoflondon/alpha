@@ -13,7 +13,6 @@ class MapContainer extends React.Component {
         <SideBar />
 
         <UpdateResultsControl />
-        <MapControlsContainer />
         <AddPinControl />
 
         <PinForm />
