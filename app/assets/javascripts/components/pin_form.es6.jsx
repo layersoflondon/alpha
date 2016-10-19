@@ -29,10 +29,6 @@ class PinForm extends React.Component {
   savePinDate(event) {
     event.preventDefault();
 
-    console.log("Form state: ");
-    console.log(this.state);
-    console.log("\n\n");
-
     var place = {
       name: this.state.title,
       location: "Dagenham",
@@ -44,6 +40,12 @@ class PinForm extends React.Component {
       position: [this.state.pin_form_lat_lng.lat, this.state.pin_form_lat_lng.lng],
       places: [place]
     };
+
+    console.log("Form state: ");
+    console.log(this.state);
+    console.log("\n\n");
+    return ;
+
     SearchResultsActions.postPin(pin);
 
     var current_state = MapPinStore.getState();
@@ -83,15 +85,15 @@ class PinForm extends React.Component {
             <div className="from">
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from.day'  />
+                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from_day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute} data-attribute='date_from.month' />
+                <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute} data-attribute='date_from_month'  />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from.year'  />
+                <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute} data-attribute='date_from_year'  />
               </div>
             </div>
             <p>to</p>
@@ -99,15 +101,15 @@ class PinForm extends React.Component {
 
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute} data-attribute='date_from.day'  />
+                <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute} data-attribute='date_to_day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute} data-attribute='date_from.month'  />
+                <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute} data-attribute='date_to_month' />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute} data-attribute='date_from.year'  />
+                <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute} data-attribute='date_to_year'  />
               </div>
             </div>
           </div>

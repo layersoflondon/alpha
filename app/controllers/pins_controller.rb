@@ -180,6 +180,8 @@ class PinsController < ApplicationController
   end
 
   def create
+    Rails.logger.info(params.awesome_inspect)
+    
     json = {
       id: 100,
       name: "Example pin",
