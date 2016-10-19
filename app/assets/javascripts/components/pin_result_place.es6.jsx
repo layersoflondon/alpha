@@ -8,21 +8,14 @@ class PinResultPlace extends React.Component {
 
   showResource() {
     var resource = this.props.place.resource;
-    // var resource_markup = "<a href='http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg'><img src='http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg' /></a>";
-    //
-    // this.gallery.append(resource_markup);
-    // this.gallery.data('lightGallery').destroy(true);
-    // this.gallery.lightGallery();
     var resource_object = {
       dynamic: true,
       dynamicEl: [{
         src: resource.url,
         thumb:  resource.url,
-        subHtml: resource.type
+        subHtml: this.props.place.name + " " + resource.type
       }]
     };
-
-    console.log(resource_object);
 
     $(document).lightGallery(resource_object);
   }
