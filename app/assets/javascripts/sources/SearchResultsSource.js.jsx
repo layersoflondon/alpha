@@ -11,7 +11,7 @@ var SearchResultsSource = {
     console.log("SearchResultSource pin_data", pin_data);
 
     return new Promise(function(resolve, reject) {
-      $.post('/pins', pin_data, function(response){
+      $.post('/pins', {pin: pin_data}, function(response){
         resolve(response);
       }.bind(this));
     });

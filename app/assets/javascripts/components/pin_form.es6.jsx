@@ -29,22 +29,20 @@ class PinForm extends React.Component {
   savePinDate(event) {
     event.preventDefault();
 
-    var place = {
-      name: this.state.title,
+    var content = {
+      name: this.state.description,
       location: "Dagenham",
       resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
     }
     var pin = {
-      name: this.state.description,
+      title: this.state.title,
       location: "Dagenham",
-      position: [this.state.pin_form_lat_lng.lat, this.state.pin_form_lat_lng.lng],
-      places: [place]
+      date_from: (new Date()).toString(),
+      lat: this.state.pin_form_lat_lng.lat,
+      lng: this.state.pin_form_lat_lng.lng,
+      user_id: 1,
+      data: [content]
     };
-
-    console.log("Form state: ");
-    console.log(this.state);
-    console.log("\n\n");
-    return ;
 
     SearchResultsActions.postPin(pin);
 
@@ -113,8 +111,6 @@ class PinForm extends React.Component {
               </div>
             </div>
           </div>
-
-          <CollectionControl />
 
           <br/>
           Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}

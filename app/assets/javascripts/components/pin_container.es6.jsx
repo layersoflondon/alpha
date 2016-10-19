@@ -38,7 +38,7 @@ class PinContainer extends React.Component {
       <Marker position={this.props.pin.position}>
         <Popup>
           <div className="m-popover">
-            <h3>{this.props.pin.name}</h3>
+            <h3>{this.props.pin.title}</h3>
             <p>
               {switchJsx}
             </p>
