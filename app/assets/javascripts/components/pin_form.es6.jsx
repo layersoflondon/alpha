@@ -30,7 +30,7 @@ class PinForm extends React.Component {
     event.preventDefault();
 
     var content = {
-      name: this.state.description,
+      title: this.state.description,
       location: "Dagenham",
       resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
     }
