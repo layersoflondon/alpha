@@ -169,7 +169,7 @@ class PinsController < ApplicationController
     pins.each do |pin|
       @pin = pin
       pin_json = JSON.parse(view_context.render 'pins/pin')
-      json[:pins].push(pin_json)
+      json[:pins].unshift(pin_json)
     end
 
     return render json: json
