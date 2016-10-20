@@ -58,6 +58,7 @@ gem 'passenger'
 
 group :development, :test do
   gem 'errorstudio_capistrano_recipes', git: 'ssh://git@bitbucket.org/errorstudio/errorstudio_capistrano_recipes'
+  gem 'capistrano-npm'
 end
 
 gem 'simple_errors', github: 'errorstudio/simple_errors'
