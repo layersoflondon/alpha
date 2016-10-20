@@ -4,6 +4,10 @@
       return pin;
     }
 
+    focusPlace(place) {
+      return place;
+    }
+
     zoomToBounds(bounds) {
       return bounds;
     }
