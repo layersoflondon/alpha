@@ -118,8 +118,14 @@ class PinsController < ApplicationController
       json[:lat]      = barking_position[0]
       json[:lng]      = barking_position[1]
       json[:places]   = [barking_place]
-      json[:pins]     = [{id: 1, title: "Barking Park", location: "Barking", position: barking_position, content_entries: [barking_place]}]
       json[:overlays] = [{id: 1, name: "#{barking_park_title} lake", date_range: "1990 - 2016", url: barking_image, bounds: barking_bounds}]
+      json[:pins]     = []
+
+      json[:pins].push({id: 1, title: "Barking Park", location: "Barking", position: barking_position, content_entries: [barking_place]});
+      json[:pins].push({id: 2, title: "Parsloes Park", location: "Dagenham", position: [51.5437522, 0.1328339], content_entries: []});
+      json[:pins].push({id: 3, title: "The Leys", location: "Dagenham", position: [51.5345465, 0.1601853], content_entries: []});
+      json[:pins].push({id: 4, title: "Broad Street", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []});
+      json[:pins].push({id: 5, title: "Goresbrook Park", location: "Dagenham", position: [51.5353284, 0.1389512], content_entries: []});
     end
 
     # UAT Test 3 - Re-label our default content as Sam Morris'
@@ -162,9 +168,13 @@ class PinsController < ApplicationController
 
     # add any other matching pins that the user has added
     if title_prefix.present?
-      pins = User.first.pins.where("title LIKE '%#{title_prefix.strip}%' AND created_at > '#{Date.today.midnight}'")
+      pins = User.first.pins.where("title LIKE '%#{title_prefix.strip}%' AND created_at > '#{Date.today.midnight}'").limit(5)
+      json[:places] = [{id: 1, title: "Barking", location: "Barking and Dagenham", resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}}];
     else
-      pins = User.first.pins.where("created_at > '#{Date.today.midnight}'")
+      pins = User.first.pins.where("created_at > '#{Date.today.midnight}'").limit(5)
+
+      json[:places] = []
+      json[:pins]   = []
     end
 
     pins.each do |pin|
