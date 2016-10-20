@@ -3,8 +3,6 @@ class PinForm extends React.Component {
     super(props);
 
     this.state = MapPinStore.getState();
-
-    this.updateAttribute = this.updateAttribute.bind(this);
     this.stateChanged = this.stateChanged.bind(this);
   }
 
@@ -26,13 +24,35 @@ class PinForm extends React.Component {
     this.setState(new_state);
   }
 
+  updateAttachmentAttribute(event) {
+    var current_state = this.state;
+    var new_state = {};
+    var reader = new FileReader();
+    var file   = event.target.files[0];
+    var state_attribute = event.target.dataset.attribute;
+
+    reader.onload = (reader_event) => {
+      new_state[state_attribute] = reader_event.target.result;
+      this.setState(new_state);
+    }
+
+    reader.readAsDataURL(file);
+  }
+
   savePinDate(event) {
     event.preventDefault();
+
+    console.log("Saving form state", this.state);
+
+    var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
+    if(this.state.attachment.length) {
+      attachment = this.state.attachment;
+    }
 
     var content = {
       title: this.state.description,
       location: "Dagenham",
-      resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
+      resource: {type: "image", url: attachment}
     }
     var pin = {
       title: this.state.title,
@@ -61,37 +81,37 @@ class PinForm extends React.Component {
         <form onSubmit={this.savePinDate.bind(this)}>
           <div className="form-group form-group-title">
             <label>Pin title</label>
-            <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute} data-attribute='title' value={this.state.title} />
+            <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute.bind(this)} data-attribute='title' value={this.state.title} />
           </div>
           <div className="form-group form-group-description">
             <label>Description</label>
-            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." value={this.state.description} onChange={this.updateAttribute} data-attribute='description'></textarea>
+            <textarea rows="10" placeholder="Tell us your story or some details about this location. You can also describe an photograph, video or audio clip here." value={this.state.description} onChange={this.updateAttribute.bind(this)} data-attribute='description'></textarea>
           </div>
           <div className="form-group">
             <label>Link</label>
-            <input type="text" placeholder="http://www.example.com" value={this.state.link_url} onChange={this.updateAttribute} data-attribute='link_url' />
+            <input type="text" placeholder="http://www.example.com" value={this.state.link_url} onChange={this.updateAttribute.bind(this)} data-attribute='link_url' />
           </div>
           <div className="form-group form-group-upload">
             <label>Add image/audio</label>
-            <input type="file" placeholder="http://www.example.com" value={this.state.attachment} onChange={this.updateAttribute} data-attribute='attachment' />
+            <input type="file" onChange={this.updateAttachmentAttribute.bind(this)} data-attribute='attachment' />
           </div>
           <div className="form-group">
             <label>Add video (YouTube URL)</label>
-            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu" value={this.state.video_url} onChange={this.updateAttribute} data-attribute='video_url' />
+            <input type="text" placeholder="http://www.youtube.com/34tonu3ntu" value={this.state.video_url} onChange={this.updateAttribute.bind(this)} data-attribute='video_url' />
           </div>
           <div className="dates">
             <div className="from">
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute} data-attribute='date_from_day'  />
+                <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute} data-attribute='date_from_month'  />
+                <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month'  />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute} data-attribute='date_from_year'  />
+                <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year'  />
               </div>
             </div>
             <p>to</p>
@@ -99,15 +119,15 @@ class PinForm extends React.Component {
 
               <div className="form-group">
                 <label>Day</label>
-                <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute} data-attribute='date_to_day'  />
+                <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_day'  />
               </div>
               <div className="form-group">
                 <label>Month</label>
-                <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute} data-attribute='date_to_month' />
+                <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_month' />
               </div>
               <div className="form-group">
                 <label>Year</label>
-                <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute} data-attribute='date_to_year'  />
+                <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year'  />
               </div>
             </div>
           </div>
