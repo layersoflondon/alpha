@@ -1,8 +1,8 @@
 (() => {
   class SearchResultsStore {
     constructor() {
-      this.lat  = 51.5421901;
-      this.lng  = 0.0830757;
+      this.lat  = 51.5353284;
+      this.lng  = 0.1389512;
       this.zoom = 13;
       this.searching = false;
       this.places = [
