@@ -1,13 +1,16 @@
 class ContentEntry extends React.Component {
   constructor(props) {
     super(props);
-
-    this.gallery = $("#map-page-gallery");
-    this.gallery.lightGallery();
   }
 
   showResource() {
     var resource = this.props.content_entry.resource;
+
+    // each image we render in the page is a member of its own gallery. to get this working, we inject a div and attach the gallery to it.
+    // when the gallery gets its onCloseAfter.lg event, we remove the injected div from the page.
+    var $div = $('<div id="'+this.props.content_entry.id+'" style="position: absolute; top: 0; left: 0; padding: 1000px; display: none;"></div>');
+    $("body").append($div);
+
     var resource_object = {
       dynamic: true,
       dynamicEl: [{
@@ -17,7 +20,10 @@ class ContentEntry extends React.Component {
       }]
     };
 
-    $(document).lightGallery(resource_object);
+    this.gallery = $div.lightGallery(resource_object);
+    this.gallery.on("onCloseAfter.lg", (event)=>{
+      $div.remove();
+    });
   }
 
   render () {
