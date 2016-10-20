@@ -2,7 +2,7 @@
 /* List view */
 
 .m-search-panel {
-/*   background:white; */
+  /*   background:white; */
   padding:20px;
 }
 
@@ -35,4 +35,15 @@
 
 .m-search-panel .results > h3 {
   @include module-title;
+}
+
+.m-search-panel button {
+  padding: 11px 20px;
+  background:$blue;
+  border:0;
+  border-radius: 6px;
+  color:white;
+  font-weight: bold;
+  @include transition(all .2s);
+  margin-left:10px;
 }

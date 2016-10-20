@@ -19,7 +19,7 @@ class SearchTab extends React.Component {
     return (
       <div className="m-search-panel-content">
         <form onSubmit={this.handleSearchSubmit.bind(this)}>
-          <input type="text" placeholder="Search" onChange={this.setSearchQuery.bind(this)}/>
+          <input type="text" placeholder="Your search…" onChange={this.setSearchQuery.bind(this)}/>
           <button>Go</button>
         </form>
 

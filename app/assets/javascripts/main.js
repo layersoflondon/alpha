@@ -5,8 +5,7 @@ $(document).ready(function() {
   		step: 1,
   		scale: [1716,2016],
   		format: '%s',
-  		width: 250,
-  		showLabels: true,
+  		width: 270,
   		isRange : true
   	});
 });

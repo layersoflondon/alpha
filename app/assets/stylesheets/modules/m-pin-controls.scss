@@ -9,12 +9,12 @@
 
 .m-pin-controls .add-pin button {
   padding:20px;
-  background:white;
-  border:2px solid $blue;
-  border-right:0;
+  background:$blue;
+  border:0;
   border-radius: 6px 0 0 6px;
-  color:$blue;
+  color:white;
   font-weight: bold;
+  @include transition(all .2s);
 }
 
 .m-pin-controls .zoom-controls button {
@@ -34,7 +34,5 @@
 }
 
 .m-pin-controls button:hover {
-  background:$blue;
-  @include transition(all .2s);
-  color:white;
+  background:darken($blue, 20%);
 }

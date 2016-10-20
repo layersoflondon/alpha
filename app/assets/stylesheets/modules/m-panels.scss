@@ -9,7 +9,7 @@
   @include unlist;
   @include clearfix;
   background: #eee;
-  padding-top:6px;
+  padding-top:18px;
 }
 
 .m-panels .tabs li {
@@ -27,8 +27,14 @@
 
 .m-panels .tabs li a {
   background:#ddd;
-  padding:10px;
+  padding:10px 20px;
   display: block;
+  border-radius:6px 6px 0 0;
+  @include transition(all .2s);
+}
+
+.m-panels .tabs li a:hover {
+  background:#ccc;
 }
 
 .m-panels .tabs li a:focus {
@@ -48,4 +54,8 @@
   border-radius: 0;
   bottom: 0;
   padding: 0;
+}
+
+.react-tabs [role=tab].ReactTabs__Tab {
+  background:none;
 }
