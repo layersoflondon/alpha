@@ -11,8 +11,8 @@
         {id: 3, title: "Valence House Museum", location: "Dagenham"}
       ];
       this.overlays = [
-        {id: 1, name: "RAF Aerial View", date_range: "1451 - 2013", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.544719, 0.085436], [51.534719, 0.055436]]},
-        {id: 2, name: "RAF View", date_range: "1551 - 2010", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg", bounds: [[51.554719, 0.085436], [51.544719, 0.115436]]}
+        {id: 1, name: "RAF Aerial View", date_range: "1451 - 2013", url: "/raf1.png", bounds: [[51.544719, 0.085436], [51.534719, 0.055436]]},
+        {id: 2, name: "RAF View", date_range: "1551 - 2010", url: "/raf2.png", bounds: [[51.554719, 0.085436], [51.544719, 0.115436]]}
       ];
       this.visible_overlays = [];
       this.collections = [
