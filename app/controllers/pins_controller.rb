@@ -123,8 +123,10 @@ class PinsController < ApplicationController
 
     # UAT Test 3 - Re-label our default content as Sam Morris'
     if title_prefix =~ /Sam Morris/i
+      position = [51.544787102505786, 0.08600234985351562]
       json[:pins]   = json[:pins].collect{|p| p[:title] = "Sam Morris #{p[:name]}" ; p}
       json[:places] = json[:places].collect{|p| p[:name] = "Sam Morris #{p[:name]}" ; p}
+      json[:pins].push({id: 4, title: "Sam Morris's custom content", location: "Barking", position: position, places: []})
     end
 
     # UAT Test 4 - Football results
