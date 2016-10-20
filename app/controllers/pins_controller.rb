@@ -103,7 +103,8 @@ class PinsController < ApplicationController
     if title_prefix =~ /broad st/i
       json[:lat] = 51.535044513278166
       json[:lng] = 0.15101909637451172
-      json[:pins].push({id: 6, title: "#{title_prefix} Location", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []})
+      json[:places] = [{id: 1, title: "Broad Street", location: "Dagenham"}];
+      json[:pins]   = [{id: 1, title: "Broad Street", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []}]
     end
 
     if title_prefix =~ /barking park/i
@@ -139,10 +140,10 @@ class PinsController < ApplicationController
       football_image    = "https://spen666.files.wordpress.com/2013/02/20130227-barking-fc-v-afc-wimbledon-035.jpg"
       football_resource = {type: "image", url: football_image}
       football_place    = {id: football_place_id, title: "Barking FC", location: "Barking", resource: football_resource}
-      json[:places].push(football_place)
+      json[:places]     = [{id: 1, title: "Barking", location: "Barking and Dagenham", resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}}];
 
       football_pin_id   = json[:pins].last[:id]+1
-      json[:pins].unshift({id: football_pin_id, title: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], content_entries: [football_place]})
+      json[:pins]       = [{id: football_pin_id, title: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], content_entries: [football_place]}];
 
       football_overlay_id = json[:overlays].last[:id]+1
       football_image   = "https://spen666.files.wordpress.com/2013/02/20130227-barking-fc-v-afc-wimbledon-035.jpg"
