@@ -3,10 +3,18 @@
 
 .m-date-filter h2 {
   @include module-title;
-  margin-bottom:30px;
+  margin-bottom: 48px;
 }
-
 
 .m-date-filter .slider-container {
   padding-left: 12px;
 } 
+
+.m-date-filter .slider-container .scale {
+  display: none;
+} 
+
+.m-date-filter .slider-container .back-bar .pointer-label {
+  font-size: 12px;
+  top: -21px;
+}

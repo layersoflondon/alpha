@@ -19,11 +19,9 @@
 
 .m-panels .tabs li.ReactTabs__Tab--selected a {
   background:white;
+  color:#222;
 }
 
-.m-panels .tabs li.ReactTabs__Tab--selected a {
-  background:white;
-}
 
 .m-panels .tabs li a {
   background:#ddd;
@@ -31,14 +29,20 @@
   display: block;
   border-radius:6px 6px 0 0;
   @include transition(all .2s);
+  font-weight:bold;
 }
 
 .m-panels .tabs li a:hover {
   background:#ccc;
 }
 
+.m-panels .tabs li.ReactTabs__Tab--selected a:hover {
+  background:white;
+}
+
 .m-panels .tabs li a:focus {
   outline:none;
+  color:#222;
 }
 
 //override ReactTabs styles

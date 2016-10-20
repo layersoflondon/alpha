@@ -1,9 +1,14 @@
 <% content_for :template do %>
-    <%= react_component("MapContainer") %>
+<%= react_component("MapContainer") %>
+<div class="m-drop-pin-msg">
+  <div>
+    Click on map to drop pin
+  </div>
+</div>
 <% end %>
 
 <%= content_for :javascript do %>
-  <script>
+<script>
     LoL = {}; // FIXME: move to global JS
     LoL.urls = {};
     LoL.urls.image = "<%= image_url('image.png') %>";
@@ -13,6 +18,6 @@
 
   <div id="map-page-gallery">
   </div>
-<% end %>
+  <% end %>
 
-<%= render template: "layouts/application" %>
+  <%= render template: "layouts/application" %>
