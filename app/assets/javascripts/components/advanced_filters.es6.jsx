@@ -47,15 +47,6 @@ class AdvancedFilters extends React.Component {
         </div>
 
         <div className="m-type-filter">
-            <h2>Types</h2>
-            <div className="form-group">
-                <div className="form-check">
-                    <label>
-                        <input className="form-check-input" type="checkbox" value="" />
-                        Overlays
-                    </label>
-                </div>
-            </div>
             <div className="form-group">
                 <div className="form-check">
                     <label>
