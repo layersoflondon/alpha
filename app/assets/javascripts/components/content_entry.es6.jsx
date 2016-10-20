@@ -49,6 +49,6 @@ class ContentEntry extends React.Component {
       );
     }
 
-    return link;
+    return <li>{link}</li>;
   }
 }
