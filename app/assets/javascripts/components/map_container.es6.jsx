@@ -24,7 +24,7 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    var adding_pin = this.state.adding_pin ? (<div className="m-adding-pin-banner">Click on the map to add a pin</div>) : '';
+    var adding_pin = this.state.adding_pin ? (<div className="m-drop-pin-msg"><div>Click on the map to add a pin</div></div>) : '';
 
     return (
       <div>
