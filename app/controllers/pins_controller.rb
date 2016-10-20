@@ -161,7 +161,7 @@ class PinsController < ApplicationController
 
     # add any other matching pins that the user has added
     if title_prefix.present?
-      pins = User.first.pins.where("title LIKE '%#{title_prefix}%' AND created_at > '#{Date.today.midnight}'")
+      pins = User.first.pins.where("title LIKE '%#{title_prefix.strip}%' AND created_at > '#{Date.today.midnight}'")
     else
       pins = User.first.pins.where("created_at > '#{Date.today.midnight}'")
     end
