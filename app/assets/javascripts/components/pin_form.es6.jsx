@@ -29,10 +29,12 @@ class PinForm extends React.Component {
     var new_state = {};
     var reader = new FileReader();
     var file   = event.target.files[0];
+    var name   = file.name;
     var state_attribute = event.target.dataset.attribute;
 
     reader.onload = (reader_event) => {
-      new_state[state_attribute] = reader_event.target.result;
+      new_state['attachment'] = reader_event.target.result;
+      // set the form state
       this.setState(new_state);
     }
 
@@ -66,6 +68,9 @@ class PinForm extends React.Component {
 
     SearchResultsActions.postPin(pin);
 
+    // clear the attachment field - FIXME figure out how to do this as a controled component
+    $(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
+
     var current_state = MapPinStore.getState();
     var visible = current_state.pin_form_visible;
 
@@ -93,7 +98,7 @@ class PinForm extends React.Component {
           </div>
           <div className="form-group form-group-upload">
             <label>Add image/audio</label>
-            <input type="file" onChange={this.updateAttachmentAttribute.bind(this)} data-attribute='attachment' />
+            <input type="file" onChange={this.updateAttachmentAttribute.bind(this)} />
           </div>
           <div className="form-group">
             <label>Add video (YouTube URL)</label>
@@ -147,7 +152,7 @@ PinForm.PropTypes = {
   title: React.PropTypes.string,
   description: React.PropTypes.string,
   link_url: React.PropTypes.string,
-  attachment: React.PropTypes.object,
+  attachment: React.PropTypes.string,
   video_url: React.PropTypes.string,
   date_from_day: React.PropTypes.integer,
   date_from_month: React.PropTypes.integer,
