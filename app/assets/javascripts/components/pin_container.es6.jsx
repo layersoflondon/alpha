@@ -21,7 +21,7 @@ class PinContainer extends React.Component {
     if(this.state.expanded) {
       var switchJsx = <span><a href="#" onClick={this.switchState.bind(this)}>Back</a></span>;
     }else {
-      if(this.props.pin.places.length) {
+      if(this.props.pin.content_entries.length) {
         var switchJsx = <span><a href="#" onClick={this.switchState.bind(this)}>See all pins for this location</a> or <a href="#" onClick={this.addPinToThisLocation.bind(this)}>Add a pin at this location</a></span>;
       }else {
         var switchJsx = <span><a href="#" onClick={this.addPinToThisLocation.bind(this)}>Add a pin at this location</a></span>;
@@ -29,7 +29,7 @@ class PinContainer extends React.Component {
     }
 
     if(this.state.expanded) {
-      var content = this.props.pin.places.map(function(place){return <PinResultPlace key={place.id} place={place} />;});
+      var content = this.props.pin.content_entries.map(function(content){return <ContentEntry key={content.id} content_entry={content} />;});
     }else {
       var content = "";
     }

@@ -19,13 +19,14 @@
         {id: 1, name: "Parks of Barking"}
       ];
       this.pins = [
-        {id: 1, title: "Barking Park", location: "Barking", position: [51.544719, 0.085436], places: [
+        {id: 1, title: "Barking Park", location: "Barking", position: [51.544719, 0.085436], content_entries: [
           {id: 1, title: "Barking Park Lake", location: "Barking", resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}},
           {id: 2, title: "Barking Park", location: "Barking", resource: {type: "other", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}},
           {id: 3, title: "Barking Park Sounds", location: "Barking", resource: {type: "audio", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}}
         ]},
-        {id: 2, title: "Parsloes Park", location: "Dagenham", position: [51.5437522, 0.1328339], places: []},
-        {id: 3, title: "The Leys", location: "Dagenham", position: [51.5345465, 0.1601853], places: []}
+        {id: 2, title: "Parsloes Park", location: "Dagenham", position: [51.5437522, 0.1328339], content_entries: []},
+        {id: 3, title: "The Leys", location: "Dagenham", position: [51.5345465, 0.1601853], content_entries: []},
+        {id: 4, title: "Broad Street", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []}
       ];
 
       this.bindListeners({

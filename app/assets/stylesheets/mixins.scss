@@ -22,7 +22,8 @@
 
   .icon {
     float:left;
-    margin-left:-30px;
+    margin: 0 0 0 -10px;
+    padding-right: 10px;
     font-size: 1.6em;
   }
 
@@ -89,7 +90,7 @@
     }
 
     // IE10, IE11+
-    @media screen and (min-width: $min-vw) and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+    @media screen and (min-width: $min-vw) and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       @each $property in $properties {
         #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
       }

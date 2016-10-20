@@ -14,7 +14,7 @@ class Pin < ActiveRecord::Base
 
   attr_accessor :location
   def pin_data
-    data.present? ? data.values : []
+    data.present? ? data.values.each_with_index.collect{|v,i| v.merge({id: (i+1)})} : []
   end
 
   aasm do

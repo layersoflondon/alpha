@@ -80,21 +80,21 @@ class PinsController < ApplicationController
              title: "#{title_prefix}Pin 1",
              location: "Barking",
              position: generate_latlng,
-             places: pin_places.sample(rand(pin_places.size))
+             content_entries: pin_places.sample(rand(pin_places.size))
           },
           {
              id: 2,
              title: "#{title_prefix}Pin 2",
              location: "Dagenham",
              position: generate_latlng,
-             places: pin_places.sample(rand(pin_places.size))
+             content_entries: pin_places.sample(rand(pin_places.size))
           },
           {
              id: 3,
              title: "#{title_prefix}Pin 3",
              location: "Dagenham",
              position: generate_latlng,
-             places: pin_places.sample(rand(pin_places.size))
+             content_entries: pin_places.sample(rand(pin_places.size))
           }
        ]
     }
@@ -103,7 +103,7 @@ class PinsController < ApplicationController
     if title_prefix =~ /broad st/i
       json[:lat] = 51.535044513278166
       json[:lng] = 0.15101909637451172
-      json[:pins].push({id: 6, title: "#{title_prefix} Location", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], places: []})
+      json[:pins].push({id: 6, title: "#{title_prefix} Location", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []})
     end
 
     if title_prefix =~ /barking park/i
@@ -117,7 +117,7 @@ class PinsController < ApplicationController
       json[:lat]      = barking_position[0]
       json[:lng]      = barking_position[1]
       json[:places]   = [barking_place]
-      json[:pins]     = [{id: 1, title: "Barking Park", location: "Barking", position: barking_position, places: [barking_place]}]
+      json[:pins]     = [{id: 1, title: "Barking Park", location: "Barking", position: barking_position, content_entries: [barking_place]}]
       json[:overlays] = [{id: 1, name: "#{barking_park_title} lake", date_range: "1990 - 2016", url: barking_image, bounds: barking_bounds}]
     end
 
@@ -126,7 +126,7 @@ class PinsController < ApplicationController
       position = [51.544787102505786, 0.08600234985351562]
       json[:pins]   = json[:pins].collect{|p| p[:title] = "Sam Morris #{p[:name]}" ; p}
       json[:places] = json[:places].collect{|p| p[:name] = "Sam Morris #{p[:name]}" ; p}
-      json[:pins].push({id: 4, title: "Sam Morris's custom content", location: "Barking", position: position, places: []})
+      json[:pins].push({id: 4, title: "Sam Morris's custom content", location: "Barking", position: position, content_entries: []})
     end
 
     # UAT Test 4 - Football results
@@ -142,7 +142,7 @@ class PinsController < ApplicationController
       json[:places].push(football_place)
 
       football_pin_id   = json[:pins].last[:id]+1
-      json[:pins].unshift({id: football_pin_id, title: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], places: [football_place]})
+      json[:pins].unshift({id: football_pin_id, title: "Barking FC", location: "Barking", position: [51.544787102505786, 0.08600234985351562], content_entries: [football_place]})
 
       football_overlay_id = json[:overlays].last[:id]+1
       football_image   = "https://spen666.files.wordpress.com/2013/02/20130227-barking-fc-v-afc-wimbledon-035.jpg"
