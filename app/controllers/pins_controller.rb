@@ -59,15 +59,15 @@ class PinsController < ApplicationController
              id: 1,
              name: "RAF Aerial View",
              date_range: "1451 - 2013",
-             url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg",
-             bounds: generate_latlng_bounds
+             url: "/raf1.png",
+             bounds: [[51.544719, 0.085436], [51.530000, 0.055436]]
           },
           {
              id: 2,
              name: "RAF View",
              date_range: "1551 - 2010",
-             url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg",
-             bounds: generate_latlng_bounds
+             url: "/raf2.png",
+             bounds: [[51.554719, 0.095436], [51.574719, 0.135436]]
           }
        ],
        visible_overlays: [],
