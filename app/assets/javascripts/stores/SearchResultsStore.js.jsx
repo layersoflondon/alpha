@@ -26,7 +26,10 @@
         ]},
         {id: 2, title: "Parsloes Park", location: "Dagenham", position: [51.5437522, 0.1328339], content_entries: []},
         {id: 3, title: "The Leys", location: "Dagenham", position: [51.5345465, 0.1601853], content_entries: []},
-        {id: 4, title: "Broad Street", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []}
+        {id: 4, title: "Broad Street", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], content_entries: []},
+        {id: 5, title: "Goresbrook Park", location: "Dagenham", position: [51.5353284, 0.1389512], content_entries: []},
+        {id: 6, title: "Old Dagenham Park", location: "Dagenham", position: [51.5365733, 0.1551632], content_entries: []},
+        {id: 7, title: "Mayesbrook Park", location: "Dagenham", position: [51.5449355, 0.1089764], content_entries: []}
       ];
 
       this.bindListeners({
