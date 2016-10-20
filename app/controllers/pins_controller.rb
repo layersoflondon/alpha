@@ -12,19 +12,19 @@ class PinsController < ApplicationController
     pin_places = [
       {
          id: 1,
-         name: "#{title_prefix}Place",
+         title: "#{title_prefix}Place",
          location: "Barking",
          resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
       },
       {
          id: 2,
-         name: "#{title_prefix}Place",
+         title: "#{title_prefix}Place",
          location: "Barking",
          resource: {type: "other", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
       },
       {
          id: 3,
-         name: "#{title_prefix}Place",
+         title: "#{title_prefix}Place",
          location: "Barking",
          resource: {type: "audio", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}
       }
@@ -45,13 +45,13 @@ class PinsController < ApplicationController
        searching: false,
        places: [
           {
-             id: 1, name: "#{title_prefix}Place 1", location: "Barking"
+             id: 1, title: "#{title_prefix}Place 1", location: "Barking"
           },
           {
-             id: 2, name: "#{title_prefix}Place 2", location: "Barking"
+             id: 2, title: "#{title_prefix}Place 2", location: "Barking"
           },
           {
-             id: 3, name: "#{title_prefix}Place 3", location: "Dagenham"
+             id: 3, title: "#{title_prefix}Place 3", location: "Dagenham"
           }
        ],
        overlays: [
@@ -103,7 +103,7 @@ class PinsController < ApplicationController
     if title_prefix =~ /broad st/i
       json[:lat] = 51.535044513278166
       json[:lng] = 0.15101909637451172
-      json[:pins].push({id: 6, name: "#{title_prefix} Location", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], places: []})
+      json[:pins].push({id: 6, title: "#{title_prefix} Location", location: "Dagenham", position: [51.535044513278166, 0.15101909637451172], places: []})
     end
 
     if title_prefix =~ /barking park/i
@@ -112,7 +112,7 @@ class PinsController < ApplicationController
       barking_position = [51.544787102505786, 0.08600234985351562]
       barking_bounds   = [[51.544787102505786, 0.08600234985351562], [51.524787102505786, 0.13600234985351562]]
 
-      barking_place = {id: 1, name: "#{barking_park_title} lake", location: "Barking", resource: {type: "image", url: barking_image}}
+      barking_place = {id: 1, title: "#{barking_park_title} lake", location: "Barking", resource: {type: "image", url: barking_image}}
 
       json[:lat]      = barking_position[0]
       json[:lng]      = barking_position[1]
@@ -136,7 +136,7 @@ class PinsController < ApplicationController
       football_place_id = json[:places].last[:id]+1
       football_image    = "https://spen666.files.wordpress.com/2013/02/20130227-barking-fc-v-afc-wimbledon-035.jpg"
       football_resource = {type: "image", url: football_image}
-      football_place    = {id: football_place_id, name: "Barking FC", location: "Barking", resource: football_resource}
+      football_place    = {id: football_place_id, title: "Barking FC", location: "Barking", resource: football_resource}
       json[:places].push(football_place)
 
       football_pin_id   = json[:pins].last[:id]+1

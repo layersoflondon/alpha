@@ -13,7 +13,7 @@ class PinResultPlace extends React.Component {
       dynamicEl: [{
         src: resource.url,
         thumb:  resource.url,
-        subHtml: this.props.place.name + " " + resource.type
+        subHtml: this.props.place.title + " " + resource.type
       }]
     };
 
@@ -25,7 +25,7 @@ class PinResultPlace extends React.Component {
       <li>
         <a onClick={this.showResource.bind(this)}>
           <div className="icon"><img src={LoL.urls[this.props.place.resource.type]} alt="{this.props.place.resource.type} resource icon" /></div>
-          <h3>{this.props.place.name}</h3>
+          <h3>{this.props.place.title}</h3>
           <p>Pinned on 20th Oct 2016</p>
         </a>
       </li>
