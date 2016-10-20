@@ -6,9 +6,9 @@
       this.zoom = 13;
       this.searching = false;
       this.places = [
-        {id: 1, title: "Barking Park", location: "Barking"},
-        {id: 2, title: "Gascoigne Estate", location: "Barking"},
-        {id: 3, title: "Valence House Museum", location: "Dagenham"}
+        {id: 1, title: "Barking Park", location: "Barking", position: [51.544719, 0.085436]},
+        {id: 2, title: "Gascoigne Estate", location: "Barking", position: [51.5296813, 0.0805853]},
+        {id: 3, title: "Valence House Museum", location: "Dagenham", position: [51.5582921, 0.1319923]}
       ];
       this.overlays = [
         {id: 1, name: "RAF Aerial View", date_range: "1451 - 2013", url: "/raf1.png", bounds: [[51.544719, 0.085436], [51.534719, 0.055436]]},
