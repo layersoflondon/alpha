@@ -1,7 +1,7 @@
 (() => {
   /*
   Manage our map view state....
-  
+
   Actions to handle:
     * Moving(panning) the position to focus on a given pin or place
     * Zoom & fit to bounds
@@ -22,7 +22,6 @@
     }
 
     onFocusPlace(place) {
-      console.log(place);
       this.map_position = place.position;
     }
 
