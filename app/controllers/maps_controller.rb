@@ -5,10 +5,12 @@ class MapsController < ApplicationController
     @pins        = Pin.all.limit(4)
     @overlays    = Overlay.all.limit(4)
     @collections = Collection.all.limit(4)
-
   end
 
   def search
+    @pins        = Pin.all.limit(4)
+    @overlays    = Overlay.all.limit(4)
+    @collections = Collection.all.limit(4)
   end
 
   def show
