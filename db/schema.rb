@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019192337) do
+ActiveRecord::Schema.define(version: 20161103122748) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161019192337) do
     t.text     "data"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "tileserver_url"
   end
 
   add_index "content_entries", ["content_type_id"], name: "index_content_entries_on_content_type_id"
