@@ -43,7 +43,12 @@ end
   )
   puts "Added pin #{p.title}"
 
-  p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+  content_entry = p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+
+  if rand(1..2).even?
+    puts "Adding tileserver url"
+    content_entry.update_attribute(:tileserver_url, "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png")
+  end
 end
 
 User.all.each do |user|
@@ -61,14 +66,3 @@ UserGroup.all.each do |group|
     c.pins << Pin.all.sample(rand(1..5))
   end
 end
-
-
-
-
-
-
-
-
-
-
-
