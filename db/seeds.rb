@@ -43,12 +43,7 @@ end
   )
   puts "Added pin #{p.title}"
 
-  content_entry = p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
-
-  if rand(1..2).even?
-    puts "Adding tileserver url"
-    content_entry.update_attribute(:tileserver_url, "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png")
-  end
+  p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
 end
 
 User.all.each do |user|
@@ -64,5 +59,31 @@ UserGroup.all.each do |group|
     c = group.collections.create(name: Faker::Company.catch_phrase)
     puts "Adding collection #{c.name} for user group #{group.name}"
     c.pins << Pin.all.sample(rand(1..5))
+  end
+end
+
+10.times do |i|
+  date_from = Date.today.advance(years: -(rand(20..2000)), months: rand(0..12), days: rand(0..28))
+  date_to = date_from.advance(years: rand(20..2000), months: rand(0..12), days: rand(0..28))
+  date_to = 19.years.ago if date_to.future?
+
+  overlay_type = i.even? ? OverlayType.find_by(name: "Tile") : OverlayType.all.sample
+
+  o = Overlay.create(
+    title: Faker::Hipster.sentence(3),
+    lat: -(rand(0.246207..0.337809)),
+    lng: rand(51.575242..51.591722),
+    description: Faker::Hipster.sentence(3),
+    overlay_type_id: overlay_type.id,
+    date_from: date_from,
+    date_to: date_to
+  )
+  puts "Added overlay #{o.title}"
+
+  content_entry = o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+
+  if o.overlay_type.name=="Tile"
+    puts "Adding tileserver url"
+    content_entry.update_attribute(:tileserver_url, "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png")
   end
 end
