@@ -1,7 +1,11 @@
-class PinsController < ApplicationController
+class MapsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:search]
 
   def index
+    @pins        = Pin.all.limit(4)
+    @overlays    = Overlay.all.limit(4)
+    @collections = Collection.all.limit(4)
+
   end
 
   def search

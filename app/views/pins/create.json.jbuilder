@@ -1,1 +1,0 @@
-json.partial! 'pins/pin'

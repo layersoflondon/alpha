@@ -3,7 +3,7 @@ Rails.application.routes.draw do
              controllers: {registrations: 'registrations'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
 
-  resources :pins, only: [:index, :show, :create], defaults: {format: :json} do
+  resources :maps, only: [:index, :show, :create], defaults: {format: :json} do
     collection do
       get 'search'
     end
