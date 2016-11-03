@@ -83,7 +83,13 @@ end
   content_entry = o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
 
   if o.overlay_type.name=="Tile"
-    puts "Adding tileserver url"
+    puts "\tAdding tileserver url"
     content_entry.update_attribute(:tileserver_url, "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png")
+  elsif o.overlay_type.name=="Polygon"
+    puts "\tAdding polygon coords"
+    content_entry.update_attribute(:data, [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]])
+  else
+    puts "\tAdding bounds data"
+    content_entry.update_attribute(:data, [[51.54978710250579, 0.0850234985351562], [51.529787102505786, 0.12000234985351561]])
   end
 end
