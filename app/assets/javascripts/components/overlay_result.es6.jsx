@@ -21,8 +21,7 @@ class OverlayResult extends React.Component {
             </div>
           </div>
         </form>
-        <h3>{this.state.overlay.name}</h3>
-        <p>{this.state.overlay.date_range}</p>
+        <h3>{this.state.overlay.title}</h3>
       </li>
     );
   }
