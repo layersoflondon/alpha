@@ -36,8 +36,8 @@ end
   p = Pin.create(
     user: User.all.sample,
     title: Faker::Hipster.sentence(3),
-    lat: -(rand(0.246207..0.337809)),
-    lng: rand(51.575242..51.591722),
+    lat: rand(51.575242..51.591722),
+    lng: -(rand(0.246207..0.337809)),
     date_from: date_from,
     date_to: date_to
   )
@@ -71,8 +71,8 @@ end
 
   o = Overlay.create(
     title: Faker::Hipster.sentence(3),
-    lat: -(rand(0.246207..0.337809)),
-    lng: rand(51.575242..51.591722),
+    lat: rand(51.575242..51.591722),
+    lng: -(rand(0.246207..0.337809)),
     description: Faker::Hipster.sentence(3),
     overlay_type_id: overlay_type.id,
     date_from: date_from,
