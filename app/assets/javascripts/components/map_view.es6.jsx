@@ -70,7 +70,7 @@ class MapView extends React.Component {
   }
 
   mapViewStateChanged(state) {
-    var coords = state.map_position;
+    var latlng = state.map_position;
 
     this.refs.map.state.map.panTo(latlng);
   }
