@@ -13,7 +13,7 @@ class OverlayContainer extends React.Component {
 
   render () {
     return (
-      <ImageOverlay url={this.state.overlay.url} bounds={this.state.overlay.bounds} />
+      <div />
     );
   }
 }

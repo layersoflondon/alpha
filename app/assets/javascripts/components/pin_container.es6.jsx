@@ -1,3 +1,6 @@
+/*
+Render a Pin (marker) on the map
+*/
 class PinContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -21,13 +24,13 @@ class PinContainer extends React.Component {
     if(this.state.expanded) {
       var switchJsx = <span><a href="#" onClick={this.switchState.bind(this)}>Back</a></span>;
     }else {
-      if(this.props.pin.content_entry.length) {
+      if(this.props.pin.content_entry) {
         var switchJsx = <span><a href="#" onClick={this.switchState.bind(this)}>See all pins for this location</a> or <a href="#" onClick={this.addPinToThisLocation.bind(this)}>Add a pin at this location</a></span>;
       }else {
         var switchJsx = <span><a href="#" onClick={this.addPinToThisLocation.bind(this)}>Add a pin at this location</a></span>;
       }
     }
-
+    
     if(this.state.expanded) {
       var content = "expanded";
     }else {
