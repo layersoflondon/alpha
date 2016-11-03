@@ -1,7 +1,7 @@
 var SearchResultsSource = {
   fetch: function() {
     return new Promise(function(resolve, reject) {
-      $.get('/pins/search', {search: FilterStateStore.getState()}, function(response) {
+      $.get('/maps/search', {search: FilterStateStore.getState()}, function(response) {
         resolve(response);
       }.bind(this));
     });
@@ -11,7 +11,7 @@ var SearchResultsSource = {
     console.log("SearchResultSource pin_data", pin_data);
 
     return new Promise(function(resolve, reject) {
-      $.post('/pins', {pin: pin_data}, function(response){
+      $.post('/maps', {pin: pin_data}, function(response){
         resolve(response);
       }.bind(this));
     });

@@ -1,4 +1,7 @@
 (() => {
+  /*
+  MapPinStore - the attributes we POST to the pins controller when creating a new pin
+  */
   class MapPinStore {
     constructor() {
       this.title = '';

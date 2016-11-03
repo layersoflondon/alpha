@@ -1,4 +1,7 @@
 (() => {
+  /*
+  Sidebar & map content store
+  */
   class SearchResultsStore {
     constructor() {
       this.lat  = 51.5353284;

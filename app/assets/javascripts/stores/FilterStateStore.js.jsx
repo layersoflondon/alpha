@@ -1,4 +1,7 @@
 (() => {
+  /*
+  Params we POST to the pins controller when searching and filtering 
+  */
   class FilterStateStore {
     constructor() {
       this.advanced_filters_visible = false;
