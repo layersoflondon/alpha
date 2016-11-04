@@ -84,7 +84,7 @@ end
 
   if o.overlay_type.name=="Tile"
     puts "\tAdding tileserver url"
-    content_entry.update_attribute(:tileserver_url, "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png")
+    content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
   elsif o.overlay_type.name=="Polygon"
     puts "\tAdding polygon coords"
     content_entry.update_attribute(:data, [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]])
