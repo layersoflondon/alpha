@@ -1,11 +1,8 @@
-json.lat @pins.first.lat
-json.lng @pins.first.lng
+json.lat @pins.values.first.first.lat
+json.lng @pins.values.first.first.lng
 
-json.pins do
-  json.array! @pins, partial: 'maps/pin', as: :pin
-end
-json.places do
-  json.array! []
+json.markers do
+  json.array! @pins, partial: 'maps/marker', as: :marker
 end
 json.overlays do
   json.array! @overlays, partial: 'maps/overlay', as: :overlay

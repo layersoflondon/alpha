@@ -39,13 +39,17 @@ class MapView extends React.Component {
   }
 
   handleZoomed(event) {
-    const position = this.refs.map.state.map.getBounds();
-    const sw = {lat: position._southWest.lat, lng: position._southWest.lng};
-    const ne = {lat: position._southWest.lat, lng: position._southWest.lng};
+    const _map   = this.refs.map.state.map;
+    const bounds = _map.getBounds();
+    const sw = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
+    const ne = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
 
-    FilterStateActions.updateFilterBounds({southWest: sw, northEast: ne});
+    const northEast = bounds.getNorthEast();
+    const radius    = Math.floor(northEast.distanceTo(_map.getCenter()));
+
+    FilterStateActions.updateFilterBounds({bounds: {southWest: sw, northEast: ne}, radius: radius});
   }
-  
+
   stateChanged(state) {
     this.setState(state);
   }
@@ -66,9 +70,9 @@ class MapView extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
 
-    const pin_containers = this.state.pins.map(function(pin) {
+    const marker_containers = this.state.markers.map(function(marker, idx) {
       return (
-        <PinContainer key={pin.id} pin={pin} />
+        <MarkerContainer key={idx} marker={marker} />
       );
     });
 
@@ -82,7 +86,7 @@ class MapView extends React.Component {
 
     this.map = <Map center={position} zoom={this.state.zoom} className="m-map" ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
-                 {pin_containers}
+                 {marker_containers}
                  {overlays}
                </Map>;
 

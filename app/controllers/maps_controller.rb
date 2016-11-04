@@ -2,13 +2,16 @@ class MapsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:search]
 
   def index
-    @pins        = Pin.all.limit(4)
+    @pins        = Pin.all.limit(4).group_by(&:coords)
     @overlays    = Overlay.all.limit(4)
     @collections = Collection.all.limit(4)
   end
 
   def search
-    @pins        = Pin.all.limit(4)
+    Rails.logger.info(params.awesome_inspect)
+    Rails.logger.info("\n\n")
+
+    @pins        = Pin.all.limit(4).group_by(&:coords)
     @overlays    = Overlay.all.limit(4)
     @collections = Collection.all.limit(4)
   end

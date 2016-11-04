@@ -27,7 +27,8 @@
 
     emitUpdatedState(state) {
       this.updateCoordinates(state.lat, state.lng);
-      this.updatePins(state.pins);
+      this.updateMarkers(state.markers);
+      this.updatePins(state.markers);
       this.updatePlaces(state.places);
       this.updateOverlays(state.overlays);
       this.updateCollections(state.collections);
@@ -41,7 +42,31 @@
       return false
     }
 
-    updatePins(pins) {
+    updateMarkers(markers) {
+      return markers;
+    }
+
+    updatePins(markers) {
+      window.markers = markers;
+      /*
+      our resultset will return an array of marker objects with a position and an array of pins:
+
+      markers: [
+        {
+          position: {lat: 1234, lng: 0123},
+          pins: [Pin, Pin]
+        },
+        {
+          position: {lat: 2345, lng: 0234},
+          pins: [Pin]
+        }
+      ]
+
+      we need a flattened array of pins - _.map to return the nested array [[Pin, Pin], [Pin]] and .flatten them out...
+      */
+
+      const pins = _.chain(markers).map(function(marker){return marker.pins}).flatten().value();
+
       return pins;
     }
 
