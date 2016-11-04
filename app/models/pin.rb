@@ -13,8 +13,8 @@ class Pin < ActiveRecord::Base
   serialize :data
 
   attr_accessor :location
-  def pin_data
-    data.present? ? data.values.each_with_index.collect{|v,i| v.merge({id: (i+1)})} : []
+  def coords
+    {lat: lat, lng: lng}
   end
 
   aasm do
