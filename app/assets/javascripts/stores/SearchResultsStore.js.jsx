@@ -12,15 +12,13 @@
       this.overlays = [];
       this.visible_overlays = [];
       this.collections = [];
+      this.markers = [];
       this.pins = [];
-      // example pin with a content entry
-      // {id: 1, title: "Barking Park", location: "Barking", position: [51.544719, 0.085436], content_entries: [
-      //   {id: 1, title: "Barking Park Lake", location: "Barking", resource: {type: "image", url: "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg"}},
-      // }
 
       this.bindListeners({
         onFetchSearchResults: SearchResultsActions.FETCH_SEARCH_RESULTS,
         onUpdateCoordinates: SearchResultsActions.UPDATE_COORDINATES,
+        onUpdateMarkers: SearchResultsActions.UPDATE_MARKERS,
         onUpdatePins: SearchResultsActions.UPDATE_PINS,
         onUpdatePlaces: SearchResultsActions.UPDATE_PLACES,
         onUpdateOverlays: SearchResultsActions.UPDATE_OVERLAYS,
@@ -42,6 +40,11 @@
         this.lat = latlng.lat;
         this.lng = latlng.lng;
       }
+    }
+
+    onUpdateMarkers(markers) {
+      this.markers = markers;
+      this.searching = false;
     }
 
     onUpdatePins(pins) {
