@@ -14,7 +14,7 @@ class OverlayContainer extends React.Component {
 
     switch(this.state.overlay.resource.type) {
       case 'tile':
-        component = <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'></TileLayer>
+        component = <TileLayer url={this.state.overlay.resource.tileserver_url}></TileLayer>
         break;
       case 'polygon':
         component = <Polygon positions={this.state.overlay.resource.polygon} />;
