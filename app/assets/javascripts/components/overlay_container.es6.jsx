@@ -14,7 +14,7 @@ class OverlayContainer extends React.Component {
 
     switch(this.state.overlay.resource.type) {
       case 'tile':
-        component = <TileLayer url={this.state.overlay.resource.tileserver_url}></TileLayer>
+        component = <TileLayer url={this.state.overlay.resource.tileserver_url} opacity={0.75}></TileLayer>
         break;
       case 'polygon':
         component = <Polygon positions={this.state.overlay.resource.polygon} />;
