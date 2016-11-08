@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   prepend_before_action :redirect_page_if_required, only: :show
   prepend_before_action :find_and_validate_page, only: :show
 
+  before_action :get_map_content, if: -> {params[:nested_path]=="the-map"}
+
   layout :determine_layout
 
   # This is the homepage. We're assuming that the slug is 'home'
@@ -20,6 +22,14 @@ class PagesController < ApplicationController
 
 
   private
+
+  def get_map_content
+    @pins        = Pin.all.limit(2).group_by(&:coords)
+    @overlays    = Overlay.includes(:overlay_type).where(overlay_types: {name: "Tile"})
+    @collections = {}
+
+    @data = render_to_string('maps/search', layout: false, formats: [:json])
+  end
 
   # If there's a redirect required, do that instead of rendering.
   def redirect_page_if_required
