@@ -24,7 +24,6 @@ class PlaceResultsContainer extends React.Component {
     return (
       <div className="results results-places">
         <br/>
-        <h3>{places_label}</h3>
 
         <ul>
           {this.state.places.map(function(place){
