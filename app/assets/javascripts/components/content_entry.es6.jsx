@@ -1,9 +1,6 @@
 class ContentEntry extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props.content_entry);
-    console.log(this.props.content_entry.content_entry);
   }
 
   showResource() {
@@ -39,7 +36,7 @@ class ContentEntry extends React.Component {
         </div>
 
         <h3>{this.props.content_entry.content_entry.title}</h3>
-        <p>Pinned on {this.props.pinned_on_date}</p>
+        <p>Pinned on {this.props.content_entry.pinned_on_date}</p>
       </a>
     );
 
