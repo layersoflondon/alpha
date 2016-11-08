@@ -1,5 +1,5 @@
 <% content_for :template do %>
-  <%= react_component("MapContainer", data: JSON.parse(@data)) %>
+  <%= react_component("MapContainer", data: JSON.parse(@data), prerender: true) %>
 <% end %>
 
 <%= content_for :javascript do %>
