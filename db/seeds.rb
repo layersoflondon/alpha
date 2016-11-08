@@ -29,67 +29,117 @@ User.all.each do |user|
   user.user_groups << groups.sample(2)
 end
 
-100.times do |i|
-  date_from = Date.today.advance(years: -(rand(20..2000)), months: rand(0..12), days: rand(0..28))
-  date_to = date_from.advance(years: rand(20..2000), months: rand(0..12), days: rand(0..28))
-  date_to = 19.years.ago if date_to.future?
-  p = Pin.create(
-    user: User.all.sample,
-    title: Faker::Hipster.sentence(3),
-    lat: rand(51.575242..51.591722),
-    lng: -(rand(0.246207..0.337809)),
-    date_from: date_from,
-    date_to: date_to
-  )
-  puts "Added pin #{p.title}"
+default_user = User.first
+date_from = Date.today.advance(years: -(rand(20..2000)), months: rand(0..12), days: rand(0..28))
+date_to   = date_from.advance(years: rand(20..2000), months: rand(0..12), days: rand(0..28))
+date_to   = 19.years.ago if date_to.future?
 
-  p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
-end
+p = Pin.create!(
+  user: default_user,
+  title: "Barking Park",
+  lat: 51.544787102505786,
+  lng: 0.08600234985351562,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: "Photo in barking park", content_type: ContentType.all.sample)
 
-User.all.each do |user|
-  rand(0..3).times do |i|
-    c = user.collections.create(name: Faker::Commerce.department)
-    puts "Adding collection #{c.name} for user #{user.email}"
-    c.pins << Pin.all.sample(rand(1..5))
-  end
-end
+p = Pin.create(
+  user: default_user,
+  title: "Parsloes Park",
+  lat: 51.5437522,
+  lng: 0.1328339,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
 
-UserGroup.all.each do |group|
-  rand(0..3).times do |i|
-    c = group.collections.create(name: Faker::Company.catch_phrase)
-    puts "Adding collection #{c.name} for user group #{group.name}"
-    c.pins << Pin.all.sample(rand(1..5))
-  end
-end
+p = Pin.create(
+  user: default_user,
+  title: "The Leys",
+  lat: 51.5345465,
+  lng: 0.1601853,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
 
-10.times do |i|
-  date_from = Date.today.advance(years: -(rand(20..2000)), months: rand(0..12), days: rand(0..28))
-  date_to = date_from.advance(years: rand(20..2000), months: rand(0..12), days: rand(0..28))
-  date_to = 19.years.ago if date_to.future?
+p = Pin.create(
+  user: default_user,
+  title: "Broad Street",
+  lat: 51.535044513278166,
+  lng: 0.15101909637451172,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
 
-  overlay_type = i.even? ? OverlayType.find_by(name: "Tile") : OverlayType.all.sample
+p = Pin.create(
+  user: default_user,
+  title: "Goresbrook Park",
+  lat: 51.5353284,
+  lng: 0.1389512,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: "Goresbrook Park image", content_type: ContentType.all.sample)
 
-  o = Overlay.create(
-    title: Faker::Hipster.sentence(3),
-    lat: rand(51.575242..51.591722),
-    lng: -(rand(0.246207..0.337809)),
-    description: Faker::Hipster.sentence(3),
-    overlay_type_id: overlay_type.id,
-    date_from: date_from,
-    date_to: date_to
-  )
-  puts "Added overlay #{o.title}"
+p = Pin.create(
+  user: default_user,
+  title: "Barking FC",
+  lat: 51.544787102505786,
+  lng: 0.08600234985351562,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: "Barking FC club badge", content_type: ContentType.all.sample)
+p = Pin.create(
+  user: default_user,
+  title: "Dagenham & Redbridge FC",
+  lat: 51.5474112,
+  lng: 0.1588148,
+  date_from: date_from,
+  date_to:   date_to
+)
+p.create_pin_content_entry.create_content_entry(content: "Dagenham & Redbridge FC Stadium", content_type: ContentType.all.sample)
 
-  content_entry = o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+tile = OverlayType.find_by(name: "Tile")
+poly = OverlayType.find_by(name: "Polygon")
 
-  if o.overlay_type.name=="Tile"
-    puts "\tAdding tileserver url"
-    content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
-  elsif o.overlay_type.name=="Polygon"
-    puts "\tAdding polygon coords"
-    content_entry.update_attribute(:data, [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]])
-  else
-    puts "\tAdding bounds data"
-    content_entry.update_attribute(:data, [[51.54978710250579, 0.0850234985351562], [51.529787102505786, 0.12000234985351561]])
-  end
-end
+# Morgan map overlay
+o = Overlay.create(
+  title: "Morgan map overlay",
+  lat: rand(51.450..51.550),
+  lng: -(rand(0.110..0.140)),
+  description: Faker::Hipster.sentence(3),
+  overlay_type_id: tile.id,
+  date_from: date_from,
+  date_to: date_to
+)
+o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
+
+# Example polygon overlays
+o = Overlay.create(
+  title: "Dagenham Polygon",
+  lat: rand(51.450..51.550),
+  lng: -(rand(0.110..0.140)),
+  description: Faker::Hipster.sentence(3),
+  overlay_type_id: poly.id,
+  date_from: date_from,
+  date_to: date_to
+)
+o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.content_entry.update_attribute(:data, [[51.541334, 0.161790], [51.538832, 0.150172], [51.534623, 0.142953], [51.526694, 0.156902], [51.527512, 0.175814]])
+
+o = Overlay.create(
+  title: "Barking Park Polygon",
+  lat: rand(51.450..51.550),
+  lng: -(rand(0.110..0.140)),
+  description: Faker::Hipster.sentence(3),
+  overlay_type_id: poly.id,
+  date_from: date_from,
+  date_to: date_to
+)
+o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.content_entry.update_attribute(:data, [[51.544751, 0.077629], [51.547828, 0.085397], [51.548705, 0.090797], [51.549565, 0.091755], [51.549102, 0.095532], [51.547299, 0.096915], [51.545496, 0.093165], [51.542518, 0.086461], [51.541906, 0.085503], [51.544106, 0.080742], [51.543444, 0.078401]])

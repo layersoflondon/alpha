@@ -8,12 +8,13 @@ class MapsController < ApplicationController
   end
 
   def search
-    Rails.logger.info(params.awesome_inspect)
+    Rails.logger.info(search_params.awesome_inspect)
     Rails.logger.info("\n\n")
+    query        = search_params[:search_query].present? ? search_params[:search_query] : ""
 
-    @pins        = Pin.all.limit(4).group_by(&:coords)
-    @overlays    = Overlay.all.limit(4)
-    @collections = Collection.all.limit(4)
+    @pins        = Pin.where("title LIKE '%#{query}%'").limit(10).group_by(&:coords)
+    @overlays    = Overlay.where("title LIKE '%#{query}%'").limit(10)
+    @collections = Collection.where("name LIKE '%#{query}%'").limit(10)
   end
 
   def show
@@ -27,7 +28,7 @@ class MapsController < ApplicationController
   end
 
   private
-  def pin_params
-    params.require(:pin).permit!
+  def search_params
+    params.require(:search).permit!
   end
 end
