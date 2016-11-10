@@ -48,6 +48,7 @@
 
     onResetForm() {
       console.log("Resetting form...");
+      this.form_submit_disabled = false;
       this.title = '';
       this.description = '';
       this.link_url = '';

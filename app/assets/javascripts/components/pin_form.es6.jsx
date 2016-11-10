@@ -21,7 +21,6 @@ class PinForm extends React.Component {
 
     if(current_state.pin_form_visible && current_state.pin_form_enabled) {
       const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
-      console.log("Disabling form...");
       this.setState(disabled_state);
 
       SearchResultsSource.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
@@ -61,7 +60,7 @@ class PinForm extends React.Component {
     reader.readAsDataURL(file);
   }
 
-  savePinDate(event) {
+  savePinData(event) {
     event.preventDefault();
 
     var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
@@ -69,19 +68,20 @@ class PinForm extends React.Component {
       attachment = this.state.attachment;
     }
 
-    var content = {
-      title: this.state.description,
-      location: "Dagenham",
-      resource: {type: "image", url: attachment}
-    }
-    var pin = {
+    console.log("POSTING PIN", this.state);
+
+    const pin = {
       title: this.state.title,
-      location: "Dagenham",
+      location: this.state.location,
       date_from: (new Date()).toString(),
       lat: this.state.pin_form_lat_lng.lat,
       lng: this.state.pin_form_lat_lng.lng,
       user_id: 1,
-      data: [content]
+
+      content_entry: {
+        title: this.state.description,
+        resource: {type: "image", url: attachment}
+      }
     };
 
     SearchResultsActions.postPin(pin);
@@ -106,7 +106,7 @@ class PinForm extends React.Component {
 
     return (
       <div className="m-add-pin" style={style}>
-        <form onSubmit={this.savePinDate.bind(this)}>
+        <form onSubmit={this.savePinData.bind(this)}>
           <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
 
           <div className="form-group form-group-title">
