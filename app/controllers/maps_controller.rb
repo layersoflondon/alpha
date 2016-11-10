@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:search]
+  skip_before_action :verify_authenticity_token, only: [:search, :create]
 
   def index
     @pins        = Pin.all.limit(4).group_by(&:coords)
@@ -22,12 +22,17 @@ class MapsController < ApplicationController
   end
 
   def create
+    return render json: pin_params
     Rails.logger.info(pin_params.awesome_inspect)
 
     @pin = Pin.create!(pin_params)
   end
 
   private
+  def pin_params
+    params.require(:pin).permit!
+  end
+
   def search_params
     params.require(:search).permit!
   end
