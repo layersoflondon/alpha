@@ -4,6 +4,7 @@
   */
   class MapPinStore {
     constructor() {
+      this.form_submit_disabled = false;
       this.title = '';
       this.description = '';
       this.link_url = '';
@@ -16,6 +17,7 @@
       this.date_to_month = '';
       this.date_to_year = '';
       this.collections = '';
+      this.location = '';
       this.pin_form_visible = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
@@ -40,6 +42,7 @@
     }
 
     onTogglePinForm(visible) {
+      this.pin_form_enabled = visible;
       this.pin_form_visible = visible;
     }
 

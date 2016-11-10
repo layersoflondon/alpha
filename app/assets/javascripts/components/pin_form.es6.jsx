@@ -6,7 +6,7 @@ class PinForm extends React.Component {
     this.stateChanged = this.stateChanged.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     MapPinStore.listen(this.stateChanged);
   }
 
@@ -16,6 +16,26 @@ class PinForm extends React.Component {
 
   stateChanged(state) {
     this.setState(state);
+
+    var current_state = MapPinStore.getState();
+
+    if(current_state.pin_form_visible && current_state.pin_form_enabled) {
+      const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
+      console.log("Disabling form...");
+      this.setState(disabled_state);
+
+      SearchResultsSource.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
+        if(nearby.length) {
+          current_state.location = nearby[0].location.long_name;
+          current_state.location_object = nearby[0];
+        }
+
+        current_state.form_submit_disabled = false;
+        this.setState(current_state);
+      }).catch((error) => {
+        console.log("Fetching locations error", error);
+      });
+    }
   }
 
   updateAttribute(event) {
@@ -44,8 +64,6 @@ class PinForm extends React.Component {
   savePinDate(event) {
     event.preventDefault();
 
-    console.log("Saving form state", this.state);
-
     var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
     if(this.state.attachment.length) {
       attachment = this.state.attachment;
@@ -71,11 +89,16 @@ class PinForm extends React.Component {
     // clear the attachment field - FIXME figure out how to do this as a controled component
     $(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
 
-    var current_state = MapPinStore.getState();
-    var visible = current_state.pin_form_visible;
+    const current_state = MapPinStore.getState();
+    const visible = current_state.pin_form_visible;
 
     MapPinActions.resetForm();
     MapPinActions.togglePinForm(!visible);
+  }
+
+  hidePinForm() {
+    const current_state = MapPinStore.getState();
+    MapPinActions.togglePinForm(!current_state.pin_form_visible);
   }
 
   render () {
@@ -84,6 +107,8 @@ class PinForm extends React.Component {
     return (
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinDate.bind(this)}>
+          <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+
           <div className="form-group form-group-title">
             <label>Pin title</label>
             <input type="text" placeholder="What will you call this pin?" onChange={this.updateAttribute.bind(this)} data-attribute='title' value={this.state.title} />
@@ -140,7 +165,7 @@ class PinForm extends React.Component {
           <br/>
           Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}
           <div className="form-group">
-            <input type="submit" placeholder="Save my pin" />
+            <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
           </div>
         </form>
       </div>
@@ -149,6 +174,7 @@ class PinForm extends React.Component {
 }
 
 PinForm.PropTypes = {
+  form_submit_disabled: React.PropTypes.bool,
   title: React.PropTypes.string,
   description: React.PropTypes.string,
   link_url: React.PropTypes.string,
@@ -161,4 +187,6 @@ PinForm.PropTypes = {
   date_to_month: React.PropTypes.integer,
   date_to_year: React.PropTypes.integer,
   collections: React.PropTypes.array,
+  location: React.PropTypes.string,
+  location_object: React.PropTypes.object
 };
