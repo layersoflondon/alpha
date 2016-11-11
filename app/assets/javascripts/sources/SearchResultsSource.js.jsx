@@ -1,7 +1,7 @@
 var SearchResultsSource = {
-  fetch: function() {
+  fetch: function(filters) {
     return new Promise(function(resolve, reject) {
-      $.get('/maps/search', {search: FilterStateStore.getState()}, function(response) {
+      $.get('/maps/search', {search: filters}, function(response) {
         resolve(response);
       }.bind(this));
     });

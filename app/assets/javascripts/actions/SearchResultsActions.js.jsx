@@ -4,7 +4,10 @@
       return (dispatch) => {
         dispatch();
 
-        SearchResultsSource.fetch().then((new_state) => {
+        const filter_state = FilterStateStore.getState();
+        console.log("Filter state: ", filter_state);
+        
+        SearchResultsSource.fetch(filter_state).then((new_state) => {
           this.emitUpdatedState(new_state);
         }).catch((error) => {
           console.log("Error!", error);
