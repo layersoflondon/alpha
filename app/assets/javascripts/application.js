@@ -15,7 +15,8 @@
 
 //= require lodash
 
-//= require react
+//= require react-with-addons
+//= require react-dom
 //= require react_ujs
 //= require react-tabs
 
