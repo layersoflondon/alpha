@@ -1,9 +1,9 @@
 var SearchResultsSource = {
   fetch: function(filters) {
     return new Promise(function(resolve, reject) {
-      $.get('/maps/search', {search: filters}, function(response) {
+      $.get('/maps/search', {search: filters}, (response) => {
         resolve(response);
-      }.bind(this));
+      });
     });
   },
 

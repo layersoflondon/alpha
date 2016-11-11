@@ -79,10 +79,16 @@
     }
 
     onAddPin(pin) {
-      console.log("Added a new pin!", pin);
-      var pins = this.pins.slice();
-      pins.push(pin);
-      this.pins = pins;
+      /* TODO - when a pin is returned from our POST, we should add it to the this.markers array
+      We need to return a marker object from jbuilder with one pin - our new one -
+      so the pin var here will actually be a marker!
+      */
+
+
+      // console.log("Added a new pin!", pin);
+      // var pins = this.pins.slice();
+      // pins.push(pin);
+      // this.pins = pins;
     }
   }
 

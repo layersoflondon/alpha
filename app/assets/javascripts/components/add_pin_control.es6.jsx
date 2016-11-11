@@ -10,6 +10,7 @@ class AddPinControl extends React.Component {
   }
 
   render () {
+    // TODO check the user is logged in before rendering this jsx - meta tag? (we will validate on the server anyway)
     return (
       <div className="m-pin-controls">
 
