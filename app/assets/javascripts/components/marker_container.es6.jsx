@@ -6,10 +6,6 @@ class MarkerContainer extends React.Component {
     super(props);
   }
 
-  switchState() {
-    this.setState({expanded: !this.state.expanded});
-  }
-
   addPinToThisLocation() {
     MapPinActions.setPinLocation(this.props.marker.position);
     MapPinActions.enablePinForm(true);
