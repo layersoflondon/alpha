@@ -16,6 +16,14 @@
       return latlng;
     }
 
+    setFormAttribute(state) {
+      return state;
+    }
+
+    setPinType(type) {
+      return type;
+    }
+
     resetForm() {
       return true;
     }

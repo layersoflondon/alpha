@@ -1,0 +1,130 @@
+class PinForm extends React.Component {
+
+  stateChanged(state) {
+    //the state is set in the AddPinFieldHooks HOC, so we don't need to do this:
+    //this.setState(state);
+
+    var current_state = MapPinStore.getState();
+
+    if(current_state.pin_form_visible && current_state.pin_form_enabled) {
+      const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
+      this.setState(disabled_state);
+
+      SearchResultsSource.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
+        if(nearby.length) {
+          current_state.location = nearby[0].location.long_name;
+          current_state.location_object = nearby[0];
+        }
+
+        current_state.form_submit_disabled = false;
+        this.setState(current_state);
+      }).catch((error) => {
+        console.log("Fetching locations error", error);
+      });
+      //console.log("this is where we would be geocoding");
+    }
+  }
+
+
+  savePinData(event) {
+    event.preventDefault();
+
+    var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
+    if(this.state.attachment.length) {
+      attachment = this.state.attachment;
+    }
+
+    console.log("POSTING PIN", this.state);
+
+    const pin = {
+      title: this.state.title,
+      location: this.state.location,
+      date_from: (new Date()).toString(),
+      lat: this.state.pin_form_lat_lng.lat,
+      lng: this.state.pin_form_lat_lng.lng,
+      user_id: 1,
+
+      content_entry: {
+        title: this.state.description,
+        resource: {type: "image", url: attachment}
+      }
+    };
+
+    SearchResultsActions.postPin(pin);
+
+    // clear the attachment field - FIXME figure out how to do this as a controled component
+    $(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
+
+    const current_state = MapPinStore.getState();
+    const visible = current_state.pin_form_visible;
+
+    MapPinActions.resetForm();
+    MapPinActions.togglePinForm(!visible);
+  }
+
+  hidePinForm() {
+    const current_state = MapPinStore.getState();
+    MapPinActions.togglePinForm(!current_state.pin_form_visible);
+  }
+
+  render () {
+    var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
+    var fields;
+    switch(this.state.pin_type) {
+      case "text":
+        fields = <PinTextFields />;
+        break;
+      case "image":
+        fields = <PinImageFields />;
+        break;
+      case "video":
+        fields = <PinVideoFields />;
+        break;
+      case "dataset":
+        fields = <PinDatasetFields />;
+        break;
+      case "audio":
+        fields = <PinAudioFields />;
+        break;
+    }
+
+    return (
+      <div className="m-add-pin" style={style}>
+        <form onSubmit={this.savePinData.bind(this)}>
+          <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+            <PinCommonFields />
+            <PinTypePicker />
+            {fields}
+
+          <br/>
+          Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}
+
+          <div className="form-group">
+            <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+PinForm.PropTypes = {
+  form_submit_disabled: React.PropTypes.bool,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string,
+  link_url: React.PropTypes.string,
+  attachment: React.PropTypes.string,
+  video_url: React.PropTypes.string,
+  date_from_day: React.PropTypes.integer,
+  date_from_month: React.PropTypes.integer,
+  date_from_year: React.PropTypes.integer,
+  date_to_day: React.PropTypes.integer,
+  date_to_month: React.PropTypes.integer,
+  date_to_year: React.PropTypes.integer,
+  collections: React.PropTypes.array,
+  location: React.PropTypes.string,
+  location_object: React.PropTypes.object
+};
+
+PinForm = AddPinFieldHooks(PinForm);
+PinForm.displayName = "PinForm";

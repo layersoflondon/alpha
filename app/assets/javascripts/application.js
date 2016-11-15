@@ -22,6 +22,7 @@
 
 //= require leaflet
 //= require vendor/react-leaflet
+//= require vendor/react-scribe-editor
 
 //= require alt
 //= require components
