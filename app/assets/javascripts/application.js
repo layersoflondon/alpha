@@ -25,6 +25,7 @@
 //= require vendor/react-scribe-editor
 
 //= require alt
+//= require layers
 //= require components
 
 //= require_self
