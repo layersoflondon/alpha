@@ -23,5 +23,4 @@ class PinTypePicker extends React.Component {
   }
 }
 
-PinTypePicker = AddPinFieldHooks(PinTypePicker);
-PinTypePicker.displayName = "PinTypePicker";
+PinTypePicker = Layers.bindComponentToMapPinStore(PinTypePicker);

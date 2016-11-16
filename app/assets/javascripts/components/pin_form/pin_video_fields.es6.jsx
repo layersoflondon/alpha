@@ -10,6 +10,5 @@ class PinVideoFields extends React.Component {
   }
 }
 
-PinVideoFields = AddPinFieldHooks(PinVideoFields);
-PinVideoFields.displayName = "PinVideoFields";
+PinVideoFields = Layers.bindComponentToMapPinStore(PinVideoFields);
 

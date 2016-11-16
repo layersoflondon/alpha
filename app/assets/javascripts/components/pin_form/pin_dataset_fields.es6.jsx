@@ -6,5 +6,4 @@ class PinDatasetFields extends React.Component {
   }
 }
 
-PinDatasetFields = AddPinFieldHooks(PinDatasetFields);
-PinDatasetFields.displayName = "PinDatasetFields";
+PinDatasetFields = Layers.bindComponentToMapPinStore(PinDatasetFields);

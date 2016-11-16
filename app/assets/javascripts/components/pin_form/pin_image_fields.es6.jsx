@@ -8,7 +8,5 @@ class PinImageFields extends React.Component {
     )
   }
 }
-PinImageFields = AddPinFieldHooks(PinImageFields);
-PinImageFields.displayName = "PinImageFields";
-
+PinImageFields = Layers.bindComponentToMapPinStore(PinImageFields);
 

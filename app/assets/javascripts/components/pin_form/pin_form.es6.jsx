@@ -126,5 +126,4 @@ PinForm.PropTypes = {
   location_object: React.PropTypes.object
 };
 
-PinForm = AddPinFieldHooks(PinForm);
-PinForm.displayName = "PinForm";
+PinForm = Layers.bindComponentToMapPinStore(PinForm);

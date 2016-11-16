@@ -37,5 +37,4 @@ class PinDateFields extends React.Component {
   }
 }
 
-PinDateFields = AddPinFieldHooks(PinDateFields);
-PinDateFields.displayName = "PinDateFields";
+PinDateFields = Layers.bindComponentToMapPinStore(PinDateFields);

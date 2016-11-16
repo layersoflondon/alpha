@@ -27,6 +27,5 @@ class PinAttachmentFields extends React.Component {
   }
 }
 
-PinAttachmentFields = AddPinFieldHooks(PinAttachmentFields);
-PinAttachmentFields.displayName = "PinAttachmentFields";
+PinAttachmentFields = Layers.bindComponentToMapPinStore(PinAttachmentFields);
 

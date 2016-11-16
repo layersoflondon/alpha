@@ -17,6 +17,5 @@ class PinCommonFields extends React.Component {
     )
   }
 }
-PinCommonFields = AddPinFieldHooks(PinCommonFields);
-PinCommonFields.displayName = "PinCommonFields";
+PinCommonFields = Layers.bindComponentToMapPinStore(PinCommonFields);
 

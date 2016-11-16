@@ -10,8 +10,7 @@ class PinTextFields extends React.Component {
   }
 }
 
-PinTextFields = AddPinFieldHooks(PinTextFields);
-PinTextFields.displayName = "PinTextFields";
+PinTextFields = Layers.bindComponentToMapPinStore(PinTextFields);
 
 
 

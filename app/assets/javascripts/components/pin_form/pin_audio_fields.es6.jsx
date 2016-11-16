@@ -6,6 +6,5 @@ class PinAudioFields extends React.Component {
   }
 }
 
-PinAudioFields = AddPinFieldHooks(PinAudioFields);
-PinAudioFields.displayName = "PinAudioFields";
+PinAudioFields = Layers.bindComponentToMapPinStore(PinAudioFields);
 

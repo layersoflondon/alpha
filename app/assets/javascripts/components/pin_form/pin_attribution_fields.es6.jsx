@@ -9,5 +9,4 @@ class PinAttributionFields extends React.Component {
   }
 
 }
-PinAttributionFields = AddPinFieldHooks(PinAttributionFields);
-PinAttributionFields.displayName = "PinAttributionFields";
+PinAttributionFields = Layers.bindComponentToMapPinStore(PinAttributionFields);
