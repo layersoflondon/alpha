@@ -1,8 +1,6 @@
 class PinForm extends React.Component {
 
   stateChanged(state) {
-    //the state is set in the AddPinFieldHooks HOC, so we don't need to do this:
-    //this.setState(state);
 
     var current_state = MapPinStore.getState();
 
@@ -92,12 +90,14 @@ class PinForm extends React.Component {
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
           <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
-            <PinCommonFields />
-            <PinTypePicker />
-            {fields}
+          <PinTypePicker />
+          <PinCommonFields />
+          {fields}
 
           <br/>
           Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}
+          <br/>
+          state: {JSON.stringify(this.state)}
 
           <div className="form-group">
             <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
