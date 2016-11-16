@@ -7,7 +7,7 @@ class ContentEntry < ActiveRecord::Base
   has_one :overlay_content_entry
   has_one :overlay, through: :overlay_content_entry
 
-  validates_with AnyPresenceValidator, fields: [:attached_file, :url, :content, :data]
+  validates_with AnyPresenceValidator, fields: [:attached_file, :url, :content, :data, :tileserver_url]
   validates :content_type, presence: true
 
   attachment :attached_file
