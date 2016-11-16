@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-%w(Image Video Text File).each do |type|
+%w(Image Video Text File Tile).each do |type|
   puts "Creating content type #{type}"
   ContentType.create(name: type)
 end
@@ -116,7 +116,7 @@ o = Overlay.create(
   date_from: date_from,
   date_to: date_to
 )
-o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Tile"))
 o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
 
 # Example polygon overlays
