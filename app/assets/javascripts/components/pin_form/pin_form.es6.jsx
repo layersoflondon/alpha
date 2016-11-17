@@ -118,7 +118,7 @@ class PinForm extends React.Component {
     return(
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
-            <h3>Using someone else's words?</h3>
+            <h3>Using someone else's stuff?</h3>
           <div className="form-content">
             <PinAttributionFields />
             <div className="form-group">
