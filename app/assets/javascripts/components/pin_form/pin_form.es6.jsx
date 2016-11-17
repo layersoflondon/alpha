@@ -19,7 +19,6 @@ class PinForm extends React.Component {
       }).catch((error) => {
         console.log("Fetching locations error", error);
       });
-      //console.log("this is where we would be geocoding");
     }
   }
 
@@ -93,12 +92,6 @@ class PinForm extends React.Component {
           <PinTypePicker />
           <PinCommonFields />
           {fields}
-
-          <br/>
-          Latitude: {this.state.pin_form_lat_lng.lat}, Longitude: {this.state.pin_form_lat_lng.lng}
-          <br/>
-          state: {JSON.stringify(this.state)}
-
           <div className="form-group">
             <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
           </div>
