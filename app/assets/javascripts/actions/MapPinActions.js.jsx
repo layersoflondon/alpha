@@ -21,6 +21,7 @@
     }
 
     setPinType(type) {
+  
       return type;
     }
 

@@ -9,6 +9,7 @@ input,
 select,
 textarea {
     color: #222;
+    font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -17,6 +18,10 @@ html {
     //-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background:#CEECE9;
 }
 
 ::-moz-selection {
@@ -73,7 +78,11 @@ textarea {
   }
 
   input, textarea {
-    padding:10px;
+    padding:1em;
+    background:none;
+    border:2px solid #dadada;
+    display: block;
+    width: 100%;
 }
 
 .form-group {

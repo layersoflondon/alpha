@@ -16,9 +16,11 @@ class PinAttributionFields extends React.Component {
     }
     return(
       <div className="form-group form-group-attribution">
-        <h3>Using somebody else's words?</h3>
-        If you've copied and pasted your text from someone else's website, you really need to acknowledge that you've done so. This is called attribution and helps credit people or organisations for the work they have produced in the past. In a lot of cases, it is also a legal requirement to add a credit for someone else's work.
-        {field}
+        <div className="form-helper-text">
+          <h4>Using somebody else's words?</h4>
+          If you've copied and pasted your text from someone else's website, you really need to acknowledge that you've done so. This is called attribution and helps credit people or organisations for the work they have produced in the past. In a lot of cases, it is also a legal requirement to add a credit for someone else's work.
+          {field}
+        </div>
       </div>
     )
   }

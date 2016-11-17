@@ -9,9 +9,9 @@ class PinCommonFields extends React.Component {
         </div>
         <div className="form-group form-group-description">
           <label>Description</label>
-          <textarea rows="10" placeholder="Describe in no more than 250 words what your note, story, or memory is about" value={this.state.description} onChange={this.updateAttribute.bind(this)} data-attribute='description'></textarea>
+          <textarea rows="6" placeholder="Describe in no more than 250 words what your note, story, or memory is about" value={this.state.description} onChange={this.updateAttribute.bind(this)} data-attribute='description'></textarea>
         </div>
-        <PinAttributionFields show_form={false} />
+        {/*PinAttributionFields show_form={false} />*/}
         <PinDateFields advanced={false}/>
       </div>
     )

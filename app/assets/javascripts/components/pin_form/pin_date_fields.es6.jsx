@@ -10,15 +10,15 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day'  />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month'  />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year'  />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
           </div>
         </div>
         <p>to</p>
@@ -26,15 +26,15 @@ class PinDateFields extends React.Component {
 
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_day'  />
+            <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_day' placeholder="Day" />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_month' />
+            <input type="text" value={this.state.date_to_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_month' placeholder="Month" />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year'  />
+            <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year' placeholder="Year" />
           </div>
         </div>
         <div className="end-date-toggle">
@@ -50,15 +50,15 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day'  />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month'  />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year'  />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
           </div>
         </div>
         <div className="end-date-toggle">
@@ -85,9 +85,9 @@ class PinDateFields extends React.Component {
   render() {
     return(
       <div className="date-fields">
-        <div className="date-intro">
-          When did your note, story or memory happen? You don't have to be too precise,
-          a year is good enough (though an exact date would be nice if you know it!)
+        <div className="pseudo-label">
+          When did this happen? <span>You don't have to be too precise,
+          a year is good enough (though an exact date would be nice if you know it!)</span>
         </div>
         {this.dateFields()}
 

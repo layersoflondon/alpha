@@ -88,12 +88,15 @@ class PinForm extends React.Component {
     return (
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
-          <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
-          <PinTypePicker />
-          <PinCommonFields />
-          {fields}
-          <div className="form-group">
-            <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+          <h3>Add Pin</h3>
+          <div className="form-content">
+            <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+            <PinCommonFields />
+            <PinTypePicker />
+            {fields}
+            <div className="form-group">
+              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+            </div>
           </div>
         </form>
       </div>

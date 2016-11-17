@@ -35,6 +35,7 @@
     }
 
     onSetPinType(type) {
+      console.log(type);
       this.pin_type = type;
     }
 

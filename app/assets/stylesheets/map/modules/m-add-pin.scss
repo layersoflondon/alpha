@@ -13,65 +13,133 @@
 }
 
 .m-add-pin form {
-  padding:40px;
   margin:100px auto;
   max-width:800px;
-  background:#eee;
+  background:white;
+  border-radius:6px;
 }
 
-.m-add-pin label {
-  display:block;
-  margin-bottom:0.4em;
-  font-weight: bold;
+.m-add-pin h3 {
+  border-radius:6px 6px 0 0;
+  text-align:center;
+  font-size:3em;
+  background:#35f5c8;
+  color:white;
+  margin:0;
+  padding:0.5em;
 }
 
-.m-add-pin .dates {
-  clear:both;
+.m-add-pin .form-content {
+  padding:2em;
 }
 
-.m-add-pin .dates .from,
-.m-add-pin .dates .to {
-  width:45%;
+.m-add-pin .form-group {
+  @include clearfix;
+}
+
+/* .m-add-pin .form-helper-text {
+  float: right;
+  padding: 30px;
+  width: 250px;
+  font-size: 12px;
+  } */
+
+  .m-add-pin label,
+  .m-add-pin .pseudo-label {
+    display:block;
+    margin-bottom:0.4em;
+    font-weight: bold;
+  }
+
+  .m-add-pin .dates .form-group {
+    width:33.333333%;
+    float:left;
+    padding-right:10px;
+  }
+
+  .m-add-pin .dates .form-group input {
+    max-width:100%;
+    box-sizing: border-box;
+  }
+
+  .m-add-pin .form-group-title input {
+    width:100%;
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  .m-add-pin .form-group-upload {
+    display: inline-block;
+    width: 220px;
+  }
+
+  .m-add-pin .form-group-description {
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+  }
+
+  .m-add-pin .form-group-description text-area {
+    width:100%;
+  }
+
+  .m-add-pin input[type="submit"] {
+    float:right;
+  }
+
+
+// Dates
+
+.m-add-pin .pseudo-label {
+
+}
+
+.m-add-pin .date-fields .pseudo-label span {
+  font-weight: 500;
+  display: block;
+  font-size: 12px;
+}
+
+.m-add-pin .date-fields {
   float:left;
+  width:50%;
+  margin-left:0;
 }
 
-.m-add-pin .dates p {
+.m-add-pin .date-fields label {
+  display:none;
+}
+
+.m-add-pin .date-fields p {
   float: left;
   text-align:center;
   width:10%;
 }
 
-.m-add-pin .dates .form-group {
-  width:33.333333%;
+
+// Type
+
+.m-add-pin .form-group-pin-type {
+  clear:both;
+  border-bottom:2px solid #dadada;
+}
+
+.m-add-pin .form-group-pin-type a {
   float:left;
-  padding-right:10px;
+  width:20%;
+  padding:10px;
 }
 
-.m-add-pin .dates .form-group input {
-  max-width:100%;
-  box-sizing: border-box;
-}
-
-.m-add-pin .form-group-title input {
-  width:100%;
-  width:100%;
-  box-sizing:border-box;
-}
-
-.m-add-pin .form-group-upload {
-  display: inline-block;
-  width: 220px;
-}
-
-.m-add-pin .form-group-description {
-  float:left;
-  width:50%;
-}
-
-.m-add-pin .form-group-description text-area {
-  width:100%;
-}
-
-.m-add-pin input[type="submit"] {
-  float:right;
+.m-add-pin .form-group-pin-type a span {
+  //background:#35f5c8;
+  //color:white;
+  color:#1ccaa1;
+  text-align:center;
+  border-radius:6px 6px 0 0;
+  border:2px solid #dadada;
+  border-width:2px 2px 0 2px;
+  display:block;
+  height:90px;
+  padding:1em;
+  font-weight: 700;
 }
