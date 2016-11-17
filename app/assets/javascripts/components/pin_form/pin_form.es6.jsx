@@ -22,6 +22,16 @@ class PinForm extends React.Component {
     }
   }
 
+  confirmMainForm(event) {
+    event.preventDefault();
+    this.setState({main_form_confirmed: true});
+  }
+
+  showMainForm(event) {
+    event.preventDefault();
+    this.setState({main_form_confirmed: false});
+  }
+
 
   savePinData(event) {
     event.preventDefault();
@@ -64,7 +74,7 @@ class PinForm extends React.Component {
     MapPinActions.togglePinForm(!current_state.pin_form_visible);
   }
 
-  render () {
+  mainForm () {
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
     var fields;
     switch(this.state.pin_type) {
@@ -87,7 +97,7 @@ class PinForm extends React.Component {
 
     return (
       <div className="m-add-pin" style={style}>
-        <form onSubmit={this.savePinData.bind(this)}>
+        <form onSubmit={this.confirmMainForm.bind(this)}>
           <h3>Add Pin</h3>
           <div className="form-content">
             <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
@@ -95,12 +105,42 @@ class PinForm extends React.Component {
             <PinTypePicker />
             {fields}
             <div className="form-group">
-              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+              <input type="submit" value="Save and continue" disabled={this.state.form_submit_disabled} />
             </div>
           </div>
         </form>
       </div>
     );
+  }
+
+  attributionForm() {
+    var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
+    return(
+      <div className="m-add-pin" style={style}>
+        <form onSubmit={this.savePinData.bind(this)}>
+            <h3>Using someone else's words?</h3>
+          <div className="form-content">
+            <PinAttributionFields />
+            <div className="form-group">
+              <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
+              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
+    )
+  }
+
+  render() {
+    if (this.state.main_form_confirmed) {
+      return this.attributionForm();
+    } else {
+      return this.mainForm();
+    }
+
   }
 }
 
