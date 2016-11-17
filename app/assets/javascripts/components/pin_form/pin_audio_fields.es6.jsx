@@ -1,7 +1,7 @@
 class PinAudioFields extends React.Component {
   render () {
     return(
-      <PinAttachmentFields />
+      <PinAttachmentFields title="Select an audio file"/>
     )
   }
 }

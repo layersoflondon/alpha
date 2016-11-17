@@ -20,7 +20,7 @@ class PinAttachmentFields extends React.Component {
   render () {
     return(
       <div className="form-group form-group-upload">
-        <label>Upload a {this.state.pin_type}</label>
+        <label>{this.props.title}</label>
         <input type="file" onChange={this.updateAttachmentAttribute.bind(this)} />
       </div>
     );
