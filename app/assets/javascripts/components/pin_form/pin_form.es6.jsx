@@ -120,7 +120,7 @@ class PinForm extends React.Component {
         <form onSubmit={this.savePinData.bind(this)}>
             <h3>Using someone else's stuff?</h3>
           <div className="form-content">
-            <PinAttributionFields />
+            <PinAttributionFields show_form={this.state.attribution !== ""}/>
             <div className="form-group">
               <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
               <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
