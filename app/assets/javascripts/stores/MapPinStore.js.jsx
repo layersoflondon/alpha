@@ -3,7 +3,7 @@
   MapPinStore - the attributes we POST to the pins controller when creating a new pin
   */
   class MapPinStore {
-    constructor() {
+    setDefaultState() {
       this.form_submit_disabled = false;
       this.title = '';
       this.description = '';
@@ -23,6 +23,11 @@
       this.pin_form_enabled = false;
       this.pin_type = null;
       this.attribution = "";
+    }
+
+
+    constructor() {
+      this.setDefaultState();
 
       this.bindListeners({
         onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
@@ -65,23 +70,7 @@
     }
 
     onResetForm() {
-      console.log("Resetting form...");
-      this.form_submit_disabled = false;
-      this.title = '';
-      this.description = '';
-      this.link_url = '';
-      this.attachment = '';
-      this.video_url = '';
-      this.date_from_day = '';
-      this.date_from_month = '';
-      this.date_from_year = '';
-      this.date_to_day = '';
-      this.date_to_month = '';
-      this.date_to_year = '';
-      this.collections = '';
-      this.pin_form_visible = false;
-      this.pin_form_lat_lng = {};
-      this.pin_form_enabled = false;
+      this.setDefaultState();
 
       return true;
     }
