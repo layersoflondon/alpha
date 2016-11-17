@@ -3,22 +3,26 @@
 <head>
     <title>Layers of London</title>
     <% if content_for?(:stylesheet) %>
-        <%= yield :stylesheet %>
+    <%= yield :stylesheet %>
     <% else %>
-        <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <% end %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 </head>
 <body>
-<%= render 'global/header'%>
 
-<%= content_for?(:template) ? yield(:template) : yield %>
+    <div class="site-wrapper">
 
-<%= render 'global/footer' %>
+        <%= render 'global/header'%>
 
-<%= content_for?(:gallery) ? yield(:gallery) : yield %>
-<%= content_for?(:javascript) ? yield(:javascript) : yield %>
+        <%= content_for?(:template) ? yield(:template) : yield %>
+
+        <%= render 'global/footer' %>
+
+    </div>
+
 
 </body>
 </html>

@@ -1,7 +1,39 @@
 <% content_for :template do %>
-    <p>This template is in <%= __FILE__ %></p>
 
-    <%= yield %>
+<div class="m-hero">
+    <div class="text-content">
+        <h1>Map the stories & heritage of London</h1>
+        <p>Search, compare and contribute to the many historic maps of one of the world’s greatest cities.</p>
+        <button>Find out more</button>
+    </div>
+</div>
+
+<div class="m-home-search">
+    <label>Search the maps</label>
+    <input type="text" placeholder="Street, building, postcode etc.">
+    <input type="submit" value="Go">
+</div>
+
+<div class="m-beta">
+    Layers of London is currently in beta and, for the first phase, we’re concentrating on the Barking & Dagenham area. 
+</div>
+
+<div class="m-get-involved">
+    <div class="intro">
+        <h2>Ways to help document the evolving history of London</h2>
+        <p>Become one of our Georeferencers or add your stories to Layers of London by contributing to the maps.</p>
+    </div>
+    <div class="cta">
+        <h3>Fancy being a Layers of London Layer Maker?</h3>
+        <p>We’ve a lot of hard work to do to get our historic maps look more accurate. You can help out by fixing some old maps.</p>
+        <a href="#">Let's make some layers</a>
+    </div>
+    <div class="cta">
+        <h3>Got an interesting story about a place?</h3>
+        <p>You can add notes and interesting info to your old street, school, workplace, or somewhere that was special to you.</p>
+        <a href="#">Add a point of interest</a>
+    </div>
+</div>
 
 <% end %>
 

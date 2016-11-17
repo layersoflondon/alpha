@@ -1,33 +1,32 @@
 
 @import "normalize.min";
-@import "colors";
-@import "mixins";
-@import "base";
+@import "map/colors";
+@import "map/mixins";
+@import "map/base";
 
-@import "modules/m-filters";
-@import "modules/m-type-filter";
-@import "modules/m-date-filter";
-@import "modules/m-overlays-list";
-@import "modules/m-panels";
-@import "modules/m-sidebar";
-@import "modules/m-collections-panel";
-@import "modules/m-search-panel";
-@import "modules/m-popover";
-@import "modules/m-controls";
-@import "modules/m-pin-controls";
-@import "modules/m-update";
-@import "modules/m-add-pin";
+@import "map/modules/m-filters";
+@import "map/modules/m-type-filter";
+@import "map/modules/m-date-filter";
+@import "map/modules/m-overlays-list";
+@import "map/modules/m-panels";
+@import "map/modules/m-sidebar";
+@import "map/modules/m-collections-panel";
+@import "map/modules/m-search-panel";
+@import "map/modules/m-popover";
+@import "map/modules/m-controls";
+@import "map/modules/m-pin-controls";
+@import "map/modules/m-update";
+@import "map/modules/m-add-pin";
 
-@import "vendor/gallery/lightgallery";
+@import "map/vendor/gallery/lightgallery";
 
-@import "vendor/jquery.range";
-@import "vendor/leaflet";
-@import "vendor/react-scribe";
+@import "map/vendor/jquery.range";
+@import "map/vendor/leaflet";
+@import "map/vendor/react-scribe";
 
 body {
   font-size:14px;
 }
-
 
 .m-drop-pin-msg {
   position: absolute;
@@ -44,7 +43,6 @@ body {
   font-size:2em;
 }
 
-
 .m-collections-panel-content h3 {
   margin-bottom:0;
 }
@@ -53,7 +51,6 @@ body {
   margin-top: 3px;
   margin-bottom: 30px;
 }
-
 
 .m-map {
   position:absolute;

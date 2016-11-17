@@ -1,0 +1,24 @@
+
+/* Main navigation */
+
+.m-main-navigation {
+	@include clearfix;
+  position:absolute;
+  text-align:center;
+  width:100%;
+}
+
+.m-main-navigation ul {
+  padding:0;
+  margin:2em 0 0 0;
+}
+
+.m-main-navigation li {
+  display:inline-block;
+  margin:0 1em 0 1em;
+}
+
+.m-main-navigation li a {
+  color:white;
+  font-weight:bold;
+}

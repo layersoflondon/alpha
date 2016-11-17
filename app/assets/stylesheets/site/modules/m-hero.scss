@@ -1,0 +1,35 @@
+
+/* Hero */
+
+.m-hero {
+  padding:140px 0;
+  background:url(/assets/hero-4.jpg) center/cover;
+}
+
+.m-hero .text-content {
+  color:white;
+  text-align:center;
+  max-width:700px;
+  margin:0 auto;
+}
+
+.m-hero .text-content h1 {
+  font-size: 4.6em;
+  color:#bbff61;
+}
+
+.m-hero .text-content p {
+  font-size:1.6em;
+  margin-bottom: 2em;
+}
+
+.m-hero .text-content button {
+  padding: 1.5em 2.4em 1.6em;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  background:#35f5c8;
+  border:0;
+  color:#066184;
+  font-weight: 400;
+  text-transform:uppercase;
+}

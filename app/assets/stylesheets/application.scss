@@ -1,8 +1,16 @@
 
 @import "normalize.min";
-@import "colors";
-@import "mixins";
-@import "base";
+
+@import "site/colors";
+@import "site/mixins";
+@import "site/base";
+
+@import "site/modules/m-hero";
+@import "site/modules/m-navigation";
+@import "site/modules/m-site-header";
+@import "site/modules/m-home-search";
+@import "site/modules/m-beta";
+@import "site/modules/m-get-involved";
 
 body {
   font-size:14px;

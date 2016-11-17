@@ -1,0 +1,37 @@
+
+/* Home search */
+
+.m-home-search {
+	width:50%;
+	float:left;
+  padding: 6.7em;
+  background:#bbff61;
+  text-align: center;
+  min-height:300px;
+}
+
+.m-home-search label {
+  display: block;
+  font-size:1em;
+  text-transform:uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.4em;
+
+}
+
+.m-home-search input {
+  border:0;
+  font-size: 1.6em;
+  padding: 0.9em 1em 1.1em 1em;
+  display:inline-block;
+  width: 370px;
+}
+
+
+.m-home-search input[type="submit"] {
+  border-radius: 75px;
+  margin-left:0.4em;
+  background:#98da40;
+  color:white;
+  width:auto;
+}
