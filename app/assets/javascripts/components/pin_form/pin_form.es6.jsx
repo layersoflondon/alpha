@@ -51,22 +51,26 @@ class PinForm extends React.Component {
   mainForm () {
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
     var fields;
-    switch(this.state.pin_type) {
-      case "text":
-        fields = <PinTextFields />;
-        break;
-      case "image":
-        fields = <PinImageFields />;
-        break;
-      case "video":
-        fields = <PinVideoFields />;
-        break;
-      case "dataset":
-        fields = <PinDatasetFields />;
-        break;
-      case "audio":
-        fields = <PinAudioFields />;
-        break;
+
+    if(this.state.pin_type) {
+      switch(LoL.contentTypes[this.state.pin_type].name) {
+        case "text":
+          fields = <PinTextFields />;
+          break;
+        case "image":
+          fields = <PinImageFields />;
+          break;
+        case "video":
+          fields = <PinVideoFields />;
+          break;
+        case "dataset":
+          fields = <PinDatasetFields />;
+          break;
+        case "audio":
+          fields = <PinAudioFields />;
+          break;
+
+      }
     }
 
     return (

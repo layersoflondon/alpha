@@ -10,15 +10,16 @@ class PinTypePicker extends React.Component {
   }
 
   render () {
+    const content_types = Object.keys(LoL.contentTypes).map((type_id) => {
+        const type_obj = LoL.contentTypes[type_id];
+        return <a key={type_id} href="#" onClick={(event) => {this.changePinType(event, type_id)}} className={this.className(type_obj.name)}><span>{type_obj.description}</span></a>;
+    });
     return(
         <div className="form-group form-group-pin-type">
           <label>What type of pin are you adding?</label>
 
-          <a href="#" onClick={(event) => {this.changePinType(event,'text')}} className={this.className('text')}><span>Just text</span></a>
-          <a href="#" onClick={(event) => {this.changePinType(event,'image')}} className={this.className('image')}><span>An image</span></a>
-          <a href="#" onClick={(event) => {this.changePinType(event,'video')}} className={this.className('video')}><span>A video</span></a>
-          <a href="#" onClick={(event) => {this.changePinType(event,'audio')}} className={this.className('audio')}><span>Some audio</span></a>
-          <a href="#" onClick={(event) => {this.changePinType(event,'dataset')}} className={this.className('dataset')}><span>A dataset</span></a>
+          {content_types}
+
           <Popover title="What's a dataset?">
             You might have data in a structured format about a place - some school attendance registers, census data or similar. If you have, you can upload this as a CSV or TSV file for researchers to use...
           </Popover>
