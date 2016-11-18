@@ -22,16 +22,7 @@ class MapsController < ApplicationController
   end
 
   def create
-    # return render json: pin_params
-    # Rails.logger.info(pin_params.awesome_inspect)
-    # new_pin_params = pin_params
-    # new_pin_params[:pin_content_entry_attributes][:content_entry_attributes][:content_type] = ContentType.find_by(name: pin_params[:pin_content_entry_attributes][:content_entry_attributes][:content_type])
-    p = Pin.new(pin_params)
-
-    # byebug
-
-
-    @pin = p.save!
+    @pin = Pin.create(pin_params)
   end
 
   private
