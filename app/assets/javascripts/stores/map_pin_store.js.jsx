@@ -23,6 +23,7 @@
       this.pin_form_enabled = false;
       this.pin_type = null;
       this.attribution = "";
+      this.content = "";
     }
 
 
@@ -36,8 +37,15 @@
           onResetForm: MapPinActions.RESET_FORM,
           onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
+          onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES
 
       });
+    }
+
+    onToggleAdvancedDates() {
+      this.date_to_day = "";
+      this.date_to_month = "";
+      this.date_to_year = "";
     }
 
     onSetPinType(type) {
