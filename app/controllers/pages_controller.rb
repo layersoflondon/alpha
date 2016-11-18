@@ -25,7 +25,7 @@ class PagesController < ApplicationController
 
   def get_map_content
     @pins        = Pin.all.limit(2).group_by(&:coords)
-    @overlays    = Overlay.includes(:overlay_type).where(overlay_types: {name: "Tile"})
+    @overlays    = Overlay.all.select{|o| o.overlay_type.name=="tileserver"}
     @collections = {}
 
     @data = render_to_string('maps/search', layout: false, formats: [:json])
