@@ -13,6 +13,7 @@ class PinTypePicker extends React.Component {
     return(
         <div className="form-group form-group-pin-type">
           <label>What type of pin are you adding?</label>
+
           <a href="#" onClick={(event) => {this.changePinType(event,'text')}} className={this.className('text')}><span>Just text</span></a>
           <a href="#" onClick={(event) => {this.changePinType(event,'image')}} className={this.className('image')}><span>An image</span></a>
           <a href="#" onClick={(event) => {this.changePinType(event,'video')}} className={this.className('video')}><span>A video</span></a>

@@ -2,7 +2,7 @@ class ContentEntry < ActiveRecord::Base
   belongs_to :content_type
   accepts_nested_attributes_for :content_type
 
-  has_one :pin_content_entry
+  has_one :pin_content_entry, inverse_of: :content_entry
   has_one :pin, through: :pin_content_entry
 
   has_one :overlay_content_entry
@@ -13,5 +13,5 @@ class ContentEntry < ActiveRecord::Base
 
   attachment :attached_file
 
-  serialize :metadata, with: :json
+  # serialize :metadata, JSON
 end

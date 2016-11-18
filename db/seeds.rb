@@ -6,14 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-%w(Image Video Text File Tile).each do |type|
+[
+  {name: "image", description: "An image", suitability: :for_pins},
+  {name: "video", description: "A video", suitability: :for_pins},
+  {name: "audio", description: "Some audio", suitability: :for_pins},
+  {name: "text", description: "Just text", suitability: :for_pins},
+  {name: "dataset", description: "A dataset", suitability: :for_both},
+  {name: "tileserver", description: "A tokenised tileserver URL", suitability: :for_overlays},
+  {name: "polygon", description: "Some polygon JSON", suitability: :for_overlays}
+].each do |type|
   puts "Creating content type #{type}"
-  ContentType.create(name: type)
-end
-
-%w(Tile Polygon Data).each do |overlay_type|
-  puts "Creating overlay type #{overlay_type}"
-  OverlayType.create(name: overlay_type)
+  ContentType.create(type)
 end
 
 25.times do |i|
@@ -42,7 +45,7 @@ p = Pin.create!(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: "Photo in barking park", content_type: ContentType.all.sample)
+p.create_pin_content_entry!.create_content_entry!(content: "Photo in barking park", content_type: ContentType.for_pins.sample)
 
 p = Pin.create(
   user: default_user,
@@ -52,7 +55,8 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
+puts "Creating pin #{p.title}"
+p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
 
 p = Pin.create(
   user: default_user,
@@ -62,7 +66,8 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
+puts "Creating pin #{p.title}"
+p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
 
 p = Pin.create(
   user: default_user,
@@ -72,7 +77,7 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.all.sample)
+p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
 
 p = Pin.create(
   user: default_user,
@@ -82,7 +87,7 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: "Goresbrook Park image", content_type: ContentType.all.sample)
+p.create_pin_content_entry.create_content_entry!(content: "Goresbrook Park image", content_type: ContentType.for_pins.sample)
 
 p = Pin.create(
   user: default_user,
@@ -92,7 +97,7 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: "Barking FC club badge", content_type: ContentType.all.sample)
+p.create_pin_content_entry!.create_content_entry!(content: "Barking FC club badge", content_type: ContentType.for_pins.sample)
 p = Pin.create(
   user: default_user,
   title: "Dagenham & Redbridge FC",
@@ -101,10 +106,7 @@ p = Pin.create(
   date_from: date_from,
   date_to:   date_to
 )
-p.create_pin_content_entry.create_content_entry(content: "Dagenham & Redbridge FC Stadium", content_type: ContentType.all.sample)
-
-tile = OverlayType.find_by(name: "Tile")
-poly = OverlayType.find_by(name: "Polygon")
+p.create_pin_content_entry!.create_content_entry!(content: "Dagenham & Redbridge FC Stadium", content_type: ContentType.for_pins.sample)
 
 # Morgan map overlay
 o = Overlay.create(
@@ -112,11 +114,10 @@ o = Overlay.create(
   lat: rand(51.450..51.550),
   lng: -(rand(0.110..0.140)),
   description: Faker::Hipster.sentence(3),
-  overlay_type_id: tile.id,
   date_from: date_from,
   date_to: date_to
 )
-o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Tile"))
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
 o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
 
 # Example polygon overlays
@@ -125,11 +126,10 @@ o = Overlay.create(
   lat: rand(51.450..51.550),
   lng: -(rand(0.110..0.140)),
   description: Faker::Hipster.sentence(3),
-  overlay_type_id: poly.id,
   date_from: date_from,
   date_to: date_to
 )
-o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "polygon"))
 o.content_entry.update_attribute(:data, [[51.541334, 0.161790], [51.538832, 0.150172], [51.534623, 0.142953], [51.526694, 0.156902], [51.527512, 0.175814]])
 
 o = Overlay.create(
@@ -137,9 +137,8 @@ o = Overlay.create(
   lat: rand(51.450..51.550),
   lng: -(rand(0.110..0.140)),
   description: Faker::Hipster.sentence(3),
-  overlay_type_id: poly.id,
   date_from: date_from,
   date_to: date_to
 )
-o.create_overlay_content_entry.create_content_entry(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "Text"))
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "polygon"))
 o.content_entry.update_attribute(:data, [[51.544751, 0.077629], [51.547828, 0.085397], [51.548705, 0.090797], [51.549565, 0.091755], [51.549102, 0.095532], [51.547299, 0.096915], [51.545496, 0.093165], [51.542518, 0.086461], [51.541906, 0.085503], [51.544106, 0.080742], [51.543444, 0.078401]])

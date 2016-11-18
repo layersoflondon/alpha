@@ -2,7 +2,7 @@ class Pin < ActiveRecord::Base
   include AASM
   belongs_to :user
 
-  has_one :pin_content_entry
+  has_one :pin_content_entry, inverse_of: :pin
   has_one :content_entry, through: :pin_content_entry
   accepts_nested_attributes_for :pin_content_entry
 
