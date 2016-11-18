@@ -18,7 +18,7 @@
       this.date_to_year = '';
       this.collections = '';
       this.location = '';
-      this.pin_form_visible = true;
+      this.pin_form_visible = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
       this.pin_type = null;
@@ -30,12 +30,13 @@
       this.setDefaultState();
 
       this.bindListeners({
-        onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
-        onEnablePinForm: MapPinActions.ENABLE_PIN_FORM,
-        onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
-        onResetForm: MapPinActions.RESET_FORM,
-        onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
-        onSetPinType: MapPinActions.SET_PIN_TYPE
+          onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
+          onEnablePinForm: MapPinActions.ENABLE_PIN_FORM,
+          onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
+          onResetForm: MapPinActions.RESET_FORM,
+          onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
+          onSetPinType: MapPinActions.SET_PIN_TYPE,
+
       });
     }
 
