@@ -81,6 +81,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-react-tabs'
   gem 'rails-assets-react-leaflet'
   gem 'rails-assets-lodash'
+  gem 'rails-assets-moment'
 end
 
 gem 'sprockets-es6'
