@@ -13,10 +13,11 @@
 }
 
 .m-add-pin form {
-  margin:100px auto;
+  margin:40px auto;
   max-width:800px;
   background:white;
   border-radius:6px;
+  position:relative;
 }
 
 .m-add-pin h3 {
@@ -29,6 +30,14 @@
   padding:0.5em;
 }
 
+.m-add-pin .close {
+  position:absolute;
+  top: 23px;
+  right: 40px;
+  font-size: 2.6em;
+  color:#0cbb92;
+}
+
 .m-add-pin .form-content {
   padding:2em;
 }
@@ -37,61 +46,58 @@
   @include clearfix;
 }
 
-/* .m-add-pin .form-helper-text {
+.m-add-pin label,
+.m-add-pin .pseudo-label {
+  display:block;
+  margin-bottom:0.4em;
+  font-weight: bold;
+}
+
+
+
+.m-add-pin .form-group-title input {
+  width:100%;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.m-add-pin .form-group-upload {
+  display: inline-block;
+  width: 220px;
+}
+
+.m-add-pin .form-group-description {
+  float: left;
+  width: 50%;
+  padding-right: 20px;
+}
+
+.m-add-pin .form-group-description text-area {
+  width:100%;
+}
+
+.m-add-pin .form-group-link-url {
   float: right;
-  padding: 30px;
-  width: 250px;
-  font-size: 12px;
-  } */
+  width: 50%;
+}
 
-  .m-add-pin label,
-  .m-add-pin .pseudo-label {
-    display:block;
-    margin-bottom:0.4em;
-    font-weight: bold;
-  }
-
-  .m-add-pin .dates .form-group {
-    width:33.333333%;
-    float:left;
-    padding-right:10px;
-  }
-
-  .m-add-pin .dates .form-group input {
-    max-width:100%;
-    box-sizing: border-box;
-  }
-
-  .m-add-pin .form-group-title input {
-    width:100%;
-    width:100%;
-    box-sizing:border-box;
-  }
-
-  .m-add-pin .form-group-upload {
-    display: inline-block;
-    width: 220px;
-  }
-
-  .m-add-pin .form-group-description {
-    float: left;
-    width: 50%;
-    padding-right: 20px;
-  }
-
-  .m-add-pin .form-group-description text-area {
-    width:100%;
-  }
-
-  .m-add-pin input[type="submit"] {
-    float:right;
-  }
+.m-add-pin input[type="submit"] {
+  float:right;
+}
 
 
 // Dates
 
-.m-add-pin .pseudo-label {
+.m-add-pin .dates .form-group {
+  width:33.333333%;
+  float:left;
+  padding-right:10px;
+  margin-bottom: 1em;
+}
 
+.m-add-pin .dates .form-group input {
+  max-width:100%;
+  box-sizing: border-box;
 }
 
 .m-add-pin .date-fields .pseudo-label span {
@@ -115,6 +121,16 @@
   text-align:center;
   width:10%;
 }
+
+.m-add-pin .form-helper-text {
+  color:#0cbb92;
+  margin-bottom: 1em;
+}
+
+.m-add-pin .form-helper-text a {
+  color:#0b6f58;
+}
+
 
 
 // Type

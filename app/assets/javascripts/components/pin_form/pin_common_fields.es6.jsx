@@ -9,7 +9,7 @@ class PinCommonFields extends React.Component {
         </div>
         <div className="form-group form-group-description">
           <label>Description</label>
-          <textarea rows="6" placeholder="Describe in no more than 250 words what your note, story, or memory is about" value={this.state.description} onChange={this.updateAttribute.bind(this)} data-attribute='description'></textarea>
+          <textarea rows="12" placeholder="Describe in no more than 250 words what your note, story, or memory is about" value={this.state.description} onChange={this.updateAttribute.bind(this)} data-attribute='description'></textarea>
         </div>
         <div className="form-group form-group-link-url">
           <label>Website URL</label>
