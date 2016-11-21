@@ -78,7 +78,7 @@ class PinForm extends React.Component {
         <form onSubmit={this.confirmMainForm.bind(this)}>
           <h3>Add Pin</h3>
           <div className="form-content">
-            <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+            <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
             <PinCommonFields />
             <PinTypePicker />
             {fields}

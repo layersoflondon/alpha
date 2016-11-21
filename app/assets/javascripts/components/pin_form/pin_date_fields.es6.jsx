@@ -21,8 +21,8 @@ class PinDateFields extends React.Component {
             <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
           </div>
         </div>
-        <div class="form-helper-text">
-          You don't have to be too precise, a year is good enough (though an exact date would be nice if you know it!)
+        <div className="form-helper-text">
+          Don't worry too much, an estimated year is acceptable - an exact date is fantastic!
         </div>
         <p>to</p>
         <div className="to">
@@ -64,12 +64,11 @@ class PinDateFields extends React.Component {
             <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
           </div>
         </div>
-        <div class="form-helper-text">
-          You don't have to be too precise, a year is good enough (though an exact date would be nice if you know it!)
+        <div className="form-helper-text">
+          Don't worry too much, an estimated year is acceptable - an exact date is fantastic!
         </div>
-        <div className="end-date-toggle">
-          <a href="#" onClick={this.toggleAdvanced.bind(this)}>Add end date</a>
-          Really useful for things like events, and places that may no longer exist.
+        <div className="form-helper-text end-date-toggle">
+          Do you want to <a href="#" onClick={this.toggleAdvanced.bind(this)}>add an end date</a>? Really useful for things like events, and places that may no longer exist.
         </div>
       </div>
       )
