@@ -8,7 +8,6 @@ class CreateOverlays < ActiveRecord::Migration
       t.timestamp :date_to
 
       t.text :description
-      t.references :overlay_type, index: true, foreign_key: true
 
       t.timestamps null: false
     end

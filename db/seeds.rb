@@ -120,6 +120,18 @@ o = Overlay.create(
 o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
 o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
 
+# Tileserver example
+o = Overlay.create(
+  title: "Example georeferenced image",
+  lat: rand(51.450..51.550),
+  lng: -(rand(0.110..0.140)),
+  description: Faker::Hipster.sentence(3),
+  date_from: date_from,
+  date_to: date_to
+)
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
+o.content_entry.update_attribute(:tileserver_url, "http://georeferencer-0.tileserver.com/5678017802d5d23499ada6924aff9c417da0a58b/map/Wv38wpXB3wjXeoOWZSkar4/201611040912-enNuTa/polynomial/{z}/{x}/{y}.png")
+
 # Example polygon overlays
 o = Overlay.create(
   title: "Dagenham Polygon",
