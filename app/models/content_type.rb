@@ -6,4 +6,12 @@ class ContentType < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  scope :for_pins, -> {
+    where("suitability in (?)", [suitabilities[:for_pins], suitabilities[:for_both]])
+  }
+
+  scope :for_overlays, -> {
+    where("suitability in (?)", [suitabilities[:for_overlays], suitabilities[:for_both]])
+  }
+
 end
