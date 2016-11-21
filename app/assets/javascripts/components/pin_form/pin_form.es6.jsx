@@ -1,5 +1,6 @@
 class PinForm extends React.Component {
 
+
   stateChanged(state) {
 
     var current_state = MapPinStore.getState();
@@ -8,7 +9,7 @@ class PinForm extends React.Component {
       const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
       this.setState(disabled_state);
 
-      SearchResultsSource.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
+      Pin.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
         if(nearby.length) {
           current_state.location = nearby[0].location.long_name;
           current_state.location_object = nearby[0];
@@ -22,38 +23,21 @@ class PinForm extends React.Component {
     }
   }
 
+  confirmMainForm(event) {
+    event.preventDefault();
+    this.setState({main_form_confirmed: true});
+  }
+
+  showMainForm(event) {
+    event.preventDefault();
+    this.setState({main_form_confirmed: false});
+  }
+
+
 
   savePinData(event) {
     event.preventDefault();
-
-    var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
-    if(this.state.attachment.length) {
-      attachment = this.state.attachment;
-    }
-
-    console.log("POSTING PIN", this.state);
-
-    const pin = {
-      title: this.state.title,
-      location: this.state.location,
-      date_from: (new Date()).toString(),
-      lat: this.state.pin_form_lat_lng.lat,
-      lng: this.state.pin_form_lat_lng.lng,
-      user_id: 1,
-
-      content_entry: {
-        title: this.state.description,
-        resource: {type: "image", url: attachment}
-      }
-    };
-
-    SearchResultsActions.postPin(pin);
-
-    // clear the attachment field - FIXME figure out how to do this as a controled component
-    $(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
-
-    const current_state = MapPinStore.getState();
-    const visible = current_state.pin_form_visible;
+    MapPinActions.submitForm(this.state);
 
     MapPinActions.resetForm();
     MapPinActions.togglePinForm(!visible);
@@ -64,30 +48,34 @@ class PinForm extends React.Component {
     MapPinActions.togglePinForm(!current_state.pin_form_visible);
   }
 
-  render () {
+  mainForm () {
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
     var fields;
-    switch(this.state.pin_type) {
-      case "text":
-        fields = <PinTextFields />;
-        break;
-      case "image":
-        fields = <PinImageFields />;
-        break;
-      case "video":
-        fields = <PinVideoFields />;
-        break;
-      case "dataset":
-        fields = <PinDatasetFields />;
-        break;
-      case "audio":
-        fields = <PinAudioFields />;
-        break;
+
+    if(this.state.pin_type) {
+      switch(LoL.contentTypes[this.state.pin_type].name) {
+        case "text":
+          fields = <PinTextFields />;
+          break;
+        case "image":
+          fields = <PinImageFields />;
+          break;
+        case "video":
+          fields = <PinVideoFields />;
+          break;
+        case "dataset":
+          fields = <PinDatasetFields />;
+          break;
+        case "audio":
+          fields = <PinAudioFields />;
+          break;
+
+      }
     }
 
     return (
       <div className="m-add-pin" style={style}>
-        <form onSubmit={this.savePinData.bind(this)}>
+        <form onSubmit={this.confirmMainForm.bind(this)}>
           <h3>Add Pin</h3>
           <div className="form-content">
             <a href="#" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
@@ -95,12 +83,42 @@ class PinForm extends React.Component {
             <PinTypePicker />
             {fields}
             <div className="form-group">
-              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+              <input type="submit" value="Save and continue" disabled={this.state.form_submit_disabled} />
             </div>
           </div>
         </form>
       </div>
     );
+  }
+
+  attributionForm() {
+    var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
+    return(
+      <div className="m-add-pin" style={style}>
+        <form onSubmit={this.savePinData.bind(this)}>
+            <h3>Using someone else's stuff?</h3>
+          <div className="form-content">
+            <PinAttributionFields show_form={this.state.attribution !== ""}/>
+            <div className="form-group">
+              <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
+              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
+    )
+  }
+
+  render() {
+    if (this.state.main_form_confirmed) {
+      return this.attributionForm();
+    } else {
+      return this.mainForm();
+    }
+
   }
 }
 

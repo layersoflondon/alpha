@@ -3,7 +3,7 @@
   MapPinStore - the attributes we POST to the pins controller when creating a new pin
   */
   class MapPinStore {
-    constructor() {
+    setDefaultState() {
       this.form_submit_disabled = false;
       this.title = '';
       this.description = '';
@@ -18,24 +18,37 @@
       this.date_to_year = '';
       this.collections = '';
       this.location = '';
-      this.pin_form_visible = true;
+      this.pin_form_visible = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
       this.pin_type = null;
       this.attribution = "";
+      this.content = "";
+    }
+
+
+    constructor() {
+      this.setDefaultState();
 
       this.bindListeners({
-        onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
-        onEnablePinForm: MapPinActions.ENABLE_PIN_FORM,
-        onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
-        onResetForm: MapPinActions.RESET_FORM,
-        onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
-        onSetPinType: MapPinActions.SET_PIN_TYPE
+          onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
+          onEnablePinForm: MapPinActions.ENABLE_PIN_FORM,
+          onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
+          onResetForm: MapPinActions.RESET_FORM,
+          onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
+          onSetPinType: MapPinActions.SET_PIN_TYPE,
+          onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES
+
       });
     }
 
+    onToggleAdvancedDates() {
+      this.date_to_day = "";
+      this.date_to_month = "";
+      this.date_to_year = "";
+    }
+
     onSetPinType(type) {
-      console.log(type);
       this.pin_type = type;
     }
 
@@ -65,23 +78,7 @@
     }
 
     onResetForm() {
-      console.log("Resetting form...");
-      this.form_submit_disabled = false;
-      this.title = '';
-      this.description = '';
-      this.link_url = '';
-      this.attachment = '';
-      this.video_url = '';
-      this.date_from_day = '';
-      this.date_from_month = '';
-      this.date_from_year = '';
-      this.date_to_day = '';
-      this.date_to_month = '';
-      this.date_to_year = '';
-      this.collections = '';
-      this.pin_form_visible = false;
-      this.pin_form_lat_lng = {};
-      this.pin_form_enabled = false;
+      this.setDefaultState();
 
       return true;
     }

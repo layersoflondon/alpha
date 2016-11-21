@@ -77,7 +77,8 @@ class PinDateFields extends React.Component {
 
   toggleAdvanced(event) {
     event.preventDefault();
-    this.setState({advanced: !this.state.advanced})
+    MapPinActions.toggleAdvancedDates();
+    this.setState({advanced: !this.state.advanced});
   }
 
   dateFields() {

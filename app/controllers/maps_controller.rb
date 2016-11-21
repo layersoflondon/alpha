@@ -22,10 +22,7 @@ class MapsController < ApplicationController
   end
 
   def create
-    return render json: pin_params
-    Rails.logger.info(pin_params.awesome_inspect)
-
-    @pin = Pin.create!(pin_params)
+    @pin = Pin.create(pin_params)
   end
 
   private

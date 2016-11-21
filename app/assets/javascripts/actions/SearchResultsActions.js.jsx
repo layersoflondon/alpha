@@ -7,24 +7,12 @@
         const filter_state = FilterStateStore.getState();
         console.log("Filter state: ", filter_state);
         
-        SearchResultsSource.fetch(filter_state).then((new_state) => {
+        Pin.fetch(filter_state).then((new_state) => {
           this.emitUpdatedState(new_state);
         }).catch((error) => {
           console.log("Error!", error);
         });
 
-      }
-    }
-
-    postPin(pin_data) {
-      return (dispatch) => {
-        dispatch();
-        SearchResultsSource.postPin(pin_data).then((new_pin) => {
-          console.log("Got new pin!", new_pin);
-          this.addPin(new_pin);
-        }).catch((error) => {
-          console.log("Error adding pin. Response: ", error);
-        })
       }
     }
 

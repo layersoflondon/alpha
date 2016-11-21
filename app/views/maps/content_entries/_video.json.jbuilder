@@ -1,1 +1,1 @@
-json.video_url content_entry.url
+json.video_url content_entry.video_url

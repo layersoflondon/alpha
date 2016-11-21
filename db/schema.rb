@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103122748) do
+ActiveRecord::Schema.define(version: 20161118161859) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id"
@@ -37,13 +37,14 @@ ActiveRecord::Schema.define(version: 20161103122748) do
     t.string   "attached_file_filename"
     t.integer  "attached_file_size"
     t.string   "attached_file_content_type"
-    t.text     "url"
+    t.text     "video_url"
     t.text     "content"
     t.text     "attribution"
     t.text     "data"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "tileserver_url"
+    t.text     "metadata"
   end
 
   add_index "content_entries", ["content_type_id"], name: "index_content_entries_on_content_type_id"
@@ -51,8 +52,10 @@ ActiveRecord::Schema.define(version: 20161103122748) do
   create_table "content_types", force: :cascade do |t|
     t.string   "name"
     t.string   "mime_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
+    t.integer  "suitability"
   end
 
   create_table "overlay_content_entries", force: :cascade do |t|
@@ -64,12 +67,6 @@ ActiveRecord::Schema.define(version: 20161103122748) do
 
   add_index "overlay_content_entries", ["content_entry_id"], name: "index_overlay_content_entries_on_content_entry_id"
   add_index "overlay_content_entries", ["overlay_id"], name: "index_overlay_content_entries_on_overlay_id"
-
-  create_table "overlay_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "overlays", force: :cascade do |t|
     t.string   "title"
@@ -102,10 +99,11 @@ ActiveRecord::Schema.define(version: 20161103122748) do
     t.datetime "date_from"
     t.datetime "date_to"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "aasm_state"
-    t.text     "data"
+    t.string   "link_url"
+    t.text     "description"
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
