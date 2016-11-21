@@ -138,6 +138,7 @@
 .m-add-pin .form-group-pin-type {
   clear:both;
   border-bottom:2px solid #dadada;
+  position: relative;
 }
 
 .m-add-pin .form-group-pin-type a {
@@ -158,4 +159,43 @@
   height:90px;
   padding:1em;
   font-weight: 700;
+}
+
+
+.m-helper {
+  position:absolute;
+  bottom:20px;
+  right: -70px;
+  color:#333;
+}
+
+.m-helper button {
+  border:0;
+  border-radius:6px;
+  background:#35f5c8;
+  color:#333;
+}
+
+.m-helper .popover {
+  width:300px;
+  position:absolute;
+  top:100%;
+  left:50%;
+  margin-top: 20px;
+  margin-left: -150px;
+  background: #afe4d8;
+  padding: 10px 13px;
+
+}
+
+.m-helper .popover:before {
+  content:"";
+  display: block;
+  border-bottom:10px solid #afe4d8;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  position:absolute;
+  left:50%;
+  margin-left:-10px;
+  bottom:100%;
 }
