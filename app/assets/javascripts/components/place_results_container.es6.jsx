@@ -2,16 +2,16 @@ class PlaceResultsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchResultsStore.getState();
+    this.state = MapContainerStore.getState();
     this.stateChanged = this.stateChanged.bind(this);
   }
 
   componentDidMount() {
-    SearchResultsStore.listen(this.stateChanged);
+    MapContainerStore.listen(this.stateChanged);
   }
 
   componentWillUnmount() {
-    SearchResultsStore.unlisten(this.stateChanged);
+    MapContainerStore.unlisten(this.stateChanged);
   }
 
   stateChanged(state) {

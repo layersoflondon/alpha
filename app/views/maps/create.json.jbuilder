@@ -1,1 +1,1 @@
-json.partial! 'maps/pin'
+json.partial! 'maps/pin', locals: {pin: @pin}

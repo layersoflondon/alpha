@@ -1,18 +1,17 @@
 (() => {
-  class SearchResultsActions {
+  class MapContainerActions {
     fetchSearchResults() {
       return (dispatch) => {
         dispatch();
 
         const filter_state = FilterStateStore.getState();
         console.log("Filter state: ", filter_state);
-        
+
         Pin.fetch(filter_state).then((new_state) => {
-          this.emitUpdatedState(new_state);
+          return this.emitUpdatedState(new_state);
         }).catch((error) => {
           console.log("Error!", error);
         });
-
       }
     }
 
@@ -77,10 +76,18 @@
       return overlay_id;
     }
 
-    addPin(pin) {
-      return pin;
+    submitForm(pin_data) {
+      console.log("MapContainerActions submitForm()");
+    }
+
+    addPin(pin_data) {
+      return pin_data;
+    }
+    
+    addMarker(marker_data) {
+      return marker_data;
     }
   }
 
-  this.SearchResultsActions = alt.createActions(SearchResultsActions);
+  this.MapContainerActions = alt.createActions(MapContainerActions);
 })();

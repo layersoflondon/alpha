@@ -8,7 +8,7 @@ class MapView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchResultsStore.getState();
+    this.state = MapContainerStore.getState();
 
     this.map    = null;
     this.bounds = [];
@@ -20,14 +20,14 @@ class MapView extends React.Component {
 
   componentDidMount() {
     // map data (markers) state
-    SearchResultsStore.listen(this.stateChanged);
+    MapContainerStore.listen(this.stateChanged);
 
     // map view (position, focussed marker)
     MapStateStore.listen(this.mapViewStateChanged);
   }
 
   componentWillUnmount() {
-    SearchResultsStore.unlisten(this.stateChanged);
+    MapContainerStore.unlisten(this.stateChanged);
 
     MapStateStore.unlisten(this.mapViewStateChanged);
   }

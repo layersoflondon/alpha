@@ -1,8 +1,5 @@
 class PinForm extends React.Component {
-
-
   stateChanged(state) {
-
     var current_state = MapPinStore.getState();
 
     if(current_state.pin_form_visible && current_state.pin_form_enabled) {
@@ -33,14 +30,17 @@ class PinForm extends React.Component {
     this.setState({main_form_confirmed: false});
   }
 
-
-
   savePinData(event) {
     event.preventDefault();
-    MapPinActions.submitForm(this.state);
 
-    MapPinActions.resetForm();
-    MapPinActions.togglePinForm(!visible);
+    // MapPinActions.submitForm(this.state);
+    // const visible = MapPinStore.getState().pin_form_visible;
+    // MapPinActions.togglePinForm(!visible);
+    Pin.post(this.state).then((pin) => {
+      MapPinActions.resetForm();
+
+      MapContainerActions.addMarker(pin);
+    });
   }
 
   hidePinForm() {

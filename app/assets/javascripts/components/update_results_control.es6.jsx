@@ -23,7 +23,7 @@ class UpdateResultsControl extends React.Component {
   updateResults(event) {
     event.preventDefault();
 
-    SearchResultsActions.fetchSearchResults();
+    MapContainerActions.fetchSearchResults();
   }
 
   render () {

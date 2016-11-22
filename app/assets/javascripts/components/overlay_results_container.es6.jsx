@@ -2,7 +2,7 @@ class OverlayResultsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = SearchResultsStore.getState();
+    this.state = MapContainerStore.getState();
   }
 
   render () {

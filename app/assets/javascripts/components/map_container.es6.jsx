@@ -5,7 +5,7 @@ class MapContainer extends React.Component {
     this.state = {};
 
     if(props.data) {
-      SearchResultsActions.emitUpdatedState(props.data);
+      MapContainerActions.emitUpdatedState(props.data);
     }
 
     this.mapPinStoreChanged  = this.mapPinStoreChanged.bind(this);

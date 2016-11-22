@@ -30,7 +30,7 @@ class Pin {
     //  }
     //};
     //
-    //SearchResultsActions.postPin(pin);
+    //MapContainerActions.postPin(pin);
     //
     //// clear the attachment field - FIXME figure out how to do this as a controled component
     //$(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
@@ -55,7 +55,7 @@ class Pin {
       pin: {
         title: state.title,
         description: state.description,
-      //   geocoding TODO - fix up
+        //   geocoding TODO - fix up
         location: state.location,
         date_from: fromDate,
         date_to: toDate,
@@ -70,19 +70,11 @@ class Pin {
             content: state.content,
             video_url: state.video_url,
             attribution: state.attribution,
-            content_type_attributes: {
-              name: state.pin_type
-            }
+            content_type_id: state.pin_type
           }
         }
       }
     };
-
-
-
-
-
-    console.log("SearchResultSource pin_data", pinData);
 
     return new Promise(function(resolve, reject) {
       $.post('/maps', pinData, (response) => {

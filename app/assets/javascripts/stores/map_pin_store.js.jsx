@@ -26,7 +26,6 @@
       this.content = "";
     }
 
-
     constructor() {
       this.setDefaultState();
 
@@ -37,8 +36,8 @@
           onResetForm: MapPinActions.RESET_FORM,
           onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
-          onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES
-
+          onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
+          onSubmitForm: MapPinActions.SUBMIT_FORM
       });
     }
 
@@ -78,6 +77,12 @@
     }
 
     onResetForm() {
+      this.setDefaultState();
+
+      return true;
+    }
+
+    onSubmitForm(pin_data) {
       this.setDefaultState();
 
       return true;

@@ -1,6 +1,6 @@
 Short-term TODO list for the alpha development
 
-* when adding a pin, we need to push the new marker/pin onto the array in SearchResultsStore
+* when adding a pin, we need to push the new marker/pin onto the array in MapContainerStore
 * Fix the rails associations so we can POST a pin and a content entry at the same time
 * Refactor form so the user has to pick the content type they're creating (video / date / etc)
 * Fix up the ajax calls to pass the csrf tags

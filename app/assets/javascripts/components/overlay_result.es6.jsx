@@ -6,7 +6,7 @@ class OverlayResult extends React.Component {
 
   toggleOverlayVisibility() {
     this.setState({visible: !this.state.visible});
-    SearchResultsActions.toggleOverlayVisibility(this.props.id);
+    MapContainerActions.toggleOverlayVisibility(this.props.id);
   }
 
   render () {
