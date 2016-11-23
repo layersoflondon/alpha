@@ -9,36 +9,6 @@ class Pin {
 
 
   static post(state) {
-    //var attachment = "http://cdn.londonandpartners.com/asset/d3a9f869f9f4bbd8fb1a3e6bf1124318.jpg";
-    //if(this.state.attachment.length) {
-    //  attachment = this.state.attachment;
-    //}
-    //
-    //console.log("POSTING PIN", this.state);
-    //
-    //const pin = {
-    //  title: this.state.title,
-    //  location: this.state.location,
-    //  date_from: (new Date()).toString(),
-    //  lat: this.state.pin_form_lat_lng.lat,
-    //  lng: this.state.pin_form_lat_lng.lng,
-    //  user_id: 1,
-    //
-    //  content_entry: {
-    //    title: this.state.description,
-    //    resource: {type: "image", url: attachment}
-    //  }
-    //};
-    //
-    //MapContainerActions.postPin(pin);
-    //
-    //// clear the attachment field - FIXME figure out how to do this as a controled component
-    //$(event.target).find('.form-group-upload input[type=file]').get(0).value = '';
-    //
-    //const current_state = MapPinStore.getState();
-    //const visible = current_state.pin_form_visible;
-    //
-
     var fromDate = null;
     var fromDate = moment(`${state.date_from_year}-${state.date_from_month == "" ? 1 : state.date_from_month}-${state.date_from_day == "" ? 1 : state.date_from_day}`).format();
     var toDate = null;

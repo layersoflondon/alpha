@@ -71,8 +71,7 @@ gem 'devise'
 
 gem 'aasm'
 
-gem 'refile', require: 'refile/rails'
-gem 'refile-mini_magick'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 gem 'faker'
 
