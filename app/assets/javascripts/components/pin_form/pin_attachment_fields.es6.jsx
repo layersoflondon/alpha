@@ -2,16 +2,14 @@ class PinAttachmentFields extends React.Component {
 
   updateAttachmentAttribute(event) {
     var current_state = this.state;
-    var new_state = {};
+    var new_state = {title: "attached file!"};
     var reader = new FileReader();
     var file   = event.target.files[0];
     var name   = file.name;
     var state_attribute = event.target.dataset.attribute;
 
     reader.onload = (reader_event) => {
-      new_state['attachment'] = reader_event.target.result;
-      // set the form state
-      this.setState(new_state);
+      MapPinActions.setAttachedFileField(reader_event.target.result);
     };
 
     reader.readAsDataURL(file);
@@ -28,4 +26,3 @@ class PinAttachmentFields extends React.Component {
 }
 
 PinAttachmentFields = Layers.bindComponentToMapPinStore(PinAttachmentFields);
-

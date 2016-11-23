@@ -36,6 +36,10 @@
       return true;
     }
 
+    setAttachedFileField(file) {
+      return file;
+    }
+
     submitForm(pin_data) {
       return pin_data;
     }
