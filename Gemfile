@@ -72,6 +72,7 @@ gem 'devise'
 gem 'aasm'
 
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'carrierwave-base64'
 
 gem 'faker'
 
