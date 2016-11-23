@@ -19,3 +19,4 @@ node_modules
 .vagrant
 .idea
 config/secrets.yml
+public/uploads
