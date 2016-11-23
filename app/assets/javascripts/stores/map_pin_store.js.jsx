@@ -8,7 +8,7 @@
       this.title = '';
       this.description = '';
       this.link_url = '';
-      this.attachment = '';
+      this.attached_file = '';
       this.video_url = '';
       this.date_from_day = '';
       this.date_from_month = '';
@@ -35,6 +35,7 @@
           onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
           onResetForm: MapPinActions.RESET_FORM,
           onSetFormAttribute: MapPinActions.SET_FORM_ATTRIBUTE,
+          onSetAttachedFileField: MapPinActions.SET_ATTACHED_FILE_FIELD,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onSubmitForm: MapPinActions.SUBMIT_FORM
@@ -62,6 +63,10 @@
       pair = _.toPairs(attr)[0];
       //set an attribute on this object equal to the k, with v as the value
       this[pair[0]] = pair[1];
+    }
+
+    onSetAttachedFileField(file) {
+      this.attached_file = file;
     }
 
     onEnablePinForm(enabled) {
