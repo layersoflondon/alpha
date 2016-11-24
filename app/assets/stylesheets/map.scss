@@ -102,10 +102,8 @@ header nav.main-navigation {
   height: 60%;
 }
 
-.blueimp-gallery > .slides > .slide > .text-content {
-    overflow: auto;
-    margin: 60px auto;
-    padding: 0 60px;
-    max-width: 920px;
-    text-align: left;
+.blueimp-gallery > .slides > .slide > .video-content.video-content > iframe {
+  margin: auto;
+  left: 10%;
+  max-width: 80%;
 }

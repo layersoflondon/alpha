@@ -19,7 +19,7 @@ class ContentEntry extends React.Component {
     const resource_attribute = resource.type + "_path";
 
     var gallery_objects = [];
-    const gallery_options = {
+    var gallery_options = {
       container: '#blueimp-gallery', carousel: true, closeOnSlideClick: true, closeOnEscape: true, startSlideshow: true
     };
 
@@ -33,10 +33,13 @@ class ContentEntry extends React.Component {
         href:   source,
         type:   "text/html"
       };
-      
+
       Object.assign(video_object, yt_attrs);
 
       gallery_objects.push(video_object);
+
+      // change the default gallery options
+      gallery_options['youTubeClickToPlay'] = false;
     }else {
       const gallery_objects = [{
         title: resource.title,
