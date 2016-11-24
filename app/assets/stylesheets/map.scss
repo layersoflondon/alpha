@@ -18,7 +18,7 @@
 @import "map/modules/m-update";
 @import "map/modules/m-add-pin";
 
-@import "map/vendor/gallery/lightgallery";
+@import "vendor/blueimp/*";
 
 @import "map/vendor/jquery.range";
 @import "map/vendor/leaflet";
@@ -93,4 +93,11 @@ body {
 
 header nav.main-navigation {
   float: left;
+}
+
+.blueimp-gallery .video-content.video-content video[src$='?audio=true'] {
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
 }

@@ -25,6 +25,10 @@
 //= require vendor/react-scribe-editor
 //= require moment
 
+//= require vendor/blueimp-helper
+//= require vendor/blueimp-gallery.min
+//= require vendor/blueimp-gallery-video
+
 //= require alt
 //= require layers
 //= require components
