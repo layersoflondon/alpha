@@ -41,13 +41,15 @@ class ContentEntry extends React.Component {
       // change the default gallery options
       gallery_options['youTubeClickToPlay'] = false;
     }else {
-      const gallery_objects = [{
+      gallery_objects.push({
         title: resource.title,
         href: resource[resource_attribute],
-        type: resource.type,
+        type: resource.mime_type,
         poster: resource.poster
-      }];
+      });
     }
+
+    console.log(resource, gallery_objects);
 
     blueimp.Gallery(gallery_objects, gallery_options);
   }
