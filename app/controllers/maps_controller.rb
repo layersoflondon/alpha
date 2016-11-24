@@ -10,6 +10,7 @@ class MapsController < ApplicationController
   def search
     Rails.logger.info(search_params.awesome_inspect)
     Rails.logger.info("\n\n")
+
     query        = search_params[:search_query].present? ? search_params[:search_query] : ""
 
     @pins        = Pin.where("title LIKE '%#{query}%'").limit(10).group_by(&:coords)
