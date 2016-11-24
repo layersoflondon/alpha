@@ -28,6 +28,8 @@
 //= require vendor/blueimp-helper
 //= require vendor/blueimp-gallery.min
 //= require vendor/blueimp-gallery-video
+//= require vendor/blueimp-gallery-youtube
+//= require vendor/blueimp-gallery-vimeo
 
 //= require alt
 //= require layers

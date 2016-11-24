@@ -12,4 +12,10 @@ class ContentEntry < ActiveRecord::Base
   validates :content_type, presence: true
 
   mount_base64_uploader :attached_file, AttachedFileUploader
+
+  def base64_attachment
+    raise "Invalid content type" unless attached_file && content_type.name=="text"
+
+    Base64.encode64(open(attached_file.path).read)
+  end
 end

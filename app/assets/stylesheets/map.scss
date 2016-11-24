@@ -101,3 +101,11 @@ header nav.main-navigation {
   width: 60%;
   height: 60%;
 }
+
+.blueimp-gallery > .slides > .slide > .text-content {
+    overflow: auto;
+    margin: 60px auto;
+    padding: 0 60px;
+    max-width: 920px;
+    text-align: left;
+}
