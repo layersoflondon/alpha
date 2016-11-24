@@ -129,7 +129,7 @@ class PinForm extends React.Component {
   }
 
   render() {
-    const user_id = parseInt($("head meta[name='user-id']").attr('content'), 10);
+    const user_id = $("head meta[name='user-id']").attr('content');
 
     if(!user_id) {
       return this.loginMessage();
