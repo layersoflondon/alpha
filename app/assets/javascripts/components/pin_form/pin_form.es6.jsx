@@ -93,6 +93,7 @@ class PinForm extends React.Component {
 
   attributionForm() {
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
+
     return(
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
@@ -105,15 +106,34 @@ class PinForm extends React.Component {
             </div>
           </div>
         </form>
-
       </div>
+    );
+  }
 
+  loginMessage() {
+    var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
 
-    )
+    return (
+      <div className="m-add-pin" style={style}>
+        <form>
+          <h3>Adding some new content?</h3>
+
+          <div className="form-content">
+            <h2>You'll need to be logged in first.</h2>
+            <p>You can sign in to your account <a href="/users/sign_in">here</a>.</p>
+            <p>Not registered yet? Create a <a href="/users/sign_up">new account</a> to get started!</p>
+          </div>
+        </form>
+      </div>
+    );
   }
 
   render() {
-    if (this.state.main_form_confirmed) {
+    const user_id = parseInt($("head meta[name='user-id']").attr('content'), 10);
+
+    if(!user_id) {
+      return this.loginMessage();
+    }else if (this.state.main_form_confirmed) {
       return this.attributionForm();
     } else {
       return this.mainForm();
