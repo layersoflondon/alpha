@@ -49,8 +49,6 @@ class ContentEntry extends React.Component {
       });
     }
 
-    console.log(resource, gallery_objects);
-
     blueimp.Gallery(gallery_objects, gallery_options);
   }
 
