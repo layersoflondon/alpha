@@ -33,8 +33,6 @@ class Pin {
         date_to: toDate,
         lat: state.pin_form_lat_lng.lat,
         lng: state.pin_form_lat_lng.lng,
-        // TODO fix up.
-        user_id: 1,
         link_url: state.link_url,
 
         pin_content_entry_attributes: {

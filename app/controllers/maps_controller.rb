@@ -23,7 +23,7 @@ class MapsController < ApplicationController
   end
 
   def create
-    @pin = Pin.new(pin_params)
+    @pin = current_user.try(:pins).try(:build, pin_params) || Pin.new
 
     authorize @pin
 
