@@ -2,8 +2,13 @@
 /* List view */
 
 .m-search-panel {
+  float:left;
+  width:80%;
+}
+
+.m-search-panel {
   /*   background:white; */
-  padding:20px;
+  padding:15px;
 }
 
 .m-search-panel ul {
@@ -11,38 +16,53 @@
   @include element-list;
 }
 
-.m-search-panel .free-text-search {
-  margin-bottom:2em;
+.m-search-panel .free-text {
   @include clearfix;
-}
-
-.m-search-panel .free-text-search input[type="text"] {
-  width: 190px;
-}
-
-.m-search-panel .free-text-search .form-group {
   float:left;
-  margin-right:10px;
+  width:40%;
+  padding-right:15px;
 }
 
-.m-search-panel .free-text-search .form-group:last-child {
-  clear:left;
+.m-search-panel .m-date-filter {
+  float:left;
+  width:40%;
+}
+
+.m-search-panel input[type="text"] {
+  background:white;
+  border:0;
+  font-size: 1.6em;
+  padding: 0.5em 0.7em 0.6em;
+
 }
 
 .m-search-panel .results {
-  margin-bottom:10px;
+  position: absolute;
+  background: white;
+  padding: 40px 30px;
+  top: 100px;
+  left: 50px;
+  width:60%;
 }
 
-.m-search-panel .results > h3 {
-  @include module-title;
+.m-search-panel .results .results-places,
+.m-search-panel .results .results-pins {
+  float:left;
+  padding:0 10px;
+  width:50%;
+}
+
+.m-search-panel .results h3 {
+  margin-top:0;
 }
 
 .m-search-panel button {
   padding: 11px 20px;
-  background:$blue;
+  background:#008365;
   border:0;
-  border-radius: 6px;
   color:white;
+  float: right;
+  font-size:1.5em;
   font-weight: bold;
   @include transition(all .2s);
   margin-left:10px;

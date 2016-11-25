@@ -24,23 +24,8 @@ class SearchFilters extends React.Component {
 
   render () {
     var date_filters = <DateRange />;
-
-    if( this.state.advanced_filters_visible ) {
-      return (
-        <div className="m-filters">
-            <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>Basic filters</a>
-            <DateRange />
-            <br/><br/>
-            <AdvancedFilters />
-        </div>
+    return(
+      <DateRange />
       );
-    }else {
-      return (
-        <div className="m-filters">
-            <a href="#" className="show-filter-link" onClick={this.toggleFilters.bind(this)}>More filters</a>
-            <DateRange />
-        </div>
-      );
-    }
   }
 }

@@ -3,15 +3,17 @@
 
 .m-pin-controls {
 	position:absolute;
-  bottom:150px;
-  right:0;
+  bottom:50px;
+  right:50px;
 }
 
 .m-pin-controls .add-pin button {
   padding:20px;
   background:$blue;
   border:0;
-  border-radius: 6px 0 0 6px;
+  border-radius: 100px;
+  width:80px;
+  height:80px;
   color:white;
   font-weight: bold;
   @include transition(all .2s);

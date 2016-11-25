@@ -2,29 +2,32 @@
 /* Overlays list */
 
 .m-overlays-list {
-	background:white;
-  padding:20px;
+	background:#2d527c;
+  float:right;
+  width:20%;
+  height: 100%;
 }
 
-.m-overlays-list ul {
+.m-overlays-list .overlays-results {
   @include unlist;
   @include element-list;
 }
 
-/* .m-overlays-list li {
-  margin-bottom:1em;
-  padding-left: 30px;
+.m-overlays-list .overlays-results {
+  position: absolute;
+  background: white;
+  padding: 40px;
+  top: 100px;
+  right: 50px;
 }
 
-.m-overlays-list form {
-  float:left;
-  margin-left: -30px;
+.m-overlays-list .show-overlays {
+  color:white;
+  text-transform:uppercase;
+  height: 100%;
+  width:100%;
+  display:block;
+  padding:30px 10px 10px 10px;
+  text-align:center;
+  cursor:pointer;
 }
-
-.m-overlays-list h3 {
-  margin:0;
-}
-
-.m-overlays-list p {
-  margin:0;
-} */

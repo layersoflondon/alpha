@@ -22,7 +22,7 @@ class PlaceResultsContainer extends React.Component {
     var places_label = this.state.searching ? "Searching for places..." : "Places";
 
     return (
-      <div className="results results-places">
+      <div className="results-places">
         <br/>
 
         <ul>

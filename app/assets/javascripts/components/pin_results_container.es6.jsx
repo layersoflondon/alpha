@@ -22,7 +22,7 @@ class PinResultsContainer extends React.Component {
     var pins_label = this.state.searching ? "Searching for pins..." : "Pins";
 
     return (
-      <div className="results results-pins">
+      <div className="results-pins">
         <h3>{pins_label}</h3>
         <ul>
         {this.state.pins.map(function(pin){
