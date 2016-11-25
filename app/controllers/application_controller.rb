@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   include SimpleErrors::Rescue
   rescue_with_not_found Rooftop::RecordNotFoundError, Rooftop::Rails::AncestorMismatch, ActionController::RoutingError
   # Prevent CSRF attacks by raising an exception.

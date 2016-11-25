@@ -1,4 +1,4 @@
-class MapPolicy < ApplicationPolicy
+class PinPolicy < ApplicationPolicy
 
   def show?
     true

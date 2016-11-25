@@ -23,7 +23,11 @@ class MapsController < ApplicationController
   end
 
   def create
-    @pin = Pin.create(pin_params)
+    @pin = Pin.new(pin_params)
+
+    authorize @pin
+
+    @pin.save!
   end
 
   private
