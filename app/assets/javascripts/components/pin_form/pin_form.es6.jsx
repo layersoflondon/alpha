@@ -32,14 +32,13 @@ class PinForm extends React.Component {
 
   savePinData(event) {
     event.preventDefault();
-
-    // MapPinActions.submitForm(this.state);
-    // const visible = MapPinStore.getState().pin_form_visible;
-    // MapPinActions.togglePinForm(!visible);
+    
     Pin.post(this.state).then((pin) => {
       MapPinActions.resetForm();
 
       MapContainerActions.addMarker(pin);
+    }).catch((response) => {
+      console.log("promise not kept", response);
     });
   }
 

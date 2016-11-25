@@ -1,8 +1,10 @@
 class Pin {
   static fetch(filters) {
     return new Promise(function(resolve, reject) {
-      $.get('/maps/search', {search: filters}, (response) => {
-        resolve(response);
+      $.get("/maps/search", {search: filters}).done((response) => {
+        resolve(response)
+      }).fail((response) => {
+        reject(response);
       });
     });
   }
@@ -48,9 +50,11 @@ class Pin {
     };
 
     return new Promise(function(resolve, reject) {
-      $.post('/maps', pinData, (response) => {
+      $.post("/maps", pinData).done((response) => {
         resolve(response);
-      });
+      }).fail((response) => {
+        reject(response);
+      })
     });
   }
 
