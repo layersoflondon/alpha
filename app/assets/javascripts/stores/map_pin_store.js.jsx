@@ -24,6 +24,8 @@
       this.pin_type = null;
       this.attribution = "";
       this.content = "";
+
+      this.error = null;
     }
 
     constructor() {
@@ -38,7 +40,8 @@
           onSetAttachedFileField: MapPinActions.SET_ATTACHED_FILE_FIELD,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
-          onSubmitForm: MapPinActions.SUBMIT_FORM
+          onSubmitForm: MapPinActions.SUBMIT_FORM,
+          onSetError: MapPinActions.SET_ERROR
       });
     }
 
@@ -89,6 +92,12 @@
 
     onSubmitForm(pin_data) {
       this.setDefaultState();
+
+      return true;
+    }
+
+    onSetError(error) {
+      this.error = error;
 
       return true;
     }

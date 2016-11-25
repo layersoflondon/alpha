@@ -43,6 +43,11 @@
     submitForm(pin_data) {
       return pin_data;
     }
+
+    setError(error) {
+      console.log("GOT ERROR", error);
+      return error;
+    }
   }
 
   this.MapPinActions = alt.createActions(MapPinActions);

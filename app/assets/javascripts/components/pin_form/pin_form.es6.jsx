@@ -32,13 +32,13 @@ class PinForm extends React.Component {
 
   savePinData(event) {
     event.preventDefault();
-    
+
     Pin.post(this.state).then((pin) => {
       MapPinActions.resetForm();
 
       MapContainerActions.addMarker(pin);
     }).catch((response) => {
-      console.log("promise not kept", response);
+      MapPinActions.setError({errorCode: response.status, errorMessage: response.responseText});
     });
   }
 
@@ -93,6 +93,16 @@ class PinForm extends React.Component {
   attributionForm() {
     var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
 
+    var errorMessage = <div />;
+
+    if(this.state.error) {
+      errorMessage = (
+        <div>
+          <h3>Whoops - there was an error when we tried to save your pin. Please try again later</h3>
+        </div>
+      );
+    }
+
     return(
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
@@ -103,6 +113,8 @@ class PinForm extends React.Component {
               <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
               <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
             </div>
+
+            {errorMessage}
           </div>
         </form>
       </div>
