@@ -97,7 +97,7 @@ class PinForm extends React.Component {
     return(
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
-            <h3>Using someone else's stuff?</h3>
+          <h3>Using someone else's stuff?</h3>
           <div className="form-content">
             <PinAttributionFields show_form={this.state.attribution !== ""}/>
             <div className="form-group">
@@ -119,6 +119,8 @@ class PinForm extends React.Component {
           <h3>Adding some new content?</h3>
 
           <div className="form-content">
+            <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+
             <h2>You'll need to be logged in first.</h2>
             <p>You can sign in to your account <a href="/users/sign_in">here</a>.</p>
             <p>Not registered yet? Create a <a href="/users/sign_up">new account</a> to get started!</p>
