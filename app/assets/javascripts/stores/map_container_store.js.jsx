@@ -14,6 +14,7 @@
       this.collections = [];
       this.markers = [];
       this.pins = [];
+      this.notes = [];
 
       this.bindListeners({
         onFetchSearchResults: MapContainerActions.FETCH_SEARCH_RESULTS,
@@ -22,6 +23,7 @@
         onUpdatePins: MapContainerActions.UPDATE_PINS,
         onUpdatePlaces: MapContainerActions.UPDATE_PLACES,
         onUpdateOverlays: MapContainerActions.UPDATE_OVERLAYS,
+        onUpdateNotes: MapContainerActions.UPDATE_NOTES,
         onUpdateCollections: MapContainerActions.UPDATE_COLLECTIONS,
         onToggleOverlayVisibility: MapContainerActions.TOGGLE_OVERLAY_VISIBILITY,
         onAddPin: MapContainerActions.ADD_PIN,
@@ -33,7 +35,8 @@
       this.searching = true;
       this.places = [];
       this.pins   = [];
-      this.overlays = []
+      this.overlays = [];
+      this.notes  = [];
     }
 
     onUpdateCoordinates(latlng) {
@@ -64,6 +67,11 @@
 
     onUpdateCollections(collections) {
       this.collections = collections;
+    }
+
+    onUpdateNotes(notes) {
+      this.notes = notes;
+      this.searching = false;
     }
 
     onToggleOverlayVisibility(overlay_id) {

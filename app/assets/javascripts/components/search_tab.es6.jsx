@@ -26,8 +26,9 @@ class SearchTab extends React.Component {
           <button>Search</button>
         </form>
         <div className="results">
-          <PlaceResultsContainer />
           <PinResultsContainer />
+          <NoteResultsContainer />
+          <PlaceResultsContainer />
         </div>
       </div>
     );

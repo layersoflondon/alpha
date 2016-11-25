@@ -22,6 +22,7 @@
       this.updatePlaces(state.places);
       this.updateOverlays(state.overlays);
       this.updateCollections(state.collections);
+      this.updateNotes(state.markers);
     }
 
     updateCoordinates(lat, lng) {
@@ -72,6 +73,20 @@
       return collections;
     }
 
+    updateNotes(markers) {
+      const notes = _.chain(markers).map(
+        function(marker) {
+          return marker.pins;
+        }
+      ).flatten().filter(
+        function(pin) {
+          return pin.content_entry.resource.type=="text";
+        }
+      ).value();
+
+      return notes;
+    }
+
     toggleOverlayVisibility(overlay_id) {
       return overlay_id;
     }
@@ -83,7 +98,7 @@
     addPin(pin_data) {
       return pin_data;
     }
-    
+
     addMarker(marker_data) {
       return marker_data;
     }
