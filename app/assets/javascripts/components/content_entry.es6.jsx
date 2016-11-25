@@ -1,17 +1,23 @@
 class ContentEntry extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {show_text: false, text: "", text_content: ""}
   }
 
   showResource() {
     const resource = this.props.content_entry.content_entry.resource;
 
-    switch(resource.type) {
-      case "text":
-        this.textObject(resource);
-        break;
-      default:
-        this.mediaObject(resource);
+    // if this is a text resource and our current show_text state attribute is
+    // true, we should just toggle it back to false and return (other content
+    // entry types are displayed in a gallery)
+
+    if(resource.type==="text" && this.state.show_text) {
+      this.setState({show_text: false});
+    }else if (resource.type==="text"){
+      this.setState({show_text: true, text: resource.text, text_content: resource.text_content})
+    }else {
+      this.mediaObject(resource);
     }
   }
 
@@ -52,10 +58,6 @@ class ContentEntry extends React.Component {
     blueimp.Gallery(gallery_objects, gallery_options);
   }
 
-  textObject(resource) {
-    alert(resource.text + "\n" + resource.text_content);
-  }
-
   getVideoId(source) {
     const id = source.match(/\?v=([^$]+)/i)[1];
     const poster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
@@ -65,14 +67,28 @@ class ContentEntry extends React.Component {
 
   render () {
     const icon = LoL.urls[this.props.content_entry.content_entry.resource.type];
+    var text = "";
+
+    if(this.state.show_text) {
+      text = (
+        <div>
+          <br/>
+          <p>{this.state.text}</p>
+          <p>{this.state.text_content}</p>
+          <hr/>
+        </div>
+      );
+    }
 
     const link = (
-      <a onClick={this.showResource.bind(this)}>
+      <a href="#" onClick={this.showResource.bind(this)}>
         <div className="icon">
           <img src={LoL.urls[this.props.content_entry.content_entry.resource.type]} alt="{this.props.content_entry.content_entry.resource.type} resource icon" />
         </div>
 
         <h3>{this.props.content_entry.content_entry.title}</h3>
+        {text}
+
         <p>Pinned on {this.props.content_entry.pinned_on_date}</p>
       </a>
     );
