@@ -23,8 +23,6 @@ class PlaceResultsContainer extends React.Component {
 
     return (
       <div className="results-places">
-        <br/>
-
         <ul>
           {this.state.places.map(function(place){
             return (<PlaceResult key={place.id} place={place} />);
