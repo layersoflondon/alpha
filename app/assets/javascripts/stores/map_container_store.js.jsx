@@ -40,10 +40,8 @@
     }
 
     onUpdateCoordinates(latlng) {
-      if( latlng ) {
-        this.lat = latlng.lat;
-        this.lng = latlng.lng;
-      }
+      this.lat = latlng.lat;
+      this.lng = latlng.lng;
     }
 
     onUpdateMarkers(markers) {

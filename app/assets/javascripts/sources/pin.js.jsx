@@ -1,9 +1,10 @@
 class Pin {
   static fetch(filters) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       $.get("/maps/search", {search: filters}).done((response) => {
         resolve(response)
       }).fail((response) => {
+        console.log("FAIL", response);
         reject(response);
       });
     });

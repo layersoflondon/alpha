@@ -27,6 +27,7 @@ class PagesController < ApplicationController
     @pins        = Pin.all.limit(2).group_by(&:coords)
     @overlays    = Overlay.all.select{|o| o.overlay_type.name=="tileserver"}
     @collections = {}
+    @places      = []
 
     @data = render_to_string('maps/search', layout: false, formats: [:json])
   end

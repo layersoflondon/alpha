@@ -16,12 +16,11 @@ class NoteResultsContainer extends React.Component {
 
   stateChanged(state) {
     this.setState(state);
-    console.log(state);
   }
 
   render () {
     var notes_label = this.state.searching ? "Searching for notes..." : "Notes";
-    
+
     return (
       <div className="results-notes">
         <h3>{notes_label}</h3>
