@@ -1,22 +1,12 @@
-class PinPolicy < ApplicationPolicy
+class MapPolicy < ApplicationPolicy
 
   def show?
-
+    true
   end
 
   def create?
-
+    user.present?
   end
-
-  def update?
-
-  end
-
-  def destroy?
-
-  end
-
-
 
   class Scope < Scope
     def resolve
