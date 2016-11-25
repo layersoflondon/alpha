@@ -98,7 +98,7 @@ class PinForm extends React.Component {
     if(this.state.error) {
       errorMessage = (
         <div>
-          <h3>Whoops - there was an error when we tried to save your pin. Please try again later</h3>
+          <h4>Whoops - there was an error when we tried to save your pin. Please try again later.</h4>
         </div>
       );
     }
@@ -108,6 +108,8 @@ class PinForm extends React.Component {
         <form onSubmit={this.savePinData.bind(this)}>
           <h3>Using someone else's stuff?</h3>
           <div className="form-content">
+            <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+
             <PinAttributionFields show_form={this.state.attribution !== ""}/>
             <div className="form-group">
               <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
