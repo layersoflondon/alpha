@@ -3,6 +3,21 @@ class OverlayResultsContainer extends React.Component {
     super(props);
 
     this.state = MapContainerStore.getState();
+    this.stateChanged = this.stateChanged.bind(this);
+  }
+
+  stateChanged(state) {
+    this.setState(state);
+  }
+
+  componentWillMount() {
+    MapContainerStore.listen(this.stateChanged);
+
+  }
+
+  componentWillUnmount() {
+    MapContainerStore.unlisten(this.stateChanged);
+
   }
 
   render () {
