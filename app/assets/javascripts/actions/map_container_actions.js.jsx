@@ -14,13 +14,24 @@
       }
     }
 
+    fetchNearbyResults(latLng) {
+      return (dispatch) => {
+        dispatch();
+
+        Places.getNearbyLocations(latLng).then((results) => {
+          return this.updatePins(results);
+        }).catch((error) => {
+          console.log("There was an error fetching the near by places...", error);
+        });
+      }
+    }
+
     emitUpdatedState(state) {
-      this.updateMarkers(state.markers);
-      this.updatePins(state.markers);
+      this.updateMarkers(state.markers); // update markers on the map
+      this.updateNotes(state.markers);   // update notes (pin results) from LoL data
       this.updatePlaces(state.places);
       this.updateOverlays(state.overlays);
       this.updateCollections(state.collections);
-      this.updateNotes(state.markers);
 
       // call this after other state changes that effect the map content (marker pins)
       // calling first will cause all to double dispatch (a state change to tell leafelet to move the map)
@@ -38,8 +49,7 @@
       return markers;
     }
 
-    updatePins(markers) {
-      window.markers = markers;
+    updatePins(results) {
       /*
       our resultset will return an array of marker objects with a position and an array of pins:
 
@@ -57,8 +67,7 @@
       we need a flattened array of pins - _.map to return the nested array [[Pin, Pin], [Pin]] and .flatten them out...
       */
 
-      const pins = _.chain(markers).map(function(marker){return marker.pins}).flatten().value();
-
+      const pins = _.chain(results).map(function(result){return result.pins}).flatten().value();
       return pins;
     }
 
@@ -76,14 +85,10 @@
 
     updateNotes(markers) {
       const notes = _.chain(markers).map(
-        function(marker) {
+        function(marker){
           return marker.pins;
         }
-      ).flatten().filter(
-        function(pin) {
-          return pin.content_entry.resource.type=="text";
-        }
-      ).value();
+      ).flatten().value();
 
       return notes;
     }

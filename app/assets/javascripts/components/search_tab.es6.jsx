@@ -8,6 +8,12 @@ class SearchTab extends React.Component {
   handleSearchSubmit(e) {
     e.preventDefault();
 
+    // fetch google maps results at the current location
+    const map_state = MapContainerStore.getState();
+    const location  = {lat: map_state.lat, lng: map_state.lng};
+    MapContainerActions.fetchNearbyResults(location);
+
+    // fetch LoL pins that match the current search filter state
     MapContainerActions.fetchSearchResults();
   }
 

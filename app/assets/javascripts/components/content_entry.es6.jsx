@@ -67,8 +67,8 @@ class ContentEntry extends React.Component {
 
   render () {
     const icon = LoL.urls[this.props.content_entry.content_entry.resource.type];
-    var text = "";
 
+    var text = "";
     if(this.state.show_text) {
       text = (
         <div>
@@ -80,18 +80,32 @@ class ContentEntry extends React.Component {
       );
     }
 
-    const link = (
-      <a href="#" onClick={this.showResource.bind(this)}>
-        <div className="icon">
-          <img src={LoL.urls[this.props.content_entry.content_entry.resource.type]} alt="{this.props.content_entry.content_entry.resource.type} resource icon" />
+    var pinned = "";
+    if(this.props.content_entry.pinned_on_date) {
+      pinned = <p>Pinned on {this.props.content_entry.pinned_on_date}</p>;
+    }
+
+    if(this.props.pin) { // a google maps pin
+      var link = (
+        <div>
+          <h3>{this.props.content_entry.content_entry.title}</h3>
+          {text}
+          {pinned}
         </div>
+      );
+    }else {
+      var link = (
+        <a href="#" onClick={this.showResource.bind(this)}>
+          <div className="icon">
+            <img src={LoL.urls[this.props.content_entry.content_entry.resource.type]} alt="{this.props.content_entry.content_entry.resource.type} resource icon" />
+          </div>
 
-        <h3>{this.props.content_entry.content_entry.title}</h3>
-        {text}
-
-        <p>Pinned on {this.props.content_entry.pinned_on_date}</p>
-      </a>
-    );
+          <h3>{this.props.content_entry.content_entry.title}</h3>
+          {text}
+          {pinned}
+        </a>
+      );
+    }
 
     return <li>{link}</li>;
   }

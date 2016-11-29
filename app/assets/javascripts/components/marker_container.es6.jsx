@@ -1,6 +1,8 @@
 /*
 Render a Pin (marker) on the map
 */
+const Icon = L.Icon;
+
 class MarkerContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class MarkerContainer extends React.Component {
 
   render () {
     const content = this.props.marker.pins.map(function(pin){return <ContentEntry key={pin.id} content_entry={pin} />;});
-
+    
     return (
       <Marker position={this.props.marker.position}>
         <Popup>

@@ -70,9 +70,17 @@ class MapView extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
 
-    const marker_containers = this.state.markers.map(function(marker, idx) {
+    // LoL data markers
+    const note_marker_containers = this.state.markers.map((marker, idx) => {
       return (
         <MarkerContainer key={idx} marker={marker} />
+      );
+    });
+
+    // google Geocoder markers
+    const pin_marker_containers = this.state.pins.map((pin, idx) => {
+      return (
+        <PinContainer key={idx} pin={pin} />
       );
     });
 
@@ -88,7 +96,8 @@ class MapView extends React.Component {
 
     this.map = <Map className={mapClasses} center={position} zoom={this.state.zoom} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
-                 {marker_containers}
+                 {note_marker_containers}
+                 {pin_marker_containers}
                  {overlays}
                </Map>;
 

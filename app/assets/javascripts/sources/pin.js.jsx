@@ -10,7 +10,6 @@ class Pin {
     });
   }
 
-
   static post(state) {
     var fromDate = null;
     var fromDate = moment(`${state.date_from_year}-${state.date_from_month == "" ? 1 : state.date_from_month}-${state.date_from_day == "" ? 1 : state.date_from_day}`).format();
@@ -58,7 +57,7 @@ class Pin {
   }
 
   static getNearbyLocations(latLng) {
-    var geocoder = new google.maps.Geocoder();
+    geocoder = new google.maps.Geocoder();
 
     return new Promise(function(resolve, reject) {
       geocoder.geocode({location: latLng}, function(results, status) {
@@ -69,10 +68,6 @@ class Pin {
             return (typeof result.location === "undefined")
           }
         ).value();
-
-        window.geocoded_results = {};
-        window.geocoded_results.results = results;
-        window.geocoded_results.places = places;
 
         resolve(places);
       });

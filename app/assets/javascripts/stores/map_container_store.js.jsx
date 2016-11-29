@@ -18,6 +18,8 @@
 
       this.bindListeners({
         onFetchSearchResults: MapContainerActions.FETCH_SEARCH_RESULTS,
+        onFetchNearbyResults: MapContainerActions.FETCH_NEARBY_RESULTS,
+
         onUpdateCoordinates: MapContainerActions.UPDATE_COORDINATES,
         onUpdateMarkers: MapContainerActions.UPDATE_MARKERS,
         onUpdatePins: MapContainerActions.UPDATE_PINS,
@@ -32,11 +34,14 @@
     }
 
     onFetchSearchResults() {
-      this.searching = true;
-      this.places = [];
-      this.pins   = [];
       this.overlays = [];
+      this.places = [];
       this.notes  = [];
+    }
+
+    onFetchNearbyResults() {
+      this.searching = true;
+      this.pins = [];
     }
 
     onUpdateCoordinates(latlng) {
