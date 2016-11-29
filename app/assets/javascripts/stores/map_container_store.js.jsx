@@ -73,7 +73,7 @@
     }
 
     onToggleOverlayVisibility(overlay_id) {
-      var overlay_ids = this.visible_overlays;
+      var overlay_ids = this.visible_overlays.slice();
       var current_index = overlay_ids.indexOf(overlay_id);
 
       if( current_index > -1 ) {
