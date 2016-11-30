@@ -1,6 +1,5 @@
 
-//var Polygon = ReactLeaflet.Polygon,
-//    ImageOverlay = ReactLeaflet.ImageOverlay;
+const Polygon = ReactLeaflet.Polygon, ImageOverlay = ReactLeaflet.ImageOverlay;
 
 class OverlayContainer extends React.Component {
   constructor(props) {
