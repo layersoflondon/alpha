@@ -104,8 +104,9 @@ class MapView extends React.Component {
 
     const mapClasses = MapPinStore.getState().pin_form_enabled ? 'm-map add-pin-mode' : 'm-map';
 
-    this.map = <Map className={mapClasses} center={position} zoom={this.state.zoom} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
+    this.map = <Map className={mapClasses} center={position} zoom={this.state.zoom} zoomControl={false} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
+                 <ZoomControl position='bottomleft' />
                  {note_marker_containers}
                  {pin_marker_containers}
                  {overlays}
