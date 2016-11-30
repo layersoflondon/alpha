@@ -14,11 +14,21 @@
       }
     }
 
-    fetchNearbyResults(latLng) {
+    fetchNearbyResults(lat_lng, map_bounds) {
       return (dispatch) => {
         dispatch();
 
-        Places.getNearbyLocations(latLng).then((results) => {
+        let sw = new google.maps.LatLng(map_bounds.southWest.lat, map_bounds.southWest.lng);
+        let ne = new google.maps.LatLng(map_bounds.northEast.lat, map_bounds.northEast.lng);
+        let bounds = new google.maps.LatLngBounds(sw, ne);
+
+        const search_params = {
+          location: lat_lng,
+          radius: FilterStateStore.getState().search_radius,
+          name: FilterStateStore.getState().search_query
+        };
+
+        Places.getNearbyLocations(search_params).then((results) => {
           return this.updatePins(results);
         }).catch((error) => {
           console.log("There was an error fetching the near by places...", error);
@@ -42,7 +52,11 @@
     }
 
     updateCoordinates(lat, lng) {
-      return {lat: lat, lng: lng};
+      if(lat && lng) {
+        return {lat: lat, lng: lng};
+      }
+
+      return false;
     }
 
     updateMarkers(markers) {
@@ -67,7 +81,12 @@
       we need a flattened array of pins - _.map to return the nested array [[Pin, Pin], [Pin]] and .flatten them out...
       */
 
-      const pins = _.chain(results).map(function(result){return result.pins}).flatten().value();
+      const pins = _.chain(results).map(
+        (result) => {
+          return result.pins;
+        }
+      ).flatten().value();
+
       return pins;
     }
 
@@ -85,7 +104,7 @@
 
     updateNotes(markers) {
       const notes = _.chain(markers).map(
-        function(marker){
+        (marker) => {
           return marker.pins;
         }
       ).flatten().value();
@@ -95,10 +114,6 @@
 
     toggleOverlayVisibility(overlay_id) {
       return overlay_id;
-    }
-
-    submitForm(pin_data) {
-      console.log("MapContainerActions submitForm()");
     }
 
     addPin(pin_data) {

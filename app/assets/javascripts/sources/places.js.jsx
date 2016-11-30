@@ -1,32 +1,31 @@
 class Places {
-  static getNearbyLocations(latLng) {
-    const geocoder = new google.maps.Geocoder();
+  static getNearbyLocations(search_params) {
+    const places_search = new google.maps.places.PlacesService(document.createElement('div'));
 
-    return new Promise(function(resolve, reject) {
-      geocoder.geocode({location: latLng}, function(results, status) {
-        window.results = results;
-        window.status  = status;
-        const places = _.chain(results).map(
-          function(result) {
-            const location   = _.find(result.address_components, function(ac) {return (ac.types.indexOf("locality")>-1)});
-
-            const pin_result = {
-              pins: [
-                {
-                  id: result.place_id,
-                  location: result.formatted_address,
-                  content_entry: {title: "GM " + result.formatted_address, resource: {type: "text", "text": result.formatted_address}},
-                  position: result.geometry.location.toJSON()
-                }
-              ],
+    return new Promise((resolve, reject) => {
+      places_search.nearbySearch(search_params, (results, status, code) => {
+        const places = _.chain(results.slice(0, 10)).map((result) => {
+          let pin_result = {
+            pins: [{
+              id: result.place_id,
+              title: result.name,
+              location: result.vicinity,
+              content_entry: {title: result.name},
               position: result.geometry.location.toJSON()
-            };
+            }],
+            position: result.geometry.location.toJSON()
+          };
 
-            return pin_result;
-          }).reject(function(result) {
-            return (typeof result.position === "undefined");
+          if(result.photos && result.photos.length) {
+            pin_result.pins[0].content_entry.resource = {
+              type: "image",
+              image_path: result.photos[0].getUrl({maxWidth: 1400, maxHeight: 1000}),
+              content_type: "image/jpeg"
+            }
           }
-        ).value();
+
+          return pin_result;
+        }).value();
 
         resolve(places);
       });

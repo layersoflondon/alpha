@@ -8,7 +8,7 @@
       this.suppress_update_results_event = false;
       this.search_query = '';
       this.centre_point = {};
-      this.search_bounds = {};
+      this.search_bounds = {southWest: {lat: 51.50211782162702, lng: -0.03398895263671874}, northEast: {lat: 51.50211782162702, lng: -0.03398895263671874}};
       this.search_radius = 10000; //set initial radius to 10km
 
       this.bindListeners({
@@ -32,7 +32,6 @@
     }
 
     onUpdateFilterAttribute() {
-      console.log("onUpdateFilterAttribute called", arguments);
       this.suppress_update_results_event = false;
     }
 

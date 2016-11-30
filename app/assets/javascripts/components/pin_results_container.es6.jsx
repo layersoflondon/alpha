@@ -19,7 +19,13 @@ class PinResultsContainer extends React.Component {
   }
 
   render () {
-    var pins_label = this.state.searching ? "Searching for pins..." : "Pins";
+    let pins_label = "Pins";
+
+    if(this.state.searching) {
+      pins_label = "Searching for pins...";
+    }else if(!this.state.searching && this.state.pins.length==0) {
+      pins_label = "No pins found";
+    }
 
     return (
       <div className="results-pins">

@@ -85,7 +85,7 @@ class ContentEntry extends React.Component {
       pinned = <p>Pinned on {this.props.content_entry.pinned_on_date}</p>;
     }
 
-    if(this.props.pin) { // a google maps pin
+    if(typeof this.props.content_entry.content_entry.resource === "undefined" ) { // a marker with associated resource
       var link = (
         <div>
           <h3>{this.props.content_entry.content_entry.title}</h3>

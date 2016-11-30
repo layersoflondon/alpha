@@ -34,6 +34,8 @@
     }
 
     onFetchSearchResults() {
+      this.searching = true;
+
       this.overlays = [];
       this.places = [];
       this.notes  = [];
@@ -45,23 +47,27 @@
     }
 
     onUpdateCoordinates(latlng) {
-      this.lat = latlng.lat;
-      this.lng = latlng.lng;
+      if(latlng) {
+        this.lat = latlng.lat;
+        this.lng = latlng.lng;
+      }else {
+        return false;
+      }
     }
 
     onUpdateMarkers(markers) {
-      this.markers = markers;
       this.searching = false;
+      this.markers = markers;
     }
 
     onUpdatePins(pins) {
-      this.pins = pins;
       this.searching = false;
+      this.pins = pins;
     }
 
     onUpdatePlaces(places) {
-      this.places    = places;
       this.searching = false;
+      this.places    = places;
     }
 
     onUpdateOverlays(overlays) {
@@ -73,8 +79,8 @@
     }
 
     onUpdateNotes(notes) {
-      this.notes = notes;
       this.searching = false;
+      this.notes = notes;
     }
 
     onToggleOverlayVisibility(overlay_id) {

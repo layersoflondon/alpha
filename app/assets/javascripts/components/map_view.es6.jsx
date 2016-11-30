@@ -24,6 +24,10 @@ class MapView extends React.Component {
 
     // map view (position, focussed marker)
     MapStateStore.listen(this.mapViewStateChanged);
+
+    setTimeout(() => {
+      this.handleZoomed({});
+    }, 100);
   }
 
   componentWillUnmount() {
