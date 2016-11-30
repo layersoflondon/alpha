@@ -37,9 +37,15 @@ class MapView extends React.Component {
   }
 
   handleMoved(event) {
-    const position = this.refs.map.state.map.getCenter();
+    const _map     = this.refs.map.state.map;
+    const bounds   = _map.getBounds();
+    const position = _map.getCenter();
+    const sw = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
+    const ne = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
 
-    FilterStateActions.updateFilterCentre({lat: position.lat, lng: position.lng});
+    const northEast = bounds.getNorthEast();
+
+    FilterStateActions.updateFilterCentreAndBounds({centre: {lat: position.lat, lng: position.lng}, bounds: {southWest: sw, northEast: ne}});
   }
 
   handleZoomed(event) {

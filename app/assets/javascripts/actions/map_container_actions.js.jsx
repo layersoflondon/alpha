@@ -14,16 +14,17 @@
       }
     }
 
-    fetchNearbyResults(lat_lng, map_bounds) {
+    fetchNearbyResults() {
       return (dispatch) => {
         dispatch();
 
-        let sw = new google.maps.LatLng(map_bounds.southWest.lat, map_bounds.southWest.lng);
-        let ne = new google.maps.LatLng(map_bounds.northEast.lat, map_bounds.northEast.lng);
-        let bounds = new google.maps.LatLngBounds(sw, ne);
+        const map_state = MapContainerStore.getState();
+        const filter_state = FilterStateStore.getState();
+
+        const location = FilterStateStore.getState().centre_point;
 
         const search_params = {
-          location: lat_lng,
+          location: location,
           radius: FilterStateStore.getState().search_radius,
           name: FilterStateStore.getState().search_query
         };

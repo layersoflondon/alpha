@@ -12,8 +12,8 @@
       return {attribute: attribute, value: value};
     }
 
-    updateFilterCentre(centre_point) {
-      return centre_point;
+    updateFilterCentreAndBounds(bounds) {
+      return bounds;
     }
 
     updateFilterBounds(bounds) {
