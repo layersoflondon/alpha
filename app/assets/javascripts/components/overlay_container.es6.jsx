@@ -1,6 +1,6 @@
 
-var Polygon = ReactLeaflet.Polygon,
-    ImageOverlay = ReactLeaflet.ImageOverlay;
+//var Polygon = ReactLeaflet.Polygon,
+//    ImageOverlay = ReactLeaflet.ImageOverlay;
 
 class OverlayContainer extends React.Component {
   constructor(props) {
@@ -21,6 +21,9 @@ class OverlayContainer extends React.Component {
         break;
       case 'data':
         component = <div />;
+        break;
+      case 'georeferencer_tileserver':
+        component = <GeoreferencedTileGroup georeferencer_table_id={this.state.overlay.resource.georeferencer_table_id} tileserver_url={this.state.overlay.resource.tileserver_url}/>;
         break;
     }
 
