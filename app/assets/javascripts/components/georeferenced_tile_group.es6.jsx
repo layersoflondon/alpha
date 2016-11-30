@@ -1,3 +1,4 @@
+const LayerGroup = ReactLeaflet.LayerGroup;
 class GeoreferencedTileGroup extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,6 @@ class GeoreferencedTileGroup extends React.Component {
   componentDidMount() {
     overlay = new GeoreferencedOverlay(this.props.georeferencer_table_id);
     overlay.getImageIds().then(ids => {
-      console.log(ids);
       this.setState({image_ids: ids})
     });
 
@@ -16,13 +16,13 @@ class GeoreferencedTileGroup extends React.Component {
 
   render() {
     return (
-      <div>
+      <LayerGroup>
        {
          this.state.image_ids.map((id) => {
-           return <TileLayer key={id} url={this.props.tileserver_url} opacity={0.75} entity_id={id}></TileLayer>;
+           return <TileLayer key={id} url={this.props.tileserver_url} opacity={0.75} entity_id={id} errorTileUrl="" reuseTiles={true}></TileLayer>;
          })
        }
-     </div>
+     </LayerGroup>
     )
   }
 
