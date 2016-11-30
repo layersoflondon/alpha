@@ -13,7 +13,8 @@
   {name: "text", description: "Just text", suitability: :for_pins},
   {name: "dataset", description: "A dataset", suitability: :for_both},
   {name: "tileserver", description: "A tokenised tileserver URL", suitability: :for_overlays},
-  {name: "polygon", description: "Some polygon JSON", suitability: :for_overlays}
+  {name: "polygon", description: "Some polygon JSON", suitability: :for_overlays},
+  {name: "georeferencer_tileserver", description: "A georeferencer tileserver, with a token for the entity as well as x/y/z", suitability: :for_overlays}
 ].each do |type|
   puts "Creating content type #{type}"
   ContentType.create(type)
@@ -120,17 +121,17 @@ o = Overlay.create(
 o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
 o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
 
-# Tileserver example
+# Georeferencer example
 o = Overlay.create(
-  title: "Example georeferenced image",
+  title: "Example set of georeferenced images",
   lat: rand(51.450..51.550),
   lng: -(rand(0.110..0.140)),
   description: Faker::Hipster.sentence(3),
   date_from: date_from,
   date_to: date_to
 )
-o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
-o.content_entry.update_attribute(:tileserver_url, "http://georeferencer-0.tileserver.com/5678017802d5d23499ada6924aff9c417da0a58b/map/Wv38wpXB3wjXeoOWZSkar4/201611040912-enNuTa/polynomial/{z}/{x}/{y}.png")
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "georeferencer_tileserver"), metadata: {georeferencer_table_id: Rails.application.secrets.georeferencer_table_id})
+o.content_entry.update_attribute(:tileserver_url, "http://georeferencer-0.tileserver.com/5678017802d5d23499ada6924aff9c417da0a58b/map/{entity_id}/polynomial/{z}/{x}/{y}.png")
 
 # Example polygon overlays
 o = Overlay.create(

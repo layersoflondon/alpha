@@ -11,6 +11,8 @@ class ContentEntry < ActiveRecord::Base
   validates_with AnyPresenceValidator, fields: [:attached_file, :video_url, :content, :tileserver_url, :data]
   validates :content_type, presence: true
 
+  serialize :metadata, JSON
+
   mount_base64_uploader :attached_file, AttachedFileUploader
 
   def base64_attachment
