@@ -16,13 +16,13 @@ class GeoreferencedTileGroup extends React.Component {
 
   render() {
     return (
-      <LayerGroup>
+      <div>
        {
          this.state.image_ids.map((id) => {
            return <TileLayer key={id} url={this.props.tileserver_url} opacity={0.75} entity_id={id}></TileLayer>;
          })
        }
-     </LayerGroup>
+     </div>
     )
   }
 
