@@ -94,13 +94,15 @@ class MapView extends React.Component {
       );
     });
 
-    const overlays = this.state.visible_overlays.map(function(visible_overlay_id) {
-      var overlay_object = _.find(this.state.overlays, function(o){return o.id == visible_overlay_id});
+    const overlays = this.state.visible_overlays.map((visible_overlay_id) => {
+      var overlay_object = _.find(this.state.overlays, (overlay) => {
+        return overlay.id == visible_overlay_id;
+      });
 
       return (
         <OverlayContainer key={visible_overlay_id} overlay={overlay_object} />
       );
-    }.bind(this));
+    });
 
     const mapClasses = MapPinStore.getState().pin_form_enabled ? 'm-map add-pin-mode' : 'm-map';
 
