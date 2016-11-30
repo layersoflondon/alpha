@@ -66,8 +66,6 @@ class ContentEntry extends React.Component {
   }
 
   render () {
-    const icon = LoL.urls[this.props.content_entry.content_entry.resource.type];
-
     var text = "";
     if(this.state.show_text) {
       text = (
@@ -94,6 +92,8 @@ class ContentEntry extends React.Component {
         </div>
       );
     }else {
+      const icon = LoL.urls[this.props.content_entry.content_entry.resource.type];
+
       var link = (
         <a href="#" onClick={this.showResource.bind(this)}>
           <div className="icon">
