@@ -32,7 +32,6 @@ class SearchTab extends React.Component {
         <div className="results">
           <PinResultsContainer />
           <NoteResultsContainer />
-          <PlaceResultsContainer />
         </div>
       </div>
     );
