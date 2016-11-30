@@ -21,11 +21,13 @@
         const map_state = MapContainerStore.getState();
         const filter_state = FilterStateStore.getState();
 
-        const location = FilterStateStore.getState().centre_point;
+        // centre point of london
+        const location = {lat: 51.50201096474784, lng: -0.12342453002929686}; // FilterStateStore.getState().centre_point;
+        const radius   = 35000;//FilterStateStore.getState().search_radius
 
         const search_params = {
           location: location,
-          radius: FilterStateStore.getState().search_radius,
+          radius: radius,
           name: FilterStateStore.getState().search_query
         };
 
