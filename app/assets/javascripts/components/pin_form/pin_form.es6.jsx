@@ -6,7 +6,7 @@ class PinForm extends React.Component {
       const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
       this.setState(disabled_state);
 
-      Pin.getNearbyLocations(current_state.pin_form_lat_lng).then((nearby) => {
+      Places.reverseGeocode(current_state.pin_form_lat_lng).then((nearby) => {
         if(nearby.length) {
           current_state.location = nearby[0].location.long_name;
           current_state.location_object = nearby[0];
