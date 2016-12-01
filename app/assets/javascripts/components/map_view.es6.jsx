@@ -41,9 +41,7 @@ class MapView extends React.Component {
     const bounds   = _map.getBounds();
     const position = _map.getCenter();
     const sw = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
-    const ne = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
-
-    const northEast = bounds.getNorthEast();
+    const ne = {lat: bounds._northEast.lat, lng: bounds._northEast.lng};
 
     FilterStateActions.updateFilterCentreAndBounds({centre: {lat: position.lat, lng: position.lng}, bounds: {southWest: sw, northEast: ne}});
   }
@@ -52,7 +50,7 @@ class MapView extends React.Component {
     const _map   = this.refs.map.state.map;
     const bounds = _map.getBounds();
     const sw = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
-    const ne = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
+    const ne = {lat: bounds._northEast.lat, lng: bounds._northEast.lng};
 
     const northEast = bounds.getNorthEast();
     const radius    = Math.floor(northEast.distanceTo(_map.getCenter()));
