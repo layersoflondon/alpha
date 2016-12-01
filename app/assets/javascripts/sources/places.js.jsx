@@ -8,7 +8,7 @@ class Places {
         console.log(results);
         window.results = results;
 
-        const places = _.chain(results.slice(0, 10)).map((result) => {
+        const places = _.chain(results.slice(0, 5)).map((result) => {
           let pin_result = {
             pins: [{
               id: result.place_id,
