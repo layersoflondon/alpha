@@ -12,16 +12,18 @@ class OverlayResult extends React.Component {
   render () {
     return (
       <li onClick={this.toggleOverlayVisibility.bind(this)}>
-        <form>
-          <div className="form-group">
-            <div className="form-check">
-              <label>
-                <input className="form-check-input" type="checkbox" checked={this.state.visible} />
-              </label>
+        <span>
+          <form>
+            <div className="form-group">
+              <div className="form-check">
+                <label>
+                  <input className="form-check-input" type="checkbox" checked={this.state.visible} />
+                </label>
+              </div>
             </div>
-          </div>
-        </form>
-        <h3>{this.state.overlay.title}</h3>
+          </form>
+          <h3>{this.state.overlay.title}</h3>
+        </span>
       </li>
     );
   }

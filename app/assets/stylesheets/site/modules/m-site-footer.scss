@@ -1,0 +1,19 @@
+
+/* Site footer */
+
+.m-site-footer {
+	clear:both;
+  background:white;
+  padding:40px;
+}
+
+.m-site-footer .sponsors ul {
+  @include unlist;
+  @include clearfix;
+}
+
+.m-site-footer .sponsors ul li {
+  width:230px;
+  float:left;
+  margin-right:30px;
+}

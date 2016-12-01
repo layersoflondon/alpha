@@ -7,7 +7,6 @@
 }
 
 .m-search-panel {
-  /*   background:white; */
   padding:15px;
 }
 
@@ -22,10 +21,16 @@
   width:40%;
   padding-right:15px;
 }
+@supports (width:calc(100% - 464px)) {
+  .m-search-panel .free-text {
+    width:calc(100% - 464px);
+  }
+}
 
 .m-search-panel .m-date-filter {
   float:left;
   width:40%;
+  width: 290px;
 }
 
 .m-search-panel input[type="text"] {
@@ -33,25 +38,40 @@
   border:0;
   font-size: 1.6em;
   padding: 0.5em 0.7em 0.6em;
-
 }
+
+// Results popover
 
 .m-search-panel .results {
   position: absolute;
   background: white;
-  padding: 40px 30px;
-  top: 100px;
-  left: 50px;
-  width:60%;
+  padding: 20px;
+  top: 93px;
+  left: 21px;
+  width:300px;
+  z-index: 1001;
 }
 
-.m-search-panel .results .results-places,
+.m-search-panel .results:before {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-20px;
+  margin-left:-20px;
+  width:0;
+  height:0;
+  display:block;
+  border:0;
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-bottom:20px solid white;
+}
+
+/* .m-search-panel .results .results-places,
 .m-search-panel .results .results-pins,
 .m-search-panel .results .results-notes {
-  float:left;
   padding:0 10px;
-  width:50%;
-}
+} */
 
 .m-search-panel .results h3 {
   margin-top:0;
@@ -67,4 +87,9 @@
   font-weight: bold;
   @include transition(all .2s);
   margin-left:10px;
+  width: 150px;
+}
+
+.m-search-panel button:hover {
+  background:lighten(#008365, 10%);
 }

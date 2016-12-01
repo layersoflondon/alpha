@@ -3,26 +3,31 @@
 
 @mixin element-list {
 
-  & > li > a {
+  & > li > a,
+  & > li > span {
     @include transition(all .2s);
     display: block;
     padding:6px;
-    margin:-6px -6px -6px -38px;
-    padding-left: 38px;
+    padding-left: 35px;
   }
 
-  & > li > a:hover {
-    background:#eee;
+  & > li > a:hover,
+  & > li > span:hover {
+    background:lighten($lol-mint, 35%);
   }
 
   li {
-    margin-bottom: 1em;
-    padding-left: 30px;
+    padding:0;
+    margin-bottom: 0.3em;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
   }
 
   .icon {
     float:left;
-    margin: 0 0 0 -10px;
+    margin: -6px 0 0 -25px;
     padding-right: 10px;
     font-size: 1.6em;
   }
@@ -30,6 +35,7 @@
   form {
     float:left;
     margin-left: -30px;
+    margin-top: 7px;
   }
 
   h3 {

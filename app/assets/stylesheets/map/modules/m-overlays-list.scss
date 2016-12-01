@@ -11,14 +11,34 @@
 .m-overlays-list .overlays-results {
   @include unlist;
   @include element-list;
-}
-
-.m-overlays-list .overlays-results {
   position: absolute;
   background: white;
-  padding: 40px;
-  top: 100px;
-  right: 50px;
+  top: 93px;
+  right: 21px;
+  padding: 20px;
+}
+
+.m-overlays-list .overlays-results:before {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-20px;
+  margin-left:-20px;
+  width:0;
+  height:0;
+  display:block;
+  border:0;
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-bottom:20px solid white;
+}
+
+.m-overlays-list .overlays-results form {
+  height: 0;
+}
+
+.m-overlays-list .overlays-results h3 {
+  color:$lol-navy;
 }
 
 .m-overlays-list .show-overlays {
@@ -30,4 +50,10 @@
   padding:30px 10px 10px 10px;
   text-align:center;
   cursor:pointer;
+  @include transition(all .2s);
+  background:$lol-navy;
+}
+
+.m-overlays-list .show-overlays:hover {
+  background:lighten($lol-navy, 10%);
 }
