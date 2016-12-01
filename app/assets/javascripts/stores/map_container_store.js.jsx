@@ -4,12 +4,13 @@
   */
   class MapContainerStore {
     constructor() {
-      this.lat  = 51.5353284;
-      this.lng  = 0.1389512;
+      this.lat  = 51.50201096474784;
+      this.lng  = -0.12342453002929686;
       this.zoom = 13;
       this.searching = false;
       this.places = [];
       this.overlays = [];
+      this.show_overlays = false;
       this.visible_overlays = [];
       this.collections = [];
       this.markers = [];
@@ -27,6 +28,7 @@
         onUpdateOverlays: MapContainerActions.UPDATE_OVERLAYS,
         onUpdateNotes: MapContainerActions.UPDATE_NOTES,
         onUpdateCollections: MapContainerActions.UPDATE_COLLECTIONS,
+        onToggleShowOverlays: MapContainerActions.TOGGLE_SHOW_OVERLAYS,
         onToggleOverlayVisibility: MapContainerActions.TOGGLE_OVERLAY_VISIBILITY,
         onAddPin: MapContainerActions.ADD_PIN,
         onAddMarker: MapContainerActions.ADD_MARKER
@@ -68,6 +70,10 @@
     onUpdatePlaces(places) {
       this.searching = false;
       this.places    = places;
+    }
+
+    onToggleShowOverlays() {
+      this.show_overlays = !this.show_overlays;
     }
 
     onUpdateOverlays(overlays) {

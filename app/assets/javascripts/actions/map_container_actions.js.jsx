@@ -115,6 +115,10 @@
       return notes;
     }
 
+    toggleShowOverlays() {
+      return true;
+    }
+
     toggleOverlayVisibility(overlay_id) {
       return overlay_id;
     }
