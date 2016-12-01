@@ -1,6 +1,5 @@
 class Places {
   static getNearbyLocations(search_params) {
-    console.log(search_params);
 
     const places_search = new google.maps.places.PlacesService(document.createElement('div'));
 

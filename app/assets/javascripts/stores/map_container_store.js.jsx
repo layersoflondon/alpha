@@ -90,13 +90,22 @@
     }
 
     onToggleOverlayVisibility(overlay_id) {
-      var overlay_ids = this.visible_overlays.slice();
-      var current_index = overlay_ids.indexOf(overlay_id);
+      let overlay_ids = this.visible_overlays.slice();
+      let current_index = overlay_ids.indexOf(overlay_id);
 
       if( current_index > -1 ) {
         overlay_ids.splice(current_index, 1);
       }else {
         overlay_ids.push(overlay_id);
+        let overlay = _.find(this.overlays, (overlay) => {return overlay.id == overlay_id});
+
+        /*
+         focus the overlay after a short timeout to allow the MapContainerAction's
+         dispatcher enough time to complete before firing the MapStateAction's event
+         */
+        setTimeout(() => {
+          MapStateActions.focusPlace(overlay);
+        }, 100);
       }
 
       this.visible_overlays = overlay_ids;
