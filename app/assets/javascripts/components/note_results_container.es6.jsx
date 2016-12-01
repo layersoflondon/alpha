@@ -19,7 +19,13 @@ class NoteResultsContainer extends React.Component {
   }
 
   render () {
-    var notes_label = this.state.searching ? "Searching for notes..." : "Notes";
+    let notes_label = "Notes";
+
+    if(this.state.searching) {
+      notes_label = "Searching for notes...";
+    }else if(!this.state.searching && this.state.notes.length==0) {
+      notes_label = "No notes found";
+    }
 
     return (
       <div className="results-notes">

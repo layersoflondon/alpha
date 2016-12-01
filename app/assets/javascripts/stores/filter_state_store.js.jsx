@@ -6,17 +6,17 @@
     constructor() {
       this.advanced_filters_visible = false;
       this.suppress_update_results_event = false;
-      this.search_query = '';
-      this.centre_point = {};
-      this.search_bounds = {};
+      this.search_query  = '';
+      this.centre_point  = {lat: 51.5353284, lng: 0.1389512};
+      this.search_bounds = {southWest: {lat: 51.50211782162702, lng: -0.03398895263671874}, northEast: {lat: 51.50211782162702, lng: -0.03398895263671874}};
       this.search_radius = 10000; //set initial radius to 10km
 
       this.bindListeners({
-        onUpdateSearchQuery:     FilterStateActions.UPDATE_SEARCH_QUERY,
-        onToggleAdvancedFilters: FilterStateActions.TOGGLE_ADVANCED_FILTERS,
-        onUpdateFilterAttribute: FilterStateActions.UPDATE_FILTER_ATTRIBUTE,
-        onUpdateFilterCentre:    FilterStateActions.UPDATE_FILTER_CENTRE,
-        onUpdateFilterBounds:    FilterStateActions.UPDATE_FILTER_BOUNDS
+        onUpdateSearchQuery:           FilterStateActions.UPDATE_SEARCH_QUERY,
+        onToggleAdvancedFilters:       FilterStateActions.TOGGLE_ADVANCED_FILTERS,
+        onUpdateFilterAttribute:       FilterStateActions.UPDATE_FILTER_ATTRIBUTE,
+        onUpdateFilterCentreAndBounds: FilterStateActions.UPDATE_FILTER_CENTRE_AND_BOUNDS,
+        onUpdateFilterBounds:          FilterStateActions.UPDATE_FILTER_BOUNDS
       })
     }
 
@@ -32,12 +32,12 @@
     }
 
     onUpdateFilterAttribute() {
-      console.log("onUpdateFilterAttribute called", arguments);
       this.suppress_update_results_event = false;
     }
 
-    onUpdateFilterCentre(centre_point) {
-      this.centre_point = centre_point;
+    onUpdateFilterCentreAndBounds(new_bounds) {
+      this.centre_point  = new_bounds.centre;
+      this.search_bounds = new_bounds.bounds;
 
       this.suppress_update_results_event = false;
     }

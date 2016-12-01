@@ -24,6 +24,10 @@ class MapView extends React.Component {
 
     // map view (position, focussed marker)
     MapStateStore.listen(this.mapViewStateChanged);
+
+    setTimeout(() => {
+      this.handleZoomed({});
+    }, 100);
   }
 
   componentWillUnmount() {
@@ -33,9 +37,15 @@ class MapView extends React.Component {
   }
 
   handleMoved(event) {
-    const position = this.refs.map.state.map.getCenter();
+    const _map     = this.refs.map.state.map;
+    const bounds   = _map.getBounds();
+    const position = _map.getCenter();
+    const sw = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
+    const ne = {lat: bounds._southWest.lat, lng: bounds._southWest.lng};
 
-    FilterStateActions.updateFilterCentre({lat: position.lat, lng: position.lng});
+    const northEast = bounds.getNorthEast();
+
+    FilterStateActions.updateFilterCentreAndBounds({centre: {lat: position.lat, lng: position.lng}, bounds: {southWest: sw, northEast: ne}});
   }
 
   handleZoomed(event) {
@@ -84,18 +94,21 @@ class MapView extends React.Component {
       );
     });
 
-    const overlays = this.state.visible_overlays.map(function(visible_overlay_id) {
-      var overlay_object = _.find(this.state.overlays, function(o){return o.id == visible_overlay_id});
+    const overlays = this.state.visible_overlays.map((visible_overlay_id) => {
+      var overlay_object = _.find(this.state.overlays, (overlay) => {
+        return overlay.id == visible_overlay_id;
+      });
 
       return (
         <OverlayContainer key={visible_overlay_id} overlay={overlay_object} />
       );
-    }.bind(this));
+    });
 
     const mapClasses = MapPinStore.getState().pin_form_enabled ? 'm-map add-pin-mode' : 'm-map';
 
-    this.map = <Map className={mapClasses} center={position} zoom={this.state.zoom} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
+    this.map = <Map className={mapClasses} center={position} zoom={this.state.zoom} zoomControl={false} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
+                 <ZoomControl position='bottomleft' />
                  {note_marker_containers}
                  {pin_marker_containers}
                  {overlays}

@@ -14,11 +14,24 @@
       }
     }
 
-    fetchNearbyResults(latLng) {
+    fetchNearbyResults() {
       return (dispatch) => {
         dispatch();
 
-        Places.getNearbyLocations(latLng).then((results) => {
+        const map_state = MapContainerStore.getState();
+        const filter_state = FilterStateStore.getState();
+
+        // centre point of london
+        const location = {lat: 51.50201096474784, lng: -0.12342453002929686}; // FilterStateStore.getState().centre_point;
+        const radius   = 35000;//FilterStateStore.getState().search_radius
+
+        const search_params = {
+          location: location,
+          radius: radius,
+          name: FilterStateStore.getState().search_query
+        };
+
+        Places.getNearbyLocations(search_params).then((results) => {
           return this.updatePins(results);
         }).catch((error) => {
           console.log("There was an error fetching the near by places...", error);
@@ -42,7 +55,11 @@
     }
 
     updateCoordinates(lat, lng) {
-      return {lat: lat, lng: lng};
+      if(lat && lng) {
+        return {lat: lat, lng: lng};
+      }
+
+      return false;
     }
 
     updateMarkers(markers) {
@@ -67,7 +84,12 @@
       we need a flattened array of pins - _.map to return the nested array [[Pin, Pin], [Pin]] and .flatten them out...
       */
 
-      const pins = _.chain(results).map(function(result){return result.pins}).flatten().value();
+      const pins = _.chain(results).map(
+        (result) => {
+          return result.pins;
+        }
+      ).flatten().value();
+
       return pins;
     }
 
@@ -85,7 +107,7 @@
 
     updateNotes(markers) {
       const notes = _.chain(markers).map(
-        function(marker){
+        (marker) => {
           return marker.pins;
         }
       ).flatten().value();
@@ -93,12 +115,12 @@
       return notes;
     }
 
-    toggleOverlayVisibility(overlay_id) {
-      return overlay_id;
+    toggleShowOverlays() {
+      return true;
     }
 
-    submitForm(pin_data) {
-      console.log("MapContainerActions submitForm()");
+    toggleOverlayVisibility(overlay_id) {
+      return overlay_id;
     }
 
     addPin(pin_data) {

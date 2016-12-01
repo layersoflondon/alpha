@@ -11,12 +11,10 @@
     <%= csrf_meta_tags %>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-    <% if user_signed_in? %>
-      <meta name="user-id" content="<%= current_user.try(:id) %>">
-    <% end %>
+    <%= render partial: 'global/meta_tags' %>
 
     <script src="https://use.fontawesome.com/1eb5465a6e.js"></script>
-    
+
 </head>
 <body>
 

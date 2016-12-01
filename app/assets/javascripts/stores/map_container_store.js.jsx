@@ -4,12 +4,13 @@
   */
   class MapContainerStore {
     constructor() {
-      this.lat  = 51.5353284;
-      this.lng  = 0.1389512;
+      this.lat  = 51.50201096474784;
+      this.lng  = -0.12342453002929686;
       this.zoom = 13;
       this.searching = false;
       this.places = [];
       this.overlays = [];
+      this.show_overlays = false;
       this.visible_overlays = [];
       this.collections = [];
       this.markers = [];
@@ -27,6 +28,7 @@
         onUpdateOverlays: MapContainerActions.UPDATE_OVERLAYS,
         onUpdateNotes: MapContainerActions.UPDATE_NOTES,
         onUpdateCollections: MapContainerActions.UPDATE_COLLECTIONS,
+        onToggleShowOverlays: MapContainerActions.TOGGLE_SHOW_OVERLAYS,
         onToggleOverlayVisibility: MapContainerActions.TOGGLE_OVERLAY_VISIBILITY,
         onAddPin: MapContainerActions.ADD_PIN,
         onAddMarker: MapContainerActions.ADD_MARKER
@@ -34,6 +36,8 @@
     }
 
     onFetchSearchResults() {
+      this.searching = true;
+
       this.overlays = [];
       this.places = [];
       this.notes  = [];
@@ -45,23 +49,31 @@
     }
 
     onUpdateCoordinates(latlng) {
-      this.lat = latlng.lat;
-      this.lng = latlng.lng;
+      if(latlng) {
+        this.lat = latlng.lat;
+        this.lng = latlng.lng;
+      }else {
+        return false;
+      }
     }
 
     onUpdateMarkers(markers) {
-      this.markers = markers;
       this.searching = false;
+      this.markers = markers;
     }
 
     onUpdatePins(pins) {
-      this.pins = pins;
       this.searching = false;
+      this.pins = pins;
     }
 
     onUpdatePlaces(places) {
-      this.places    = places;
       this.searching = false;
+      this.places    = places;
+    }
+
+    onToggleShowOverlays() {
+      this.show_overlays = !this.show_overlays;
     }
 
     onUpdateOverlays(overlays) {
@@ -73,8 +85,8 @@
     }
 
     onUpdateNotes(notes) {
-      this.notes = notes;
       this.searching = false;
+      this.notes = notes;
     }
 
     onToggleOverlayVisibility(overlay_id) {
