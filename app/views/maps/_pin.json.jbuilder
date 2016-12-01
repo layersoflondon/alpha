@@ -1,7 +1,7 @@
 json.id pin.id
 json.title pin.title
 json.pinned_on_date pin.created_at.strftime("#{pin.created_at.day.ordinalize} %b %Y")
-json.location "Dagenham"
+json.location pin.location
 json.position do
   json.lat pin.lat
   json.lng pin.lng
