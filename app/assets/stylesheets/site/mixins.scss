@@ -1,6 +1,18 @@
 
 /* Mixins */
 
+@mixin button {
+  padding: 0.4em 1em 0.48em;
+  margin-top: 0.6em;
+  margin-left: -4px;
+  display: inline-block;
+  border-radius: 100px;
+  background: #35f5c8;
+  border: 0;
+  color: #0e5645;
+  text-transform: uppercase;
+}
+
 @mixin element-list {
 
   & > li > a {

@@ -3,17 +3,49 @@
 
 .m-site-footer {
 	clear:both;
-  background:white;
-  padding:40px;
+  background:$lol-green;
+  @include clearfix;
+  text-align:center;
+}
+
+.m-site-footer .sponsors {
+  padding:80px 80px 0 80px;
 }
 
 .m-site-footer .sponsors ul {
   @include unlist;
   @include clearfix;
+  width:100%;
 }
 
 .m-site-footer .sponsors ul li {
-  width:230px;
-  float:left;
-  margin-right:30px;
+  display:inline-block;
+  margin-left:-4px;
+  padding:0 30px 80px;
+  max-width:33.333333%;
+}
+
+.m-site-footer .sponsors ul li img {
+  opacity:0.6;
+  width:360px;
+  max-width:100%;
+
+}
+
+.m-site-footer .footer-navigation {
+  clear:both;
+  padding-bottom:80px;
+}
+
+.m-site-footer .footer-navigation a {
+  color:$lol-text-green;
+}
+
+.m-site-footer .footer-navigation ul {
+  @include unlist;
+}
+
+.m-site-footer .footer-navigation li {
+  display:inline-block;
+  margin:0 15px;
 }

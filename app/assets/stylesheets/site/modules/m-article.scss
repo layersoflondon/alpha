@@ -1,0 +1,199 @@
+
+/* Article */
+
+.m-article {
+
+  font-size: 18.1px;
+  line-height: 1.8;
+  @include mq(tablet) {
+    font-size: 16.1px;
+  }
+  @include mq(smartphone) {
+    font-size: 14.1px; 
+  }
+
+  ul,
+  ol,
+  blockquote {
+    margin: 0;
+    padding: 0;
+  }
+  /* Typography */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight:500; // Questionnable
+  }
+  h1 {
+    margin: 1.2em 0 0.6em 0;
+    font-size: 2.5em;
+  }
+  h2 {
+    margin: 1.2em 0 0 0;
+    font-size: 2em;
+  }
+  h3 {
+    margin: 1.2em 0 0 0;
+    font-size: 1.5em;
+  }
+  h4 {
+    margin: 1.2em 0 0 0;
+    font-size: 1em;
+    color: $lol-mint;
+  }
+  h5 {
+    margin: 1.2em 0 0 0;
+    font-size: .9em;
+    text-transform: uppercase;
+  }
+  h6 {
+    margin: 1.2em 0 0 0;
+    font-size: .8em;
+    text-transform: uppercase;
+    opacity: .9;
+  }
+  p,
+  ol,
+  ul,
+  table,
+  pre,
+  dd {
+    margin: 1em 0;
+  }
+  ol,
+  ul,
+  blockquote,
+  pre {
+    margin-left: 1em;
+  }
+  ol,
+  ul {
+    list-style-position: inside;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 1.8em;
+  }
+  li {
+    margin-bottom:0.5em;
+  }
+  ol ol,
+  ul ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.5em;
+    list-style-type: circle;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  ol ol {
+    list-style-type: lower-latin;
+  }
+  a,
+  a:visited {
+    color:$lol-text-green;
+    @include transition(color .2s);
+  }
+  a:hover {
+    color: lighten($lol-text-green, 10%);
+  }
+  blockquote {
+    padding: 5px 25px 5px 0;
+  }
+  blockquote p {
+    padding-left: 25px;
+    border-left: 2px solid #eee;
+    color: $lol-text-green;
+    font-size: 1.4em;
+    font-weight:200;
+  }
+  /* Table Styling */
+  table {
+    //-top: 1px solid #b4b4b4;
+    //border-left: 1px solid #b4b4b4;
+  }
+  table th {
+    font-weight: 500;
+    border-bottom: 1px solid #bbb;
+  }
+  table th,
+  table td {
+    padding: 5px 7px;
+    //border-right: 1px solid #b4b4b4;
+    //border-bottom: 1px solid #b4b4b4;
+  }
+  /* Definition List */
+  dt {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+  }
+  dd {
+    padding: 0;
+  }
+  b, strong {
+    font-weight:700;
+  }
+
+  form label {
+    width: 200px - 4px;
+    display: inline-block;
+  }
+
+  form input {
+    display: inline-block;
+    vertical-align: baseline;
+    height: 44px;
+    padding: 4px 12px 0;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  form .form-group {
+    margin-bottom: 1.25em;
+  }
+  form button {
+    margin-left: 200px;
+    text-align: left;
+    padding: 0.4775em 1.25em 0.59em;
+    color: #ef192d;
+    border: 0;
+    border-radius: 0;
+    background-color: $lol-green;;
+    text-decoration: none;
+    display: inline-block;
+    @include transition(color 0.2s, background 0.2s);
+    font-size: 28px;
+    @include mq(smartphone) {
+      margin-left:0;
+    }
+  }
+
+  .newsletter-error-messages {
+    padding: 20px;
+    border-radius: 6px;
+    background: #DB0303;
+    padding: 10px 14px;
+    background: lighten(#DB0303, 50%);
+    margin: 1em 0;
+    color: #DB0303;
+  }
+  .newsletter-error-messages li {
+    list-style: none;
+    padding:0;
+  }
+  .newsletter-error-messages li:last-child {
+    margin-bottom:0;
+  }
+  form h2:first-child {
+    font-size:24px;
+    font-weight:200;
+  }
+
+}

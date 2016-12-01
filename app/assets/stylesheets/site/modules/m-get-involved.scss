@@ -3,11 +3,11 @@
 
 .m-get-involved {
   clear:both;
-  padding:1.7em
+  @include clearfix;
 }
 
 .m-get-involved > div {
-  padding: 5.5em;
+  padding: 80px;
   float:left;
 }
 
@@ -20,17 +20,7 @@
 }
 
 .m-get-involved a {
-  padding: 0.3em 1em 0.5em;
-  margin-top: 0.6em;
-  margin-left: -4px;
-  display: inline-block;
-  /* letter-spacing: 1px; */
-  border-radius: 100px;
-  background: #35f5c8;
-  border: 0;
-  color: #0e5645;
-  /* font-weight: 700; */
-  text-transform: uppercase;
+  @include button;
 }
 
 .m-get-involved h2 {
@@ -40,6 +30,5 @@
 }
 
 .m-get-involved h3 {
-  color:#86c72f;
-
+  color:$lol-text-green;
 }

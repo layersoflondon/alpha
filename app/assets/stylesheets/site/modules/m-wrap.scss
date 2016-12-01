@@ -1,0 +1,11 @@
+
+/* Wrap */
+
+.m-wrap {
+  clear:both;
+  @include clearfix;
+}
+
+.m-wrap--green {
+	background:lighten($lol-green, 25%);
+}

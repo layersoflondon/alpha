@@ -1,0 +1,29 @@
+
+/* Blog highlights */
+
+.m-blog-highlights {
+  padding: 80px;
+  float:left;
+  width:50%;
+}
+
+.m-blog-highlights h3 {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight:500;
+  margin-top:0;
+}
+
+.m-blog-highlights h4 {
+  font-size: 2em;
+  max-width:500px;
+  color:$lol-text-green;
+}
+
+.m-blog-highlights p {
+  max-width:500px;
+}
+
+.m-blog-highlights a.button {
+  @include button;
+}

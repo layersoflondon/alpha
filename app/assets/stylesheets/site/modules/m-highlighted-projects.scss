@@ -1,0 +1,30 @@
+
+/* Highlighted projects */
+
+.m-highlighted-projects {
+  padding: 80px;
+  @include clearfix;
+}
+
+.m-highlighted-projects h3 {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight:500;
+  margin-top:0;
+}
+
+.m-highlighted-projects ul {
+  @include unlist;
+}
+
+.m-highlighted-projects li {
+  width:25%;
+  float:left;
+  padding-right:10px;
+}
+
+.m-highlighted-projects li a {
+  display:block;
+  height:150px;
+  background:white;
+}
