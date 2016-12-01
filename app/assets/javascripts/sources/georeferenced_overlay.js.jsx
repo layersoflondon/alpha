@@ -4,17 +4,39 @@ class GeoreferencedOverlay {
     this.tableId = tableId;
   }
 
-  getImageIds() {
+  getImageData() {
     var tableId = this.tableId;
     return new Promise(function(resolve, reject) {
-      let query = `select georeferencer_id from ${tableId} where status = 'georeferenced'`;
+      let query = `select georeferencer_id, center, south_west, north_east from ${tableId} where status = 'georeferenced'`;
       let data = {
         sql: query,
         key: LoL.secrets.google_maps_api_secret
       };
       let url = `https://www.googleapis.com/fusiontables/v2/query`;
       $.get(url, data).done((response) => {
-        resolve(response.rows.map((idArray) => { return idArray[0] }));
+        //the response looks like this:
+        //{
+        //  columns: [
+        //  "foo",
+        //  "bar",
+        //  "baz"
+        //  ],
+        //  rows: [
+        //    [
+        //      "foo1",
+        //      "bar1",
+        //      "baz1"
+        //    ],
+        //    [
+        //      "foo2",
+        //      "bar2",
+        //      "baz2"
+        //    ]
+        //  ]
+        //
+        //}
+        let cols = response.columns;
+        resolve(response.rows.map((row) => { return _.zipObject(cols, row) }));
       }).fail((response) => {
         reject(response);
       })
