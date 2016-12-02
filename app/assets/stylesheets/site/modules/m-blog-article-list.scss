@@ -1,0 +1,31 @@
+
+/* Blog article list */
+
+.m-blog-article-list {
+  max-width:850px;
+  padding:80px;
+  margin:0 auto;
+}
+
+.m-blog-article-list ul {
+  @include unlist;
+}
+
+.m-blog-article-list a p {
+  color: #3B4642;
+}
+
+.m-blog-article-list h3 {
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.m-blog-article-list li {
+  margin-bottom: 2.7em;
+}
+
+.m-blog-article-list li > a.button {
+  @include button;
+  font-size: 0.7em;
+  line-height: 1.4;
+}

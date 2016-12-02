@@ -21,4 +21,13 @@
 .m-main-navigation li a {
   color:white;
   font-weight:bold;
+  position:relative;
+  bottom:0;
+  @include transition(all .2s);
+  border-bottom: 2px solid transparent;
+}
+
+.m-main-navigation li a:hover {
+  bottom:3px;
+  border-bottom: 2px solid white;
 }
