@@ -19,6 +19,7 @@
       this.collections = '';
       this.location = '';
       this.pin_form_visible = false;
+      this.main_form_confirmed = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
       this.pin_type = null;
@@ -41,8 +42,18 @@
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
-          onSetError: MapPinActions.SET_ERROR
+          onSetError: MapPinActions.SET_ERROR,
+          onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
+          onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
+    }
+
+    onConfirmMainForm() {
+      this.main_form_confirmed = true;
+    }
+
+    onUnconfirmMainForm() {
+      this.main_form_confirmed = false;
     }
 
     onToggleAdvancedDates() {
@@ -82,6 +93,10 @@
     onTogglePinForm(visible) {
       this.pin_form_enabled = visible;
       this.pin_form_visible = visible;
+
+      if(!visible) {
+        this.setDefaultState();
+      }
     }
 
     onResetForm() {

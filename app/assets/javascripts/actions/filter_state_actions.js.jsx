@@ -8,6 +8,10 @@
       return value;
     }
 
+    updateSearchDateRange(range) {
+      return range;
+    }
+
     updateFilterAttribute(attribute, value) {
       return {attribute: attribute, value: value};
     }

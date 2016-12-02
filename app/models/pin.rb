@@ -10,8 +10,7 @@ class Pin < ActiveRecord::Base
   has_many :collections, through: :collection_pins
 
   validates :title, :lat, :lng, :date_from, :user, presence: true
-
-  attr_accessor :location
+  
   def coords
     {lat: lat, lng: lng}
   end

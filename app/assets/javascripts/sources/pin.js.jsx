@@ -11,7 +11,6 @@ class Pin {
   }
 
   static post(state) {
-    var fromDate = null;
     var fromDate = moment(`${state.date_from_year}-${state.date_from_month == "" ? 1 : state.date_from_month}-${state.date_from_day == "" ? 1 : state.date_from_day}`).format();
     var toDate = null;
     if (state.date_to_year !== "" || state.date_to_month !== "" || state.date_to_day !== "") {
@@ -28,7 +27,7 @@ class Pin {
         title: state.title,
         description: state.description,
         //   geocoding TODO - fix up
-        location: state.location,
+        location: state.location_object.location.long_name,
         date_from: fromDate,
         date_to: toDate,
         lat: state.pin_form_lat_lng.lat,

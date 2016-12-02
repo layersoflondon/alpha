@@ -28,6 +28,10 @@
       return true;
     }
 
+    unconfirmMainForm() {
+      return true;
+    }
+
     resetForm() {
       return true;
     }

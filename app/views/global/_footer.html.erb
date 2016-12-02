@@ -1,15 +1,19 @@
-<footer class="m-site-footer">
+<% if content_for?(:footer) %>
+    <%= yield(:footer) %>
+<% else %>
+    <footer class="m-site-footer">
 
-    <div class="sponsors">
-        <ul>
-            <li><a href="#"><%= image_tag("logo-sas.png") %></a></li>
-            <li><a href="#"><%= image_tag("logo-lottery.png") %></a></li>
-            <li><a href="#"><%= image_tag("logo-ihr.png") %></a></li>
-        </ul>
-    </div>
-    
-    <nav class="footer-navigation">
-        <%= menu_for @footer_navigation_menu %>
-    </nav>
+        <div class="sponsors">
+            <ul>
+                <li><a href="#"><%= image_tag("logo-sas.png") %></a></li>
+                <li><a href="#"><%= image_tag("logo-lottery.png") %></a></li>
+                <li><a href="#"><%= image_tag("logo-ihr.png") %></a></li>
+            </ul>
+        </div>
 
-</footer>
+        <nav class="footer-navigation">
+            <%= menu_for @footer_navigation_menu %>
+        </nav>
+
+    </footer>
+<% end %>

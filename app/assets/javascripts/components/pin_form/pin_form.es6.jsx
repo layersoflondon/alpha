@@ -22,12 +22,14 @@ class PinForm extends React.Component {
 
   confirmMainForm(event) {
     event.preventDefault();
-    this.setState({main_form_confirmed: true});
+    MapPinActions.confirmMainForm();
+    //this.setState({main_form_confirmed: true});
   }
 
   showMainForm(event) {
     event.preventDefault();
-    this.setState({main_form_confirmed: false});
+    MapPinActions.unconfirmMainForm();
+    //this.setState({main_form_confirmed: false});
   }
 
   savePinData(event) {
@@ -43,8 +45,7 @@ class PinForm extends React.Component {
   }
 
   hidePinForm() {
-    const current_state = MapPinStore.getState();
-    MapPinActions.togglePinForm(!current_state.pin_form_visible);
+    MapPinActions.togglePinForm(false);
   }
 
   mainForm () {
