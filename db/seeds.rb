@@ -130,8 +130,8 @@ o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.e
 # Georeferencer example
 o = Overlay.create(
   title: "RAF Photos",
-  lat: rand(51.450..51.550),
-  lng: -(rand(0.110..0.140)),
+  lat: 51.543666143631555,
+  lng: 0.12016296386718749,
   description: Faker::Hipster.sentence(3),
   date_from: DateTime.parse('1942-01-01')
 )
