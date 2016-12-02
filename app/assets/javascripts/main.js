@@ -1,15 +1,3 @@
-$(document).ready(function() {
-  	$('.range-slider').jRange({
-  		from: 1716,
-  		to: 2016,
-  		step: 1,
-  		scale: [1716,2016],
-  		format: '%s',
-  		width: 270,
-  		isRange : true
-  	});
-});
-
 // $( document ).ready(function() {
 //
 // 	$('.range-slider').jRange({
