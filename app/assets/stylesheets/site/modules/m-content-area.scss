@@ -6,3 +6,89 @@
   padding:80px;
   margin:0 auto;
 }
+
+.m-subnavigation {
+  float:left;
+  padding:80px 0 80px 80px;
+  width:30%;
+}
+
+.m-subnavigation + .m-content-area {
+  float:left;
+  width:70%;
+}
+
+
+
+
+/* Subnavigation */
+
+
+.m-subnavigation .subnavigation-toggle {
+  background:$red;
+  background:#adadad;
+  padding:6px;
+  color:white;
+  margin-bottom:1em;
+}
+
+.m-subnavigation .subnavigation-toggle:after {
+  content:"+";
+  float:right;
+  font-size: 2em;
+  line-height: 0.6;
+}
+
+.m-subnavigation ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.m-subnavigation li.is-current:before {
+  content: "";
+  border-radius: 200px;
+  background: #c1c1c1;
+  width: 10px;
+  height: 10px;
+  float: left;
+  margin-left: -18px;
+  margin-top:22px;
+}
+
+.m-subnavigation a {
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display:block;
+}
+
+.m-subnavigation > ul > li > a {
+  border-top: 1px solid #ddd;
+  padding:1em 0;
+}
+
+.m-subnavigation > ul > li:first-child > a {
+  border-top: 0;
+}
+
+// Second level
+
+.m-subnavigation ul ul {
+  padding-bottom: 0.5em;
+}
+
+.m-subnavigation ul ul > li:first-child a {
+  padding-top:0;
+}
+
+.m-subnavigation ul ul a {
+  padding: 0 1em 0.5em 0;
+  margin-left:1em;
+  color:black;
+}
+
+.m-subnavigation ul ul li.is-current:before {
+  margin-left: -2px;
+  margin-top: 7px;  
+}
