@@ -1,7 +1,7 @@
 class DateRange extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = FilterStateStore.getState();
   }
 
   updateDateRange(range) {
@@ -10,10 +10,10 @@ class DateRange extends React.Component {
 
   componentDidMount() {
     $('.range-slider').jRange({
-      from: 1716,
-      to: 2016,
+      from: this.state.date_from,
+      to: this.state.date_to,
       step: 1,
-      scale: [1716,2016],
+      scale: [this.state.date_from, this.state.date_to],
       format: '%s',
       width: 270,
       isRange : true,
@@ -22,11 +22,13 @@ class DateRange extends React.Component {
   }
 
   render () {
+    let value = `${this.state.date_from},${this.state.date_to}`;
+
     return (
       <div className="m-date-filter">
         <h2>Date range</h2>
 
-        <input type="hidden" className="range-slider" value="1460,2016" />
+        <input type="hidden" className="range-slider" value={value} />
       </div>
     );
   }

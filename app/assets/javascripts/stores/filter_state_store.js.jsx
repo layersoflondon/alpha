@@ -10,8 +10,8 @@
       this.centre_point  = {lat: 51.5353284, lng: 0.1389512};
       this.search_bounds = {southWest: {lat: 51.50211782162702, lng: -0.03398895263671874}, northEast: {lat: 51.50211782162702, lng: -0.03398895263671874}};
       this.search_radius = 10000; //set initial radius to 10km
-      this.date_from     = null;
-      this.date_to       = null;
+      this.date_from     = 1460;
+      this.date_to       = new Date().getFullYear();
 
       this.bindListeners({
         onUpdateSearchQuery:           FilterStateActions.UPDATE_SEARCH_QUERY,
