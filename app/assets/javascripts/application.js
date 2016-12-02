@@ -22,7 +22,6 @@
 
 //= require leaflet
 //= require vendor/react-leaflet
-//= require vendor/react-scribe-editor
 //= require moment
 
 //= require vendor/blueimp-helper

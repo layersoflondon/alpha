@@ -3,7 +3,7 @@ class GeoreferencedTileGroup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = Object.assign({},props,{image_data: []});
+    this.state = _.merge({},props,{image_data: []});
   }
 
   componentDidMount() {

@@ -40,7 +40,7 @@ class ContentEntry extends React.Component {
         type:   "text/html"
       };
 
-      Object.assign(video_object, yt_attrs);
+      _.merge(video_object, yt_attrs);
 
       gallery_objects.push(video_object);
 

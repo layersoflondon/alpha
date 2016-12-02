@@ -4,7 +4,7 @@ class Layers {
       constructor(props) {
         super(props);
 
-        this.state = Object.assign({},this.state,MapPinStore.getState());
+        this.state = _.merge({},this.state,MapPinStore.getState());
         this.stateChanged = this.stateChanged.bind(this);
       }
 
