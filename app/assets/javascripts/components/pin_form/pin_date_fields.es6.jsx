@@ -53,15 +53,15 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,31]'/>
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,12]' />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" />
           </div>
         </div>
         <div className="form-helper-text">

@@ -22,14 +22,17 @@ class PinForm extends React.Component {
 
   confirmMainForm(event) {
     event.preventDefault();
-    MapPinActions.confirmMainForm();
-    //this.setState({main_form_confirmed: true});
+
+    let form = $(event.target).closest('form').parsley();
+
+    if(form.validate()) {
+      MapPinActions.confirmMainForm();
+    }
   }
 
   showMainForm(event) {
     event.preventDefault();
     MapPinActions.unconfirmMainForm();
-    //this.setState({main_form_confirmed: false});
   }
 
   savePinData(event) {
@@ -75,7 +78,7 @@ class PinForm extends React.Component {
 
     return (
       <div className="m-add-pin" style={style}>
-        <form onSubmit={this.confirmMainForm.bind(this)}>
+        <form onSubmit={this.confirmMainForm.bind(this)} data-parsley-validate={true}>
           <h3>Add Pin</h3>
           <div className="form-content">
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>

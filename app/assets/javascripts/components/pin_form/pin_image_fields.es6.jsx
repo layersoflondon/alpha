@@ -9,4 +9,3 @@ class PinImageFields extends React.Component {
   }
 }
 PinImageFields = Layers.bindComponentToMapPinStore(PinImageFields);
-

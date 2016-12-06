@@ -37,4 +37,6 @@
 //= require_self
 //= require_tree .
 
+//= require parsley.min
+
 var alt = new Alt();

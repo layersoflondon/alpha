@@ -17,12 +17,15 @@
 @import "map/modules/m-pin-controls";
 @import "map/modules/m-update";
 @import "map/modules/m-add-pin";
+@import "map/modules/m-validations";
 
 @import "vendor/blueimp/*";
 
 @import "map/vendor/jquery.range";
 @import "map/vendor/leaflet";
 @import "map/vendor/react-scribe";
+
+@import "vendor/parsley";
 
 body {
   font-size:14px;

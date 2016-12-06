@@ -19,7 +19,7 @@ class PinAttachmentFields extends React.Component {
     return(
       <div className="form-group form-group-upload">
         <label>{this.props.title}</label>
-        <input type="file" name={this.props.field_name} onChange={this.updateAttachmentAttribute.bind(this)} />
+        <input type="file" name={this.props.field_name} onChange={this.updateAttachmentAttribute.bind(this)} data-parsley-required='true' />
       </div>
     );
   }

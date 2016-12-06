@@ -3,10 +3,9 @@
 <% end %>
 
 <%= content_for :javascript do %>
-<script src="//maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_maps_api_secret %>&libraries=places"></script>
+  <script src="//maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_maps_api_secret %>&libraries=places"></script>
 
-
-<script>
+  <script>
     LoL = {}; // FIXME: move to global JS
 
     LoL.contentTypes = <%= content_types_for_map.to_json.html_safe %>;
@@ -18,7 +17,7 @@
     LoL.urls.video = "<%= image_url('other.png') %>";
     LoL.urls.other = "<%= image_url('other.png') %>";
     LoL.urls.dataset = "<%= image_url('other.png') %>";
-    
+
     LoL.secrets = {};
     LoL.secrets.google_maps_api_secret = "<%= Rails.application.secrets.google_maps_api_secret %>";
   </script>

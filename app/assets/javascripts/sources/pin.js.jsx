@@ -11,10 +11,10 @@ class Pin {
   }
 
   static post(state) {
-    var fromDate = moment(`${state.date_from_year}-${state.date_from_month == "" ? 1 : state.date_from_month}-${state.date_from_day == "" ? 1 : state.date_from_day}`).format();
+    var fromDate = moment(`${state.date_from_year}-${state.date_from_month == "" ? 1 : state.date_from_month}-${state.date_from_day == "" ? 1 : state.date_from_day}`, ["YYYY-MM-DD", "YYYY-M-D"]).format();
     var toDate = null;
     if (state.date_to_year !== "" || state.date_to_month !== "" || state.date_to_day !== "") {
-      toDate = moment(`${state.date_to_year}-${state.date_to_month == "" ? 1 : state.date_to_month}-${state.date_to_day == "" ? 1 : state.date_to_day}`).format();
+      toDate = moment(`${state.date_to_year}-${state.date_to_month == "" ? 1 : state.date_to_month}-${state.date_to_day == "" ? 1 : state.date_to_day}`, ["YYYY-MM-DD", "YYYY-M-D"]).format();
     }
     //here's what Rails expects:
     // title: "foo", lat: 0, lng: 0, date_from: DateTime.now, user: User.first, pin_content_entry_attributes: {content_entry_attributes: {content_type: ContentType.first, tileserver_url: "foo"}}
