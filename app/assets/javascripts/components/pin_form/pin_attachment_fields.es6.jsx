@@ -10,7 +10,7 @@ class PinAttachmentFields extends React.Component {
 
 
     reader.onload = (reader_event) => {
-      MapPinActions.setAttachedFileField(reader_event.target.result);
+      MapPinActions.setAttachedFileField({file_name: name, file: reader_event.target.result});
     };
 
     reader.readAsDataURL(file);

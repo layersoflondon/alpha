@@ -40,7 +40,8 @@ class Pin {
             video_url: state.video_url,
             attribution: state.attribution,
             content_type_id: state.pin_type,
-            attached_file: state.attached_file
+            attached_file: state.attached_file,
+            file_name: state.file_name
           }
         }
       }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201165651) do
+ActiveRecord::Schema.define(version: 20161207164026) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20161201165651) do
     t.string   "tileserver_url",  limit: 255
     t.text     "metadata",        limit: 65535
     t.string   "attached_file",   limit: 255
+    t.string   "file_name",       limit: 255
   end
 
   add_index "content_entries", ["content_type_id"], name: "index_content_entries_on_content_type_id", using: :btree

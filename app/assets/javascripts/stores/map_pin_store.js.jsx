@@ -9,6 +9,7 @@
       this.description = '';
       this.link_url = '';
       this.attached_file = '';
+      this.file_name = '';
       this.video_url = '';
       this.date_from_day = '';
       this.date_from_month = '';
@@ -79,8 +80,9 @@
       this[pair[0]] = pair[1];
     }
 
-    onSetAttachedFileField(file) {
-      this.attached_file = file;
+    onSetAttachedFileField(file_object) {
+      this.attached_file = file_object.file;
+      this.file_name = file_object.file_name;
     }
 
     onEnablePinForm(enabled) {

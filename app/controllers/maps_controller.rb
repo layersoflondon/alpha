@@ -36,12 +36,9 @@ class MapsController < ApplicationController
     if @content_entry.attached_file.present?
       authorize @content_entry
 
-      options = {
-        disposition: :attachment
-      }
+      options = {disposition: :attachment}
 
-      # case 
-      options[:filename] = "#{@content_entry.id}.txt" if @content_entry.content_type.name=="text"
+      options[:filename] = "#{@content_entry.file_name}" if @content_entry.file_name.present?
 
       send_file(@content_entry.attached_file.path, options)
     else
