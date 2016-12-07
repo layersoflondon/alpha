@@ -39,4 +39,5 @@
 
 //= require parsley.min
 
+var LoL = {};
 var alt = new Alt();

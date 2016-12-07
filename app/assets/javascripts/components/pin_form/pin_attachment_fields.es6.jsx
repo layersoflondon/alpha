@@ -8,6 +8,7 @@ class PinAttachmentFields extends React.Component {
     var name   = file.name;
     var state_attribute = event.target.dataset.attribute;
 
+
     reader.onload = (reader_event) => {
       MapPinActions.setAttachedFileField(reader_event.target.result);
     };

@@ -6,8 +6,6 @@
   <script src="//maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_maps_api_secret %>&libraries=places"></script>
 
   <script>
-    LoL = {}; // FIXME: move to global JS
-
     LoL.contentTypes = <%= content_types_for_map.to_json.html_safe %>;
     LoL.urls = {};
     LoL.urls.text  = "<%= image_url('other.png') %>";

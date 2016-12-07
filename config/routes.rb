@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :maps, only: [:index, :show, :create], defaults: {format: :json} do
     collection do
       get 'search'
+      get 'download/:content_entry_id', action: :download
     end
   end
 
