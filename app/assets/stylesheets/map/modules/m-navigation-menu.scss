@@ -1,0 +1,18 @@
+
+/* Overlays list */
+
+.m-navigation-menu {
+	border: 2px solid red;
+	background: green;
+  float:right;
+  width:5%;
+  height: 100%;
+}
+
+.m-navigation {
+	display: none;
+}
+
+.m-navigation.is-visible {
+	display: block;
+}

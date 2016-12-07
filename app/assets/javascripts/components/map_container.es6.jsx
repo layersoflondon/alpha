@@ -35,7 +35,7 @@ class MapContainer extends React.Component {
       <div>
         <MapView />
 
-        <SideBar />
+        <SideBar menu={this.props.menu} />
 
         <AddPinControl />
 

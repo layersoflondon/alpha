@@ -3,7 +3,8 @@ class SideBar extends React.Component {
     return (
         <div className="m-sidebar">
 		        <SearchTab />
-		        <OverlayResultsContainer />
+            <NavigationMenu menu={this.props.menu} />
+            <OverlayResultsContainer />
         </div>
     );
   }
