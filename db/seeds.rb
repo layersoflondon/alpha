@@ -45,7 +45,8 @@ p = Pin.create!(
   lng: 0.08600234985351562,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 p.create_pin_content_entry!.create_content_entry!(content: "Photo in barking park", content_type: ContentType.for_pins.sample)
 
@@ -56,7 +57,8 @@ p = Pin.create(
   lng: 0.1328339,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 puts "Creating pin #{p.title}"
 p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
@@ -68,7 +70,8 @@ p = Pin.create(
   lng: 0.1601853,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 puts "Creating pin #{p.title}"
 p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
@@ -80,7 +83,8 @@ p = Pin.create(
   lng: 0.15101909637451172,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 p.create_pin_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.for_pins.sample)
 
@@ -91,7 +95,8 @@ p = Pin.create(
   lng: 0.1389512,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 p.create_pin_content_entry.create_content_entry!(content: "Goresbrook Park image", content_type: ContentType.for_pins.sample)
 
@@ -102,7 +107,8 @@ p = Pin.create(
   lng: 0.08600234985351562,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 p.create_pin_content_entry!.create_content_entry!(content: "Barking FC club badge", content_type: ContentType.for_pins.sample)
 p = Pin.create(
@@ -112,7 +118,8 @@ p = Pin.create(
   lng: 0.1588148,
   date_from: date_from,
   date_to:   date_to,
-  location: "Barking"
+  location: "Barking",
+  aasm_state: "accepted"
 )
 p.create_pin_content_entry!.create_content_entry!(content: "Dagenham & Redbridge FC Stadium", content_type: ContentType.for_pins.sample)
 
