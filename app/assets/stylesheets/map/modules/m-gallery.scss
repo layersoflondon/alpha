@@ -77,3 +77,7 @@
 .blueimp-gallery video {
   background: #000;
 }
+
+video[src$='audio=true'] {
+  display: block !important;
+}

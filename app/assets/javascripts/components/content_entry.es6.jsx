@@ -25,6 +25,7 @@ class ContentEntry extends React.Component {
       onclose: function() {
         let $container = $(this.container[0]);
         $container.removeClass(`${this.list[0].content_type}-content-type`);
+        let $slide = $container.find('.slide');
       },
       onslide: function(index, slide) {
         // add the content type to the slide container
@@ -44,7 +45,7 @@ class ContentEntry extends React.Component {
         and render a file download ui element, in place of a typical media gallery element
         */
         if(this.list[index].content_type.match(/text|dataset/)) {
-          let $slide = $(this.container.find('.slide')[0]);
+          let $slide = $container.find('.slide');
           let $slide_container = $slide.parent();
           $slide.removeClass('slide-loading').html('');
 
