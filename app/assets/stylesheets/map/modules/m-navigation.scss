@@ -5,6 +5,7 @@
   float:right;
   width:5%;
   height: 100%;
+  max-width: 68px;
 }
 
 .m-navigation {
@@ -35,12 +36,9 @@
   // Specific media query for when the menu no longer fits
   @media screen and (max-width:990px){
     display:block;
-    top: 20px;
-    right: 20px;
+    right: 0;
   }
   @include mq(smartphone) {
-    top: 13px;
-    right:15px;
   }
 }
 
