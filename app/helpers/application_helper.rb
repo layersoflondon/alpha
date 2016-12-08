@@ -22,7 +22,7 @@ module ApplicationHelper
     {
         className: item_class,
         link: item_path,
-        title: item.title.html_safe
+        title: item.title.gsub(/&#038;/, "&").html_safe
     }
   end
 end

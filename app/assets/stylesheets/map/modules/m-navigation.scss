@@ -1,0 +1,331 @@
+
+/* Overlays list */
+
+.m-navigation-menu {
+  float:right;
+  width:5%;
+  height: 100%;
+}
+
+.m-navigation {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease-in-out;
+}
+
+.m-navigation.is-visible {
+	display: block;
+  opacity: 0.9;
+  visibility: visible;
+  transition: opacity .25s ease-in-out;
+}
+
+// Navigation
+.c-hamburger {
+  position: fixed;
+  right: 12px;
+  top: 20px;
+  margin: 0;
+  padding: 10px;
+  color: white;
+  z-index: 1002;
+  cursor:pointer;
+  //background:transparentize(white, 0.9);
+  background: rgba(0, 0, 0, 0);
+  // Specific media query for when the menu no longer fits
+  @media screen and (max-width:990px){
+    display:block;
+    top: 20px;
+    right: 20px;
+  }
+  @include mq(smartphone) {
+    top: 13px;
+    right:15px;
+  }
+}
+
+.m-navigation {
+  position:fixed;
+  top:0;
+  left:0;
+  padding:10% 0 0 0;
+  margin:0;
+  overflow:auto;
+  height:100%;
+  max-height:100%;
+  width:100%;
+  text-align: center;
+  z-index: 1001;
+  background: #000;
+}
+
+.m-navigation.is-hidden {
+  display:none;
+}
+
+.main-navigation-list .nav-button {
+  padding: 5px 15px 6px;
+  margin: 0 auto;
+  border-radius: 64px;
+  border: 2px solid white;
+  @include transition(all .8s);
+  color:white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.main-navigation-list .nav-button:hover {
+  background:white;
+  text-decoration:none;
+  @include transition(all .2s);
+}
+
+.main-navigation-list {
+  font-size: 0.95em;
+  list-style:none;
+  padding:0;
+}
+
+.main-navigation-list a {
+  display:inline-block;
+  position:relative;
+  padding:3px 0;
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  font-size: 34px;
+  @include transition(all .2s);
+  @include mq(medium) {
+    font-size: 44px;
+  }
+  @include mq(smartphone) {
+    font-size: 28px;
+  }
+  @include mq(small-smartphone) {
+    padding:5px 0;
+    font-size: 22px;
+  }
+}
+
+.agent-platform-ios .main-navigation-list a {
+  @include mq(medium) {
+    font-size: 54px;
+  }
+  @include mq(smartphone) {
+    font-size: 28px;
+    padding:5px 0;
+  }
+  @include mq(small-smartphone) {
+    font-size: 22px;
+  }
+}
+
+.main-navigation-list a:hover {
+  color: $green;
+  text-decoration:none;
+}
+
+.main-navigation-list li a span {
+  margin-left: 9px;
+  background:transparent !important;
+}
+
+body.has-mobile-menu-open {
+  overflow:hidden;
+}
+
+.main-navigation-list li {
+  text-align:center;
+  display:block;
+  margin:0;
+}
+
+.main-navigation-list li.is-current a span {
+  padding: 3px 4px 4px;
+}
+
+.main-navigation-list > li > ul {
+  display:none;
+  padding:0;
+  margin:0;
+  margin-top: -7px;
+  margin-bottom:7px;
+  padding:0 20px;
+}
+
+.main-navigation-list > li > ul > li {
+  display:inline;
+  margin: 0 6px;
+}
+
+.main-navigation-list > li > ul > li > a {
+  padding: 6px 0 0;
+  font-size: 15px;
+}
+
+.main-navigation-list > li > ul > li > ul {
+  padding:0;
+}
+
+.main-navigation-list > li > ul > li > ul > li > a {
+/*  text-transform: none;
+  background:transparentize(black, 0.8);
+  padding-left:40px;
+  color:$teal; */
+}
+
+.sub-menu-action {
+  text-align:center;
+  background: purple;
+  color: $green;
+  padding: 8px 5px;
+  height: 22px;
+  width: 22px;
+  border-radius: 24px;
+  line-height: 0.3;
+  position: absolute;
+  left: 100%;
+  margin-left: 7px;
+  top: 8px;
+  display: inline;
+  font-size: 20px;
+}
+
+.sub-menu-action-close {
+  display:none;
+}
+
+.is-showing-children .sub-menu-action-close {
+  display:inline;
+}
+
+.is-showing-children .sub-menu-action-open {
+  display:none;
+}
+
+
+/* -----------------------------------------------------------------------------
+
+  HAMBURGER ICONS COMPONENT
+
+  ----------------------------------------------------------------------------- */
+
+// vars
+
+$button-width: 40px;                    // The width of the button area
+$button-height: 40px;                   // The height of the button area
+$bar-thickness: 2px;                    // The thickness of the button bars
+$button-pad: 10px;                      // The left/right padding between button area and bars.
+$button-bar-space: 4px;                // The spacing between button bars
+$button-transistion-duration: 0.3s;     // The transition duration
+
+/**
+ * Toggle Switch Globals
+ *
+ * All switches should take on the class `c-hamburger` as well as their
+ * variant that will give them unique properties. This class is an overview
+ * class that acts as a reset for all versions of the icon.
+ */
+
+ .c-hamburger {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: $button-width;
+  height: $button-height;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: background $button-transistion-duration;
+}
+
+.c-hamburger:focus {
+  outline: none;
+}
+
+.c-hamburger span {
+  display: block;
+  position: absolute;
+  top: ($button-height / 2) - ($bar-thickness / 2);
+  left: $button-pad;
+  right: $button-pad;
+  height: $bar-thickness;
+  background-color:white;
+}
+
+.c-hamburger span::before,
+.c-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: $bar-thickness;
+  background-color:white;;
+  content: "";
+}
+
+.c-hamburger span::before {
+  top: -$bar-thickness - $button-bar-space;
+}
+
+.c-hamburger span::after {
+  bottom: -$bar-thickness - $button-bar-space;
+}
+
+/**
+ * Style 2
+ *
+ * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
+ * down to center and transform into an "x".
+ */
+
+ .c-hamburger--htx span {
+  transition: background 0s $button-transistion-duration;
+}
+
+.c-hamburger--htx span::before,
+.c-hamburger--htx span::after {
+  transition-duration: $button-transistion-duration, $button-transistion-duration;
+  transition-delay: $button-transistion-duration, 0s;
+}
+
+.c-hamburger--htx span::before {
+  transition-property: top, transform, background-color;
+}
+
+.c-hamburger--htx span::after {
+  transition-property: bottom, transform, background-color;
+}
+
+/* active state, i.e. menu open */
+
+.c-hamburger--htx.is-active {
+
+}
+
+.c-hamburger--htx.is-active span {
+  background: none;
+}
+
+.c-hamburger--htx.is-active span::before {
+  top: 0;
+  @include transform(rotate(45deg));
+}
+
+.c-hamburger--htx.is-active span::after {
+  bottom: 0;
+  @include transform(rotate(-45deg));
+}
+
+.c-hamburger--htx.is-active span::before,
+.c-hamburger--htx.is-active span::after {
+  background:$green;
+  transition-delay: 0s, $button-transistion-duration;
+}

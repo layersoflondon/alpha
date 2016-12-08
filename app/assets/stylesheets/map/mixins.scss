@@ -1,6 +1,20 @@
 
 /* Mixins */
 
+@mixin wrapper-widths {
+  padding: 0 100px;
+  @include mq(medium) {
+    padding: 0 60px;
+  }
+  @include mq(smartphone) {
+    padding: 0 15px;
+  }
+  & > div {
+    margin:0 auto;
+    max-width: 1460px;
+  }
+}
+
 @mixin element-list {
 
   & > li > a,
