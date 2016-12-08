@@ -13,6 +13,7 @@ LoL.gallery = {
     $template.fadeIn();
 
     $(document).bind('keyup.closeOnEscape', LoL.gallery.hideDownloads);
+    $template.bind('mouseup.closeOnEscape', LoL.gallery.hideDownloads);
   },
   hideDownloads: () => {
     $(document).find(".m-gallery").fadeOut();
