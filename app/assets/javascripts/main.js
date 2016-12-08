@@ -1,26 +1,3 @@
-LoL.gallery = {
-  showDownload: (resource) => {
-    let $template = $(`<div class='m-gallery'><div class='m-gallery-content'><h1>${resource.title}</h1></div></div>`);
-
-    if(resource.text) {
-      $template.find('.m-gallery-content').append(`<p>${resource.text}</p>`);
-    }
-    if(resource.path) {
-      $template.find('.m-gallery-content').append(`<p><a target="_blank" href=${resource.path}>Download</a></p>`);
-    }
-
-    $("body").append($template);
-    $template.fadeIn();
-
-    $(document).bind('keyup.closeOnEscape', LoL.gallery.hideDownloads);
-    $template.bind('mouseup.closeOnEscape', LoL.gallery.hideDownloads);
-  },
-  hideDownloads: () => {
-    $(document).find(".m-gallery").fadeOut();
-    $(document).unbind('keyup.closeOnEscape');
-  }
-}
-
 // $( document ).ready(function() {
 //
 // 	$('.range-slider').jRange({

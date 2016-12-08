@@ -20,14 +20,19 @@
     LoL.secrets.google_maps_api_secret = "<%= Rails.application.secrets.google_maps_api_secret %>";
   </script>
 
-  <div id="blueimp-gallery" class="blueimp-gallery" data-start-slideshow="true" style="padding: 20px;">
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-start-slideshow="true" style="padding: 20px;">
     <div class="slides"></div>
-    <h3 class="title"></h3>
     <a class="prev">‹</a>
     <a class="next">›</a>
-    <a class="close">×</a>
+    <a class="close" style="display: block">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
+
+    <!--  additional gallery ui elements -->
+    <div class="metadata">
+      <h3 class="title"></h3>
+      <p class="description"></p>
+    </div>
   </div>
 <% end %>
 

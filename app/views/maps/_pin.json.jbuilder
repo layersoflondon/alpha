@@ -4,6 +4,8 @@ json.date_from pin.date_from.strftime("#{pin.created_at.day.ordinalize} %b %Y")
 json.data_to   pin.date_to.strftime("#{pin.created_at.day.ordinalize} %b %Y") if pin.date_to.present?
 json.pinned_on_date pin.created_at.strftime("#{pin.created_at.day.ordinalize} %b %Y")
 json.location pin.location
+json.description pin.description
+
 json.position do
   json.lat pin.lat
   json.lng pin.lng

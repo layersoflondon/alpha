@@ -6,36 +6,75 @@ class ContentEntry extends React.Component {
   }
 
   showResource() {
-    const resource = this.props.content_entry.content_entry.resource;
+    const content = this.props.content_entry;
 
-    //
-    // if this is a text resource and our current show_text state attribute is
-    // true, we should just toggle it back to false and return (other content
-    // entry types are displayed in a gallery)
-    //
-
-    switch(resource.type) {
-      case "image":
-      case "audio":
-      case "video":
-        this.mediaObject(resource);
-        break;
-      default:
-        this.showDownload({id: this.props.content_entry.id, title: this.props.content_entry.title, text: resource.text, path: resource[resource.type+"_path"]});
-    }
+    this.mediaObject(content);
   }
 
-  showDownload(resource) {
-    LoL.gallery.showDownload(resource);
-  }
-
-  mediaObject(resource) {
+  mediaObject(content) {
+    const resource = content.content_entry.resource;
     const resource_attribute = resource.type + "_path";
 
     var gallery_objects = [];
     var gallery_options = {
-      container: '#blueimp-gallery', carousel: true, closeOnSlideClick: true, closeOnEscape: true, startSlideshow: true
+      container: '#blueimp-gallery', carousel: true, closeOnSlideClick: false, closeOnEscape: true, startSlideshow: true, toggleControlsOnReturn: false, toggleControlsOnSlideClick: false,
+      onopened: function(){
+        let $container = $(this.container[0]);
+        $container.addClass(`${this.list[0].content_type}-content-type blueimp-gallery-controls`);
+      },
+      onclose: function() {
+        let $container = $(this.container[0]);
+        $container.removeClass(`${this.list[0].content_type}-content-type`);
+      },
+      onslide: function(index, slide) {
+        // add the content type to the slide container
+        let $container = $(this.container[0]);
+
+        let title_text       = this.list[index].title;
+        let description_text = this.list[index].description;
+
+        let $title_container       = $container.find('.title');
+        let $description_container = $container.find('.description');
+
+        $title_container.html(title_text);
+        $description_container.html(description_text);
+
+        /*
+        if we're rendering a dataset or text object, remove the 'slide-loading' class
+        and render a file download ui element, in place of a typical media gallery element
+        */
+        if(this.list[index].content_type.match(/text|dataset/)) {
+          let $slide = $(this.container.find('.slide')[0]);
+          let $slide_container = $slide.parent();
+          $slide.removeClass('slide-loading').html('');
+
+          if(resource.type === "text") {
+            $slide.append(`<p>${resource.text}</p>`);
+          }
+
+          if(typeof resource[resource_attribute] !== "undefined") {
+            $slide.append(`<p class="btn"><a target="_blank" href=${resource[resource_attribute]}>Download ${title_text}</a></p>`);
+          }else {
+            $slide.append("<p>No download available</p>");
+          }
+        }
+      }
     };
+
+    let description = "";
+
+    if(typeof content.description !== "undefined" && content.description.length) {
+      description += `${content.description}<br/><br/>`;
+    }
+
+    description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`
+    description += `Location: <strong>${content.location}</strong><br/>`
+
+    if(typeof content.date_to === "undefined") {
+      description += `Content Date: <strong>${content.date_from}</strong>`
+    }else {
+      description += `Content Date: <br/><strong>${content.date_from}</strong> to <strong>${content.date_to}</strong>`
+    }
 
     // we're embedding a media item from youtube
     if(resource.embedded_resource) {
@@ -43,12 +82,16 @@ class ContentEntry extends React.Component {
       const yt_attrs = this.getVideoId(source);
 
       var video_object = {
-        title:  resource.title,
+        title:  content.title,
         href:   source,
-        type:   "text/html"
+        type:   "text/html",
+        content_type: "video",
+        description: description
       };
 
       _.merge(video_object, yt_attrs);
+
+      console.log(resource, video_object);
 
       gallery_objects.push(video_object);
 
@@ -56,14 +99,17 @@ class ContentEntry extends React.Component {
       gallery_options['youTubeClickToPlay'] = false;
     }else {
       gallery_objects.push({
-        title: resource.title,
+        title: content.title,
         href: resource[resource_attribute],
         type: resource.mime_type,
-        poster: resource.poster
+        content_type: resource.type,
+        poster: resource.poster,
+        description: description
       });
     }
 
     blueimp.Gallery(gallery_objects, gallery_options);
+    $("#blueimp-gallery").find('video').attr('controls', true).attr('autoplay', true);
   }
 
   getVideoId(source) {

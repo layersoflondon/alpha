@@ -100,21 +100,28 @@ header nav.main-navigation {
   float: left;
 }
 
-.blueimp-gallery .video-content.video-content video[src$='?audio=true'] {
-  top: 20%;
-  left: 20%;
-  width: 60%;
-  height: 60%;
-}
-
-.blueimp-gallery > .slides > .slide > .video-content.video-content > iframe {
-  margin: auto;
-  left: 10%;
-  max-width: 80%;
-}
-
 .pin-icon {
   background-image: image-url(pin);
   background-size: cover;
   padding: 20px;
+}
+
+
+// collapseMenu transition (see search_tab.es6.jsx)
+.collapseMenu-enter {
+  opacity: 0.01;
+}
+
+.collapseMenu-enter.collapseMenu-enter-active {
+  opacity: 1;
+  transition: opacity 1500ms ease-in;
+}
+
+.collapseMenu-leave {
+  opacity: 1;
+}
+
+.collapseMenu-leave.collapseMenu-leave-active {
+  opacity: 0.01;
+  transition: opacity 1300ms ease-in;
 }
