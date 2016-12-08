@@ -8,17 +8,11 @@ class ContentEntry extends React.Component {
   showResource() {
     const resource = this.props.content_entry.content_entry.resource;
 
+    //
     // if this is a text resource and our current show_text state attribute is
     // true, we should just toggle it back to false and return (other content
     // entry types are displayed in a gallery)
     //
-    // if(resource.type==="text" && this.state.show_text) {
-    //   this.setState({show_text: false});
-    // }else if (resource.type==="text") {
-    //   this.showDownload({id: this.props.content_entry.id, title: this.props.content_entry.title, text: resource.text, path: resource.text_path});
-    // }else {
-    //   this.mediaObject(resource);
-    // }
 
     switch(resource.type) {
       case "image":
