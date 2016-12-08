@@ -10,6 +10,10 @@ class GeoreferencedTileGroup extends React.Component {
     overlay = new GeoreferencedOverlay(this.props.georeferencer_table_id);
     window.theOverlay = overlay;
     overlay.getImageData().then(rows => {
+      // re-position the map...
+      let row_pos = rows[0].center.split(",");
+      let reoreferenced_tile_position = {position: {lat: row_pos[0], lng: row_pos[1]}}
+      MapStateActions.focusPlace(reoreferenced_tile_position);
       this.setState({image_data: rows})
     });
 
