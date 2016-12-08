@@ -222,6 +222,8 @@ GEM
     require_all (1.3.3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rollbar (2.13.3)
+      multi_json
     rooftop (0.1.1)
       activesupport (~> 4)
       faraday-http-cache (~> 1.2)
@@ -311,6 +313,7 @@ DEPENDENCIES
   rails-assets-react-leaflet!
   rails-assets-react-tabs!
   react-rails
+  rollbar
   rooftop
   rooftop-rails
   rooftop-rails-extras
