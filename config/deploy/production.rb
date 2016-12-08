@@ -1,7 +1,7 @@
 # Server configuration. For a simple site this is just one entry.
-role :app, %w{deployment@lol-production.vm.errorstudio.com}
-role :web, %w{deployment@lol-production.vm.errorstudio.com}
-role :db, %w{deployment@lol-production.vm.errorstudio.com}
+role :app, %w{deployment@layersoflondon.vm.errorstudio.com}
+role :web, %w{deployment@layersoflondon.vm.errorstudio.com}
+role :db, %w{deployment@layersoflondon.vm.errorstudio.com}
 
 set :primary_domain, "alpha.layersoflondon.org"
 
@@ -23,7 +23,7 @@ set :domain_redirects, %w(www.layersoflondon.org)
 set :url_rewrites, {}
 
 # set the deploy domain to the prelaunch domain
-set :deploy_domain, fetch(:prelaunch_domain)
+set :deploy_domain, fetch(:primary_domain)
 
 set :passenger_port, 8001
 set :upstream_proxy_cache, false
