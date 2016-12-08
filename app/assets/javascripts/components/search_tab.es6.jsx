@@ -1,8 +1,16 @@
+const ReactCSSTransitionGroup = React.addons.TransitionGroup;
+
 class SearchTab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    this.state = _.merge({}, props, {visible: true});
+  }
+
+  toggleResultsVisibility() {
+    let new_state = this.state;
+    new_state.visible = !this.state.visible;
+    this.setState(new_state);
   }
 
   handleSearchSubmit(e) {
@@ -20,6 +28,8 @@ class SearchTab extends React.Component {
   }
 
   render () {
+    let resultsClass = `results ${this.state.visible ? 'is-visible' : ''}`;
+
     return (
       <div className="m-search-panel">
         <form onSubmit={this.handleSearchSubmit.bind(this)}>
@@ -29,9 +39,12 @@ class SearchTab extends React.Component {
           <DateRange />
           <button>Search</button>
         </form>
-        <div className="results">
-          <PinResultsContainer />
-          <NoteResultsContainer />
+
+        <div className={resultsClass}>
+          <button className="toggle-visibility" onClick={this.toggleResultsVisibility.bind(this)}></button>
+
+          <PinResultsContainer compact={!this.state.visible} key="pins" />
+          <NoteResultsContainer compact={!this.state.visible} key="notes" />
         </div>
       </div>
     );

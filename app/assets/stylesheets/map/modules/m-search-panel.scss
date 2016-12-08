@@ -50,6 +50,39 @@
   left: 21px;
   width:300px;
   z-index: 1001;
+  height: 100px;
+}
+
+.m-search-panel .results div ul {
+  display: none;
+}
+
+.m-search-panel .results.is-visible {
+  height: auto;
+}
+
+.m-search-panel .results.is-visible div ul {
+  display: block;
+}
+
+.m-search-panel .results button.toggle-visibility {
+  background: #fff;
+  float: right;
+  color: #000;
+  margin: -14px -12px 0 0;
+  width: 20px;
+  padding: 12px;
+  font-size: 1em;
+}
+
+.m-search-panel .results button.toggle-visibility:after {
+  font-family: 'FontAwesome';
+  content: "\f0d7";
+}
+
+.m-search-panel .results.is-visible button.toggle-visibility:after {
+  font-family: 'FontAwesome';
+  content: "\f0d8";
 }
 
 .m-search-panel .results:before {

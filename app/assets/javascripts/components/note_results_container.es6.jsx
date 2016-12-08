@@ -25,6 +25,10 @@ class NoteResultsContainer extends React.Component {
       notes_label = "Searching for notes...";
     }else if(!this.state.searching && this.state.notes.length==0) {
       notes_label = "No notes found";
+    }else if(this.props.compact) {
+      const count = this.state.notes.length;
+      const label = (count == 0 || count > 1) ? "Notes" : "Note";
+      notes_label = `${count} ${label}`;
     }
 
     return (

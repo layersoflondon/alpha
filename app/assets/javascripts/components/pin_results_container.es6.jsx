@@ -1,7 +1,7 @@
 class PinResultsContainer extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = MapContainerStore.getState();
     this.stateChanged = this.stateChanged.bind(this);
   }
@@ -25,6 +25,10 @@ class PinResultsContainer extends React.Component {
       pins_label = "Searching for places...";
     }else if(!this.state.searching && this.state.pins.length==0) {
       pins_label = "No places found";
+    }else if(this.props.compact) {
+      const count = this.state.pins.length;
+      const label = (count == 0 || count > 1) ? "Pins" : "Pin";
+      pins_label = `${count} ${label}`;
     }
 
     return (
