@@ -104,7 +104,17 @@
          dispatcher enough time to complete before firing the MapStateAction's event
          */
         setTimeout(() => {
-          MapStateActions.focusPlace(overlay);
+          let position_object = overlay;
+
+          // for some overlay types, we need to figure out the proper centre point
+
+          switch(overlay.resource.type) {
+            case "polygon": // position the map center at the starting point of a polygon
+              overlay_object = {position: {lat: overlay.resource.polygon[0][0], lng: overlay.resource.polygon[0][1]}};
+              break;
+          }
+
+          MapStateActions.focusPlace(overlay_object);
         }, 100);
       }
 
