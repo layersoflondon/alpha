@@ -1,3 +1,6 @@
+$(document).on('ready', () => {
+  $(".m-search-panel .free-text input[type=text]").focus();
+})
 // $( document ).ready(function() {
 //
 // 	$('.range-slider').jRange({

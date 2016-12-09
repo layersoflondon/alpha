@@ -10,7 +10,7 @@
       this.searching = false;
       this.places = [];
       this.overlays = [];
-      this.show_overlays = false;
+      this.show_overlays = true;
       this.visible_overlays = [];
       this.collections = [];
       this.markers = [];

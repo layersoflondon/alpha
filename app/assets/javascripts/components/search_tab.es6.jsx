@@ -4,7 +4,7 @@ class SearchTab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = _.merge({}, props, {visible: true});
+    this.state = _.merge({}, props, {visible: false});
   }
 
   toggleResultsVisibility() {
@@ -34,7 +34,7 @@ class SearchTab extends React.Component {
       <div className="m-search-panel">
         <form onSubmit={this.handleSearchSubmit.bind(this)}>
           <div className="free-text">
-            <input type="text" placeholder="Place, event, landmark…" onChange={this.setSearchQuery.bind(this)}/>
+            <input type="text" placeholder="Place, event, landmark…" onChange={this.setSearchQuery.bind(this)} />
           </div>
           <DateRange />
           <button>Search</button>
