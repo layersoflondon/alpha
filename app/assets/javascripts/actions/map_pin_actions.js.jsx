@@ -49,7 +49,6 @@
     }
 
     setErrors(errors) {
-      console.log("GOT ERRORS", errors);
       return errors;
     }
   }

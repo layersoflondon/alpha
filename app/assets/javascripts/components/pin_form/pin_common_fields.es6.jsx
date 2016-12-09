@@ -5,7 +5,7 @@ class PinCommonFields extends React.Component {
       <div>
         <div className="form-group form-group-title">
           <label>Pin title</label>
-          <input type="text" placeholder="Type a useful title for your entry (for example: Barking Park Mayday festival photos)" onChange={this.updateAttribute.bind(this)} data-attribute='title' data-parsley-required={true} data-parsley-error-message="Please enter a title" value={this.state.title} />
+          <input type="text" placeholder="Type a useful title for your entry (for example: Barking Park Mayday festival photos)" onChange={this.updateAttribute.bind(this)} data-attribute='title' data-parsley-required={true} data-parsley-error-message="The title should be at least 4 characters long" data-parsley-minlength="4" value={this.state.title} />
         </div>
         <div className="form-group form-group-description">
           <label>Description</label>
