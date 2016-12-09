@@ -25,7 +25,7 @@ class ContentEntry < ActiveRecord::Base
   private
   def valid_content_type
     mime_type = `file #{attached_file.path} --mime-type`.split(" ").last
-    if File.exists?(attached_file.path) && content_type.mime_type.present? && !content_type.mime_type.split(/,/).any?{|mt| mt.match(/#{mime_type}/)}
+    if (attached_file && File.exists?(attached_file.path)) && content_type.mime_type.present? && !content_type.mime_type.split(/,/).any?{|mt| mt.match(/#{mime_type}/)}
       errors.add(:attached_file, "The type of the file you attached (#{mime_type}) isn't a supported #{content_type.name} type.")
     end
   end
