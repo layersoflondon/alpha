@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :posts, only: [:show], path: 'blog'
+
   mount Rooftop::Rails::Engine => "/rooftop"
 
   match "/*nested_path", via: [:get], to: "pages#show", as: :page
