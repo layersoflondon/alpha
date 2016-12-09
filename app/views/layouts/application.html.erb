@@ -22,6 +22,7 @@
     <div class="site-wrapper">
 
         <%= render 'global/header'%>
+        <%= render 'global/notices' %>
 
         <%= content_for?(:template) ? yield(:template) : yield %>
 
@@ -30,6 +31,6 @@
     </div>
 
     <%= yield(:javascript) %>
-    
+
 </body>
 </html>
