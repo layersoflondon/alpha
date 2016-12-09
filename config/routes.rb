@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  mount Rooftop::Rails::Engine => "/rooftop"
+
   match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"
   # The priority is based upon order of creation: first created -> highest priority.

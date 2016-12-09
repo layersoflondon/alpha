@@ -1,0 +1,10 @@
+<div class="m-latest-pins">
+    <h3>Latest pins</h3>
+    <ul>
+      <% Pin.latest.each do |pin| %>
+        <li>
+          <a href="/the-map"><%= pin.title %></a>
+        </li>
+      <% end %>
+    </ul>
+</div>

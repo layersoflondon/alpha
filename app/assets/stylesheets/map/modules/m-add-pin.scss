@@ -90,7 +90,16 @@
 }
 
 .m-add-pin input[type="submit"] {
-  float:right;
+	float:right;
+}
+
+.m-add-pin button {
+	float:right;
+	padding: 1em;
+	background: none;
+	border: 2px solid #dadada;
+	display: block;
+	width: 100%;
 }
 
 

@@ -1,0 +1,19 @@
+<div class="m-subnavigation">
+
+    <div class="section">
+        <% if page.ancestors.any? %>
+            <%= link_to page.root.title.html_safe, page_path(page.root.slug) %>
+        <% else %>
+            <%= link_to page.title, page_path(page.nested_path) %>
+        <% end %>
+
+
+    </div>
+
+    <% if page.ancestors.any? %>
+        <%= subnavigation_for(page.root.resolve, current: page) %>
+    <% else %>
+        <%= subnavigation_for(page, current: page) %>
+    <% end %>
+
+</div>

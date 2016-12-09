@@ -1,0 +1,7 @@
+<% if flash.any? %>
+  <div class="m-notices">
+    <% flash.each do |key, message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+<% end %>

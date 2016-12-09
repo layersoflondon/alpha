@@ -10,4 +10,8 @@ class PageDecorator < Draper::Decorator
   #     end
   #   end
 
+  def title
+    object.title.gsub(/&#038;/, '&')
+  end
+
 end
