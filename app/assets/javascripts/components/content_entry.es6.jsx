@@ -54,7 +54,9 @@ class ContentEntry extends React.Component {
           }
 
           if(typeof resource[resource_attribute] !== "undefined") {
-            $slide.append(`<p class="btn"><a target="_blank" href=${resource[resource_attribute]}>Download ${title_text}</a></p>`);
+            let icon = LoL.urls[resource.type];
+
+            $slide.append(`<p class="btn"><a target="_blank" href=${resource[resource_attribute]}>${icon} Download ${title_text}</a></p>`);
           }else {
             $slide.append("<p>No download available</p>");
           }
@@ -69,7 +71,6 @@ class ContentEntry extends React.Component {
     }
 
     if(typeof content.pinned_on_date !== "undefined"){
-      alert(content.pinned_on_date);
       description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`
     }
 
@@ -77,7 +78,7 @@ class ContentEntry extends React.Component {
 
     const date_from = content.date_from;
     const date_to   = content.date_to;
-    
+
     if(typeof date_from !== "undefined" && typeof date_to !== "undefined") {
       description += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`
     }else if(typeof date_from !== "undefined") {
@@ -158,8 +159,7 @@ class ContentEntry extends React.Component {
 
       var link = (
         <a href="#" onClick={this.showResource.bind(this)}>
-          <div className="icon">
-            <img src={LoL.urls[this.props.content_entry.content_entry.resource.type]} alt="{this.props.content_entry.content_entry.resource.type} resource icon" />
+          <div className="icon" dangerouslySetInnerHTML={{__html: LoL.urls[this.props.content_entry.content_entry.resource.type]}}>
           </div>
 
           <h3>{this.props.content_entry.content_entry.title}</h3>

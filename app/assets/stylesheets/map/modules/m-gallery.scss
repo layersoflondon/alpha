@@ -40,8 +40,7 @@
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 }
 
-#blueimp-gallery.blueimp-gallery.text-content-type .slides .slide {
-  text-align: left;
+#blueimp-gallery.blueimp-gallery .slides .slide {
   padding-left: 50px;
 }
 
@@ -50,6 +49,7 @@
   float: right;
 }
 #blueimp-gallery.blueimp-gallery .slides .slide {
+  text-align: left;
   width: 100% !important;
 }
 #blueimp-gallery.blueimp-gallery .slides .slide .slide-content {

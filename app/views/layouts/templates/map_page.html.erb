@@ -8,13 +8,13 @@
   <script>
     LoL.contentTypes = <%= content_types_for_map.to_json.html_safe %>;
     LoL.urls = {};
-    LoL.urls.text  = "<%= image_url('other.png') %>";
-    LoL.urls.file  = "<%= image_url('other.png') %>";
-    LoL.urls.image = "<%= image_url('image.png') %>";
-    LoL.urls.audio = "<%= image_url('audio.png') %>";
-    LoL.urls.video = "<%= image_url('other.png') %>";
-    LoL.urls.other = "<%= image_url('other.png') %>";
-    LoL.urls.dataset = "<%= image_url('other.png') %>";
+    LoL.urls.text    = '<i class="fa fa-file-o"       aria-hidden="true"></i>';
+    LoL.urls.file    = '<i class="fa fa-file-o"       aria-hidden="true"></i>';
+    LoL.urls.image   = '<i class="fa fa-file-image-o" aria-hidden="true"></i>';
+    LoL.urls.audio   = '<i class="fa fa-file-audio-o" aria-hidden="true"></i>';
+    LoL.urls.video   = '<i class="fa fa-file-video-o" aria-hidden="true"></i>';
+    LoL.urls.other   = '<i class="fa fa-files-o"      aria-hidden="true"></i>';
+    LoL.urls.dataset = '<i class="fa fa-table"        aria-hidden="true"></i>';
 
     LoL.secrets = {};
     LoL.secrets.google_maps_api_secret = "<%= Rails.application.secrets.google_maps_api_secret %>";
