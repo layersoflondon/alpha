@@ -8,23 +8,23 @@ class MapsController < ApplicationController
   end
 
   def search
-    query        = search_params[:search_query].present? ? search_params[:search_query] : ""
-
-    @pins        = Pin.where("title LIKE '%#{query}%'").limit(10)
-    @overlays    = Overlay.where("title LIKE '%#{query}%'").limit(10)
-    @collections = Collection.where("name LIKE '%#{query}%'").limit(10)
-
-    if params[:search][:date_from].present?
-      date_from = Date.parse("01-01-#{params[:search][:date_from]}")
-      @pins     = @pins.where("date_from >= ?", date_from)
-      @overlays = @overlays.where("date_from >= ?", date_from)
+    if (query = search_params[:search_query]) && query.present?
+      query_sql = "title LIKE '%#{query}%'"
+    else
+      query_sql = "true"
     end
 
-    if params[:search][:date_to].present?
-      date_to = Date.parse("31-12-#{params[:search][:date_to]}")
-      @pins     = @pins.where("date_to <= ? OR date_to IS NULL", date_to)
-      @overlays = @overlays.where("date_to >= ? OR date_to IS NULL", date_from)
-    end
+    @pins        = Pin.where(query_sql).limit(10)
+    @overlays    = Overlay.where(query_sql).limit(10)
+    # @collections = Collection.where(query_sql).limit(10)
+
+    filter_date_from = Date.parse("1-1-#{search_params[:date_from]}")
+    filter_date_to   = Date.parse("31-1-#{search_params[:date_to]}")
+
+    @pins = @pins.where("date_from >= ?", filter_date_from)
+    @pins = @pins.where("(date_from >= ? AND (date_to <= ? OR date_to IS NULL))", filter_date_from, filter_date_to)
+
+    Rails.logger.info("\n\n#{@pins.to_sql}\n\n")
 
     @pins = @pins.group_by(&:coords)
   end
