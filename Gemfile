@@ -48,6 +48,8 @@ gem 'mysql2'
 
 gem 'therubyracer', platforms: :ruby
 
+gem 'redis-rails'
+
 gem 'rooftop'
 
 gem 'rooftop-rails'
