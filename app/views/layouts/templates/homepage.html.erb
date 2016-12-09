@@ -15,7 +15,7 @@
 </div>
 
 <div class="m-beta">
-    Layers of London is currently in beta and, for the first phase, we’re concentrating on the Barking & Dagenham area. 
+    Layers of London is currently in beta and, for the first phase, we’re concentrating on the Barking & Dagenham area.
 </div>
 
 <div class="m-get-involved">
@@ -45,12 +45,11 @@
     <div class="m-latest-pins">
         <h3>Latest pins</h3>
         <ul>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
+          <% Pin.latest.each do |pin| %>
+            <li>
+              <a href="/the-map"><%= pin.title %></a>
+            </li>
+          <% end %>
         </ul>
     </div>
 </div>

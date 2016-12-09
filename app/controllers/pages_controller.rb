@@ -24,7 +24,7 @@ class PagesController < ApplicationController
   private
 
   def get_map_content
-    @pins        = Pin.all.limit(4).group_by(&:coords)
+    @pins        = Pin.latest.group_by(&:coords)
     @overlays    = Overlay.all.select{|o| o.overlay_type.name=="tileserver"}
     @collections = {}
     @places      = []
