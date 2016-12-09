@@ -68,13 +68,20 @@ class ContentEntry extends React.Component {
       description += `${content.description}<br/><br/>`;
     }
 
-    description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`
+    if(typeof content.pinned_on_date !== "undefined"){
+      alert(content.pinned_on_date);
+      description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`
+    }
+
     description += `Location: <strong>${content.location}</strong><br/>`
 
-    if(typeof content.date_to === "undefined") {
-      description += `Content Date: <strong>${content.date_from}</strong>`
-    }else {
-      description += `Content Date: <br/><strong>${content.date_from}</strong> to <strong>${content.date_to}</strong>`
+    const date_from = content.date_from;
+    const date_to   = content.date_to;
+    
+    if(typeof date_from !== "undefined" && typeof date_to !== "undefined") {
+      description += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`
+    }else if(typeof date_from !== "undefined") {
+      description += `Content Date: <strong>${date_from}</strong>`
     }
 
     // we're embedding a media item from youtube
