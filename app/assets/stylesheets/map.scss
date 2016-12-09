@@ -100,8 +100,16 @@ header nav.main-navigation {
   float: left;
 }
 
-.pin-icon {
-  background-image: image-url(pin);
+.leaflet-marker-icon {
+  // Place
+  background-image: image-url(pin-blue);
+  background-size: cover;
+  padding: 20px;
+}
+
+.leaflet-marker-icon.pin-icon {
+  // Note
+  background-image: image-url(pin-red);
   background-size: cover;
   padding: 20px;
 }

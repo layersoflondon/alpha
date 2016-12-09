@@ -7,7 +7,7 @@ class PinResult extends React.Component {
     return (
       <li onClick={this.focusMapOnPin.bind(this, this.props.pin)}>
           <a href="#">
-              <div className="icon"><i className="fa fa-map-marker" aria-hidden="true"></i></div>
+              <div className="icon icon--note"></div>
               <h3>{this.props.pin.title}</h3>
               <p>{this.props.pin.location}</p>
           </a>
