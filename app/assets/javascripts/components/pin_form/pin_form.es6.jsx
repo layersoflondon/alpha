@@ -38,6 +38,9 @@ class PinForm extends React.Component {
   savePinData(event) {
     event.preventDefault();
 
+    const saving_state = _.merge(MapPinStore.getState(), {saving: true});
+    this.setState(saving_state);
+
     Pin.post(this.state).then((pin) => {
       MapPinActions.resetForm();
 
@@ -113,6 +116,15 @@ class PinForm extends React.Component {
       );
     }
 
+    const spinner = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
+    let save_button;
+
+    if(this.state.saving) {
+      button = <button disabled={this.state.saving}>Saving {spinner}</button>
+    }else {
+      button = <button disabled={this.state.form_submit_disabled}>Save my note</button>
+    }
+
     return(
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.savePinData.bind(this)}>
@@ -123,7 +135,7 @@ class PinForm extends React.Component {
             <PinAttributionFields show_form={this.state.attribution !== ""}/>
             <div className="form-group">
               <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
-              <input type="submit" value="Save my pin" disabled={this.state.form_submit_disabled} />
+              {button}
             </div>
 
             {errorMessage}

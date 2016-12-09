@@ -27,6 +27,7 @@
       this.attribution = "";
       this.content = "";
 
+      this.saving = false;
       this.errors = {};
     }
 
