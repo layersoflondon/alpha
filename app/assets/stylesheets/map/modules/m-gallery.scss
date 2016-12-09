@@ -81,3 +81,13 @@
 video[src$='audio=true'] {
   display: block !important;
 }
+
+.blueimp-gallery .m-text-container {
+  max-height: 92%;
+  overflow: scroll;
+}
+
+.blueimp-gallery .m-text-container p {
+  margin: 0;
+  padding-bottom: 1em;
+}
