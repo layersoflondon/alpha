@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   include Rooftop::Rails::NestedResource
+  include PostCollection
+  
   nested_rooftop_resource :page
   decorates_assigned :page, with: PageDecorator
 

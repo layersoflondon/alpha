@@ -1,0 +1,8 @@
+<div class="m-blog-highlights">
+    <h3>Latest insights from the blog</h3>
+    <% PostDecorator.decorate_collection(Post.latest).each do |post| %>
+      <h4><%= post.title %></h4>
+      <p><%= post.excerpt %></p>
+    <% end %>
+    <a class="button" href="/blog">Read more blog posts</a>
+</div>
