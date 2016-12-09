@@ -28,6 +28,8 @@ set :deploy_domain, fetch(:primary_domain)
 set :passenger_port, 8001
 set :upstream_proxy_cache, false
 
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+
 #http basic auth
 # secrets = YAML.load_file(File.expand_path("../../secrets.yml", __FILE__))['development']
 # set :basic_auth_required, !secrets['http_username'].nil? && !secrets['http_password'].nil?
