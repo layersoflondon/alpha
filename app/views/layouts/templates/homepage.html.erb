@@ -42,16 +42,7 @@
         <p>In ullamcorper velit dolor, eget cursus odio mattis a. Fusce ut pharetra risus. Duis eget ipsum lacinia, auctor sem in.</p>
         <a class="button" href="#">Read more blog posts</a>
     </div>
-    <div class="m-latest-pins">
-        <h3>Latest pins</h3>
-        <ul>
-          <% Pin.latest.each do |pin| %>
-            <li>
-              <a href="/the-map"><%= pin.title %></a>
-            </li>
-          <% end %>
-        </ul>
-    </div>
+    <%= render 'shared/latest_pins' %>
 </div>
 
 <!-- <div class="m-wrap m-wrap--green">
