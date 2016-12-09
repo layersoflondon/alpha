@@ -80,7 +80,7 @@ class PinForm extends React.Component {
     return (
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.confirmMainForm.bind(this)} data-parsley-validate={true}>
-          <h3>Add Pin</h3>
+          <h3>Add Note</h3>
           <div className="form-content">
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
             <PinCommonFields />

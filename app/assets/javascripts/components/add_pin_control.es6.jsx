@@ -15,7 +15,7 @@ class AddPinControl extends React.Component {
       <div className="m-pin-controls">
 
         <div className="add-pin">
-          <button onClick={this.togglePinForm.bind(this)}>Add pin</button>
+          <button onClick={this.togglePinForm.bind(this)}>Add Note</button>
         </div>
 
       </div>
