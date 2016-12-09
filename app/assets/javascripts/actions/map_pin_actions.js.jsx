@@ -48,9 +48,8 @@
       return pin_data;
     }
 
-    setError(error) {
-      console.log("GOT ERROR", error);
-      return error;
+    setErrors(errors) {
+      return errors;
     }
   }
 

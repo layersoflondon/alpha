@@ -43,7 +43,8 @@ class PinForm extends React.Component {
 
       MapContainerActions.addMarker(pin);
     }).catch((response) => {
-      MapPinActions.setError({errorCode: response.status, errorMessage: response.responseText});
+      const errors = response.responseJSON ? response.responseJSON.errors : {};
+      MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
     });
   }
 
@@ -79,7 +80,7 @@ class PinForm extends React.Component {
     return (
       <div className="m-add-pin" style={style}>
         <form onSubmit={this.confirmMainForm.bind(this)} data-parsley-validate={true}>
-          <h3>Add Pin</h3>
+          <h3>Add Note</h3>
           <div className="form-content">
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
             <PinCommonFields />
@@ -99,10 +100,15 @@ class PinForm extends React.Component {
 
     var errorMessage = <div />;
 
-    if(this.state.error) {
+    if(typeof this.state.errors.errorMessages !== "undefined") {
+      const errors = _.chain(this.state.errors.errorMessages).values().flatten().value();
+
       errorMessage = (
         <div>
-          <h4>Whoops - there was an error when we tried to save your pin. Please try again later.</h4>
+          <h4>We couldn't save your pin!</h4>
+          <ul>
+            {errors.map((error, i) => {return <li key={i}>{error}</li>;})}
+          </ul>
         </div>
       );
     }

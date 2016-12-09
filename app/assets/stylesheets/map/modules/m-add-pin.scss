@@ -1,5 +1,5 @@
 
-/* Add pin */
+/* Add pin (add note) */
 
 .m-add-pin {
 	position:absolute;
@@ -106,6 +106,15 @@
 .m-add-pin .dates .form-group input {
   max-width:100%;
   box-sizing: border-box;
+}
+
+.m-add-pin .date-fields .dates > p {
+	margin: 0 0 1em 0;
+	text-align: left;
+}
+
+.m-add-pin .dates .to {
+	clear: both;
 }
 
 .m-add-pin .date-fields .pseudo-label span {

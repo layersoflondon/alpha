@@ -74,6 +74,11 @@ body {
 
 }
 
+.m-map .m-popover .m-popover-add-note {
+  float: right;
+  margin-top: 10px;
+}
+
 .m-map .pins ul {
   @include unlist;
 }
@@ -133,4 +138,8 @@ header nav.main-navigation {
 .collapseMenu-leave.collapseMenu-leave-active {
   opacity: 0.01;
   transition: opacity 1300ms ease-in;
+}
+
+.parsley-custom-error-message {
+  font-size: 0.9em;
 }
