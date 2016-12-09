@@ -50,6 +50,17 @@
   margin-bottom:0;
 }
 
+.m-add-pin .form-actions {
+  padding:2em;
+  background: #efefef;
+  border-radius: 0 0 6px 6px;
+  @include clearfix;
+}
+
+.m-add-pin .form-actions .form-group {
+    margin-bottom: 0;
+}
+
 .m-add-pin .form-group {
   @include clearfix;
 }
@@ -202,6 +213,30 @@
 .m-add-pin .form-grouping--pin-type > .form-group:last-child {
   margin-bottom:0;
 }
+
+// Buttons
+
+.m-add-pin .main-button {
+  padding: 11px 20px;
+  background:#008365;
+  border:0;
+  color:white;
+  float: right;
+  font-size:1.5em;
+  font-weight: bold;
+  @include transition(all .2s);
+  margin-left:10px;
+  width: auto;
+}
+
+.m-add-pin .back-button {
+  border: 0;
+  border-radius: 6px;
+  background: #35f5c8;
+  color: #333;
+  padding: 6px 8px;
+  float:left;
+} 
 
 // Attribution page
 

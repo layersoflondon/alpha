@@ -89,8 +89,10 @@ class PinForm extends React.Component {
             <PinCommonFields />
             <PinTypePicker />
             {fields}
+          </div>
+          <div className="form-actions">
             <div className="form-group">
-              <input type="submit" value="Save and continue" disabled={this.state.form_submit_disabled} />
+              <input type="submit" value="Save and continue" className="main-button" disabled={this.state.form_submit_disabled} />
             </div>
           </div>
         </form>
@@ -120,9 +122,9 @@ class PinForm extends React.Component {
     let save_button;
 
     if(this.state.saving) {
-      button = <button disabled={this.state.saving}>Saving {spinner}</button>
+      button = <button disabled={this.state.saving} className="main-button">Saving {spinner}</button>
     }else {
-      button = <button disabled={this.state.form_submit_disabled}>Save my note</button>
+      button = <button disabled={this.state.form_submit_disabled} className="main-button">Save my note</button>
     }
 
     return(
@@ -133,8 +135,11 @@ class PinForm extends React.Component {
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
 
             <PinAttributionFields show_form={this.state.attribution !== ""}/>
+
+          </div>
+          <div className="form-actions">
             <div className="form-group">
-              <a href="#" onClick={this.showMainForm.bind(this)}>Edit pin details again</a>
+              <a href="#" onClick={this.showMainForm.bind(this)} className="back-button">Edit pin details again</a>
               {button}
             </div>
 
