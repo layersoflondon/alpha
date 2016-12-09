@@ -18,11 +18,13 @@ class MapsController < ApplicationController
     @overlays    = Overlay.where(query_sql).limit(10)
     # @collections = Collection.where(query_sql).limit(10)
 
-    filter_date_from = Date.parse("1-1-#{search_params[:date_from]}")
-    filter_date_to   = Date.parse("31-1-#{search_params[:date_to]}")
+    filter_date_from = Date.parse("1-1-#{search_params[:date_from]}").beginning_of_year rescue nil
+    filter_date_to   = Date.parse("31-1-#{search_params[:date_to]}").at_end_of_year rescue nil
 
-    @pins = @pins.where("date_from >= ?", filter_date_from)
-    @pins = @pins.where("(date_from >= ? AND (date_to <= ? OR date_to IS NULL))", filter_date_from, filter_date_to)
+    if filter_date_from && filter_date_to
+      @pins = @pins.where("date_from >= ?", filter_date_from)
+      @pins = @pins.where("(date_from >= ? AND (date_to <= ? OR date_to IS NULL))", filter_date_from, filter_date_to)
+    end
 
     Rails.logger.info("\n\n#{@pins.to_sql}\n\n")
 

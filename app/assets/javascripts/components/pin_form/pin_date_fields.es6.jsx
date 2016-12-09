@@ -2,6 +2,9 @@ class PinDateFields extends React.Component {
   constructor(props) {
     super(props);
     this.state = props
+
+    this.min_year = FilterStateStore.getState().default_dates.date_from
+    this.max_year = FilterStateStore.getState().default_dates.date_to;
   }
 
   advancedDates() {
@@ -10,15 +13,15 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-range='[1,31]' data-parsley-error-message="The day is required" />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-range='[1,12]' data-parsley-error-message="The month <br/>(1 - 12) is required" />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-range={`[${this.min_year},${this.max_year}]`} data-parsley-error-message={`Year must be between ${this.min_year} and ${this.max_year}`} />
           </div>
         </div>
         <div className="form-helper-text">
@@ -36,7 +39,7 @@ class PinDateFields extends React.Component {
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year' placeholder="Year" />
+            <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-range={`[${this.min_year},${this.max_year}]`} data-parsley-error-message={`Year must be between ${this.min_year} and ${this.max_year}`} />
           </div>
         </div>
         <br/>
@@ -61,7 +64,7 @@ class PinDateFields extends React.Component {
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-error-message="The year is required" />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-range={`[${this.min_year},${this.max_year}]`} data-parsley-error-message={`Year must be between ${this.min_year} and ${this.max_year}`} />
           </div>
         </div>
         <div className="form-helper-text">

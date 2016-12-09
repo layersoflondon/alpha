@@ -73,6 +73,11 @@ body {
 
 }
 
+.m-map .m-popover .m-popover-add-note {
+  float: right;
+  margin-top: 10px;
+}
+
 .m-map .pins ul {
   @include unlist;
 }
