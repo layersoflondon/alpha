@@ -100,6 +100,15 @@
   box-sizing: border-box;
 }
 
+.m-add-pin .date-fields .dates > p {
+	margin: 0 0 1em 0;
+	text-align: left;
+}
+
+.m-add-pin .dates .to {
+	clear: both;
+}
+
 .m-add-pin .date-fields .pseudo-label span {
   font-weight: 500;
   display: block;

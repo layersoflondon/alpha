@@ -26,7 +26,6 @@ class PinDateFields extends React.Component {
         </div>
         <p>to</p>
         <div className="to">
-
           <div className="form-group">
             <label>Day</label>
             <input type="text" value={this.state.date_to_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_day' placeholder="Day" />
@@ -40,6 +39,7 @@ class PinDateFields extends React.Component {
             <input type="text" value={this.state.date_to_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_to_year' placeholder="Year" />
           </div>
         </div>
+        <br/>
         <div className="end-date-toggle">
           <a href="#" onClick={this.toggleAdvanced.bind(this)}>I don't have an end date to add</a>
         </div>
@@ -53,15 +53,15 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,31]'/>
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,31]' data-parsley-error-message="The day is required" />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,12]' />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,12]' data-parsley-error-message="The month <br/>(1 - 12) is required" />
           </div>
           <div className="form-group">
             <label>Year</label>
-            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" />
+            <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-error-message="The year is required" />
           </div>
         </div>
         <div className="form-helper-text">
