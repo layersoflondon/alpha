@@ -45,7 +45,8 @@ class OverlayResultsContainer extends React.Component {
     }
 
     if(show_caret) {
-      return <a className="show-overlays" onClick={this.toggleShowOverlays.bind(this)}>{overlays_label} <i className="fa fa-caret-down" aria-hidden="true"></i></a>
+      let carat = this.state.show_overlays ? <i className="fa fa-caret-up" aria-hidden="true"></i> : <i className="fa fa-caret-down" aria-hidden="true"></i> ;
+      return <a className="show-overlays" onClick={this.toggleShowOverlays.bind(this)}>{overlays_label} {carat}</a>
     }else {
       return <a className="show-overlays">{overlays_label}</a>
     }
