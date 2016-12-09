@@ -1,0 +1,57 @@
+
+/* Helper */
+
+.m-helper {
+  position: absolute;
+  bottom: 20px;
+  left: 100%;
+  margin-left: -20px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.m-helper:after {
+  content:"";
+  position:absolute;
+  right:100%;
+  top:50%;
+  margin-top:-5px;
+  display:block;
+  border-right:7px solid $lol-mint;
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+.m-helper button {
+  border: 0;
+  border-radius: 6px;
+  background: #35f5c8;
+  color: #333;
+  padding: 6px 8px;
+}
+
+.m-helper .popover {
+  width:300px;
+  position:absolute;
+  top:100%;
+  left:50%;
+  margin-top: 20px;
+  margin-left: -150px;
+  background: $lol-navy;
+  color:white;
+  padding: 10px 13px;
+  white-space: normal;
+
+}
+
+.m-helper .popover:before {
+  content:"";
+  display: block;
+  border-bottom:10px solid $lol-navy;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  position:absolute;
+  left:50%;
+  margin-left:-10px;
+  bottom:100%;
+}
