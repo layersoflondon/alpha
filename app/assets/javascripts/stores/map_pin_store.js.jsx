@@ -27,7 +27,7 @@
       this.attribution = "";
       this.content = "";
 
-      this.error = null;
+      this.errors = {};
     }
 
     constructor() {
@@ -43,7 +43,7 @@
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
-          onSetError: MapPinActions.SET_ERROR,
+          onSetErrors: MapPinActions.SET_ERRORS,
           onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
           onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
@@ -113,8 +113,8 @@
       return true;
     }
 
-    onSetError(error) {
-      this.error = error;
+    onSetErrors(errors) {
+      this.errors = errors;
 
       return true;
     }

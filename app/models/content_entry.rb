@@ -14,10 +14,19 @@ class ContentEntry < ActiveRecord::Base
   serialize :metadata, JSON
 
   mount_base64_uploader :attached_file, AttachedFileUploader
+  validate :valid_content_type
 
   def base64_attachment
     raise "Invalid content type" unless attached_file && content_type.name=="text"
 
     Base64.encode64(open(attached_file.path).read)
+  end
+
+  private
+  def valid_content_type
+    mime_type = `file #{attached_file.path} --mime-type`.split(" ").last
+    if File.exists?(attached_file.path) && !content_type.mime_type.split(/,/).any?{|mt| mt.match(/#{mime_type}/)}
+      errors.add(:attached_file, "The type of the file you attached (#{mime_type}) isn't a supported #{content_type.name} type.")
+    end
   end
 end

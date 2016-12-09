@@ -43,7 +43,8 @@ class PinForm extends React.Component {
 
       MapContainerActions.addMarker(pin);
     }).catch((response) => {
-      MapPinActions.setError({errorCode: response.status, errorMessage: response.responseText});
+      const errors = response.responseJSON ? response.responseJSON.errors : {};
+      MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
     });
   }
 
@@ -99,10 +100,15 @@ class PinForm extends React.Component {
 
     var errorMessage = <div />;
 
-    if(this.state.error) {
+    if(typeof this.state.errors.errorMessages !== "undefined") {
+      const errors = _.chain(this.state.errors.errorMessages).values().flatten().value();
+
       errorMessage = (
         <div>
-          <h4>Whoops - there was an error when we tried to save your pin. Please try again later.</h4>
+          <h4>We couldn't save your pin!</h4>
+          <ul>
+            {errors.map((error, i) => {return <li key={i}>{error}</li>;})}
+          </ul>
         </div>
       );
     }

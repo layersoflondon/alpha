@@ -38,7 +38,9 @@ class MapsController < ApplicationController
 
     authorize @pin
 
-    @pin.save!
+    unless @pin.save
+      render json: {errors: @pin.errors}, status: :unprocessable_entity
+    end
   end
 
   def download
