@@ -1,7 +1,9 @@
 class PinDatasetFields extends React.Component {
   render () {
     return(
-      <PinAttachmentFields title="Choose your dataset" file_types=".txt,.csv,.tsv,.xls,.xlsm,.xlsx,.xlt,.xlw,.xlw" validation_failed_message="Please attach a dataset" />
+    	<div className="form-grouping form-grouping--pin-type">
+	      <PinAttachmentFields title="Choose your dataset" file_types=".txt,.csv,.tsv,.xls,.xlsm,.xlsx,.xlt,.xlw,.xlw" validation_failed_message="Please attach a dataset" />
+      </div>
     )
   }
 }
