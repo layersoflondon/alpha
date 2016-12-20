@@ -21,6 +21,18 @@
 .m-latest-pins li {
   width:33.333333%;
   float:left;
-  height:100px;
-  background:$lol-mint;
+
 }
+
+.m-latest-pins li a {
+  display:block;
+  background:#e9f9d5 asset-url('pin-red.png') center 25px/60px auto no-repeat;
+  text-align: center;
+  padding-top:100px;
+  padding-bottom:20px;
+  font-weight: 700;
+}
+
+/* .m-latest-pins li:nth-child(odd) a {
+  background-color:#e9f9d5;
+} */
