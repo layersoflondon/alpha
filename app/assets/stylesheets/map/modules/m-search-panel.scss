@@ -50,15 +50,29 @@
   left: 21px;
   width:300px;
   z-index: 1001;
-  height: 100px;
+  overflow:hidden;
+}
+
+.m-search-panel .results-pins,
+.m-search-panel .results-notes {
+  display:inline;
+}
+
+.m-search-panel .results-pins ul,
+.m-search-panel .results-notes ul {
+  overflow:scroll;
 }
 
 .m-search-panel .results div ul {
   display: none;
+  max-height: 43.6%;
+  background: #eee;
+  margin-bottom:20px;
 }
 
 .m-search-panel .results.is-visible {
-  height: auto;
+  //height: auto;
+  height:2000px;
 }
 
 .m-search-panel .results.is-visible div ul {
