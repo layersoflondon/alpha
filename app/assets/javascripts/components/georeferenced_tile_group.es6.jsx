@@ -20,6 +20,8 @@ class GeoreferencedTileGroup extends React.Component {
   }
 
   render() {
+    var opacity   = this.props.opacity ? this.props.opacity : 0.75;
+
     return (
       <LayerGroup>
        {
@@ -27,7 +29,7 @@ class GeoreferencedTileGroup extends React.Component {
            let sw = L.latLng(...image_item_data.south_west.split(","));
            let ne = L.latLng(...image_item_data.north_east.split(","));
            let bounds = L.latLngBounds(sw, ne);
-           return <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={0.75} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>;
+           return <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>;
          })
        }
      </LayerGroup>

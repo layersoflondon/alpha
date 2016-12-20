@@ -12,6 +12,7 @@
       this.overlays = [];
       this.show_overlays = true;
       this.visible_overlays = [];
+      this.overlay_options  = [];
       this.collections = [];
       this.markers = [];
       this.pins = [];
@@ -30,6 +31,7 @@
         onUpdateCollections: MapContainerActions.UPDATE_COLLECTIONS,
         onToggleShowOverlays: MapContainerActions.TOGGLE_SHOW_OVERLAYS,
         onToggleOverlayVisibility: MapContainerActions.TOGGLE_OVERLAY_VISIBILITY,
+        onSetOverlayOpacity: MapContainerActions.SET_OVERLAY_OPACITY,
         onAddPin: MapContainerActions.ADD_PIN,
         onAddMarker: MapContainerActions.ADD_MARKER
       });
@@ -121,6 +123,26 @@
       }
 
       this.visible_overlays = overlay_ids;
+    }
+
+    onSetOverlayOpacity(overlay_object) {
+      let overlay_ids = this.visible_overlays.slice();
+      let overlay_opts = this.overlay_options.slice();
+      let current_index = overlay_ids.indexOf(overlay_object.overlay_id);
+      let overlay_object_options = _.find(this.overlay_options, (o) => {return o.id == overlay_object.overlay_id});
+
+
+      if(current_index > -1 && overlay_object_options) {
+        let option_index = _.findIndex(overlay_opts, (o) => {return o.id == overlay_object.overlay_id});
+        overlay_opts.splice(option_index, 1);
+        overlay_opts.push({id: overlay_object.overlay_id, opacity: overlay_object.opacity});
+      }else if(current_index > -1 && !overlay_object_options) {
+        overlay_opts.push({id: overlay_object.overlay_id, opacity: overlay_object.opacity});
+      }else {
+        console.log("Overlay isn't visible");
+      }
+
+      this.overlay_options = overlay_opts;
     }
 
     onAddPin(pin_data) {
