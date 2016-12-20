@@ -33,6 +33,10 @@
   border-bottom:20px solid white;
 }
 
+.m-overlays-list .overlays-results li {
+  clear: both;
+}
+
 .m-overlays-list .overlays-results form {
   height: 0;
 }
@@ -56,4 +60,8 @@
 
 .m-overlays-list .show-overlays:hover {
   background:lighten($lol-navy, 10%);
+}
+
+.m-overlays-list .overlays-results .m-overlay-opacity-control {
+  padding: 0 0 25px 35px;
 }

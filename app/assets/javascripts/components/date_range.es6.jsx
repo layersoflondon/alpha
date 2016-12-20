@@ -9,7 +9,7 @@ class DateRange extends React.Component {
   }
 
   componentDidMount() {
-    $('.range-slider').jRange({
+    $('.m-date-filter .range-slider').jRange({
       from: this.state.date_from,
       to: this.state.date_to,
       step: 1,

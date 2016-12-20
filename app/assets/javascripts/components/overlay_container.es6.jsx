@@ -10,19 +10,21 @@ class OverlayContainer extends React.Component {
 
   render () {
     var component = null;
+    var opacity   = this.props.overlay_options.opacity ? this.props.overlay_options.opacity : 0.75;
 
     switch(this.state.overlay.resource.type) {
       case 'tileserver':
-        component = <TileLayer url={this.state.overlay.resource.tileserver_url} opacity={0.75}></TileLayer>
+        component = <TileLayer url={this.state.overlay.resource.tileserver_url} opacity={opacity}></TileLayer>;
         break;
       case 'polygon':
-        component = <Polygon positions={this.state.overlay.resource.polygon} />;
+        let fillOpacity = opacity * 0.5;
+        component = <Polygon positions={this.state.overlay.resource.polygon} opacity={opacity} fillOpacity={fillOpacity}/>;
         break;
       case 'data':
         component = <div />;
         break;
       case 'georeferencer_tileserver':
-        component = <GeoreferencedTileGroup georeferencer_table_id={this.state.overlay.resource.georeferencer_table_id} tileserver_url={this.state.overlay.resource.tileserver_url}/>;
+        component = <GeoreferencedTileGroup georeferencer_table_id={this.state.overlay.resource.georeferencer_table_id} tileserver_url={this.state.overlay.resource.tileserver_url} opacity={opacity} />;
         break;
     }
 
