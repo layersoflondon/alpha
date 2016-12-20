@@ -31,6 +31,9 @@ class PagesController < ApplicationController
     @collections = {}
     @places      = []
 
+    earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460
+    @filter_date_range = [earliest_pin_year, Date.today.year]
+
     @data = render_to_string('maps/search', layout: false, formats: [:json])
   end
 

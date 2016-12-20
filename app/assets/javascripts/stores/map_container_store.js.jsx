@@ -138,8 +138,6 @@
         overlay_opts.push({id: overlay_object.overlay_id, opacity: overlay_object.opacity});
       }else if(current_index > -1 && !overlay_object_options) {
         overlay_opts.push({id: overlay_object.overlay_id, opacity: overlay_object.opacity});
-      }else {
-        console.log("Overlay isn't visible");
       }
 
       this.overlay_options = overlay_opts;

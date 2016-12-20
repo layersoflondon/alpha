@@ -23,7 +23,8 @@
         onToggleAdvancedFilters:       FilterStateActions.TOGGLE_ADVANCED_FILTERS,
         onUpdateFilterAttribute:       FilterStateActions.UPDATE_FILTER_ATTRIBUTE,
         onUpdateFilterCentreAndBounds: FilterStateActions.UPDATE_FILTER_CENTRE_AND_BOUNDS,
-        onUpdateFilterBounds:          FilterStateActions.UPDATE_FILTER_BOUNDS
+        onUpdateFilterBounds:          FilterStateActions.UPDATE_FILTER_BOUNDS,
+        onUpdateDefaultYearFrom:       FilterStateActions.UPDATE_DEFAULT_YEAR_FROM
       });
     }
 
@@ -59,6 +60,14 @@
       this.search_radius = search_bounds.radius;
 
       this.suppress_update_results_event = false;
+    }
+
+    onUpdateDefaultYearFrom(year) {
+      if(year < this.default_dates.date_from) {
+        this.date_from = year;
+      }else {
+        return false;
+      }
     }
   }
 
