@@ -8,6 +8,11 @@ class MapContainer extends React.Component {
       MapContainerActions.emitUpdatedState(props.data);
     }
 
+    // set the FilterStateStore's default minimum year
+    if(props.date_filter_range) {
+      FilterStateActions.updateDefaultYearFrom(props.date_filter_range[0]);
+    }
+
     this.mapPinStoreChanged  = this.mapPinStoreChanged.bind(this);
   }
 

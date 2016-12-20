@@ -44,6 +44,9 @@ class PinForm extends React.Component {
     Pin.post(this.state).then((pin) => {
       MapPinActions.resetForm();
 
+      let year_from = moment(pin.date_from, "DDD MMM YYYY", 'en').year();
+
+      FilterStateActions.updateDefaultYearFrom(year_from);
       MapContainerActions.addMarker(pin);
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
