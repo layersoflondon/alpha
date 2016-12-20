@@ -28,7 +28,8 @@ class SearchTab extends React.Component {
   }
 
   render () {
-    let resultsClass = `results ${this.state.visible ? 'is-visible' : ''}`;
+
+    let resultsClass = `results is-windowed ${this.state.visible ? 'is-visible' : ''}`;
 
     return (
       <div className="m-search-panel">
