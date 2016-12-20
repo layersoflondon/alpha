@@ -16,7 +16,6 @@
   text-transform:uppercase;
   letter-spacing: 1px;
   margin-bottom: 1.4em;
-
 }
 
 .m-home-search input {
@@ -34,4 +33,31 @@
   background:#98da40;
   color:white;
   width:auto;
+}
+
+// Placeholder
+
+.m-home-search .placeholder span {
+  display: block;
+  font-size:1em;
+  text-transform:uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.4em;
+}
+
+.m-home-search .placeholder a {
+  border:0;
+  font-size: 1.6em;
+  padding: 0.9em 1em 1.1em 1em;
+  display:inline-block;
+  border-radius: 75px;
+  margin-left:0.4em;
+  background:#98da40;
+  color:white;
+  width:auto;
+  @include transition(background .2s);
+}
+
+.m-home-search .placeholder a:hover {
+  background:darken(#98da40, 10%);
 }

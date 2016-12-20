@@ -21,7 +21,6 @@
 .m-latest-pins li {
   width:33.333333%;
   float:left;
-
 }
 
 .m-latest-pins li a {
@@ -31,8 +30,9 @@
   padding-top:100px;
   padding-bottom:20px;
   font-weight: 700;
+  @include transition(background-color .2s);
 }
 
-/* .m-latest-pins li:nth-child(odd) a {
-  background-color:#e9f9d5;
-} */
+.m-latest-pins li a:hover {
+  background-color:#fff;
+}

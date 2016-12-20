@@ -9,8 +9,13 @@
   border-radius: 100px;
   background: #35f5c8;
   border: 0;
-  color: #0e5645;
+  color: #143754;
   text-transform: uppercase;
+  @include transition(all .2s);
+  &:hover {
+    background-color: #143754;
+    color:white;
+  }
 }
 
 @mixin element-list {
