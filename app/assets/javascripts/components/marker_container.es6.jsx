@@ -15,10 +15,6 @@ class MarkerContainer extends React.Component {
   }
 
   triggerAddPinForm() {
-    // var current_state = MapPinStore.getState();
-    // var enabled = current_state.pin_form_enabled;
-    // MapPinActions.enablePinForm(!enabled);
-    console.log("Add another pin at", this.props.marker.position);
     MapPinActions.setPinLocation(this.props.marker.position);
     MapPinActions.enablePinForm(true);
     MapPinActions.togglePinForm(true);
