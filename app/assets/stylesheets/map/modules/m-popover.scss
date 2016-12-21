@@ -12,6 +12,7 @@
   padding:20px;
   z-index: 10;
   @include shadow;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .m-popover:after {
