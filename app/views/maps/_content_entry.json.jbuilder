@@ -1,5 +1,6 @@
 json.id content_entry.id
 json.title content_entry.pin.title
+json.url content_entry.pin.link_url if content_entry.pin.link_url.present?
 
 json.resource do
   json.type content_entry.content_type.name.parameterize("_")

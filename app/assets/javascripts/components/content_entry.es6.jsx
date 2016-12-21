@@ -36,6 +36,7 @@ class ContentEntry extends React.Component {
 
         let $title_container       = $container.find('.title');
         let $description_container = $container.find('.description');
+        let $link_url_container    = $container.find('.link-url');
 
         $title_container.html(title_text);
         $description_container.html(description_text);
@@ -71,18 +72,22 @@ class ContentEntry extends React.Component {
     }
 
     if(typeof content.pinned_on_date !== "undefined"){
-      description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`
+      description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`;
     }
 
-    description += `Location: <strong>${content.location}</strong><br/>`
+    description += `Location: <strong>${content.location}</strong><br/>`;
 
     const date_from = content.date_from;
     const date_to   = content.date_to;
 
     if(typeof date_from !== "undefined" && typeof date_to !== "undefined") {
-      description += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`
+      description += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`;
     }else if(typeof date_from !== "undefined") {
-      description += `Content Date: <strong>${date_from}</strong>`
+      description += `Content Date: <strong>${date_from}</strong>`;
+    }
+
+    if(typeof content.link_url !== "undefined") {
+      description += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
     // we're embedding a media item from youtube
@@ -99,8 +104,6 @@ class ContentEntry extends React.Component {
       };
 
       _.merge(video_object, yt_attrs);
-
-      console.log(resource, video_object);
 
       gallery_objects.push(video_object);
 
