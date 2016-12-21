@@ -4,12 +4,16 @@ class SearchTab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = _.merge({}, props, {visible: false});
+    this.state = _.merge({}, props, {visible: false, windowed: false, rerender: true});
+
+    this.checkResultsClasses = _.debounce(this.checkResultsClasses.bind(this), 300, true);
   }
 
   toggleResultsVisibility() {
     let new_state = this.state;
     new_state.visible = !this.state.visible;
+    new_state.rerender = true;
+
     this.setState(new_state);
   }
 
@@ -21,6 +25,34 @@ class SearchTab extends React.Component {
 
     // fetch LoL pins that match the current search filter state
     MapContainerActions.fetchSearchResults();
+
+    setTimeout(() => {
+      this.componentDidUpdate();
+    }, 75);
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.checkResultsClasses)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkResultsClasses)
+  }
+
+  checkResultsClasses() {
+    this.componentDidUpdate();
+  }
+
+  componentDidUpdate() {
+    $results_container = $(".m-search-panel .results");
+    $results_pins_container = $results_container.find(".results-pins");
+    $results_notes_container = $results_container.find(".results-notes");
+
+    setTimeout(() => {
+      if($results_container.height() < ($results_pins_container.height() + $results_notes_container.height())) {
+        let state = _.merge({}, this.state, {windowed: true});
+        this.setState(state);
+      }
+    }, 15);
   }
 
   setSearchQuery(event) {
@@ -28,8 +60,7 @@ class SearchTab extends React.Component {
   }
 
   render () {
-
-    let resultsClass = `results is-windowed ${this.state.visible ? 'is-visible' : ''}`;
+    let resultsClass = `results ${this.state.windowed ? 'is-windowed' : ''} ${this.state.visible ? 'is-visible' : ''}`;
 
     return (
       <div className="m-search-panel">
