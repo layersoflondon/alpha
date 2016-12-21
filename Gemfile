@@ -91,4 +91,6 @@ gem 'browserify-rails'
 gem 'react-rails'
 gem 'leaflet-rails'
 
+gem 'sanitize'
+
 gem 'rollbar'

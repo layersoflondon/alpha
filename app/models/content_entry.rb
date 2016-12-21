@@ -16,6 +16,10 @@ class ContentEntry < ActiveRecord::Base
   mount_base64_uploader :attached_file, AttachedFileUploader
   validate :valid_content_type
 
+  before_save -> {
+    self.content = Sanitize.fragment(content)
+  }
+
   def base64_attachment
     raise "Invalid content type" unless attached_file && content_type.name=="text"
 
