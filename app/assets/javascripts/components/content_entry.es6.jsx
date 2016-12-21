@@ -53,13 +53,13 @@ class ContentEntry extends React.Component {
           if(typeof resource[resource_attribute] !== "undefined") {
             let icon = LoL.urls[resource.type];
 
-            $slide.append(`<p class="btn"><a target="_blank" href=${resource[resource_attribute]}>${icon} Download ${title_text}</a></p>`);
+            $slide.append(`<div class='m-note-text-download'><p class="btn"><a target="_blank" href=${resource[resource_attribute]}>${icon} Download ${title_text}</a></p></div>`);
           }else {
-            $slide.append("<p>No download available</p>");
+            $slide.append("<!--<div class='m-note-text-download'><p>No download available</p></div>-->");
           }
           
           if(resource.type === "text") {
-            $slide.append(`<div class="m-text-container"><p>${resource.text}</p></div>`);
+            $slide.append(`<div class="m-note-text-content"><p>${resource.text}</p></div>`);
           }
         }
       }
