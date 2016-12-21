@@ -32,7 +32,7 @@ class NavigationMenu extends React.Component {
   render() {
     return (
       <div className="m-navigation-menu">
-        <h1 class="logo"><a href="/">Layers of London</a></h1>
+        <h1 className="logo"><a href="/">Layers of London</a></h1>
         <button className={this.buttonClasses()} onClick={this.toggleMenu.bind(this)}>
           <span className="mti_font_element">toggle menu</span>
         </button>
