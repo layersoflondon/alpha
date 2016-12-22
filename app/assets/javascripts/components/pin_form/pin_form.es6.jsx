@@ -172,8 +172,8 @@ class PinForm extends React.Component {
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
 
             <h2>You'll need to be logged in first.</h2>
-            <p>You can sign in to your account <a href="/users/sign_in">here</a>.</p>
-            <p>Not registered yet? Create a <a href="/users/sign_up">new account</a> to get started!</p>
+            <p>You can sign in to your account <a href="/users/sign_in?adding_pin=true">here</a>.</p>
+            <p>Not registered yet? Create a <a href="/users/sign_up?adding_pin=true">new account</a> to get started!</p>
           </div>
         </form>
       </div>
