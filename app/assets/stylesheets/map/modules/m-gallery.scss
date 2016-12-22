@@ -82,7 +82,7 @@ video[src$='audio=true'] {
 .m-note-metadata {
   width: 25%;
   max-height:100%;
-  overflow:scroll;
+  overflow:auto;
 }
 
 .m-note-metadata .title {
@@ -99,7 +99,7 @@ video[src$='audio=true'] {
 
 .m-note-text-content {
   max-height:100%;
-  overflow: scroll;
+  overflow: auto;
   font-size:1.2em;
   padding-right: 30px;
 }
