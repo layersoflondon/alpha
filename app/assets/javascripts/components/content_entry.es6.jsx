@@ -71,7 +71,7 @@ class ContentEntry extends React.Component {
 
     let description = "";
 
-    if(typeof content.description !== "undefined" && content.description.length) {
+    if(typeof content.description !== "undefined" && content.description !== null && content.description.length) {
       description += `${content.description}`;
     }
 
