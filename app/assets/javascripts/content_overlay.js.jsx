@@ -122,7 +122,6 @@ class ContentOverlay {
         info: info
       });
     }
-    console.log(gallery_objects);
     blueimp.Gallery(gallery_objects, gallery_options);
     $("#blueimp-gallery").find('video').attr('controls', true).attr('autoplay', true);
   }
