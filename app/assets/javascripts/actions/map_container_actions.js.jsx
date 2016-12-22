@@ -134,6 +134,10 @@
     addMarker(marker_data) {
       return marker_data;
     }
+
+    updateMarker(marker_data) {
+      return marker_data;
+    }
   }
 
   this.MapContainerActions = alt.createActions(MapContainerActions);

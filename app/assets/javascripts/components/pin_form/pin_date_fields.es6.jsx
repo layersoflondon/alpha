@@ -77,8 +77,6 @@ class PinDateFields extends React.Component {
   toggleAdvanced(event) {
     event.preventDefault();
     MapPinActions.toggleAdvancedDates();
-
-    this.setState({advanced: !this.state.advanced});
   }
 
   dateFields() {
@@ -90,8 +88,6 @@ class PinDateFields extends React.Component {
   }
 
   render() {
-    console.log("Rendering date fields: " + this.state.advanced);
-
     return(
       <div className="date-fields">
         <div className="pseudo-label">

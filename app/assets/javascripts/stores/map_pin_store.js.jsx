@@ -63,6 +63,8 @@
     }
 
     onToggleAdvancedDates() {
+      this.advanced = true;
+
       this.date_to_day = "";
       this.date_to_month = "";
       this.date_to_year = "";
@@ -116,7 +118,7 @@
       this.setDefaultState();
 
       this.editing = true;
-
+      this.id = note.id;
       this.title = note.title;
       this.description = note.description;
       this.link_url = note.link_url;
@@ -150,16 +152,17 @@
       }
 
       if(date_to.isValid()) {
-        MapPinActions.toggleAdvancedDates();
-        this.state.advanced = true;
-
+        this.advanced = true;
         this.date_to_day = date_to.format('D');
         this.date_to_month = date_to.month()+1;
         this.date_to_year = date_to.year();
       }
 
+      //state.location_object.location.long_name
       this.location = note.location;
+      this.location_object = {location: {long_name: note.location}};
       this.attribution = note.content_entry.attribution;
+      window.note = note;
 
       this.pin_form_visible = true;
       this.pin_form_lat_lng = note.position;

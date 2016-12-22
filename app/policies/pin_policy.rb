@@ -8,7 +8,7 @@ class PinPolicy < ApplicationPolicy
     user.present?
   end
 
-  def edit?
+  def update?
     user.pins.include?(record)
   end
 

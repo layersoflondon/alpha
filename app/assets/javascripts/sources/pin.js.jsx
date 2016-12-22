@@ -26,7 +26,6 @@ class Pin {
       pin: {
         title: state.title,
         description: state.description,
-        //   geocoding TODO - fix up
         location: state.location_object.location.long_name,
         date_from: fromDate,
         date_to: toDate,
@@ -47,12 +46,26 @@ class Pin {
       }
     };
 
+    let route  = "/maps";
+    let method = "POST";
+
+    if(state.editing) {
+      route  = `/maps/${state.id}`;
+      method = "PATCH";
+    }
+
     return new Promise(function(resolve, reject) {
-      $.post("/maps", pinData).done((response) => {
+      $.ajax({
+        url: route,
+        data: JSON.stringify(pinData),
+        type: method,
+        dataType: "json",
+        contentType: "application/json"
+      }).done((response) => {
         resolve(response);
       }).fail((response) => {
         reject(response);
-      })
+      });
     });
   }
 }

@@ -8,7 +8,7 @@ json.pinned_on_date pin.created_at.strftime("#{pin.created_at.day.ordinalize} %b
 json.location pin.location
 json.description pin.description
 
-json.editable user_signed_in? && PinPolicy.new(current_user, pin).edit?
+json.editable user_signed_in? && PinPolicy.new(current_user, pin).update?
 
 json.position do
   json.lat pin.lat
