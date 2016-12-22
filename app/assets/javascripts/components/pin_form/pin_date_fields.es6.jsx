@@ -21,9 +21,9 @@ class PinDateFields extends React.Component {
             <input type="text" value={this.state.date_from_year} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_year' placeholder="Year" data-parsley-required={true} data-parsley-type="integer" data-parsley-error-message="Please enter a valid year" />
           </div>
         </div>
-        <div className="form-helper-text">
+     {/*   <div className="form-helper-text">
           Don't worry too much, an estimated year is acceptable - an exact date is fantastic!
-        </div>
+        </div>*/}
         <p>to</p>
         <div className="to">
           <div className="form-group">
