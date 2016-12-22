@@ -84,13 +84,13 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-react-leaflet'
   gem 'rails-assets-lodash'
   gem 'rails-assets-moment'
-  gem 'rails-assets-react-router'
 end
 
 gem 'sprockets-es6'
 gem 'browserify-rails'
 gem 'react-rails'
 gem 'leaflet-rails'
+gem 'react-router-rails'
 
 gem 'sanitize'
 

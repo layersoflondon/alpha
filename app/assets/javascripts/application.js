@@ -19,6 +19,7 @@
 //= require react-dom
 //= require react_ujs
 //= require react-tabs
+//= require react_router
 
 //= require leaflet
 //= require vendor/react-leaflet
