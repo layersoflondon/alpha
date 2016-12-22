@@ -23,16 +23,20 @@
   float:left;
 }
 
+.m-latest-pins li:nth-child(3n+4) {
+  clear:left;
+}
+
 .m-latest-pins li a {
   display:block;
-  background:#e9f9d5 asset-url('pin-red.png') center 25px/60px auto no-repeat;
+  background: asset-url('pin-red.png') center 25px/60px auto no-repeat;
   text-align: center;
   padding-top:100px;
   padding-bottom:20px;
   font-weight: 700;
-  @include transition(background-color .2s);
+  @include transition(all .2s);
 }
 
 .m-latest-pins li a:hover {
-  background-color:#fff;
+  @include transform(scale(1.2));
 }
