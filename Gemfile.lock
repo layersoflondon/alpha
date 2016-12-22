@@ -220,9 +220,6 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    react-router-rails (0.13.3.1)
-      rails (>= 3.1)
-      react-rails (>= 0.12)
     redis (3.3.2)
     redis-actionpack (5.0.1)
       actionpack (>= 4.0, < 6)
@@ -340,7 +337,6 @@ DEPENDENCIES
   rails-assets-react-leaflet!
   rails-assets-react-tabs!
   react-rails
-  react-router-rails
   redis-rails
   rollbar
   rooftop

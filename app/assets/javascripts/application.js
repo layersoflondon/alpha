@@ -19,7 +19,6 @@
 //= require react-dom
 //= require react_ujs
 //= require react-tabs
-//= require react_router
 
 //= require leaflet
 //= require vendor/react-leaflet
@@ -31,6 +30,7 @@
 //= require vendor/blueimp-gallery-youtube
 //= require vendor/blueimp-gallery-vimeo
 
+//= require router
 //= require alt
 //= require layers
 //= require components
@@ -42,3 +42,4 @@
 
 var LoL = {};
 var alt = new Alt();
+

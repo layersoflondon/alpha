@@ -90,7 +90,6 @@ gem 'sprockets-es6'
 gem 'browserify-rails'
 gem 'react-rails'
 gem 'leaflet-rails'
-gem 'react-router-rails'
 
 gem 'sanitize'
 
