@@ -33,13 +33,16 @@ class ContentEntry extends React.Component {
 
         let title_text       = this.list[index].title;
         let description_text = this.list[index].description;
+        let info_text = this.list[index].info;
 
         let $title_container       = $container.find('.title');
         let $description_container = $container.find('.description');
+        let $info_container = $container.find('.info');
         let $link_url_container    = $container.find('.link-url');
 
         $title_container.html(title_text);
         $description_container.html(description_text);
+        $info_container.html(info_text);
 
         /*
         if we're rendering a dataset or text object, remove the 'slide-loading' class
@@ -65,29 +68,32 @@ class ContentEntry extends React.Component {
       }
     };
 
+
     let description = "";
 
     if(typeof content.description !== "undefined" && content.description.length) {
-      description += `${content.description}<br/><br/>`;
+      description += `${content.description}`;
     }
+
+    let info = "";
 
     if(typeof content.pinned_on_date !== "undefined"){
-      description += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`;
+      info += `Pinned on: <strong>${content.pinned_on_date}</strong><br/>`;
     }
 
-    description += `Location: <strong>${content.location}</strong><br/>`;
+    info += `Location: <strong>${content.location}</strong><br/>`;
 
     const date_from = content.date_from;
     const date_to   = content.date_to;
 
     if(typeof date_from !== "undefined" && typeof date_to !== "undefined") {
-      description += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`;
+      info += `Content Date: <br/><strong>${date_from}</strong> to <strong>${date_to}</strong>`;
     }else if(typeof date_from !== "undefined") {
-      description += `Content Date: <strong>${date_from}</strong>`;
+      info += `Content Date: <strong>${date_from}</strong>`;
     }
 
     if(typeof content.link_url !== "undefined") {
-      description += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
+      info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
     // we're embedding a media item from youtube
@@ -100,7 +106,8 @@ class ContentEntry extends React.Component {
         href:   source,
         type:   "text/html",
         content_type: "video",
-        description: description
+        description: description,
+        info: info
       };
 
       _.merge(video_object, yt_attrs);
@@ -116,7 +123,8 @@ class ContentEntry extends React.Component {
         type: resource.mime_type,
         content_type: resource.type,
         poster: resource.poster,
-        description: description
+        description: description,
+        info: info
       });
     }
 
