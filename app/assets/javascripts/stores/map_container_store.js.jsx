@@ -185,7 +185,6 @@
       });
 
       if(current_marker > -1) {
-        console.log("Changing marker " + current_marker);
         let marker = markers[current_marker];
         let pin_index = _.findIndex(marker.pins, (pin) => {return pin.id == marker_data.id});
         let pins = marker.pins.slice();
@@ -196,7 +195,6 @@
 
         this.markers = markers;
       }else {
-        console.log("Creating  newmarker");
         const marker = {
           position: marker_data.position,
           pins: [marker_data]
