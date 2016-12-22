@@ -144,6 +144,10 @@ class ContentEntry extends React.Component {
     MapPinActions.editNote(this.props.content_entry);
   }
 
+  editNoteLocation() {
+    MapPinActions.editNoteLocation(this.props.content_entry);
+  }
+
   render () {
     var text = "";
     if(this.state.show_text) {
@@ -185,12 +189,19 @@ class ContentEntry extends React.Component {
       );
     }
 
-    const edit_button = this.props.content_entry.editable ? <span className="edit-button" onClick={this.editContentEntry.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></span> : "";
+    let edit_note_button = '';
+    let edit_location_button = '';
+
+    if(this.props.content_entry.editable) {
+      edit_note_button     = <span className="edit-button" onClick={this.editContentEntry.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></span>;
+      edit_location_button = <span className="edit-button" onClick={this.editNoteLocation.bind(this)}><i className="fa fa-map-marker" aria-hidden="true"></i></span>;
+    }
 
     return (
       <li>
       {this.props.id}
-        {edit_button}
+        {edit_note_button} 
+
         {link}
       </li>
     );

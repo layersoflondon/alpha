@@ -49,6 +49,7 @@
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
           onEditNote: MapPinActions.EDIT_NOTE,
+          onEditNoteLocation: MapPinActions.EDIT_NOTE_LOCATION,
           onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
           onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
@@ -167,6 +168,10 @@
       this.pin_form_visible = true;
       this.pin_form_lat_lng = note.position;
 
+      return true;
+    }
+
+    onEditNoteLocation(note) {
       return true;
     }
 
