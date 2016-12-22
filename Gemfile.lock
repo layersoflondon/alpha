@@ -196,6 +196,7 @@ GEM
       rails-assets-leaflet (~> 0.7.0)
       rails-assets-lodash (~> 4.0.0)
       rails-assets-react
+    rails-assets-react-router (4.0.0.2)
     rails-assets-react-tabs (0.8.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -335,6 +336,7 @@ DEPENDENCIES
   rails-assets-lodash!
   rails-assets-moment!
   rails-assets-react-leaflet!
+  rails-assets-react-router!
   rails-assets-react-tabs!
   react-rails
   redis-rails
