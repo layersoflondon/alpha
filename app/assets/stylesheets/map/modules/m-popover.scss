@@ -52,3 +52,18 @@
 .m-popover > h3:first-child + p {
   margin-top:0;
 }
+
+.m-popover li .edit-button {
+  padding: 2px;
+  float: right;
+  display: none;
+}
+
+.m-popover li:hover .edit-button {
+  display: block;
+}
+
+.m-popover li .edit-button:hover {
+  background: none;
+  cursor: pointer;
+}

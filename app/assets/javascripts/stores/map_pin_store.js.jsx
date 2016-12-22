@@ -27,6 +27,9 @@
       this.attribution = "";
       this.content = "";
 
+      this.editing = false; //set to true when we're editing a note
+      this.advanced = false;
+
       this.saving = false;
       this.errors = {};
     }
@@ -45,6 +48,7 @@
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
+          onEditNote: MapPinActions.EDIT_NOTE,
           onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
           onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
@@ -59,6 +63,8 @@
     }
 
     onToggleAdvancedDates() {
+      this.advanced = true;
+
       this.date_to_day = "";
       this.date_to_month = "";
       this.date_to_year = "";
@@ -104,6 +110,62 @@
 
     onResetForm() {
       this.setDefaultState();
+
+      return true;
+    }
+
+    onEditNote(note) {
+      this.setDefaultState();
+
+      this.editing = true;
+      this.id = note.id;
+      this.title = note.title;
+      this.description = note.description;
+      this.link_url = note.link_url;
+      //this.attached_file = note.attached_file;
+      this.file_name = note.content_entry.resource.file_name;
+      this.pin_type  = note.content_entry.resource.content_type_id;
+      this.video_url = note.content_entry.video_url;
+
+      switch(note.content_entry.resource.type) {
+        case "text":
+          this.content = note.content_entry.resource.plain;
+          break;
+        case "image":
+          break;
+        case "video":
+          this.video_url = note.content_entry.resource.href;
+          break;
+        case "audio":
+          break;
+        case "dataset":
+          break;
+      }
+
+      let date_from = moment(note.date_from, ['Do MMM YYYY']);
+      let date_to   = moment(note.date_to,   ['Do MMM YYYY']);
+
+      if(date_from.isValid()) {
+        this.date_from_day = date_from.format('D');
+        this.date_from_month = date_from.month()+1;
+        this.date_from_year = date_from.year();
+      }
+
+      if(date_to.isValid()) {
+        this.advanced = true;
+        this.date_to_day = date_to.format('D');
+        this.date_to_month = date_to.month()+1;
+        this.date_to_year = date_to.year();
+      }
+
+      //state.location_object.location.long_name
+      this.location = note.location;
+      this.location_object = {location: {long_name: note.location}};
+      this.attribution = note.content_entry.attribution;
+      window.note = note;
+
+      this.pin_form_visible = true;
+      this.pin_form_lat_lng = note.position;
 
       return true;
     }
