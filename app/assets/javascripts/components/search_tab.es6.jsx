@@ -7,6 +7,7 @@ class SearchTab extends React.Component {
     this.state = _.merge({}, props, {visible: false, windowed: false, rerender: true});
 
     this.checkResultsClasses = _.debounce(this.checkResultsClasses.bind(this), 300, true);
+    this.sidebarStateChanged = this.sidebarStateChanged.bind(this);
   }
 
   toggleResultsVisibility() {
@@ -32,14 +33,30 @@ class SearchTab extends React.Component {
   }
 
   componentWillMount() {
-    window.addEventListener('resize', this.checkResultsClasses)
+    // check whether to add the is-windowed class if the window is resized below the container height
+    window.addEventListener('resize', this.checkResultsClasses);
+
+    // the map container will have its notes/pins state changed - check whether to add the is-windowed class
+    // once we've added the new state data to the component
+    MapContainerStore.listen(this.sidebarStateChanged);
   }
   componentWillUnmount() {
-    window.removeEventListener('resize', this.checkResultsClasses)
+    window.removeEventListener('resize', this.checkResultsClasses);
+    MapContainerStore.listen(this.sidebarStateChanged);
   }
 
   checkResultsClasses() {
     this.componentDidUpdate();
+  }
+
+  sidebarStateChanged(state) {
+    $results_container = $(".m-search-panel .results");
+    $results_pins_container = $results_container.find(".results-pins");
+    $results_notes_container = $results_container.find(".results-notes");
+
+    setTimeout(() => {
+      this.componentDidUpdate();
+    }, 15);
   }
 
   componentDidUpdate() {
