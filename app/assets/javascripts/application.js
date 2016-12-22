@@ -41,3 +41,9 @@
 
 var LoL = {};
 var alt = new Alt();
+
+$(document).ready(() => {
+  $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token]").attr('content'));
+  });
+});

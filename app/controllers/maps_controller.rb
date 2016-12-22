@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:search, :create]
+  skip_before_action :verify_authenticity_token, only: [:search]
 
   def index
     @pins        = Pin.all.limit(4).group_by(&:coords)
@@ -33,6 +33,16 @@ class MapsController < ApplicationController
 
   def show
     @pin = Pin.find(params[:id])
+  end
+
+  def update
+    @pin = current_user.pins.find(params[:id])
+
+    authorize @pin
+
+    unless @pin.update_attributes(pin_params)
+      render json: {errors: @pin.errors}, status: :unprocessable_entity
+    end
   end
 
   def create

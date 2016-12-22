@@ -41,13 +41,20 @@ class PinForm extends React.Component {
     const saving_state = _.merge(MapPinStore.getState(), {saving: true});
     this.setState(saving_state);
 
-    Pin.post(this.state).then((pin) => {
+    let editing = this.state.editing;
+
+    Pin.post(this.state).then((note) => {
       MapPinActions.resetForm();
 
-      let year_from = moment(pin.date_from, "DDD MMM YYYY", 'en').year();
+      let year_from = moment(note.date_from, "DDD MMM YYYY", 'en').year();
 
       FilterStateActions.updateDefaultYearFrom(year_from);
-      MapContainerActions.addMarker(pin);
+
+      if(editing) {
+        MapContainerActions.updateMarker(note);
+      }else {
+        MapContainerActions.addMarker(note);
+      }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
       MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
@@ -122,7 +129,7 @@ class PinForm extends React.Component {
     }
 
     const spinner = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
-    let save_button;
+    let button;
 
     if(this.state.saving) {
       button = <button disabled={this.state.saving} className="main-button">Saving {spinner}</button>
