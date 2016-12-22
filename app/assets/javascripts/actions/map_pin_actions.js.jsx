@@ -44,6 +44,10 @@
       return file;
     }
 
+    editNote(note) {
+      return note;
+    }
+
     submitForm(pin_data) {
       return pin_data;
     }

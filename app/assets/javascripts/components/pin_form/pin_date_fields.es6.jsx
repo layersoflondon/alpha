@@ -10,11 +10,11 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-range='[1,31]' data-parsley-error-message="The day is required" />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={false} data-parsley-type="integer" data-parsley-range='[1,31]' />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-range='[1,12]' data-parsley-error-message="The month <br/>(1 - 12) is required" />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={false} data-parsley-type="integer" data-parsley-range='[1,12]' />
           </div>
           <div className="form-group">
             <label>Year</label>
@@ -53,11 +53,11 @@ class PinDateFields extends React.Component {
         <div className="from">
           <div className="form-group">
             <label>Day</label>
-            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,31]' data-parsley-error-message="The day is required" />
+            <input type="text" value={this.state.date_from_day} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_day' placeholder="Day" data-parsley-required={false} data-parsley-type="integer" data-parsley-range='[1,31]' />
           </div>
           <div className="form-group">
             <label>Month</label>
-            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={true} data-parsley-type="integer" data-parsley-range='[1,12]' data-parsley-error-message="The month <br/>(1 - 12) is required" />
+            <input type="text" value={this.state.date_from_month} onChange={this.updateAttribute.bind(this)} data-attribute='date_from_month' placeholder="Month" data-parsley-required={false} data-parsley-type="integer" data-parsley-range='[1,12]' />
           </div>
           <div className="form-group">
             <label>Year</label>
@@ -77,6 +77,7 @@ class PinDateFields extends React.Component {
   toggleAdvanced(event) {
     event.preventDefault();
     MapPinActions.toggleAdvancedDates();
+
     this.setState({advanced: !this.state.advanced});
   }
 
@@ -89,6 +90,8 @@ class PinDateFields extends React.Component {
   }
 
   render() {
+    console.log("Rendering date fields: " + this.state.advanced);
+
     return(
       <div className="date-fields">
         <div className="pseudo-label">

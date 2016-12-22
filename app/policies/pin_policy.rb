@@ -8,6 +8,10 @@ class PinPolicy < ApplicationPolicy
     user.present?
   end
 
+  def edit?
+    user.pins.include?(record)
+  end
+
   class Scope < Scope
     def resolve
       scope

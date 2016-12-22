@@ -131,6 +131,11 @@ class ContentEntry extends React.Component {
     return {youtube: id, poster: poster};
   }
 
+  editContentEntry() {
+    // the 'content_entry' in the props is a Note, displayed as a list item
+    MapPinActions.editNote(this.props.content_entry);
+  }
+
   render () {
     var text = "";
     if(this.state.show_text) {
@@ -172,6 +177,14 @@ class ContentEntry extends React.Component {
       );
     }
 
-    return <li>{link}</li>;
+    const edit_button = this.props.content_entry.editable ? <span className="edit-button" onClick={this.editContentEntry.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></span> : "";
+
+    return (
+      <li>
+      {this.props.id}
+        {edit_button}
+        {link}
+      </li>
+    );
   }
 }
