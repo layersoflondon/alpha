@@ -16,8 +16,28 @@
   float:left;
   margin-left:80px;
   margin-top: 40px;
+  position: relative;
 }
 
 .m-site-header .logo a {
   color:white;
+}
+
+.m-site-header .logo:after {
+  content: "beta";
+  position: absolute;
+  left: 101%;
+  bottom: 60%;
+  display: block;
+  text-transform: uppercase;
+  background: $lol-green;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  color: #5c6562;
+  padding-top: 14px;
+  font-weight: 500;
+  font-size: 0.6em;
+  text-align: center;
+  box-sizing: border-box;
 }
