@@ -75,6 +75,10 @@ class MapView extends React.Component {
     MapPinActions.togglePinForm(add_pin_state.pin_form_enabled);
   }
 
+  //componentDidUpdate() {
+  //  window.map = this.refs.map.state.map;
+  //}
+
   render() {
     const position = [this.state.lat, this.state.lng];
 
