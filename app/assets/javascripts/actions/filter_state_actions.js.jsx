@@ -23,6 +23,10 @@
     updateFilterBounds(bounds) {
       return bounds;
     }
+
+    updateDefaultYearFrom(year) {
+      return year;
+    }
   }
 
   this.FilterStateActions = alt.createActions(FilterStateActions);

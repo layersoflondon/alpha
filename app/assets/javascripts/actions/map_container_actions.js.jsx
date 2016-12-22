@@ -123,11 +123,19 @@
       return overlay_id;
     }
 
+    setOverlayOpacity(overlay_id, opacity) {
+      return {overlay_id: overlay_id, opacity: opacity};
+    }
+
     addPin(pin_data) {
       return pin_data;
     }
 
     addMarker(marker_data) {
+      return marker_data;
+    }
+
+    updateMarker(marker_data) {
       return marker_data;
     }
   }

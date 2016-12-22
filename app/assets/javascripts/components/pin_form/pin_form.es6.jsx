@@ -41,10 +41,20 @@ class PinForm extends React.Component {
     const saving_state = _.merge(MapPinStore.getState(), {saving: true});
     this.setState(saving_state);
 
-    Pin.post(this.state).then((pin) => {
+    let editing = this.state.editing;
+
+    Pin.post(this.state).then((note) => {
       MapPinActions.resetForm();
 
-      MapContainerActions.addMarker(pin);
+      let year_from = moment(note.date_from, "DDD MMM YYYY", 'en').year();
+
+      FilterStateActions.updateDefaultYearFrom(year_from);
+
+      if(editing) {
+        MapContainerActions.updateMarker(note);
+      }else {
+        MapContainerActions.addMarker(note);
+      }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
       MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
@@ -119,7 +129,7 @@ class PinForm extends React.Component {
     }
 
     const spinner = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
-    let save_button;
+    let button;
 
     if(this.state.saving) {
       button = <button disabled={this.state.saving} className="main-button">Saving {spinner}</button>
@@ -162,8 +172,8 @@ class PinForm extends React.Component {
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
 
             <h2>You'll need to be logged in first.</h2>
-            <p>You can sign in to your account <a href="/users/sign_in">here</a>.</p>
-            <p>Not registered yet? Create a <a href="/users/sign_up">new account</a> to get started!</p>
+            <p>You can sign in to your account <a href="/users/sign_in?adding_pin=true">here</a>.</p>
+            <p>Not registered yet? Create a <a href="/users/sign_up?adding_pin=true">new account</a> to get started!</p>
           </div>
         </form>
       </div>

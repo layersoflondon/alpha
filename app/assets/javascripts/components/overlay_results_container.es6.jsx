@@ -39,7 +39,7 @@ class OverlayResultsContainer extends React.Component {
           show_caret = true;
           break;
         default:
-          overlays_label = `${this.state.overlays.length} overlays in this area`;
+          overlays_label = `${this.state.overlays.length} overlays found`;
           show_caret = true;
       }
     }

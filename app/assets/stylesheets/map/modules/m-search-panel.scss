@@ -3,7 +3,7 @@
 
 .m-search-panel {
   float:left;
-  width:75%;
+  width: 66%;
 }
 
 .m-search-panel {
@@ -47,24 +47,53 @@
   background: white;
   padding: 20px;
   top: 93px;
-  left: 21px;
+  left: 11px;
   width:300px;
-  z-index: 1001;
-  height: 100px;
+  z-index: 1000;
+  //z-index: 1001;
+  @include shadow;
 }
 
-.m-search-panel .results div ul {
+.m-search-panel .results.is-visible.is-windowed {
+  height:2000px;
+}
+
+.m-search-panel .results .results-pins ul,
+.m-search-panel .results .results-notes ul {
   display: none;
+  background: #eee;
+  margin-bottom:20px;
 }
 
-.m-search-panel .results.is-visible {
-  height: auto;
-}
-
-.m-search-panel .results.is-visible div ul {
+.m-search-panel .results.is-visible .results-pins ul,
+.m-search-panel .results.is-visible .results-notes ul {
   display: block;
 }
 
+// Windowed mode - .is-windowed should be applied to .results if the content is bigger then the screen height
+.m-search-panel .results.is-visible.is-windowed {
+  .results-pins,
+  .results-notes {
+    height:50%;
+  }
+  .results-pins ul,
+  .results-notes ul {
+    overflow:scroll;
+    height:calc(100% - 47px);
+  }
+}
+
+// Places/Pins titles
+.m-search-panel .results > div > h3 {
+  margin:0;
+  color:#5c6562;
+}
+
+.m-search-panel .results.is-visible > div > h3 {
+  margin-bottom:1em;
+}
+
+// Toggle arrow
 .m-search-panel .results button.toggle-visibility {
   background: #fff;
   float: right;
@@ -92,7 +121,7 @@
 .m-search-panel .results:before {
   content:"";
   position:absolute;
-  left:50%;
+  left: 80%;
   top:-20px;
   margin-left:-20px;
   width:0;
@@ -105,7 +134,7 @@
 }
 
 .m-search-panel .results .results-pins {
-  margin-bottom: 18px;
+  padding-bottom: 18px;
 }
 
 .m-search-panel .results .results-pins li {
@@ -116,9 +145,7 @@
   color: #c0392b;
 }
 
-.m-search-panel .results h3 {
-  margin-top:0;
-}
+
 
 .m-search-panel button {
   padding: 11px 20px;

@@ -75,6 +75,10 @@ class MapView extends React.Component {
     MapPinActions.togglePinForm(add_pin_state.pin_form_enabled);
   }
 
+  //componentDidUpdate() {
+  //  window.map = this.refs.map.state.map;
+  //}
+
   render() {
     const position = [this.state.lat, this.state.lng];
 
@@ -97,8 +101,10 @@ class MapView extends React.Component {
         return overlay.id == visible_overlay_id;
       });
 
+      let overlay_options = _.find(this.state.overlay_options, (option) => {return option.id == visible_overlay_id}) || {};
+
       return (
-        <OverlayContainer key={visible_overlay_id} overlay={overlay_object} />
+        <OverlayContainer key={visible_overlay_id} overlay={overlay_object} overlay_options={overlay_options} />
       );
     });
 

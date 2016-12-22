@@ -15,10 +15,6 @@ class MarkerContainer extends React.Component {
   }
 
   triggerAddPinForm() {
-    // var current_state = MapPinStore.getState();
-    // var enabled = current_state.pin_form_enabled;
-    // MapPinActions.enablePinForm(!enabled);
-    console.log("Add another pin at", this.props.marker.position);
     MapPinActions.setPinLocation(this.props.marker.position);
     MapPinActions.enablePinForm(true);
     MapPinActions.togglePinForm(true);
@@ -26,9 +22,11 @@ class MarkerContainer extends React.Component {
 
   render () {
     const content = this.props.marker.pins.map(function(pin){return <ContentEntry key={pin.id} content_entry={pin} />;});
+    const icon = new L.Icon.Default();
+    icon.options.shadowSize = [0,0];
 
     return (
-      <Marker position={this.props.marker.position}>
+      <Marker icon={icon} position={this.props.marker.position}>
         <Popup>
           <div className="m-popover">
             <ul>

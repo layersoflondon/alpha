@@ -17,6 +17,7 @@
   color:white;
   font-weight: bold;
   @include transition(all .2s);
+  @include shadow;
 }
 
 .m-pin-controls .add-pin.adding button {

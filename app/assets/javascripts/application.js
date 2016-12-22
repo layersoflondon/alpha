@@ -30,6 +30,7 @@
 //= require vendor/blueimp-gallery-youtube
 //= require vendor/blueimp-gallery-vimeo
 
+//= require router
 //= require alt
 //= require layers
 //= require components
@@ -41,3 +42,10 @@
 
 var LoL = {};
 var alt = new Alt();
+
+$(function() {
+  $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token]").attr('content'));
+  });
+});
+
