@@ -23,6 +23,7 @@
       this.main_form_confirmed = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
+      this.move_pin_form_enabled = false;
       this.pin_type = null;
       this.attribution = "";
       this.content = "";
@@ -49,6 +50,7 @@
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
           onEditNote: MapPinActions.EDIT_NOTE,
+          onEditNoteLocation: MapPinActions.EDIT_NOTE_LOCATION,
           onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
           onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
@@ -96,6 +98,7 @@
       if( !enabled ){
         this.pin_form_visible = false;
       }
+      this.move_pin_form_enabled = enabled;
       this.pin_form_enabled = enabled;
     }
 
@@ -115,6 +118,33 @@
     }
 
     onEditNote(note) {
+      this._restoreStateFrom(note);
+      this.pin_form_visible = true;
+
+      return true;
+    }
+
+    onEditNoteLocation(note) {
+      this._restoreStateFrom(note);
+      this.pin_form_enabled = true;
+      this.move_pin_form_enabled = true;
+
+      return true;
+    }
+
+    onSubmitForm(pin_data) {
+      this.setDefaultState();
+
+      return true;
+    }
+
+    onSetErrors(errors) {
+      this.errors = errors;
+
+      return true;
+    }
+
+    _restoreStateFrom(note) {
       this.setDefaultState();
 
       this.editing = true;
@@ -164,20 +194,7 @@
       this.attribution = note.content_entry.attribution;
       window.note = note;
 
-      this.pin_form_visible = true;
       this.pin_form_lat_lng = note.position;
-
-      return true;
-    }
-
-    onSubmitForm(pin_data) {
-      this.setDefaultState();
-
-      return true;
-    }
-
-    onSetErrors(errors) {
-      this.errors = errors;
 
       return true;
     }

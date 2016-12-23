@@ -3,7 +3,7 @@
     <ul>
       <% Pin.latest.each do |pin| %>
         <li>
-          <a href="/the-map"><%= pin.title %></a>
+          <a href="/the-map#/pins/<%= pin.id %>"><%= pin.title %></a>
         </li>
       <% end %>
     </ul>
