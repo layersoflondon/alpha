@@ -4,8 +4,9 @@ class AddPinControl extends React.Component {
   }
 
   togglePinForm() {
-    var current_state = MapPinStore.getState();
-    var enabled = current_state.pin_form_enabled;
+    let current_state = MapPinStore.getState();
+    let enabled = current_state.pin_form_enabled;
+
     MapPinActions.enablePinForm(!enabled);
   }
 

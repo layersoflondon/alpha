@@ -98,6 +98,7 @@
       if( !enabled ){
         this.pin_form_visible = false;
       }
+      this.move_pin_form_enabled = enabled;
       this.pin_form_enabled = enabled;
     }
 
