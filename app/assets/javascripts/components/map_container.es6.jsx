@@ -26,15 +26,28 @@ class MapContainer extends React.Component {
   }
 
   mapPinStoreChanged(state) {
-    if(state.pin_form_enabled){
-      this.setState({adding_pin: true});
+    if(state.pin_form_enabled && state.move_pin_form_enabled) {
+      this.setState({adding_pin: 1});
+    }else if(state.pin_form_enabled) {
+      this.setState({adding_pin: 2});
     }else {
-      this.setState({adding_pin: false});
+      this.setState({adding_pin: 0});
     }
   }
 
   render() {
-    var adding_pin = this.state.adding_pin ? (<div className="m-drop-pin-msg"><div>Click on the map to add a note</div></div>) : '';
+    let drop_pin_label, drop_pin_container;
+
+    switch(this.state.adding_pin) {
+      case 1:
+        drop_pin_label = "Click on the map to move this note";
+        drop_pin_container = <div className="m-drop-pin-msg"><div>{drop_pin_label}</div></div>;
+        break;
+      case 2:
+        drop_pin_label = "Click on the map to add a note";
+        drop_pin_container = <div className="m-drop-pin-msg"><div>{drop_pin_label}</div></div>;
+        break;
+    }
 
     return (
       <div>
@@ -46,7 +59,7 @@ class MapContainer extends React.Component {
 
         <PinForm />
 
-        {adding_pin}
+        {drop_pin_container}
       </div>
     )
   }

@@ -109,7 +109,9 @@ class MapView extends React.Component {
     });
 
     let mapClasses = "m-map leaflet-container leaflet-fade-anim";
-    if(MapPinStore.getState().pin_form_enabled) {
+    let map_pin_store = MapPinStore.getState();
+
+    if(map_pin_store.pin_form_enabled || map_pin_store.move_pin_form_enabled) {
       mapClasses += " add-pin-mode";
     }
 

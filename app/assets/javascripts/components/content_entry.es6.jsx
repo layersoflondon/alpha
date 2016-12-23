@@ -73,7 +73,7 @@ class ContentEntry extends React.Component {
     return (
       <li>
       {this.props.id}
-        {edit_note_button} 
+        {edit_location_button} {edit_note_button}
 
         {link}
       </li>

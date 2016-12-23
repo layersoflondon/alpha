@@ -188,10 +188,30 @@
         let marker = markers[current_marker];
         let pin_index = _.findIndex(marker.pins, (pin) => {return pin.id == marker_data.id});
         let pins = marker.pins.slice();
-        pins[pin_index] = marker_data;
+
+        if(JSON.stringify(marker_data.position) !== JSON.stringify(marker.position)) {
+          // the note has been moved to a new location.
+          pins.splice(pin_index, 1); // remove this note from its previous markers' content entry list
+
+          // if this marker has no remaining content entries, remove the marker completely
+          if(pins.length==0){
+            markers.splice(current_marker, 1);
+          }
+
+          // add our new marker
+          const marker = {
+            position: marker_data.position,
+            pins: [marker_data]
+          };
+          markers.push(marker);
+        }else {
+          // the note has been updated in-place
+
+          pins[pin_index] = marker_data;
+          markers[current_marker] = marker;
+        }
 
         marker.pins = pins;
-        markers[current_marker] = marker;
 
         this.markers = markers;
       }else {

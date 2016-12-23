@@ -1,6 +1,6 @@
 class PinForm extends React.Component {
   stateChanged(state) {
-    var current_state = MapPinStore.getState();
+    let current_state = MapPinStore.getState();
 
     if(current_state.pin_form_visible && current_state.pin_form_enabled) {
       const disabled_state = _.merge(MapPinStore.getState(), {form_submit_disabled: true});
@@ -149,6 +149,56 @@ class PinForm extends React.Component {
           </div>
           <div className="form-actions">
             <div className="form-group">
+              <a href="#" onClick={this.showMainForm.bind(this)} className="back-button">Edit note details again</a>
+              {button}
+            </div>
+
+            {errorMessage}
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  movePinForm() {
+    var style = {display: (this.state.pin_form_visible ? 'block' : 'none')};
+
+    var errorMessage = <div />;
+
+    if(typeof this.state.errors.errorMessages !== "undefined") {
+      const errors = _.chain(this.state.errors.errorMessages).values().flatten().value();
+
+      errorMessage = (
+        <div>
+          <h4>We couldn't save your pin!</h4>
+          <ul>
+            {errors.map((error, i) => {return <li key={i}>{error}</li>;})}
+          </ul>
+        </div>
+      );
+    }
+
+    const spinner = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
+    let button;
+
+    if(this.state.saving) {
+      button = <button disabled={this.state.saving} className="main-button">Saving {spinner}</button>
+    }else {
+      button = <button disabled={this.state.form_submit_disabled} className="main-button">Save my note</button>
+    }
+
+    return(
+      <div className="m-add-pin" style={style}>
+        <form onSubmit={this.savePinData.bind(this)}>
+          <h3>You're about to change this note's location...</h3>
+          <div className="form-content">
+            <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+
+            Are you sure?
+
+          </div>
+          <div className="form-actions">
+            <div className="form-group">
               <a href="#" onClick={this.showMainForm.bind(this)} className="back-button">Edit pin details again</a>
               {button}
             </div>
@@ -185,6 +235,8 @@ class PinForm extends React.Component {
 
     if(!user_id) {
       return this.loginMessage();
+    }else if( this.state.move_pin_form_enabled) {
+      return this.movePinForm();
     }else if (this.state.main_form_confirmed) {
       return this.attributionForm();
     } else {

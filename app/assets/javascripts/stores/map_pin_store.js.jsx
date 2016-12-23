@@ -23,6 +23,7 @@
       this.main_form_confirmed = false;
       this.pin_form_lat_lng = {};
       this.pin_form_enabled = false;
+      this.move_pin_form_enabled = false;
       this.pin_type = null;
       this.attribution = "";
       this.content = "";
@@ -116,6 +117,33 @@
     }
 
     onEditNote(note) {
+      this._restoreStateFrom(note);
+      this.pin_form_visible = true;
+
+      return true;
+    }
+
+    onEditNoteLocation(note) {
+      this._restoreStateFrom(note);
+      this.pin_form_enabled = true;
+      this.move_pin_form_enabled = true;
+
+      return true;
+    }
+
+    onSubmitForm(pin_data) {
+      this.setDefaultState();
+
+      return true;
+    }
+
+    onSetErrors(errors) {
+      this.errors = errors;
+
+      return true;
+    }
+
+    _restoreStateFrom(note) {
       this.setDefaultState();
 
       this.editing = true;
@@ -165,24 +193,7 @@
       this.attribution = note.content_entry.attribution;
       window.note = note;
 
-      this.pin_form_visible = true;
       this.pin_form_lat_lng = note.position;
-
-      return true;
-    }
-
-    onEditNoteLocation(note) {
-      return true;
-    }
-
-    onSubmitForm(pin_data) {
-      this.setDefaultState();
-
-      return true;
-    }
-
-    onSetErrors(errors) {
-      this.errors = errors;
 
       return true;
     }
