@@ -78,7 +78,7 @@
   }
   .results-pins ul,
   .results-notes ul {
-    overflow:scroll;
+    overflow:auto;
     height:calc(100% - 47px);
   }
 }
