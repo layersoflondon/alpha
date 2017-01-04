@@ -49,6 +49,19 @@
 <%= link_to "Back", :back %>
 
 </div>
+    <div class="notes">
+        <h2>My notes</h2>
+        <ul>
+            <% current_user.pins.each do |pin|%>
+                <li>
+                    <%= link_to page_path("the-map", anchor: "/pins/#{pin.id}") do %>
+                        <h3><%= pin.title %></h3>
+                        <p><%= pin.location %></p>
+                    <% end %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
 
 </div>
 
