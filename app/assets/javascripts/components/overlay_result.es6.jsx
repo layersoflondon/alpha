@@ -14,7 +14,7 @@ class OverlayResult extends React.Component {
       height: 40,
       showLabels: false,
       showScale: false,
-      ondragend: (value) => {this.updateOpacity(value)}
+      onstatechange: (value) => {this.updateOpacity(value)}
     });
   }
 
