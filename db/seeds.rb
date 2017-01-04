@@ -134,6 +134,17 @@ o = Overlay.create(
 o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
 o.content_entry.update_attribute(:tileserver_url, "http://layersoflondon-tiles.error.agency/morgan/{z}/{x}/{y}.png")
 
+# google satellie overlay
+o = Overlay.create(
+  title: "Satellite View",
+  lat: rand(51.450..51.550),
+  lng: -(rand(0.110..0.140)),
+  description: Faker::Hipster.sentence(3),
+  date_from: DateTime.parse("2015-01-01")
+)
+o.create_overlay_content_entry!.create_content_entry!(content: Faker::Lorem.paragraph(2, false, 4), content_type: ContentType.find_by(name: "tileserver"))
+o.content_entry.update_attribute(:tileserver_url, "http://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}")
+
 # Georeferencer example
 o = Overlay.create(
   title: "RAF Photos",
