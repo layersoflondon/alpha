@@ -34,7 +34,9 @@ class Pin {
         link_url: state.link_url,
 
         pin_content_entry_attributes: {
+          id: state.pin_content_entry_id,
           content_entry_attributes: {
+            id: state.content_entry_id,
             content: state.content,
             video_url: state.video_url,
             attribution: state.attribution,

@@ -97,8 +97,8 @@
     onEnablePinForm(enabled) {
       if( !enabled ){
         this.pin_form_visible = false;
+        this.move_pin_form_enabled = false;
       }
-      this.move_pin_form_enabled = enabled;
       this.pin_form_enabled = enabled;
     }
 
@@ -156,6 +156,8 @@
       this.file_name = note.content_entry.resource.file_name;
       this.pin_type  = note.content_entry.resource.content_type_id;
       this.video_url = note.content_entry.video_url;
+      this.content_entry_id = note.content_entry.id;
+      this.pin_content_entry_id = note.content_entry.pin_content_entry_id;
 
       switch(note.content_entry.resource.type) {
         case "text":

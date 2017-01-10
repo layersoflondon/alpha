@@ -1,4 +1,6 @@
 json.id content_entry.id
+json.pin_content_entry_id content_entry.try(:pin_content_entry).try(:id)
+
 json.title content_entry.pin.title
 json.url content_entry.pin.link_url if content_entry.pin.link_url.present?
 
