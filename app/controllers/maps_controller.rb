@@ -15,7 +15,6 @@ class MapsController < ApplicationController
       query = query.gsub("'", '')
 
       @pins     = @pins.where("REPLACE(title, \"'\",'') LIKE ?", "%#{query}%")
-      @overlays = @overlays.where("REPLACE(title, \"'\",'') LIKE ?", "%#{query}%")
     end
 
     filter_date_from = Date.parse("1-1-#{search_params[:date_from]}").beginning_of_year rescue nil
@@ -36,9 +35,6 @@ class MapsController < ApplicationController
   def update
     @pin = current_user.pins.find(params[:id])
 
-
-    Rails.logger.info("\n\n*****\n#{pin_params.awesome_inspect}\n\n")
-    
     authorize @pin
 
     unless @pin.update_attributes(pin_params)

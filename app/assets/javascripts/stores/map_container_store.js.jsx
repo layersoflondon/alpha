@@ -41,7 +41,6 @@
     onFetchSearchResults() {
       this.searching = true;
 
-      this.overlays = [];
       this.places = [];
       this.notes  = [];
     }

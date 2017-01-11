@@ -25,23 +25,18 @@ class OverlayResultsContainer extends React.Component {
 
   overlaysLabel() {
     let overlays_label;
-    let show_caret = false;
+    let show_caret = true;
 
-    if(this.state.searching) {
-      overlays_label = "Finding overlays...";
-    }else {
-      switch(this.state.overlays.length) {
-        case 0:
-          overlays_label = "No overlays found";
-          break;
-        case 1:
-          overlays_label = "1 overlay found";
-          show_caret = true;
-          break;
-        default:
-          overlays_label = `${this.state.overlays.length} overlays found`;
-          show_caret = true;
-      }
+    switch(this.state.overlays.length) {
+      case 0:
+        overlays_label = "No overlays";
+        show_caret = false;
+        break;
+      case 1:
+        overlays_label = "1 overlay";
+        break;
+      default:
+        overlays_label = `${this.state.overlays.length} overlays`;
     }
 
     if(show_caret) {
