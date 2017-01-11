@@ -59,6 +59,10 @@
     setErrors(errors) {
       return errors;
     }
+
+    flagGeoreferencedImage(image_data) {
+      return image_data;
+    }
   }
 
   this.MapPinActions = alt.createActions(MapPinActions);

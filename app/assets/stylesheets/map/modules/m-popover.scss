@@ -67,3 +67,15 @@
   background: none;
   cursor: pointer;
 }
+
+.m-popover.flag-overlay button {
+   border: none;
+   padding: 10px;
+   margin: 5px;
+   float: left;
+ }
+
+.m-popover.flag-overlay button.btn-not-ok {
+  background-color: $red;
+  color: #fff;
+}

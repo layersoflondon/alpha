@@ -106,7 +106,7 @@ header nav.main-navigation {
   float: left;
 }
 
-.leaflet-marker-icon {
+.leaflet-marker-icon:not(.leaflet-div-icon) {
   // Place
   background-image: image-url(pin-blue);
   background-size: cover;
@@ -115,13 +115,22 @@ header nav.main-navigation {
   margin-left: -19.5px !important;
 }
 
-.leaflet-marker-icon.pin-icon {
+.leaflet-marker-icon:not(.leaflet-div-icon).pin-icon {
   // Note
   background-image: image-url(pin-red);
   background-size: cover;
   //padding: 20px;
   padding-left:40px;
   margin-left: -19.5px !important;
+}
+
+.leaflet-marker-icon.leaflet-div-icon {
+  font-size: 20px;
+  color: $red;
+  background: none;
+  border: none;
+  position: absolute;
+  top: -5px;
 }
 
 

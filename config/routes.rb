@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'download/:content_entry_id', action: :download
+      post 'flag_overlay/:id', action: :flag_overlay
     end
   end
 
