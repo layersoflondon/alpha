@@ -36,6 +36,9 @@ class MapsController < ApplicationController
   def update
     @pin = current_user.pins.find(params[:id])
 
+
+    Rails.logger.info("\n\n*****\n#{pin_params.awesome_inspect}\n\n")
+    
     authorize @pin
 
     unless @pin.update_attributes(pin_params)
