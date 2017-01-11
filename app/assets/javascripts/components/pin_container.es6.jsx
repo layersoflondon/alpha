@@ -8,7 +8,7 @@ class PinContainer extends React.Component {
 
   render () {
     const content = <ContentEntry content_entry={this.props.pin} pin={true} />;
-    const icon    = L.divIcon({className: "pin-icon"});
+    const icon = new L.Icon.Default({className: "pin-icon", popupAnchor: [-5, -38]});
 
     return (
       <Marker icon={icon} position={this.props.pin.position}>
