@@ -63,6 +63,9 @@
   display: block;
 }
 
+.m-popover li .edit-button.flag-button {
+  color: $red;
+}
 .m-popover li .edit-button:hover {
   background: none;
   cursor: pointer;

@@ -91,6 +91,8 @@ class ContentOverlay {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
+    //info += `<br/>Inappropriate content? <a class="flag-content"><i class="fa fa-flag"></i> Flag for review</a>`;
+
     // we're embedding a media item from youtube
     if(resource.embedded_resource) {
       const source   = resource["href"];
@@ -124,6 +126,7 @@ class ContentOverlay {
     }
     blueimp.Gallery(gallery_objects, gallery_options);
     $("#blueimp-gallery").find('video').attr('controls', true).attr('autoplay', true);
+
   }
 
   getVideoId(source) {

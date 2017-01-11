@@ -45,14 +45,11 @@ class GeoreferencedOverlay {
 
   static flagImage(id) {
     return new Promise(function(resolve,reject) {
-      let url = "/maps/flag_overlay";
-      let data = {
-        id: id
-      };
-      $.post(url, data).done((response) => {
+      let url = "/overlays/"+id+"/flag";
+      $.post(url).done((response) => {
         resolve(response);
       }).fail((response) => {
-        resolve(response);
+        reject(response);
       })
     })
   }

@@ -22,13 +22,13 @@ class GeoreferencedTileGroup extends React.Component {
   flagImage(image_data) {
     GeoreferencedOverlay.flagImage(image_data.georeferencer_id).then((response) => {
       console.log("success",response)
-    }).catch(() => {
+    }).catch((response) => {
       console.log("fail", response)
     })
   }
 
   hidePopover() {
-    console.log(arguments);
+    window.thing = this;
   }
 
   render() {
