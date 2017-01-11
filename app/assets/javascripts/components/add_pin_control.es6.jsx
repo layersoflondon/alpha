@@ -24,11 +24,9 @@ class AddPinControl extends React.Component {
 
     return (
       <div className="m-pin-controls">
-
-      <div className={classes}>
-      <button onClick={this.togglePinForm.bind(this)}>{label}</button>
-      </div>
-
+        <div className={classes}>
+          <button onClick={this.togglePinForm.bind(this)} dangerouslySetInnerHTML={{__html: label}}></button>
+        </div>
       </div>
       );
   }

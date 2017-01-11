@@ -2,9 +2,10 @@
 /* Controls */
 
 .m-pin-controls {
-	position:absolute;
   bottom:50px;
   right:50px;
+  position:absolute;
+  z-index: 999;
 }
 
 .m-pin-controls .add-pin button {
@@ -21,7 +22,7 @@
 }
 
 .m-pin-controls .add-pin.adding button {
-	padding: 20px 20px 20px 16px;
+  padding: 20px 20px 20px 16px;
 }
 
 .m-pin-controls .zoom-controls button {

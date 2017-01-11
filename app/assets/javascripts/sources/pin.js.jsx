@@ -63,7 +63,7 @@ class Pin {
     if(state.editing && pinData.pin.pin_content_entry_attributes.content_entry_attributes['attached_file'] == "") {
       delete pinData.pin.pin_content_entry_attributes.content_entry_attributes['attached_file'];
     }
-    
+
     let route  = "/maps";
     let method = "POST";
 
