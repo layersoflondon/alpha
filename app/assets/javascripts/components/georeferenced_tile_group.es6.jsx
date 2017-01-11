@@ -28,11 +28,11 @@ class GeoreferencedTileGroup extends React.Component {
   }
 
   hidePopover() {
-    window.thing = this;
+    this._reactInternalInstance._context.map.closePopup();
   }
 
   render() {
-    var opacity   = this.props.opacity ? this.props.opacity : 0.75;
+    let opacity = this.props.opacity ? this.props.opacity : 0.75;
 
     return (
       <LayerGroup>
@@ -44,7 +44,7 @@ class GeoreferencedTileGroup extends React.Component {
            let icon = L.divIcon({html: '<i class="fa fa-flag"></i> '});
            let marker = (
              <Marker icon={icon} key={"marker-"+image_item_data.georeferencer_id} position={bounds.getCenter()} id={"marker-"+"marker-"+image_item_data.georeferencer_id}>
-               <Popup>
+               <Popup closeButton={true}>
                  <div className="m-popover flag-overlay">
                    <h3>Flag this overlay</h3>
                    <p>Is this overlay badly georeferenced?</p>
@@ -56,6 +56,7 @@ class GeoreferencedTileGroup extends React.Component {
                </Popup>
              </Marker>
            );
+
            let tile_layer = (
              <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>
            );
@@ -65,9 +66,7 @@ class GeoreferencedTileGroup extends React.Component {
                {marker}
                {tile_layer}
              </div>
-             )
-
-
+           )
          })
        }
      </LayerGroup>

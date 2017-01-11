@@ -124,7 +124,7 @@ header nav.main-navigation {
   margin-left: -19.5px !important;
 }
 
-.leaflet-marker-icon.leaflet-div-icon {
+.leaflet-marker-icon.leaflet-marker-icon.leaflet-div-icon {
   font-size: 20px;
   color: $red;
   background: none;
@@ -132,7 +132,6 @@ header nav.main-navigation {
   position: absolute;
   top: -5px;
 }
-
 
 // collapseMenu transition (see search_tab.es6.jsx)
 .collapseMenu-enter {
