@@ -1,4 +1,15 @@
 class Pin {
+  static find(id) {
+    return new Promise((resolve, reject) => {
+      $.get("/maps/" + id).done((response) => {
+        resolve(response)
+      }).fail((response) => {
+        console.log("FAIL", response);
+        reject(response);
+      });
+    });
+  }
+
   static fetch(filters) {
     return new Promise((resolve, reject) => {
       $.get("/maps/search", {search: filters}).done((response) => {
