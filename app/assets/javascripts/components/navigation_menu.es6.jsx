@@ -44,6 +44,12 @@ class NavigationMenu extends React.Component {
                 return <li key={i} className={item.className}><a href={item.link}>{item.title}</a></li>;
               })}
             </ul>
+
+            <ul className="main-navigation-list sub-navigation-list">
+              {this.props.account_menu.map((item, i) => {
+                return <li key={i} className={item.className}><a href={item.link}>{item.title}</a></li>;
+              })}
+            </ul>
           </div>
         </div>
       </div>

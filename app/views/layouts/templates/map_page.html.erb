@@ -1,5 +1,5 @@
 <% content_for :template do %>
-  <%= react_component("MapContainer", data: JSON.parse(@data), date_filter_range: @filter_date_range, menu: json_menu_for(Rooftop::Menus::Menu.find(2)), prerender: true) %>
+  <%= react_component("MapContainer", data: JSON.parse(@data), date_filter_range: @filter_date_range, menu: json_menu_for(@main_navigation_menu), account_menu: json_menu_for(@account_menu), prerender: true) %>
 <% end %>
 
 <%= content_for :javascript do %>

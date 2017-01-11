@@ -18,6 +18,22 @@ class ApplicationController < ActionController::Base
   private
   def get_navigation_menus
     @main_navigation_menu, @footer_navigation_menu = *Rooftop::Menus::Menu.where(post__in: [2,3]).to_a.sort_by(&:id)
+
+    routes = Rails.application.routes.url_helpers
+
+    if signed_in?
+      account_menu_items = [
+        OpenStruct.new({className: "", object_type: "page", object_ancestor_slugs: routes.destroy_user_session_path.split('/').reject(&:empty?)[0...-1], object_slug: routes.destroy_user_session_path.split('/').last, title: "Sign out"}),
+        OpenStruct.new({className: "", object_type: "page", object_ancestor_slugs: routes.edit_user_registration_path.split('/').reject(&:empty?)[0...-1], object_slug: routes.edit_user_registration_path.split('/').last, title: "My account"})
+      ]
+    else
+      account_menu_items = [
+        OpenStruct.new({className: "", object_type: "page", object_ancestor_slugs: routes.new_user_session_path.split('/').reject(&:empty?)[0...-1], object_slug: routes.new_user_session_path.split('/').last, title: "Sign in"}),
+        OpenStruct.new({className: "", object_type: "page", object_ancestor_slugs: routes.new_user_registration_path.split('/').reject(&:empty?)[0...-1], object_slug: routes.new_user_registration_path.split('/').last, title: "Create account"})
+      ]
+    end
+
+    @account_menu = OpenStruct.new({items: account_menu_items})
   end
 
   def get_global_content
