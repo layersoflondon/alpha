@@ -3,28 +3,27 @@
 <div class="m-page-hero">
     <div class="text-content">
         <h1>Blog</h1>
-        <!-- <p><%= page.fields.excerpt.html_safe %></p> -->
     </div>
 </div>
 
 <main class="main--content">
 
     <div class="back-to-blog">
-        <a href="#">Back to all articles</a>
+        <%= link_to "Back to all articles", "/blog" %>
     </div>
 
     <div class="m-content-area">
 
         <div class="m-blog-article-title">
-            <h1><%= page.title %></h1>
+            <h1><%= post.title %></h1>
         </div>
 
         <div class="m-blog-article-meta">
-            <p>By John Mathers | 15th December '16</p>
+            <p>By <%= post.author_name %> | <%= post.date.strftime("#{post.date.day.ordinalize} %B '%y") %></p>
         </div>
 
         <div class="m-article">
-            <%= parse_content(page.fields.content).html_safe %>
+            <%= parse_content(post.fields.content).html_safe %>
         </div>
         
     </div>
@@ -32,12 +31,16 @@
 </main>
 
 <div class="m-wrap m-wrap--green">
-    <div class="m-blog-highlights">
-        <h3>Latest insights from the blog</h3>
-        <h4>Ways to help document the evolving history of London</h4>
-        <p>In ullamcorper velit dolor, eget cursus odio mattis a. Fusce ut pharetra risus. Duis eget ipsum lacinia, auctor sem in.</p>
-        <a class="button" href="/blog">Read more blog posts</a>
-    </div>
+    <% if @latest_articles[0] %>
+        <div class="m-blog-highlights">
+            <h3>Latest insights from the blog</h3>
+
+            <h4><%= @latest_articles[0].title %></h4>
+            <p><%= @latest_articles[0].excerpt %></p>
+
+            <a class="button" href="/blog">Read more blog posts</a>
+        </div>
+    <% end %>
     <%= render 'shared/latest_pins' %>
 </div>
 

@@ -14,4 +14,10 @@ class PostDecorator < Draper::Decorator
     object.fields.excerpt.present? ? fields.excerpt.html_safe : h.strip_tags(fields.content).truncate(100).html_safe
   end
 
+  def author_name
+    if object.respond_to?(:_embedded) && object._embedded[:author].first
+      author = object._embedded[:author].first
+      author[:name]
+    end
+  end
 end
