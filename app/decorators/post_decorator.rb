@@ -15,9 +15,13 @@ class PostDecorator < Draper::Decorator
   end
 
   def author_name
-    if object.respond_to?(:_embedded) && object._embedded[:author].first
-      author = object._embedded[:author].first
-      author[:name]
+    posted_by = object.fields.try(:posted_by)
+    author    = object.fields.try(:author)
+
+    if author.present?
+      author
+    elsif posted_by.present?
+      posted_by[:display_name] || posted_by[:user_nicename] || posted_by[:nickname]
     end
   end
 end
