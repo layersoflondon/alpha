@@ -43,12 +43,15 @@ class ModerationForm extends React.Component {
     let style = {display: this.state.moderating==null ? 'none' : 'block'};
 
     let type_label = '';
+    let form_text = '';
     switch(this.state.type) {
       case 'content_entry':
         type_label = "content entry";
+        form_text = 'If this content entry is inappropriate or requires attention, you can flag it to the moderators. Do you want to flag this content?';
         break;
       case 'georeferenced_overlay':
         type_label = "overlay";
+        form_text = 'If this overlay looks funny or needs some attention, you can flag it to the moderators. Do you want to flag this overlay?';
         break;
       default:
         type_label = this.state.type;
@@ -61,7 +64,7 @@ class ModerationForm extends React.Component {
             <h3>Flag this {type_label}</h3>
             <div className="form-content">
               <a href="#" className="close" onClick={this.hideModerationForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
-              Are you sure?
+              {form_text}
             </div>
 
             <div className="form-actions">
