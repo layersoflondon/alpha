@@ -5,7 +5,6 @@
     }
 
     flagGeoreferencedOverlay(overlay) {
-      console.log("FlagGeoreferencedOverlay", overlay);
       return overlay;
     }
 

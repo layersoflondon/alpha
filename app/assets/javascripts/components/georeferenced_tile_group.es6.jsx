@@ -23,10 +23,6 @@ class GeoreferencedTileGroup extends React.Component {
     MapModerationActions.flagGeoreferencedOverlay(image_data);
   }
 
-  hidePopover() {
-    this._reactInternalInstance._context.map.closePopup();
-  }
-
   render() {
     let opacity = this.props.opacity ? this.props.opacity : 0.75;
 
@@ -44,7 +40,7 @@ class GeoreferencedTileGroup extends React.Component {
            );
 
            let tile_layer = (
-             <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds} style={{border: "2px solid red"}}></TileLayer>
+             <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>
            );
 
            return(
