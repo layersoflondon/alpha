@@ -22,7 +22,12 @@
     }
 
     onFocusPlace(place) {
-      this.map_position = place.position;
+      if(place.position) {
+        this.map_position = place.position;
+        return true;
+      }
+
+      return false;
     }
 
     onZoomToBounds(bounds) {

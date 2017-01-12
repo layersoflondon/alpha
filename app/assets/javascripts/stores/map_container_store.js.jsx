@@ -116,10 +116,18 @@
             case "georeferencer_tileserver":
               overlay_object = {position: FilterStateStore.getState().centre_point}; // keep the map in its current position; we'll re-position it when we render the georeferenced tile group...
               break;
+            case "tileserver":
+              // if we're rendering a tileserver layer that isn't one of our own (ie, a google maps layer), then we should remove the position attribute from the
+              // object to avoid re-setting the maps center point (passing an object into focusPlace with a .position: {lat/lng} object will cause a pan/zoom in leaflet)
+              if(overlay_object.resource.tileserver_url.match(/layersoflondon/) == null) {
+                delete overlay_object['position'];
+              }
+              break;
+
           }
 
           MapStateActions.focusPlace(overlay_object);
-        }, 100);
+        }, 50);
       }
 
       this.visible_overlays = overlay_ids;
