@@ -14,4 +14,8 @@ class PageDecorator < Draper::Decorator
     object.title.gsub(/&#038;/, '&')
   end
 
+  def thankyou_page_id
+    120
+  end
+
 end
