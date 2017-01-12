@@ -156,21 +156,33 @@
     border: 1px solid #ccc;
     margin-right: 10px;
   }
+
+  form textarea {
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    padding: 1em;
+  }
+
+  form input[type=text], form textarea {
+    width: 50%;
+  }
+
   form .form-group {
     margin-bottom: 1.25em;
   }
-  form button {
+
+  form input[type=submit] {
     margin-left: 200px;
     text-align: left;
-    padding: 0.4775em 1.25em 0.59em;
-    color: #ef192d;
     border: 0;
     border-radius: 0;
-    background-color: $lol-green;;
+    background-color: $lol-green;
     text-decoration: none;
     display: inline-block;
     @include transition(color 0.2s, background 0.2s);
-    font-size: 28px;
     @include mq(smartphone) {
       margin-left:0;
     }
@@ -197,4 +209,22 @@
     font-weight:200;
   }
 
+}
+
+.m-article .wp-caption {
+  font-size: 0.7em;
+}
+
+.m-article img {
+  max-width: 100% !important;
+}
+
+.m-article .wp-caption.alignleft {
+  float: left;
+  padding-right: 20px;
+}
+
+.m-article .wp-caption.alignright {
+  float: right;
+  padding-left: 20px;
 }
