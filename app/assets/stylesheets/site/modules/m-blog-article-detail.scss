@@ -1,0 +1,28 @@
+
+/* Blog article list */
+
+.m-blog-article-detail .m-content-area {
+  padding-top: 0;
+}
+
+.m-blog-article-detail .wp-caption {
+  font-size: 0.7em;
+}
+
+.m-blog-article-detail .wp-caption.alignleft {
+  float: left;
+  padding-right: 20px;
+}
+
+.m-blog-article-detail .wp-caption.alignright {
+  float: right;
+  padding-left: 20px;
+}
+
+.m-blog-article-detail .back-to-blog {
+  margin-left: 10px;
+}
+
+.m-blog-article-detail .back-to-blog a.button {
+  @include button;
+}

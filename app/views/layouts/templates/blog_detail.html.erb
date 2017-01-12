@@ -6,10 +6,10 @@
     </div>
 </div>
 
-<main class="main--content">
+<main class="main--content m-blog-article-detail">
 
     <div class="back-to-blog">
-        <%= link_to "Back to all articles", "/blog" %>
+        <%= link_to "Back to all articles", "/blog", class: "button" %>
     </div>
 
     <div class="m-content-area">
@@ -31,13 +31,15 @@
 </main>
 
 <div class="m-wrap m-wrap--green">
-    <% if @latest_articles[0] %>
+    <% if @latest_articles.any? %>
         <div class="m-blog-highlights">
             <h3>Latest insights from the blog</h3>
+                <% @latest_articles.each do |article| %>
 
-            <h4><%= @latest_articles[0].title %></h4>
-            <p><%= @latest_articles[0].excerpt %></p>
+                    <h4><%= link_to(article.title, post_path(article.slug)) %></h4>
+                    <p><%= article.excerpt %></p>
 
+                <% end %>
             <a class="button" href="/blog">Read more blog posts</a>
         </div>
     <% end %>

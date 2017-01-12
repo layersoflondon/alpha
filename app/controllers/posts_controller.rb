@@ -4,6 +4,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(slug: params[:id], include_embedded_resources: true, no_filter: [:include_embedded_resources]).first
-    @latest_articles = Post.where(orderby: :modified, order: :desc, per_page: 4, no_filter: [:per_page]).to_a.reject {|a| a.id == @post.id}
+    @latest_articles = PostDecorator.decorate_collection(Post.where(orderby: :modified, order: :desc, per_page: 4, no_filter: [:per_page])).to_a.reject {|a| a.id == @post.id}
   end
 end

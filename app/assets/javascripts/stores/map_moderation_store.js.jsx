@@ -18,8 +18,6 @@
     }
 
     onFlagGeoreferencedOverlay(overlay) {
-      console.log('onFlagGeoreferencedOverlay');
-
       this.moderating = overlay;
       this.type = 'georeferenced_overlay';
     }

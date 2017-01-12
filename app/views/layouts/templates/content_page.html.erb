@@ -1,7 +1,22 @@
 <% content_for :template do %>
-    <p>This template is in <%= __FILE__ %></p>
 
-    <%= yield %>
+    <div class="m-page-hero">
+        <div class="text-content">
+            <h1><%= page.title %></h1>
+        </div>
+    </div>
+
+    <main class="main--content">
+
+        <div class="m-content-area">
+
+            <div class="m-article">
+                <%= parse_content(page.fields.content).html_safe %>
+            </div>
+
+        </div>
+
+    </main>
 
 <% end %>
 

@@ -1,6 +1,53 @@
 <% content_for :template do %>
 
-    <%= yield %>
+    <div class="m-page-hero">
+        <div class="text-content">
+            <h1>Contact</h1>
+        </div>
+    </div>
+
+    <main class="main--content">
+        <div class="m-subnavigation">
+        </div>
+
+        <div class="m-content-area">
+            <div class="m-article">
+                <%= parse_content(page.fields.content) %>
+            </div>
+
+            <div class="m-article m-contact-page">
+                <%= form_for ContactForm.new, method: :post, class: 'contact' do |f| %>
+                    <!-- The form will create a flash with the errors from the form, if any -->
+                    <% if flash[:notice].present?  %>
+                        <p class="form-errors">
+                            Your message couldn't be sent: <%= flash[:notice] %>
+                        </p>
+                    <% end %>
+                    <!-- f.object is the ContactForm instance above, so we know it responds to `fields` -->
+                    <% f.object.fields.each do |field, type| %>
+                        <!-- iterate over each field, setting the value if passed in, and adding an error class if there's an error on the field -->
+                        <p>
+                            <%= f.label field %>
+                            <%= f.send(
+                                        type,
+                                        field,
+                                        class: (params[:errors].present? && params[:errors].include?(field.to_s)) ? "has-errors" : "",
+                                        value: params[field],
+                                        required: true
+                                )%>
+                        </p>
+                    <% end %>
+                    <!-- these hidden tags tell the controller how to redirect the user. If there's an error, we'll redirect back to this page, with get params for the errors and each completed field. If there isn't, the user is redirected to the thankyou page -->
+                    <%= hidden_field_tag :from_page, page.id %>
+                    <%= hidden_field_tag :to_page, page.thankyou_page_id %>
+                    <!-- This tag can be included if you want, it's a honeypot so make sure you leave it empty -->
+                    <%= text_field_tag :human_check, "", class: "visuallyhidden" %>
+
+                    <p><input type="submit" id="submit" value="Send" /></p>
+                <% end %>
+            </div>
+        </div>
+    </main>
 
 <% end %>
 
