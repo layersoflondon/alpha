@@ -29,7 +29,7 @@
 
     <div class="site-wrapper">
 
-        <%= render 'global/header'%>
+        <%= content_for?(:header) ? yield(:header) : (render 'global/header') %>
         <%= render 'global/notices' %>
 
         <%= content_for?(:template) ? yield(:template) : yield %>
