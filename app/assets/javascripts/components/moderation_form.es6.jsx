@@ -22,7 +22,9 @@ class ModerationForm extends React.Component {
     MapModerationActions.dismissModerationForm();
   }
 
-  flagContent() {
+  flagContent(event) {
+    event.preventDefault();
+    
     if(this.state.type == 'content_entry') { // the user is flagging some content in a pin popover
       Pin.flag(this.state.moderating.id).then((response) => {
         MapModerationActions.dismissModerationForm();
