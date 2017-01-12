@@ -68,6 +68,10 @@ class MapsController < ApplicationController
     end
   end
 
+  def flag_overlay
+    Rails.logger.debug("&&&&&&& Overlay id #{params[:id]} was flagged")
+  end
+
   private
   def pin_params
     params.require(:pin).permit!

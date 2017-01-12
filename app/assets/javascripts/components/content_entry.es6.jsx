@@ -21,6 +21,10 @@ class ContentEntry extends React.Component {
     MapPinActions.editNoteLocation(this.props.content_entry);
   }
 
+  flagContentEntry(content_entry) {
+    MapModerationActions.flagContentEntry(content_entry);
+  }
+
   render () {
     var text = "";
     if(this.state.show_text) {
@@ -70,10 +74,12 @@ class ContentEntry extends React.Component {
       edit_location_button = <span className="edit-button" onClick={this.editNoteLocation.bind(this)}><i className="fa fa-map-marker" aria-hidden="true"></i></span>;
     }
 
+    flag_button = <span className="edit-button flag-button" onClick={this.flagContentEntry.bind(this, this.props.content_entry.content_entry)}><i className="fa fa-flag"></i></span>;
+
     return (
       <li>
       {this.props.id}
-        {edit_location_button} {edit_note_button}
+        {edit_location_button} {edit_note_button} {flag_button}
 
         {link}
       </li>

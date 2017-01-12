@@ -86,4 +86,15 @@ class Pin {
       });
     });
   }
+
+  static flag(id) {
+    return new Promise(function(resolve,reject) {
+      let url = "/pins/"+id+"/flag";
+      $.post(url).done((response) => {
+        resolve(response);
+      }).fail((response) => {
+        reject(response);
+      })
+    })
+  }
 }

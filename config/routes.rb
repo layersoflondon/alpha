@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'pins/flag'
+
+  get 'overlays/flag'
+
   devise_for :users,
              controllers: {registrations: 'registrations', sessions: 'sessions'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
@@ -9,6 +13,9 @@ Rails.application.routes.draw do
       get 'download/:content_entry_id', action: :download
     end
   end
+
+  post "/overlays/*id/flag", to: "overlays#flag", as: :flag_overlay, defaults: {format: :json}
+  post "/pins/*id/flag", to: "pins#flag", as: :flag_pin, defaults: {format: :json}
 
   resources :posts, only: [:show], path: 'blog'
 

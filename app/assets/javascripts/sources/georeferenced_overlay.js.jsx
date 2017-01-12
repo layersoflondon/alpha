@@ -42,4 +42,15 @@ class GeoreferencedOverlay {
       })
     })
   }
+
+  static flagImage(id) {
+    return new Promise(function(resolve,reject) {
+      let url = "/overlays/"+id+"/flag";
+      $.post(url).done((response) => {
+        resolve(response);
+      }).fail((response) => {
+        reject(response);
+      })
+    })
+  }
 }

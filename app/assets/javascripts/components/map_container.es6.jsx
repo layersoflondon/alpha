@@ -59,6 +59,8 @@ class MapContainer extends React.Component {
 
         <PinForm />
 
+        <ModerationForm />
+
         {drop_pin_container}
       </div>
     )
