@@ -21,12 +21,8 @@ class ContentEntry extends React.Component {
     MapPinActions.editNoteLocation(this.props.content_entry);
   }
 
-  flagContentEntry(id) {
-    Pin.flag(id).then((response) => {
-      console.log("success",response)
-    }).catch((response) => {
-      console.log("fail", response)
-    })
+  flagContentEntry(content_entry) {
+    MapModerationActions.flagContentEntry(content_entry);
   }
 
   render () {
@@ -78,7 +74,7 @@ class ContentEntry extends React.Component {
       edit_location_button = <span className="edit-button" onClick={this.editNoteLocation.bind(this)}><i className="fa fa-map-marker" aria-hidden="true"></i></span>;
     }
 
-    flag_button = <span className="edit-button flag-button" onClick={this.flagContentEntry.bind(this, this.props.content_entry.content_entry.id)}><i className="fa fa-flag"></i></span>;
+    flag_button = <span className="edit-button flag-button" onClick={this.flagContentEntry.bind(this, this.props.content_entry.content_entry)}><i className="fa fa-flag"></i></span>;
 
     return (
       <li>

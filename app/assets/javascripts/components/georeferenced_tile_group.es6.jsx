@@ -20,11 +20,7 @@ class GeoreferencedTileGroup extends React.Component {
   }
 
   flagImage(image_data) {
-    GeoreferencedOverlay.flagImage(image_data.georeferencer_id).then((response) => {
-      console.log("success",response)
-    }).catch((response) => {
-      console.log("fail", response)
-    })
+    MapModerationActions.flagGeoreferencedOverlay(image_data);
   }
 
   hidePopover() {
@@ -42,23 +38,13 @@ class GeoreferencedTileGroup extends React.Component {
            let ne = L.latLng(...image_item_data.north_east.split(","));
            let bounds = L.latLngBounds(sw, ne);
            let icon = L.divIcon({html: '<i class="fa fa-flag"></i> '});
+
            let marker = (
-             <Marker icon={icon} key={"marker-"+image_item_data.georeferencer_id} position={bounds.getCenter()} id={"marker-"+"marker-"+image_item_data.georeferencer_id}>
-               <Popup closeButton={true}>
-                 <div className="m-popover flag-overlay">
-                   <h3>Flag this overlay</h3>
-                   <p>Is this overlay badly georeferenced?</p>
-                   <div className="clearfix">
-                     <button className="btn btn-ok" onClick={this.hidePopover.bind(this)}>No, it's fine.</button>
-                     <button className="btn btn-not-ok" onClick={this.flagImage.bind(this,image_item_data)}>Yes, this needs fixing</button>
-                   </div>
-                 </div>
-               </Popup>
-             </Marker>
+             <Marker icon={icon} key={"marker-"+image_item_data.georeferencer_id} position={bounds.getCenter()} id={"marker-"+"marker-"+image_item_data.georeferencer_id} onClick={this.flagImage.bind(this,image_item_data)}></Marker>
            );
 
            let tile_layer = (
-             <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>
+             <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds} style={{border: "2px solid red"}}></TileLayer>
            );
 
            return(
