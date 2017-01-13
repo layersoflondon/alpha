@@ -33,7 +33,7 @@ class Pin {
     // here are the fields on a ContentEntry in the backend:
     // ["id", "content_type_id", "attached_file_id", "attached_file_filename", "attached_file_size", "attached_file_content_type", "url", "content", "attribution", "data", "created_at", "updated_at", "tileserver_url"]
 
-    const pinData = {
+    let pinData = {
       pin: {
         title: state.title,
         description: state.description,
@@ -45,9 +45,7 @@ class Pin {
         link_url: state.link_url,
 
         pin_content_entry_attributes: {
-          id: state.pin_content_entry_id,
           content_entry_attributes: {
-            id: state.content_entry_id,
             content: state.content,
             video_url: state.video_url,
             attribution: state.attribution,
@@ -58,6 +56,11 @@ class Pin {
         }
       }
     };
+
+    if(state.pin_content_entry_id && state.content_entry_id) {
+      pinData.pin.pin_content_entry_attributes.id = state.pin_content_entry_id;
+      pinData.pin.pin_content_entry_attributes.content_entry_attributes.id = state.content_entry_id;
+    }
 
     // dont pass the attached_file attribute if the user is just editing the content entry attributes(but not replacing the file)
     if(state.editing && pinData.pin.pin_content_entry_attributes.content_entry_attributes['attached_file'] == "") {
