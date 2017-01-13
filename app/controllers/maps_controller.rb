@@ -20,10 +20,8 @@ class MapsController < ApplicationController
     filter_date_from = Date.parse("1-1-#{search_params[:date_from]}").beginning_of_year rescue nil
     filter_date_to   = Date.parse("31-1-#{search_params[:date_to]}").at_end_of_year rescue nil
 
-    if filter_date_from && filter_date_to
-      @pins = @pins.where("date_from >= ?", filter_date_from)
-      @pins = @pins.where("(date_from >= ? AND (date_to <= ? OR date_to IS NULL))", filter_date_from, filter_date_to)
-    end
+    @pins = @pins.where("date_from >= ?", filter_date_from) if filter_date_from
+    @pins = @pins.where("(date_to <= ? OR date_to IS NULL)", filter_date_to) if filter_date_to
 
     @pins = @pins.group_by(&:coords)
   end
