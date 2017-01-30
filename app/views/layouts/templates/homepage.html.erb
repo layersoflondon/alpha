@@ -30,12 +30,12 @@
     <div class="cta">
         <h3>Fancy being a Layers of London Layer Maker?</h3>
         <p>We’ve a lot of hard work to do to get our historic maps look more accurate. You can help out by fixing some old maps.</p>
-        <a href="#">Let's make some layers</a>
+        <%= link_to "Let's make some layers", "http://layersoflondon.georeferencer.com/random" %>
     </div>
     <div class="cta">
         <h3>Got an interesting story about a place?</h3>
         <p>You can add notes and interesting info to your old street, school, workplace, or somewhere that was special to you.</p>
-        <a href="#">Add a point of interest</a>
+        <%= link_to "Add a point of interest", page_path("the-map", anchor: "/add") %>
     </div>
 </div>
 
