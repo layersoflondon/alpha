@@ -10,7 +10,7 @@ class PinTextFields extends React.Component {
           <textarea rows="10" placeholder="Paste or type the content you want to store against this pin." value={this.state.content} onChange={this.updateAttribute.bind(this)} data-attribute='content'></textarea>
         </div>
 
-        <PinAttachmentFields title="Select a text file" field_name="text" file_types=".txt" required={validate_attachment} validation_failed_message="Please attach a text file" />
+        <PinAttachmentFields title="Select a text file" field_name="text" file_types=".txt,.doc,.docx" required={validate_attachment} validation_failed_message="Please attach a text file" />
       </div>
     )
   }
