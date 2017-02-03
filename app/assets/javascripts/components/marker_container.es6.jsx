@@ -22,7 +22,7 @@ class MarkerContainer extends React.Component {
 
   render () {
     const content = this.props.marker.pins.map(function(pin){return <ContentEntry key={pin.id} content_entry={pin} />;});
-    const icon = new L.Icon.Default({popupAnchor: [-5, -38]});
+    const icon = new L.Icon.Default({shadowUrl: '', popupAnchor: [-5, -38]});
 
     return (
       <Marker icon={icon} position={this.props.marker.position}>

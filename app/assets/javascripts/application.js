@@ -20,9 +20,10 @@
 //= require react_ujs
 //= require react-tabs
 
-//= require leaflet
+//= require vendor/leaflet
 //= require vendor/react-leaflet
 //= require moment
+//= require es6-promise-polyfill
 
 //= require vendor/blueimp-helper
 //= require vendor/blueimp-gallery.min

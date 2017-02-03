@@ -84,6 +84,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-react-leaflet'
   gem 'rails-assets-lodash'
   gem 'rails-assets-moment'
+
+  gem 'rails-assets-es6-promise-polyfill', source: 'https://rails-assets.org'
 end
 
 gem 'sprockets-es6'

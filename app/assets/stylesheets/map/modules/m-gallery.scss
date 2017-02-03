@@ -27,9 +27,9 @@
 // make the gallery popover appear more modal-like
 #blueimp-gallery.blueimp-gallery {
   height: auto;
-  width: auto;
+  width: 100%;
 
-  max-height: 70%;
+  max-height: 60%;
   max-width: 1000px;
   margin: auto;
 
@@ -54,9 +54,13 @@
   width: 100% !important;
 }
 #blueimp-gallery.blueimp-gallery .slides .slide .slide-content {
-  margin: 0;
+  margin: auto;
   padding: 0;
-  width: 100%;
+  width: auto;
+}
+
+#blueimp-gallery.blueimp-gallery .slides .slide .slide-content.video-content {
+
 }
 
 #blueimp-gallery.blueimp-gallery > .close {
