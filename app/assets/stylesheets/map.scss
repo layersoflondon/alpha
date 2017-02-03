@@ -134,6 +134,16 @@ header nav.main-navigation {
   top: -5px;
 }
 
+.leaflet-popup-tip-container {
+  display: none;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  display: none;
+}
+.leaflet-popup-content-wrapper {
+  padding: 0;
+}
+
 // collapseMenu transition (see search_tab.es6.jsx)
 .collapseMenu-enter {
   opacity: 0.01;
