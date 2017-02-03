@@ -12,6 +12,7 @@
   @include unlist;
   @include element-list;
   position: absolute;
+  z-index: 1000;
   background: white;
   top: 93px;
   right: 11px;

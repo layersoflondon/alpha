@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207164026) do
+ActiveRecord::Schema.define(version: 20170203150437) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
