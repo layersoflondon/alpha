@@ -8,8 +8,8 @@ class MapsController < ApplicationController
   end
 
   def search
-    @pins     = Pin.limit(10)
-    @overlays = Overlay.limit(10)
+    @pins     = Pin.latest
+    @overlays = Overlay.all
 
     if (query = search_params[:search_query]) && query.present?
       query = query.gsub("'", '')

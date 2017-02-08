@@ -12,7 +12,7 @@ class Pin < ActiveRecord::Base
   validates :title, :lat, :lng, :date_from, :user, presence: true
 
   scope :latest, -> {
-    all.limit(6).order(created_at: :desc)
+    all.limit(30).order(created_at: :desc)
   }
 
   def coords
