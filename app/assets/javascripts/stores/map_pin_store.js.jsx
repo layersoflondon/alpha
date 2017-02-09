@@ -27,6 +27,8 @@
       this.pin_type = null;
       this.attribution = "";
       this.content = "";
+      this.pin_content_entry_id = null;
+      this.content_entry_id = null;
 
       this.editing = false; //set to true when we're editing a note
       this.advanced = false;
