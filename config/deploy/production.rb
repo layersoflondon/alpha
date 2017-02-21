@@ -25,6 +25,10 @@ set :url_rewrites, {}
 # set the deploy domain to the prelaunch domain
 set :deploy_domain, fetch(:primary_domain)
 
+set :custom_nginx_rules, [
+  "client_max_body_size 63M;"
+]
+
 set :passenger_port, 8001
 set :upstream_proxy_cache, false
 
