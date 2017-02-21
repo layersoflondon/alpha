@@ -1,7 +1,7 @@
 <div class="m-latest-pins">
     <h3>Latest pins</h3>
     <ul>
-      <% Pin.latest.each do |pin| %>
+      <% Pin.latest.limit(6).each do |pin| %>
         <li>
           <a href="/the-map#/pins/<%= pin.id %>"><%= pin.title %></a>
         </li>
