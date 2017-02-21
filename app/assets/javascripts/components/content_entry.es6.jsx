@@ -10,6 +10,13 @@ class ContentEntry extends React.Component {
 
     overlay = new ContentOverlay(content);
     overlay.render();
+    let hash = "#/pins/" + this.props.content_entry.id;
+    if(history.pushState) {
+      history.pushState(null, null, hash);
+    }
+    else {
+      location.hash = hash;
+    }
   }
 
   editContentEntry() {

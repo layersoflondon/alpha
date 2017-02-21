@@ -1,3 +1,4 @@
 <% if user_signed_in? %>
     <meta name="user-id" content="<%= current_user.try(:id) %>">
 <% end %>
+<meta name="map-url" content="<%= page_url("the-map") %>">

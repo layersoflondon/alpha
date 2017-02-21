@@ -90,7 +90,10 @@ class ContentOverlay {
     if(typeof content.link_url !== "undefined") {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
-
+    // if(typeof content.id !== "undefined") {
+    //   let url = $('meta[name=map-url]').attr('content') + "#/pins/" + content.id;
+    //   info += `<br/>Link to this note: <a href="${url}">${url}</a>`;
+    // }
     //info += `<br/>Inappropriate content? <a class="flag-content"><i class="fa fa-flag"></i> Flag for review</a>`;
 
     // we're embedding a media item from youtube
