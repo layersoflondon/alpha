@@ -20,8 +20,14 @@ class MapsController < ApplicationController
     filter_date_from = Date.parse("1-1-#{search_params[:date_from]}").beginning_of_year rescue nil
     filter_date_to   = Date.parse("31-1-#{search_params[:date_to]}").at_end_of_year rescue nil
 
+    # FIXME:
+    # the date_from/date_to fields are now being used to bind the range of the date_from field only, if the date_to year is the current year.
+    # As the date_to field is optional, we dont post it by default when searching UNLESS the user has changed the slider.
+    # once the slider has changed, we store the from/to date state attributes, and as we are then passing the date_to value,
+    # when we filter here we would be disregarding any pins that dont have a date_to
+
     @pins = @pins.where("date_from >= ?", filter_date_from) if filter_date_from
-    @pins = @pins.where("(date_to <= ? OR date_to IS NULL)", filter_date_to) if filter_date_to
+    @pins = @pins.where("date_to <= ?", filter_date_to) if filter_date_to && filter_date_to.year!=Date.today.year
 
     @pins = @pins.group_by(&:coords)
   end
