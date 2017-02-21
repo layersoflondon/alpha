@@ -9,7 +9,7 @@
 [
   {name: "image", description: "An image", suitability: :for_pins, mime_type: "image/jpeg,image/jpg,image/png"},
   {name: "video", description: "A video", suitability: :for_pins},
-  {name: "audio", description: "Some audio", suitability: :for_pins, mime_type: "audio/mpeg"},
+  {name: "audio", description: "Some audio", suitability: :for_pins, mime_type: "audio/mpeg,application/octet-stream"},
   {name: "text", description: "Just text", suitability: :for_pins, mime_type: "text/plain"},
   {name: "dataset", description: "A dataset", suitability: :for_both, mime_type: "application/*,text/plain,text/csv,text/tab-separated-values"},
   {name: "tileserver", description: "A tokenised tileserver URL", suitability: :for_overlays},
