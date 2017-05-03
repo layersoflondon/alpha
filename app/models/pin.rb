@@ -6,8 +6,11 @@ class Pin < ActiveRecord::Base
   has_one :content_entry, through: :pin_content_entry
   accepts_nested_attributes_for :pin_content_entry
 
-  has_many :collection_pins, dependent: :destroy
-  has_many :collections, through: :collection_pins
+  has_one :collection_pin, dependent: :destroy
+  has_one :collection, through: :collection_pin
+
+  accepts_nested_attributes_for :collection_pin #... collection_pin_attributes: {collection_attributes: {name: "foo", description: "Bar"}} ...
+  accepts_nested_attributes_for :collection     #... collection_pin_attributes: {collection_id: 3} ...
 
   validates :title, :lat, :lng, :date_from, :user, presence: true
 

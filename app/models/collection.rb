@@ -1,6 +1,7 @@
 class Collection < ActiveRecord::Base
   has_many :collection_pins, dependent: :destroy
   has_many :pins, through: :collection_pins
+  has_many :users, through: :pins
 
   has_one :user_collection, inverse_of: :collection, dependent: :destroy
   has_one :user, through: :user_collection

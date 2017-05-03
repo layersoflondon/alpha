@@ -3,7 +3,10 @@ class CollectionPin < ActiveRecord::Base
   belongs_to :pin
   belongs_to :collection
 
-  validates :pin, :collection, presence: true
+  accepts_nested_attributes_for :collection
+
+  validates :collection, presence: true
+  validates :pin, presence: true, on: :update
 
   aasm do
     #if the collection belongs to a group, any pin additions need to be moderated by the group's primary user

@@ -86,7 +86,6 @@ class PinForm extends React.Component {
         case "audio":
           fields = <PinAudioFields />;
           break;
-
       }
     }
 
@@ -98,6 +97,7 @@ class PinForm extends React.Component {
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
             <PinCommonFields />
             <PinTypePicker />
+            <CollectionControl />
             {fields}
           </div>
           <div className="form-actions">
@@ -242,7 +242,6 @@ class PinForm extends React.Component {
     } else {
       return this.mainForm();
     }
-
   }
 }
 
@@ -260,8 +259,11 @@ PinForm.PropTypes = {
   date_to_month: React.PropTypes.integer,
   date_to_year: React.PropTypes.integer,
   collections: React.PropTypes.array,
+  collection_id: React.PropTypes.integer,
+  collection_name: React.PropTypes.string,
+  collection_description: React.PropTypes.string,
   location: React.PropTypes.string,
-  location_object: React.PropTypes.object
+  location_object: React.PropTypes.object,
 };
 
 PinForm = Layers.bindComponentToMapPinStore(PinForm);

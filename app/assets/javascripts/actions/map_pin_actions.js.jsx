@@ -52,6 +52,10 @@
       return note;
     }
 
+    setCollections(collections) {
+      return collections;
+    }
+
     submitForm(pin_data) {
       return pin_data;
     }

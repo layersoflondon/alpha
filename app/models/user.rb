@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   has_many :collections, through: :user_collections
 
   validates :first_name, :last_name, presence: true
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

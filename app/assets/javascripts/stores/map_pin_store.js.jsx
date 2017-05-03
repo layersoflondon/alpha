@@ -17,7 +17,10 @@
       this.date_to_day = '';
       this.date_to_month = '';
       this.date_to_year = '';
-      this.collections = '';
+      this.collections = [];
+      this.collection_id = null;
+      this.collection_name = "";
+
       this.location = '';
       this.pin_form_visible = false;
       this.main_form_confirmed = false;
@@ -49,6 +52,7 @@
           onSetAttachedFileField: MapPinActions.SET_ATTACHED_FILE_FIELD,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
+          onSetCollections: MapPinActions.SET_COLLECTIONS,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
           onEditNote: MapPinActions.EDIT_NOTE,
@@ -130,6 +134,12 @@
       this._restoreStateFrom(note);
       this.pin_form_enabled = true;
       this.move_pin_form_enabled = true;
+
+      return true;
+    }
+
+    onSetCollections(collections) {
+      this.collections = collections;
 
       return true;
     }

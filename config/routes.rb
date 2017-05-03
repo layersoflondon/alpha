@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :collections, only: [:index], format: :json do
+    collection do
+      get 'search'
+    end
+  end
+
   post "/overlays/*id/flag", to: "overlays#flag", as: :flag_overlay, defaults: {format: :json}
   post "/pins/*id/flag", to: "pins#flag", as: :flag_pin, defaults: {format: :json}
 
