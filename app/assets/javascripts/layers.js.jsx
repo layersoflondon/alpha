@@ -32,13 +32,9 @@ class Layers {
       }
 
       componentWillUnmount() {
-        try {
-          MapPinStore.unlisten(this.stateChanged);
-          if (_.isFunction(super.componentWillUnmount)) {
-            super.componentWillUnMount();
-          }
-        }catch(e) {
-          debugger;
+        MapPinStore.unlisten(this.stateChanged);
+        if (_.isFunction(super.componentWillUnmount)) {
+          super.componentWillUnMount();
         }
       }
 
