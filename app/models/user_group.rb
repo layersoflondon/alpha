@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
   belongs_to :primary_user, class_name: "User"
+  has_many :pins, through: :users
   has_many :user_group_users, dependent: :destroy
   has_many :users, through: :user_group_users
 
