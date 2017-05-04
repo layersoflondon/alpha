@@ -4,6 +4,10 @@ class ContentOverlay {
     this.content = content;
   }
 
+  showCollection() {
+    alert("OK");
+    console.log(router);
+  }
 
   render() {
     var content = this.content;
@@ -91,6 +95,10 @@ class ContentOverlay {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
+    if(typeof content.collection == "object" && typeof content.collection.name == "string") {
+      info += `<br/>Collection: <a href="#collections/${content.collection.id}" onClick="showCollection(${content.collection.id})">${content.collection.name}</a>`;
+    }
+
     //info += `<br/>Inappropriate content? <a class="flag-content"><i class="fa fa-flag"></i> Flag for review</a>`;
 
     // we're embedding a media item from youtube
@@ -124,7 +132,7 @@ class ContentOverlay {
         info: info
       });
     }
-    blueimp.Gallery(gallery_objects, gallery_options);
+    window.gallery = blueimp.Gallery(gallery_objects, gallery_options);
     $("#blueimp-gallery").find('video').attr('controls', true).attr('autoplay', true);
 
   }

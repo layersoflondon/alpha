@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, only: [:index], format: :json do
+  resources :collections, only: [:index, :show], defaults: {format: :json} do
     collection do
       get 'search'
     end
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:show], path: 'blog'
 
   mount Rooftop::Rails::Engine => "/rooftop"
+
+  match "/undefined", via: :get, to: "application#tmp"
 
   match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"

@@ -47,7 +47,7 @@ class MapsController < ApplicationController
   end
 
   def create
-    @pin = current_user.try(:pins).try(:build, pin_params) || Pin.new
+    @pin = current_user.pins.build(pin_params)
 
     authorize @pin
 
@@ -78,7 +78,7 @@ class MapsController < ApplicationController
 
   private
   def pin_params
-    params.require(:pin).permit!
+    params.require(:pin).permit!.merge({user_id: current_user.try(:id)})
   end
 
   def search_params

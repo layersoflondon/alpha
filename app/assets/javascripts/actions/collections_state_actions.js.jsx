@@ -4,7 +4,7 @@
       return (dispatch) => {
         dispatch();
 
-        Collections.searchCollections({query: query}).then((new_state) => {
+        Collection.searchCollections({query: query}).then((new_state) => {
           return this.updateCollections(new_state);
         }).catch((error) => {
           console.log("Got an error when fetching collections", error);

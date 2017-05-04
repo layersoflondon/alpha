@@ -2,6 +2,9 @@ class UserCollection < ActiveRecord::Base
   belongs_to :user, inverse_of: :user_collections
   belongs_to :collection, inverse_of: :user_collection
 
-  validates :user, :collection, presence: true
+  validates :collection, presence: true
+  validates :user, presence: true, on: :update
   validates :collection, uniqueness: true
+
+  enum privacy: [:restricted, :open]
 end

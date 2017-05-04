@@ -42,11 +42,20 @@ class CollectionControl extends React.Component {
       });
     }
 
+    let form_title;
+    if(this.state.editing && this.state.collections.length) {
+      form_title = "Change which collection this pin is in"
+    }else if(this.state.editing) {
+      form_title = "Add to collection";
+    }else {
+      form_title = "Add to collection";
+    }
+
     return (
         <div className="form-group">
-            <label>Add to collection</label>
+            <label>{form_title}</label>
 
-            <input type="text" placeholder="Collection Name" onChange={this.setSearchQuery.bind(this)} />
+            <input type="text" placeholder="Collection Name" onChange={this.setSearchQuery.bind(this)} value={this.state.collection_name} />
 
             <div className="collection-item-options">
               {field}

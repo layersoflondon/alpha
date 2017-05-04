@@ -101,6 +101,31 @@
   width: 50%;
 }
 
+.m-add-pin .form-collection-privacy input[type=radio] {
+  float: left;
+  width: auto;
+  margin: 3px 5px 0 0;
+}
+
+.m-add-pin .form-collection-privacy label span.form-helper-text {
+  color:#0cbb92;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.m-add-pin .collection-item-result {
+  margin: 5px 0;
+  padding: 1px 10px;
+}
+
+.m-add-pin .collection-item-availability-private {
+  background: rgba(136, 45, 38, 0.2);
+}
+
+.m-add-pin .collection-item-is-selected {
+  border: 1px solid rgba(255, 156, 176, 0.5);
+}
+
 .m-add-pin input[type="submit"] {
 	float:right;
 }

@@ -97,8 +97,8 @@ class PinForm extends React.Component {
             <a href="#" className="close" onClick={this.hidePinForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
             <PinCommonFields />
             <PinTypePicker />
-            <CollectionControl />
             {fields}
+            <CollectionControl />
           </div>
           <div className="form-actions">
             <div className="form-group">
@@ -262,6 +262,7 @@ PinForm.PropTypes = {
   collection_id: React.PropTypes.integer,
   collection_name: React.PropTypes.string,
   collection_description: React.PropTypes.string,
+  collection_privacy: React.PropTypes.string,
   location: React.PropTypes.string,
   location_object: React.PropTypes.object,
 };

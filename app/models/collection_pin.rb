@@ -1,7 +1,7 @@
 class CollectionPin < ActiveRecord::Base
   include AASM
-  belongs_to :pin
-  belongs_to :collection
+  belongs_to :pin, inverse_of: :collection_pin
+  belongs_to :collection, inverse_of: :collection_pins
 
   accepts_nested_attributes_for :collection
 

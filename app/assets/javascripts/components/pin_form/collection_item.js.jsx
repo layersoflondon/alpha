@@ -2,10 +2,13 @@ class CollectionItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {selected: false};
+
+    this.selected = false;
   }
 
   toggleChosenState() {
     let selected = !this.state.selected;
+    this.setState({selected: selected});
 
     if(selected) {
       MapPinActions.setFormAttribute({collection_id: this.props.collection_item.id});
@@ -20,20 +23,19 @@ class CollectionItem extends React.Component {
       style.border = "1px solid red";
     }
 
-    let details;
-    if(!this.state.selected) {
-      details = <span>
-        <h4>
+    let details = <span>
+      <h4>
           {this.props.collection_item.description}
-          <span style={{padding: "0 0 0 5px"}}>
+        <span style={{padding: "0 0 0 5px"}}>
             {this.props.collection_item.details}
           </span>
         </h4>
       </span>;
-    }
+
+    let classNames = `collection-item-result collection-item-availability-${this.props.collection_item.public ? 'public' : 'private'} collection-item-${this.state.selected ? 'is' : 'not'}-selected`;
 
     return (
-        <div className="collection-item-result" style={style} onClick={this.toggleChosenState.bind(this)}>
+        <div className={classNames} style={style} onClick={this.toggleChosenState.bind(this)}>
             <h1>{this.props.collection_item.name}</h1>
             {details}
         </div>
