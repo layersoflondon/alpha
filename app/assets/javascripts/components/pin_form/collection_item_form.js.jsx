@@ -7,8 +7,11 @@ class CollectionItemForm extends React.Component {
   render () {
     return (
         <div>
-          <div className="form-group">
-            <input type="text" value={this.state.collection_description} onChange={this.updateAttribute.bind(this)} data-attribute='collection_description' placeholder="New Collection Description" data-parsley-required={true} />
+          <div className="form-group form-group-title">
+            <label>Describe what this collection will contain</label>
+            <div className="collection-item-options">
+              <input type="text" value={this.state.collection_description} onChange={this.updateAttribute.bind(this)} data-attribute='collection_description' placeholder="New Collection Description" data-parsley-required={true} data-parsley-error-message="Enter a description for the collection" />
+            </div>
           </div>
 
           <div className="form-group form-collection-privacy">

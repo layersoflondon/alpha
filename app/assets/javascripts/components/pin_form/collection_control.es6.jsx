@@ -10,7 +10,11 @@ class CollectionControl extends React.Component {
     MapPinActions.setFormAttribute({collection_id: null});
     MapPinActions.setFormAttribute({collection_name: event.target.value});
 
-    CollectionsStateActions.searchCollections(event.target.value);
+    if(event.target.value.length) {
+      CollectionsStateActions.searchCollections(event.target.value);
+    }else {
+      CollectionsStateActions.updateCollections([]);
+    }
   }
 
   componentDidMount() {
@@ -58,12 +62,7 @@ class CollectionControl extends React.Component {
             <input type="text" placeholder="Collection Name" onChange={this.setSearchQuery.bind(this)} value={this.state.collection_name} />
           </div>
 
-          <div className="form-group form-group-title">
-            <label>Describe what this collection will contain</label>
-            <div className="collection-item-options">
-              {field}
-            </div>
-          </div>
+          {field}
         </div>
     );
   }
