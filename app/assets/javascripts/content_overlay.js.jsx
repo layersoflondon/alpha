@@ -4,11 +4,6 @@ class ContentOverlay {
     this.content = content;
   }
 
-  showCollection() {
-    alert("OK");
-    console.log(router);
-  }
-
   render() {
     var content = this.content;
     const resource = content.content_entry.resource;
