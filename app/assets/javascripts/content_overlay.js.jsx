@@ -137,7 +137,7 @@ class ContentOverlay {
 
   getVideoId(source) {
     const id = source.match(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/)[1];
-    const poster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    const poster = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 
     return {youtube: id, poster: poster};
   }
