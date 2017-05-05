@@ -1,9 +1,7 @@
 class CollectionItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selected: false};
-
-    this.selected = false;
+    this.state = props;
   }
 
   toggleChosenState() {
@@ -17,7 +15,7 @@ class CollectionItem extends React.Component {
     }
   }
 
-  render () {;
+  render () {
     let details = <span>
       <h4>
         {this.props.collection_item.description}
