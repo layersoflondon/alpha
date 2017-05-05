@@ -53,6 +53,10 @@ class MapsController < ApplicationController
 
     unless @pin.save
       render json: {errors: @pin.errors}, status: :unprocessable_entity
+    else
+      # fixme: remove this, figure out why the collections association
+      # isn't being included in the view for new pins
+      @pin.reload
     end
   end
 
