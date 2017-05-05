@@ -39,6 +39,10 @@
   @include element-list;
 }
 
+.m-popover ul:hover {
+  cursor: pointer;
+}
+
 .m-popover > h3:first-child {
   margin-top:0;
   display: inline-block;

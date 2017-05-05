@@ -17,15 +17,11 @@ class CollectionItem extends React.Component {
     }
   }
 
-  render () {
-    let style = {borderBottom: '1px solid #c2c2c2'};
-    if(this.state.selected) {
-      style.border = "1px solid red";
-    }
-
+  render () {;
     let details = <span>
       <h4>
-          {this.props.collection_item.description}
+        {this.props.collection_item.description}
+
         <span style={{padding: "0 0 0 5px"}}>
             {this.props.collection_item.details}
           </span>
@@ -35,7 +31,7 @@ class CollectionItem extends React.Component {
     let classNames = `collection-item-result collection-item-availability-${this.props.collection_item.public ? 'public' : 'private'} collection-item-${this.state.selected ? 'is' : 'not'}-selected`;
 
     return (
-        <div className={classNames} style={style} onClick={this.toggleChosenState.bind(this)}>
+        <div className={classNames} onClick={this.toggleChosenState.bind(this)}>
             <h1>{this.props.collection_item.name}</h1>
             {details}
         </div>

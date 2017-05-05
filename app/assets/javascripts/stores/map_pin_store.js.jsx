@@ -21,6 +21,7 @@
       this.collections = [];
       this.collection_id = null;
       this.collection_name = "";
+      this.collection_description = "";
       this.collection_privacy = "open";
 
       this.location = '';

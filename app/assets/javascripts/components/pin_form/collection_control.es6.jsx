@@ -52,14 +52,18 @@ class CollectionControl extends React.Component {
     }
 
     return (
-        <div className="form-group">
+        <div>
+          <div className="form-group form-group-title">
             <label>{form_title}</label>
-
             <input type="text" placeholder="Collection Name" onChange={this.setSearchQuery.bind(this)} value={this.state.collection_name} />
+          </div>
 
+          <div className="form-group form-group-title">
+            <label>Describe what this collection will contain</label>
             <div className="collection-item-options">
               {field}
             </div>
+          </div>
         </div>
     );
   }

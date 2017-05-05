@@ -118,6 +118,10 @@
   padding: 1px 10px;
 }
 
+.m-add-pin .collection-item-result:hover {
+  cursor: pointer;
+}
+
 .m-add-pin .collection-item-availability-private {
   background: rgba(136, 45, 38, 0.2);
 }
