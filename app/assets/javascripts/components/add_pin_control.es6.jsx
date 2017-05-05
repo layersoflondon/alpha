@@ -18,7 +18,7 @@ class AddPinControl extends React.Component {
       label = "Cancel";
       classes = "add-pin adding";
     }else {
-      label = "Add Note";
+      label = "Add to Map";
       classes = "add-pin";
     }
 
