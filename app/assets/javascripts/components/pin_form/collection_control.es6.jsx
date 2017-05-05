@@ -23,7 +23,6 @@ class CollectionControl extends React.Component {
 
   collectionsStateChanged(state) {
     // let new_state = _.merge({},state,MapPinStore.getState());
-    console.log(MapPinStore.getState(), state.collections);
     setTimeout(() => {
       MapPinActions.setFormAttribute({collections: state.collections});
     }, 100);
@@ -37,7 +36,7 @@ class CollectionControl extends React.Component {
         return item.id == this.state.collection_id;
       });
 
-      field = <CollectionItem key={item.id} collection_item={item} />;
+      field = <CollectionItem key={item.id} collection_item={item} selected={true} />;
     }else if(this.state.collections.length==0 && this.state.collection_name.length>0) {
       field = <CollectionItemForm query={this.query} />
     }else {
