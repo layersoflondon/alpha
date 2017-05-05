@@ -55,7 +55,7 @@ class ContentEntry extends React.Component {
       const icon = LoL.urls[this.props.content_entry.content_entry.resource.type];
 
       var link = (
-        <a href="#" onClick={this.showResource.bind(this)}>
+        <a onClick={this.showResource.bind(this)}>
           <div className="icon" dangerouslySetInnerHTML={{__html: LoL.urls[this.props.content_entry.content_entry.resource.type]}}>
           </div>
 

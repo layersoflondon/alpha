@@ -91,15 +91,13 @@ class ContentOverlay {
       info += `Content Date: <strong>${date_from}</strong>`;
     }
 
-    if(typeof content.link_url !== "undefined") {
+    if(typeof content.link_url !== "undefined" && content.link_url.length) {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
     if(typeof content.collection == "object" && typeof content.collection.name == "string") {
-      info += `<br/>Collection: <a href="#collections/${content.collection.id}" onClick="showCollection(${content.collection.id})">${content.collection.name}</a>`;
+      info += `<br/>Collection: <a onClick="showCollection(${content.collection.id})">${content.collection.name}</a>`;
     }
-
-    //info += `<br/>Inappropriate content? <a class="flag-content"><i class="fa fa-flag"></i> Flag for review</a>`;
 
     // we're embedding a media item from youtube
     if(resource.embedded_resource) {

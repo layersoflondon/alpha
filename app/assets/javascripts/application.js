@@ -46,7 +46,7 @@ var alt = new Alt();
 
 // router method so we can link to a collection from some non-jsx code
 showCollection = function(id) {
-  router.navigate('#/collections/'+id);
+  router.navigate("collections/"+id, true);
 };
 
 $(function() {

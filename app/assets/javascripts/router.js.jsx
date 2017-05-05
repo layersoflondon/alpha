@@ -1,5 +1,5 @@
 $(() => {
-  router = new Navigo(root = null, useHash=false);
+  router = new Navigo(null, true);
   router.on(
     {
       'add': (() => { MapPinActions.enablePinForm(true)}),
