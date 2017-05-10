@@ -11,9 +11,10 @@
       this.places = [];
       this.overlays = [];
       this.show_overlays = true;
+      this.show_collections = false;
       this.visible_overlays = [];
       this.overlay_options  = [];
-      this.collections = [];
+      this.all_collections = [];
       this.markers = [];
       this.pins = [];
       this.notes = [];
@@ -29,8 +30,10 @@
         onUpdateOverlays: MapContainerActions.UPDATE_OVERLAYS,
         onUpdateNotes: MapContainerActions.UPDATE_NOTES,
         onUpdateCollections: MapContainerActions.UPDATE_COLLECTIONS,
+        onUpdateCollection: MapContainerActions.UPDATE_COLLECTION,
         onToggleShowOverlays: MapContainerActions.TOGGLE_SHOW_OVERLAYS,
         onToggleOverlayVisibility: MapContainerActions.TOGGLE_OVERLAY_VISIBILITY,
+        onToggleShowCollections: MapContainerActions.TOGGLE_SHOW_COLLECTIONS,
         onSetOverlayOpacity: MapContainerActions.SET_OVERLAY_OPACITY,
         onAddPin: MapContainerActions.ADD_PIN,
         onAddMarker: MapContainerActions.ADD_MARKER,
@@ -82,8 +85,19 @@
       this.overlays = overlays;
     }
 
+    onToggleShowCollections() {
+      this.show_collections = !this.show_collections;
+    }
+
     onUpdateCollections(collections) {
-      this.collections = collections;
+      this.all_collections = collections;
+    }
+
+    onUpdateCollection(collection) {
+      let all_collections = this.all_collections.slice();
+      all_collections.unshift(collection);
+      all_collections = _.uniqBy(all_collections, (i) => {return i.id});
+      this.all_collections = all_collections
     }
 
     onUpdateNotes(notes) {

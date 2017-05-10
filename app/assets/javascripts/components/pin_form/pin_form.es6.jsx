@@ -50,10 +50,15 @@ class PinForm extends React.Component {
 
       FilterStateActions.updateDefaultYearFrom(year_from);
 
+      console.log(note);
       if(editing) {
         MapContainerActions.updateMarker(note);
       }else {
         MapContainerActions.addMarker(note);
+      }
+
+      if(note.collection) {
+        MapContainerActions.updateCollection(note.collection);
       }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};

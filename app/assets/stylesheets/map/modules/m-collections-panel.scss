@@ -24,3 +24,7 @@
   @include unlist;
   @include element-list;
 }
+
+.collection-result a:hover {
+  cursor: pointer;
+}

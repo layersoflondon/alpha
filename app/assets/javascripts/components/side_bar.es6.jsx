@@ -5,6 +5,7 @@ class SideBar extends React.Component {
 		        <NavigationMenu menu={this.props.menu} account_menu={this.props.account_menu} />
 		        <SearchTab />
             <OverlayResultsContainer />
+            <CollectionResultsContainer />
         </div>
     );
   }
