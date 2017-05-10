@@ -16,6 +16,14 @@
     updateCollections(collections) {
       return collections;
     }
+
+    updateUserCollections(collections) {
+      return collections;
+    }
+
+    updateUserCollection(collection) {
+      return collection;
+    }
   }
 
   this.CollectionsStateActions = alt.createActions(CollectionsStateActions);

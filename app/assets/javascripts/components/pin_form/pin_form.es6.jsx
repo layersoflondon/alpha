@@ -44,21 +44,20 @@ class PinForm extends React.Component {
     let editing = this.state.editing;
 
     Pin.post(this.state).then((note) => {
+      if(note.collection && !note.collection.public) {
+        CollectionsStateActions.updateUserCollection(note.collection);
+      }
+
       MapPinActions.resetForm();
 
       let year_from = moment(note.date_from, "DDD MMM YYYY", 'en').year();
 
       FilterStateActions.updateDefaultYearFrom(year_from);
 
-      console.log(note);
       if(editing) {
         MapContainerActions.updateMarker(note);
       }else {
         MapContainerActions.addMarker(note);
-      }
-
-      if(note.collection) {
-        MapContainerActions.updateCollection(note.collection);
       }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
@@ -103,7 +102,7 @@ class PinForm extends React.Component {
             <PinCommonFields />
             <PinTypePicker />
             {fields}
-            <CollectionControl user_collections={this.props.user_collections} />
+            <CollectionControl all_collections={this.props.all_collections} user_collections={this.props.user_collections} />
           </div>
           <div className="form-actions">
             <div className="form-group">

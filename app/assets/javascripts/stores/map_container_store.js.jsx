@@ -97,7 +97,7 @@
       let all_collections = this.all_collections.slice();
       all_collections.unshift(collection);
       all_collections = _.uniqBy(all_collections, (i) => {return i.id});
-      this.all_collections = all_collections
+      this.all_collections = all_collections;
     }
 
     onUpdateNotes(notes) {
