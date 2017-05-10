@@ -118,6 +118,12 @@
   padding: 1px 10px;
 }
 
+.m-add-pin .collection-item-result h1 span {
+  font-size: 70%;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
 .m-add-pin .collection-item-result:hover {
   cursor: pointer;
 }
@@ -242,6 +248,25 @@
 
 .m-add-pin .form-grouping--pin-type > .form-group:last-child {
   margin-bottom:0;
+}
+
+// Pin collections
+
+.m-add-pin .form-group-pin-collection .collection-options {
+  margin-bottom: 20px;
+}
+
+.m-add-pin .form-group-pin-collection .collection-option {
+  display: inline-block;
+  width: 33%;
+}
+
+.m-add-pin .form-group-pin-collection .collection-option label input[type=radio] {
+  float: left;
+  width: auto;
+  margin: 3px 5px 0 0;
+}
+.m-add-pin .form-group-pin-collection .collection-option label {
 }
 
 // Buttons

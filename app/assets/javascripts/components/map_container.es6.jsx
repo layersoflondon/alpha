@@ -57,7 +57,7 @@ class MapContainer extends React.Component {
 
         <AddPinControl />
 
-        <PinForm />
+        <PinForm user_collections={this.props.data.user_collections} />
 
         <ModerationForm />
 

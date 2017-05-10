@@ -34,7 +34,9 @@ class PagesController < ApplicationController
     earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460
     @filter_date_range = [earliest_pin_year, Date.today.year]
 
-    @data = render_to_string('maps/search', layout: false, formats: [:json])
+    @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
+
+    @data = render_to_string('maps/map_page', layout: false, formats: [:json])
   end
 
   # If there's a redirect required, do that instead of rendering.

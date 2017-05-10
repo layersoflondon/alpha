@@ -43,6 +43,8 @@ class MapsController < ApplicationController
 
     unless @pin.update_attributes(pin_params)
       render json: {errors: @pin.errors}, status: :unprocessable_entity
+    else
+      @pin.reload
     end
   end
 

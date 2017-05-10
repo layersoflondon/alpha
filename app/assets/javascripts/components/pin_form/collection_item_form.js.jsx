@@ -4,9 +4,19 @@ class CollectionItemForm extends React.Component {
     this.state = props;
   }
 
+  updateCollectionNameAttribute(event) {
+    this.updateAttribute(event);
+    MapPinActions.setFormAttribute({collection_id: null});
+  }
+
   render () {
     return (
         <div>
+          <div className="form-group form-group-title">
+            <label>Collection name</label>
+            <input type="text" placeholder="Collection Name" onChange={this.updateCollectionNameAttribute.bind(this)} data-attribute="collection_name" value={this.state.collection_name} data-parsley-required={true} data-parsley-error-message="Enter a name for the collection" />
+          </div>
+
           <div className="form-group form-group-title">
             <label>Describe what this collection will contain</label>
             <div className="collection-item-options">

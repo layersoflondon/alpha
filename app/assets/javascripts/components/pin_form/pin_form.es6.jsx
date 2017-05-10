@@ -98,7 +98,7 @@ class PinForm extends React.Component {
             <PinCommonFields />
             <PinTypePicker />
             {fields}
-            <CollectionControl />
+            <CollectionControl user_collections={this.props.user_collections} />
           </div>
           <div className="form-actions">
             <div className="form-group">

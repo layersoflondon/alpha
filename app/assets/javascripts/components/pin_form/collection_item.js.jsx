@@ -16,21 +16,22 @@ class CollectionItem extends React.Component {
   }
 
   render () {
-    let details = <span>
+    let details = <div>
+      <h1>
+        {this.props.collection_item.name}
+        <span>
+          {this.props.collection_item.description}
+        </span>
+      </h1>
       <h4>
-        {this.props.collection_item.description}
-
-        <span style={{padding: "0 0 0 5px"}}>
-            {this.props.collection_item.details}
-          </span>
-        </h4>
-      </span>;
+        {this.props.collection_item.details}
+      </h4>
+    </div>;
 
     let classNames = `collection-item-result collection-item-availability-${this.props.collection_item.public ? 'public' : 'private'} collection-item-${this.state.selected ? 'is' : 'not'}-selected`;
 
     return (
         <div className={classNames} onClick={this.toggleChosenState.bind(this)}>
-            <h1>{this.props.collection_item.name}</h1>
             {details}
         </div>
     );
