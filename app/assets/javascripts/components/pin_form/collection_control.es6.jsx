@@ -41,11 +41,11 @@ class CollectionControl extends React.Component {
 
   collectionsStateChanged(state) {
     console.log("Collections state changed: ", state);
-    // this.setState(state.user_collections);
-    //
-    // setTimeout(() => {
-    //   MapPinActions.setFormAttribute({collections: state.collections});
-    // }, 100);
+    this.setState(state.user_collections);
+
+    setTimeout(() => {
+      MapPinActions.setFormAttribute({collections: state.collections});
+    }, 100);
   }
 
   render() {

@@ -59,6 +59,8 @@ class PinForm extends React.Component {
       }else {
         MapContainerActions.addMarker(note);
       }
+
+      location.reload();
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
       MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
