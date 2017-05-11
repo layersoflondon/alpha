@@ -2,10 +2,11 @@ class CollectionControl extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log("Construct with state: ", this.state);
     let new_state = {collection_form_mode: 0, initial_state: true};
     this.state = _.merge({}, props, new_state);
 
-    setTimeout(() => {CollectionsStateActions.updateCollections(this.state.all_collections);}, 100);
+    // setTimeout(() => {CollectionsStateActions.updateCollections(this.state.all_collections);}, 100);
 
     this.collectionsStateChanged = this.collectionsStateChanged.bind(this);
   }
@@ -40,14 +41,15 @@ class CollectionControl extends React.Component {
 
   collectionsStateChanged(state) {
     console.log("Collections state changed: ", state);
-    this.setState(state.user_collections);
-
-    setTimeout(() => {
-      // MapPinActions.setFormAttribute({collections: state.collections});
-    }, 100);
+    // this.setState(state.user_collections);
+    //
+    // setTimeout(() => {
+    //   MapPinActions.setFormAttribute({collections: state.collections});
+    // }, 100);
   }
 
   render() {
+    console.log("Rendering CollectionControl...");
     let field = [];
 
     let pin_state = MapPinStore.getState();

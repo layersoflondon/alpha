@@ -11,6 +11,10 @@ $(() => {
           });
         }
       ),
+      'marker-pin/:id': (
+        (params) => {
+        }
+      ),
       'collections/:id': (
         (params) => {
           // close any open content entries

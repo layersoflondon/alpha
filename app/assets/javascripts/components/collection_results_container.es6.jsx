@@ -40,23 +40,30 @@ class CollectionResultsContainer extends React.Component {
 
     if(show_caret) {
       let carat = this.state.show_collections ? <i className="fa fa-caret-up" aria-hidden="true"></i> : <i className="fa fa-caret-down" aria-hidden="true"></i> ;
-      return <a className="show-overlays" onClick={this.toggleShowCollections.bind(this)}>{collections_label} {carat}</a>
+      return <a className="show-collections" onClick={this.toggleShowCollections.bind(this)}>{collections_label} {carat}</a>
     }else {
-      return <a className="show-overlays">{collections_label}</a>
+      return <a className="show-collections">{collections_label}</a>
     }
   }
 
   render () {
     const show_collections = this.state.all_collections.length && this.state.show_collections;
+    let home_link;
+    if(/collections\/\d+$/.test(location.href)) {
+      home_link = <li className="home-link">
+        <a href="/the-map">home</a>
+      </li>;
+    }
 
     return (
-      <div className="m-overlays-list">
+      <div className="m-collections-list">
         {this.collectionsLabel()}
 
-        <ul className="overlays-results" style={{display: show_collections ? 'block' : 'none'}}>
+        <ul className="collections-results" style={{display: show_collections ? 'block' : 'none'}}>
           {this.state.all_collections.map(function(collection) {
             return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
           })}
+          {home_link}
         </ul>
       </div>
     );
