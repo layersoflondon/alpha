@@ -59,6 +59,12 @@ class PinForm extends React.Component {
       }else {
         MapContainerActions.addMarker(note);
       }
+
+      // fixme: there's a bug where when we add a note into a new private collection, the collection appears in the public collections dropdown
+      // we work around this by reloading the page and the proper state is given to the collections control component
+      if(note.collection && !note.collection.public) {
+        location.href = router.root;
+      }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
       MapPinActions.setErrors({errorCode: response.status, errorMessages: errors});
