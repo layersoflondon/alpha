@@ -44,7 +44,7 @@
       this.updateNotes(state.markers);   // update notes (pin results) from LoL data
       this.updatePlaces(state.places);
       this.updateOverlays(state.overlays);
-      this.updateCollections(state.collections);
+      this.updateCollections(state.all_collections);
 
       // call this after other state changes that effect the map content (marker pins)
       // calling first will cause all to double dispatch (a state change to tell leafelet to move the map)
@@ -105,6 +105,10 @@
       return collections;
     }
 
+    updateCollection(collection) {
+      return collection;
+    }
+
     updateNotes(markers) {
       const notes = _.chain(markers).map(
         (marker) => {
@@ -121,6 +125,14 @@
 
     toggleOverlayVisibility(overlay_id) {
       return overlay_id;
+    }
+
+    toggleShowCollections() {
+      return true;
+    }
+
+    goToCollection(collection_id) {
+      return collection_id;
     }
 
     setOverlayOpacity(overlay_id, opacity) {

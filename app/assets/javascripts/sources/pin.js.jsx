@@ -62,6 +62,13 @@ class Pin {
       pinData.pin.pin_content_entry_attributes.content_entry_attributes.id = state.content_entry_id;
     }
 
+    if(state.collection_id) {
+      pinData.pin.collection_pin_attributes = {collection_id: state.collection_id};
+    }
+    if(!state.collection_id && (state.collection_name.length && state.collection_description.length)) {
+      pinData.pin.collection_attributes = {name: state.collection_name, description: state.collection_description, user_collection_attributes: {privacy: state.collection_privacy}};
+    }
+
     // dont pass the attached_file attribute if the user is just editing the content entry attributes(but not replacing the file)
     if(state.editing && pinData.pin.pin_content_entry_attributes.content_entry_attributes['attached_file'] == "") {
       delete pinData.pin.pin_content_entry_attributes.content_entry_attributes['attached_file'];

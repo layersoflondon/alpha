@@ -44,6 +44,10 @@ class PinForm extends React.Component {
     let editing = this.state.editing;
 
     Pin.post(this.state).then((note) => {
+      if(note.collection && !note.collection.public) {
+        CollectionsStateActions.updateUserCollection(note.collection);
+      }
+
       MapPinActions.resetForm();
 
       let year_from = moment(note.date_from, "DDD MMM YYYY", 'en').year();
@@ -54,6 +58,12 @@ class PinForm extends React.Component {
         MapContainerActions.updateMarker(note);
       }else {
         MapContainerActions.addMarker(note);
+      }
+
+      // fixme: there's a bug where when we add a note into a new private collection, the collection appears in the public collections dropdown
+      // we work around this by reloading the page and the proper state is given to the collections control component
+      if(note.collection && !note.collection.public) {
+        location.href = router.root;
       }
     }).catch((response) => {
       const errors = response.responseJSON ? response.responseJSON.errors : {};
@@ -86,7 +96,6 @@ class PinForm extends React.Component {
         case "audio":
           fields = <PinAudioFields />;
           break;
-
       }
     }
 
@@ -99,6 +108,7 @@ class PinForm extends React.Component {
             <PinCommonFields />
             <PinTypePicker />
             {fields}
+            <CollectionControl all_collections={this.props.all_collections} user_collections={this.props.user_collections} />
           </div>
           <div className="form-actions">
             <div className="form-group">
@@ -242,7 +252,6 @@ class PinForm extends React.Component {
     } else {
       return this.mainForm();
     }
-
   }
 }
 
@@ -260,8 +269,12 @@ PinForm.PropTypes = {
   date_to_month: React.PropTypes.integer,
   date_to_year: React.PropTypes.integer,
   collections: React.PropTypes.array,
+  collection_id: React.PropTypes.integer,
+  collection_name: React.PropTypes.string,
+  collection_description: React.PropTypes.string,
+  collection_privacy: React.PropTypes.string,
   location: React.PropTypes.string,
-  location_object: React.PropTypes.object
+  location_object: React.PropTypes.object,
 };
 
 PinForm = Layers.bindComponentToMapPinStore(PinForm);

@@ -1,0 +1,92 @@
+
+/* collections list */
+
+.m-collections-list {
+  background: #b1ecff;
+  float:right;
+  width: 10%;
+  height: 100%;
+  position: relative;
+}
+
+.m-collections-list .collections-results {
+  @include unlist;
+  @include element-list;
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  top: 93px;
+  right: -100%;
+  margin-right:11px;
+  padding: 20px;
+  width:200%;
+  @include shadow;
+}
+
+.m-collections-list .collections-results:before {
+  content:"";
+  position:absolute;
+  left: 32%;
+  top:-20px;
+  margin-left:-20px;
+  width:0;
+  height:0;
+  display:block;
+  border:0;
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-bottom:20px solid white;
+}
+
+.m-collections-list .collections-results li {
+  clear: both;
+}
+
+.m-collections-list .collections-results > li > a, .m-collections-list .collections-results > li > span {
+  padding-left:6px;
+}
+
+.m-collections-list .collections-results form {
+  height: 0;
+}
+
+.m-collections-list .collections-results h3 {
+  color:$lol-navy;
+}
+
+.m-collections-list .show-collections {
+  color:white;
+  text-transform:uppercase;
+  height: 100%;
+  width:100%;
+  display:block;
+  padding:24px 10px 10px 10px;
+  text-align:center;
+  cursor:pointer;
+  @include transition(all .2s);
+  background:$lol-navy;
+}
+
+.m-collections-list .show-collections:hover {
+  background:lighten($lol-navy, 10%);
+}
+
+.m-collections-list .collections-results .m-overlay-opacity-control {
+  padding: 0 0 25px 35px;
+}
+
+
+.m-collections-list .home-link {
+  text-align: center;
+  border-top: 1px solid $lol-mint;
+  margin-top: 10px;
+}
+
+.m-collections-list ul li.home-link a {
+  padding: 2px 0;
+  margin-top: 5px;
+}
+
+.m-collections-list .show-collections i {
+  display:block;
+}

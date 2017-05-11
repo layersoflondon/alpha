@@ -16,12 +16,20 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :collections, only: [:index, :show], defaults: {format: :json} do
+    collection do
+      get 'search'
+    end
+  end
+
   post "/overlays/*id/flag", to: "overlays#flag", as: :flag_overlay, defaults: {format: :json}
   post "/pins/*id/flag", to: "pins#flag", as: :flag_pin, defaults: {format: :json}
 
   resources :posts, only: [:show], path: 'blog'
 
   mount Rooftop::Rails::Engine => "/rooftop"
+
+  match "/undefined", via: :get, to: "application#tmp"
 
   match "/*nested_path", via: [:get], to: "pages#show", as: :page
   root to: "pages#index"

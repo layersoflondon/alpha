@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   before_action :get_global_content
   before_action :allow_caching
 
+  def tmp
+    render plain: ""
+  end
+
   private
   def get_navigation_menus
     @main_navigation_menu, @footer_navigation_menu = *Rooftop::Menus::Menu.where(post__in: [2,3]).to_a.sort_by(&:id)

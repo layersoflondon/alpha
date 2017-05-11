@@ -121,6 +121,10 @@
   }
 }
 
+.sub-navigation-list {
+  margin-top: 5px;
+}
+
 .agent-platform-ios .main-navigation-list a {
   @include mq(medium) {
     font-size: 54px;

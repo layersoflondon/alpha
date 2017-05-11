@@ -43,16 +43,22 @@ class MapsController < ApplicationController
 
     unless @pin.update_attributes(pin_params)
       render json: {errors: @pin.errors}, status: :unprocessable_entity
+    else
+      @pin.reload
     end
   end
 
   def create
-    @pin = current_user.try(:pins).try(:build, pin_params) || Pin.new
+    @pin = current_user.pins.build(pin_params)
 
     authorize @pin
 
     unless @pin.save
       render json: {errors: @pin.errors}, status: :unprocessable_entity
+    else
+      # fixme: remove this, figure out why the collections association
+      # isn't being included in the view for new pins
+      @pin.reload
     end
   end
 
@@ -78,7 +84,7 @@ class MapsController < ApplicationController
 
   private
   def pin_params
-    params.require(:pin).permit!
+    params.require(:pin).permit!.merge({user_id: current_user.try(:id)})
   end
 
   def search_params

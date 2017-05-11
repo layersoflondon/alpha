@@ -8,6 +8,7 @@ class PinAttributionFields extends React.Component {
     event.preventDefault();
     this.setState({show_form: true});
   }
+
   render() {
     if (this.state.show_form) {
       field = <input type="text" placeholder="The person or organisation who were responsible for sourcing this" onChange={this.updateAttribute.bind(this)} data-attribute='attribution' value={this.state.attribution} />

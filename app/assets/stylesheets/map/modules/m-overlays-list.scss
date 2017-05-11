@@ -4,8 +4,9 @@
 .m-overlays-list {
 	background:#2d527c;
   float:right;
-  width:20%;
+  width: 10%;
   height: 100%;
+  position:relative
 }
 
 .m-overlays-list .overlays-results {
@@ -17,13 +18,14 @@
   top: 93px;
   right: 11px;
   padding: 20px;
+  width:200%;
   @include shadow;
 }
 
 .m-overlays-list .overlays-results:before {
   content:"";
   position:absolute;
-  left: 64%;
+  left: 80%;
   top:-20px;
   margin-left:-20px;
   width:0;
@@ -53,11 +55,15 @@
   height: 100%;
   width:100%;
   display:block;
-  padding:30px 10px 10px 10px;
+  padding:24px 10px 10px 10px;
   text-align:center;
   cursor:pointer;
   @include transition(all .2s);
-  background:$lol-navy;
+  background:darken($lol-navy, 10%);
+}
+
+.m-overlays-list .show-overlays i {
+  display:block;
 }
 
 .m-overlays-list .show-overlays:hover {

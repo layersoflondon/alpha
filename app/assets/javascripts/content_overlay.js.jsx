@@ -4,7 +4,6 @@ class ContentOverlay {
     this.content = content;
   }
 
-
   render() {
     var content = this.content;
     const resource = content.content_entry.resource;
@@ -87,11 +86,13 @@ class ContentOverlay {
       info += `Content Date: <strong>${date_from}</strong>`;
     }
 
-    if(typeof content.link_url !== "undefined") {
+    if(typeof content.link_url !== "undefined" && content.link_url.length) {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
-    //info += `<br/>Inappropriate content? <a class="flag-content"><i class="fa fa-flag"></i> Flag for review</a>`;
+    if(typeof content.collection == "object" && typeof content.collection.name == "string") {
+      info += `<br/>Collection: <a onClick="showCollection(${content.collection.id})">${content.collection.name}</a>`;
+    }
 
     // we're embedding a media item from youtube
     if(resource.embedded_resource) {
@@ -124,14 +125,14 @@ class ContentOverlay {
         info: info
       });
     }
-    blueimp.Gallery(gallery_objects, gallery_options);
+    window.gallery = blueimp.Gallery(gallery_objects, gallery_options);
     $("#blueimp-gallery").find('video').attr('controls', true).attr('autoplay', true);
 
   }
 
   getVideoId(source) {
     const id = source.match(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/)[1];
-    const poster = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    const poster = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 
     return {youtube: id, poster: poster};
   }

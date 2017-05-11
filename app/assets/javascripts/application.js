@@ -44,6 +44,11 @@
 var LoL = {};
 var alt = new Alt();
 
+// router method so we can link to a collection from some non-jsx code
+showCollection = function(id) {
+  router.navigate("collections/"+id, true);
+};
+
 $(function() {
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token]").attr('content'));

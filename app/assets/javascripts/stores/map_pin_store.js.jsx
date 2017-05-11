@@ -17,7 +17,13 @@
       this.date_to_day = '';
       this.date_to_month = '';
       this.date_to_year = '';
-      this.collections = '';
+
+      this.collections = [];
+      this.collection_id = null;
+      this.collection_name = "";
+      this.collection_description = "";
+      this.collection_privacy = "open";
+
       this.location = '';
       this.pin_form_visible = false;
       this.main_form_confirmed = false;
@@ -49,6 +55,7 @@
           onSetAttachedFileField: MapPinActions.SET_ATTACHED_FILE_FIELD,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
+          onSetCollections: MapPinActions.SET_COLLECTIONS,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
           onEditNote: MapPinActions.EDIT_NOTE,
@@ -134,6 +141,12 @@
       return true;
     }
 
+    onSetCollections(collections) {
+      this.collections = collections;
+
+      return true;
+    }
+
     onSubmitForm(pin_data) {
       this.setDefaultState();
 
@@ -174,6 +187,14 @@
           break;
         case "dataset":
           break;
+      }
+
+      window.x = note;
+      if(note.collection && note.collection.id) {
+        this.collection_id = note.collection.id;
+        this.collection_name = note.collection.name;
+        this.collection_description = note.collection.description;
+        this.collections = note.collections;
       }
 
       let date_from = moment(note.date_from, ['Do MMM YYYY']);

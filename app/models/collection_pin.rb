@@ -1,9 +1,12 @@
 class CollectionPin < ActiveRecord::Base
   include AASM
-  belongs_to :pin
-  belongs_to :collection
+  belongs_to :pin, inverse_of: :collection_pin
+  belongs_to :collection, inverse_of: :collection_pins
 
-  validates :pin, :collection, presence: true
+  accepts_nested_attributes_for :collection
+
+  validates :collection, presence: true
+  validates :pin, presence: true, on: :update
 
   aasm do
     #if the collection belongs to a group, any pin additions need to be moderated by the group's primary user

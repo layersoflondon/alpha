@@ -117,6 +117,10 @@ video[src$='audio=true'] {
   padding-bottom: 1em;
 }
 
+.m-note-metadata a:hover {
+  cursor: pointer;
+}
+
 .flag-content {
   color: $red;
 }

@@ -31,3 +31,7 @@
   bottom:3px;
   border-bottom: 2px solid white;
 }
+
+.m-main-navigation .main-navigation-list + .main-navigation-list {
+  margin-top: 5px;
+}
