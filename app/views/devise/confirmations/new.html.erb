@@ -1,28 +1,32 @@
 <div class="m-user-function-form">
 
-<div class="inner">
+    <div class="cell">
 
-<div class="form">
+        <div class="wrap">
 
-<h2>Resend confirmation instructions</h2>
+            <div class="form">
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+                <h2>Resend confirmation instructions</h2>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+                <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+                <div class="field">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+                </div>
 
-<%= render "devise/shared/links" %>
+                <div class="actions">
+                    <%= f.submit "Resend confirmation instructions" %>
+                </div>
+                <% end %>
 
-</div>
+                <%= render "devise/shared/links" %>
 
-</div>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
