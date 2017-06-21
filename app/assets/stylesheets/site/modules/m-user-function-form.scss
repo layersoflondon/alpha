@@ -2,7 +2,6 @@
 /* User function form */
 
 .m-user-function-form {
-	//background:#333;
   background: asset-url('hero-6.jpg') center/cover;
   height:100%;
   display:table;
@@ -11,17 +10,25 @@
   min-height:740px;
 }
 
-.m-user-function-form .inner {
+.m-user-function-form .cell {
   display:table-cell;
   vertical-align: middle;
-  padding: 80px 0 60px;
+  padding: 110px 10px 60px;
 }
 
-.m-user-function-form .form {
-  width:400px;
+.m-user-function-form--vertical-align-top .cell {
+  vertical-align:top;
+}
+
+.m-user-function-form .wrap {
+  max-width:400px;
   padding:40px;
   background:$lol-mint;
   margin:0 auto;
+}
+
+.m-user-function-form .form {
+  @include clearfix;
 }
 
 .m-user-function-form h2 {
@@ -29,6 +36,24 @@
   color:white;
   text-align: center;
   font-size:2em;
+}
+
+.m-user-function-form h3 {
+  font-size: 1.1em;
+  margin: 0 0 1em 0;
+  background: #42c5a7;
+  padding: 3px 6px;
+  display: inline-block;
+  color: white;
+}
+
+.m-user-function-form a {
+  color: #59a11a;
+  color:#61ab00;
+}
+
+.m-user-function-form a:hover {
+  color: #5c6562;
 }
 
 .m-user-function-form .field {
@@ -61,9 +86,13 @@
 }
 
 .m-user-function-form input[type="submit"] {
-  background:#42c5a7;
-  color:white;
+  background:#bbff61;
+  color:#477a1a;
   @include transition(all .2s);
+
+  border-radius: 200px;
+  float: right;
+  width: auto;
 }
 
 .m-user-function-form input[type="submit"]:hover {
@@ -82,6 +111,47 @@
 
 .m-user-function-form .links > *:first-child {
   margin-top:30px;
+}
+
+.m-user-function-form  ul {
+  margin:0;
+  padding:0;
+  padding-left: 18px;
+  list-style: square;
+}
+
+.m-user-function-form  ul li {
+  margin-bottom:0.5em;
+}
+
+.m-user-function-form .cancel {
+  margin-top:2.4em;
+  clear:both;
+}
+
+.m-user-function-form .teams-list {
+  margin-bottom:2.4em;
+}
+
+.m-user-function-form .notes {
+  margin-bottom:2.4em;
+}
+
+.m-user-function-form .notes h4 {
+  margin-bottom:0;
+}
+
+.m-user-function-form .notes p {
+  margin-top:0;
+}
+
+.m-user-function-form .invitations {
+  margin-bottom:2.4em;
+}
+
+.m-user-function-form .invitations a {
+  float:right;
+  margin-left:10px;
 }
 
 
