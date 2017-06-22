@@ -40,6 +40,10 @@
   @include clearfix;
 }
 
+.m-user-function-form .form--gap {
+  margin-bottom:1em;
+}
+
 .m-user-function-form h2 {
   margin-top:0;
   color:white;
@@ -77,6 +81,13 @@
   text-transform: uppercase;
   margin-bottom: 6px;
   display: block;
+}
+
+.m-user-function-form .surtitle {
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+  text-align:center;
 }
 
 .m-user-function-form .field--single-checkbox {
