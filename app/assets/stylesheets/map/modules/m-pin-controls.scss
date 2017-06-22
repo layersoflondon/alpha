@@ -8,6 +8,10 @@
   z-index: 999;
 }
 
+.m-pin-controls .add-pin {
+  float:left;
+}
+
 .m-pin-controls .add-pin button {
   padding:20px;
   background:$lol-navy;
@@ -43,4 +47,32 @@
 
 .m-pin-controls button:hover {
   background:darken($lol-navy, 20%);
+}
+
+.m-pin-controls .create-collection  {
+  float:left;
+  margin-left:10px;
+}
+
+.m-pin-controls .create-collection button {
+  padding:0;
+  background:#008365;
+  border:0;
+  border-radius: 100px;
+  width: 88px;
+  height: 88px;
+  color:white;
+  font-weight: bold;
+
+  @include transition(all .2s);
+  @include shadow;
+}
+
+.m-pin-controls .create-collection button:hover {
+  background:#008365;
+  background:darken(#008365, 20%);
+}
+
+.m-pin-controls .create-collection.adding button {
+  padding: 20px 20px 20px 16px;
 }

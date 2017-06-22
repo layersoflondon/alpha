@@ -27,7 +27,10 @@ class AddPinControl extends React.Component {
         <div className={classes}>
           <button onClick={this.togglePinForm.bind(this)} dangerouslySetInnerHTML={{__html: label}}></button>
         </div>
-      </div>
+        <div className="create-collection">
+          <button>Create collection</button>
+        </div>
+      </div>      
       );
   }
 }
