@@ -18,6 +18,7 @@ class UserGroupsController < ApplicationController
   end
 
   def show
+    @group = UserGroup.find(params[:id])
   end
 
   def create
