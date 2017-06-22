@@ -36,13 +36,13 @@
             <h2>Members</h2>
 
             <div class="members-list">
-
                 <ul>
-                    <li>Dan Finch</li>
-                    <li>Lynne Walters</li>
-                    <li>Robert Rawling</li>
+                    <% @group.user_group_users.current.each do |group_user| %>
+                        <li>
+                            <%= group_user.user.name %>
+                        </li>
+                    <% end %>
                 </ul>
-
             </div>
 
         </div>
@@ -53,31 +53,35 @@
             <h2>Actions</h2>
 
             <div class="form">
-
-                <h3>Send an invite</h3>
-
-                <div class="field">
-                    <label>Username or email</label>
-                    <input type="text">
-                </div>
-
-                <div class="actions">
-                    <input type="submit" value="Send invite">
-                </div>
-
+                <%= form_tag invite_user_to_user_group_path(params[:id]) do %>
+                    <h3>Send an invite</h3>
+      
+                    <div class="field">
+                        <label>Email</label>
+                        <%= text_field_tag :email %>
+                    </div>
+                    
+                    <div class="actions">
+                        <%= submit_tag "Send invite" %>
+                    </div>
+                <% end %>
             </div>
-
-            <div class="delete-team">
-
-                <h3>Delete this team</h3>
-
-                <p>Ut magna diam, rutrum ut dolor quis, scelerisque dictum magna. Donec lacus dui, egestas vel varius in, dictum sed ante.</p>
-
-                <div class="actions">
-                    <input type="submit" value="Delete team">
+          
+            <% if UserGroupPolicy.new(current_user, @group).destroy? %>
+                <div class="delete-team">
+    
+                    <h3>Delete this team</h3>
+    
+                    <p>Ut magna diam, rutrum ut dolor quis, scelerisque dictum magna. Donec lacus dui, egestas vel varius in, dictum sed ante.</p>
+                    
+                    <%= form_for @group, method: :delete do |form| %>
+                        <div class="actions">
+                            <input type="submit" value="Delete team">
+                        </div>
+                    <% end %>
+    
                 </div>
-
-            </div>
+            <% end %>
 
         </div>
 

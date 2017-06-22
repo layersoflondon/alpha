@@ -79,6 +79,19 @@
                         You're not a member of any teams.
                     </p>
                 <% end %>
+              
+                <% if current_user.primary_user_group_users_with_pending_requests.any? %>
+                    <h3>Invitations received</h3>
+                    
+                    <% current_user.primary_user_group_users_with_pending_requests.each do |group_user| %>
+                        <ul>
+                            <li>
+                                <%= group_user.user_group.name %>
+                                <%= link_to "Approve", approve_request_to_join_user_group_path(group_user), method: :post %>/<%= link_to "Reject", reject_request_to_join_user_group_path(group_user), method: :post %>
+                            </li>
+                        </ul>
+                    <% end %>
+                <% end %>
 
             </div>
 
@@ -88,11 +101,16 @@
 
                 <% if current_user.user_groups.invitations.any? %>
                     <ul>
-                        <% current_user.user_groups.invitations.each do |group| %>
+                        <% current_user.user_group_users.invitations.each do |user_group_user| %>
                             <li>
-                                <%= link_to "Accept", accept_invitation_to_user_group_path(group), class: "accept-invitation", method: :post %>
+                                <% if UserGroupPolicy.new(current_user, user_group_user).accept? %>
+                                    <%= link_to "Accept", accept_invitation_to_user_group_path(user_group_user), class: "accept-invitation", method: :post %>
+                                <% else %>
+                                    <%= link_to "Pending", "#" %>
+                                <% end %>
+                                
                                 <span>
-                                    <%= group.name %>
+                                    <%= user_group_user.user_group.name %>
                                 </span>
                             </li>
                         <% end %>
@@ -109,23 +127,36 @@
 
                 <h3>Join a team</h3>
   
-                <%= react_component("TeamControl", {teams: []}) %>
+                <%= form_for (@user_group_user || UserGroupUser.new), url: request_invitation_to_user_groups_path do |form| %>
+                    <%= react_component("TeamControl", {teams: []}) %>
+                <% end %>
 
             </div>
 
             <div class="form">
-
-                <h3>Create a team</h3>
-
-                <div class="field">
-                    <label>Team name</label>
-                    <input type="text">
-                </div>
-
-                <div class="actions">
-                    <input type="submit" value="Create">
-                </div>
-
+                <%= form_for UserGroup.new do |form| %>
+                    <% errors = session.delete(:user_group_errors).try(:with_indifferent_access) %>
+                    <% user_group = session.delete(:user_group).try(:with_indifferent_access) %>
+                    <% if errors %>
+                        <div id="error_explanation">
+                            <h2>Couldn't save team</h2>
+                            <ul>
+                                <%= errors.map { |attr, msg| content_tag(:li, "#{attr.humanize} #{msg.join(', ')}") }.join.html_safe %>
+                            </ul>
+                        </div>
+                    <% end %>
+                    
+                    <h3>Create a team</h3>
+                    
+                    <div class="field <%= errors && errors.has_key?(:name) ? 'field-with-errors' : '' %>">
+                        <label>Team name</label>
+                        <%= form.text_field :name, value: user_group.try(:[], :name) %>
+                    </div>
+        
+                    <div class="actions">
+                        <%= form.submit value: "Create" %>
+                    </div>
+                <% end %>
             </div>
 
         </div>

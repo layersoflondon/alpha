@@ -17,6 +17,10 @@ class UserGroupUser < ActiveRecord::Base
       transitions from: :invited, to: :accepted
     end
 
+    event :accept_request do
+      transitions from: :requested, to: :accepted
+    end
+
     event :reject do
       transitions from: :invited, to: :rejected
     end
@@ -25,8 +29,12 @@ class UserGroupUser < ActiveRecord::Base
       transitions from: :requested, to: :accepted
     end
 
-    event :reject do
+    event :reject_request do
       transitions from: :requested, to: :group_rejected
+    end
+
+    event :request_invite do
+      transitions from: :invited, to: :requested
     end
 
     event :remove do
