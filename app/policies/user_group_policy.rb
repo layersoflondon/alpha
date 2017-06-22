@@ -1,6 +1,10 @@
 class UserGroupPolicy < ApplicationPolicy
   def accept?
-    user.has_invite_to_group?(record) && record.invitation_state=="invited"
+    user.has_invite_to_group?(record.user_group) && record.invitation_state=="invited"
+  end
+
+  def invite?
+    !user.has_invite_to_group?(record)
   end
 
   def request_invite?

@@ -37,7 +37,7 @@
 
             <div class="members-list">
                 <ul>
-                    <% @group.user_group_users.each do |group_user| %>
+                    <% @group.user_group_users.current.each do |group_user| %>
                         <li>
                             <%= group_user.user.name %>
                         </li>
@@ -53,18 +53,18 @@
             <h2>Actions</h2>
 
             <div class="form">
-
-                <h3>Send an invite</h3>
-
-                <div class="field">
-                    <label>Email</label>
-                    <input type="text">
-                </div>
-
-                <div class="actions">
-                    <input type="submit" value="Send invite">
-                </div>
-
+                <%= form_tag invite_user_to_user_group_path(params[:id]) do %>
+                    <h3>Send an invite</h3>
+      
+                    <div class="field">
+                        <label>Email</label>
+                        <%= text_field_tag :email %>
+                    </div>
+                    
+                    <div class="actions">
+                        <%= submit_tag "Send invite" %>
+                    </div>
+                <% end %>
             </div>
           
             <% if UserGroupPolicy.new(current_user, @group).destroy? %>

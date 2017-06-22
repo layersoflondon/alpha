@@ -51,7 +51,16 @@ class UserGroupsController < ApplicationController
   end
 
   def invite
-    render json: {}, status: :ok
+    user = User.find_by(email: params[:email])
+    group = UserGroup.find(params[:id])
+
+    # fixme anybody can invite anybody to a group, regardless of whether they're the group's primary user. is that right?
+    if user && group && UserGroupPolicy.new(user, group).invite?
+      group.invite_user!(user)
+      redirect_to :back, notice: "The user was invited"
+    else
+      redirect_to :back
+    end
   end
 
   def accept
