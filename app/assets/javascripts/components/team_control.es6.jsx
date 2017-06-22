@@ -36,7 +36,7 @@ class TeamControl extends React.Component {
     let teams = <div></div>;
 
     if(this.state.teams.length) {
-      teams = <select>
+      teams = <select name="id">
         <option>Select a team...</option>
         {this.state.teams.map((team) => {
           return <option key={team.id} value={team.id}>{team.name}</option>
@@ -53,7 +53,7 @@ class TeamControl extends React.Component {
       </div>
 
       <div className="actions">
-        <input type="submit" value="Request to join" onClick={this.setTeams.bind(this)} />
+        <input type="submit" value="Request to join" />
       </div>
     </div>;
   }

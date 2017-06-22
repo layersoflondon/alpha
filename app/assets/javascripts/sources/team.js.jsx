@@ -1,7 +1,8 @@
 class Team {
   static searchTeams(search_params) {
     return new Promise((resolve, reject) => {
-      $.get("/user_groups", search_params).done((response) => {
+      $.getJSON("/user_groups", search_params, "json").done((response) => {
+        console.log("Got response", response);
         resolve(response)
       }).fail((response) => {
         console.log("Failed to get collections", response);

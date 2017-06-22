@@ -28,6 +28,12 @@ Rails.application.routes.draw do
       post 'accept', as: "accept_invitation_to"
       post 'reject', as: "reject_invitation_to"
       post 'remove', as: "remove_invitation_to"
+      post 'request_invite', as: "request_invitation_to"
+      post 'approve_invite', as: "approve_request_to_join"
+    end
+
+    collection do
+      post 'request_invite', as: "request_invitation_to"
     end
   end
 

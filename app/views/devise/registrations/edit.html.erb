@@ -79,6 +79,18 @@
                         You're not a member of any teams.
                     </p>
                 <% end %>
+              
+                <% if current_user.user_groups.primary_user_with_pending_requests.any? %>
+                    <h3>Invitations received</h3>
+                    
+                    <% current_user.user_groups.primary_user_with_pending_requests.each do |group| %>
+                        <ul>
+                            <li>
+                                <%= link_to group.name, approve_request_to_join_user_group_path(group) %>
+                            </li>
+                        </ul>
+                    <% end %>
+                <% end %>
 
             </div>
 
@@ -109,23 +121,36 @@
 
                 <h3>Join a team</h3>
   
-                <%= react_component("TeamControl", {teams: []}) %>
+                <%= form_for (@user_group_user || UserGroupUser.new), url: request_invitation_to_user_groups_path do |form| %>
+                    <%= react_component("TeamControl", {teams: []}) %>
+                <% end %>
 
             </div>
 
             <div class="form">
-
-                <h3>Create a team</h3>
-
-                <div class="field">
-                    <label>Team name</label>
-                    <input type="text">
-                </div>
-
-                <div class="actions">
-                    <input type="submit" value="Create">
-                </div>
-
+                <%= form_for UserGroup.new do |form| %>
+                    <% errors = session.delete(:user_group_errors).try(:with_indifferent_access) %>
+                    <% user_group = session.delete(:user_group).try(:with_indifferent_access) %>
+                    <% if errors %>
+                        <div id="error_explanation">
+                            <h2>Couldn't save team</h2>
+                            <ul>
+                                <%= errors.map { |attr, msg| content_tag(:li, "#{attr.humanize} #{msg.join(', ')}") }.join.html_safe %>
+                            </ul>
+                        </div>
+                    <% end %>
+                    
+                    <h3>Create a team</h3>
+                    
+                    <div class="field <%= errors && errors.has_key?(:name) ? 'field-with-errors' : '' %>">
+                        <label>Team name</label>
+                        <%= form.text_field :name, value: user_group.try(:[], :name) %>
+                    </div>
+        
+                    <div class="actions">
+                        <%= form.submit value: "Create" %>
+                    </div>
+                <% end %>
             </div>
 
         </div>
