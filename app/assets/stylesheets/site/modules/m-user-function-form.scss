@@ -12,8 +12,9 @@
 
 .m-user-function-form .cell {
   display:table-cell;
-  vertical-align: middle;
   padding: 110px 10px 60px;
+  text-align:center;
+  vertical-align: middle;
 }
 
 .m-user-function-form--vertical-align-top .cell {
@@ -22,9 +23,17 @@
 
 .m-user-function-form .wrap {
   max-width:400px;
+  width:100%;
   padding:40px;
+  margin:20px;
+  vertical-align: middle;
   background:$lol-mint;
-  margin:0 auto;
+  display:inline-block;
+  text-align:left;
+}
+
+.m-user-function-form--vertical-align-top .wrap {
+  vertical-align:top;
 }
 
 .m-user-function-form .form {
@@ -97,6 +106,7 @@
 
 .m-user-function-form input[type="submit"]:hover {
   background:darken(#42c5a7, 30%);
+  color:white;
 }
 
 .m-user-function-form .links a {
