@@ -1,11 +1,16 @@
 class UserGroupsController < ApplicationController
   def index
-    groups = UserGroup.all
+    @groups = UserGroup.all
     if params[:query]
-      groups = groups.where("name like ?", "%#{params[:query]}%")
+      @groups = groups.where("name like ?", "%#{params[:query]}%")
     end
 
-    render json: {teams: groups}, status: :ok
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {teams: @groups}, status: :ok
+      end
+    end
   end
 
   def edit
