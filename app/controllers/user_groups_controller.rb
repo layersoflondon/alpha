@@ -43,6 +43,11 @@ class UserGroupsController < ApplicationController
   end
 
   def destroy
+    group = UserGroup.find(params[:id])
+    authorize group
+
+    group.destroy!
+    redirect_to edit_user_registration_path, notice: "This team has been removed"
   end
 
   def invite
@@ -50,14 +55,14 @@ class UserGroupsController < ApplicationController
   end
 
   def accept
-    group = UserGroup.find(params[:id])
-    invite = current_user.user_group_users.group_invitation(group)
+    invite = UserGroupUser.find(params[:id])
 
     if UserGroupPolicy.new(current_user, invite).accept?
       invite.accept!
-      redirect_to :back, notice: "You are now a member of the <strong>#{group.name} team</strong>!"
+      redirect_to :back, notice: "You are now a member of the <strong>#{invite.user_group.name} team</strong>!"
     else
-      raise Pundit::NotAuthorizedError, "not invited to this team"
+      message = invite.invitation_state=="requested" ? "can't approve your own request" : "not invited to this team"
+      raise Pundit::NotAuthorizedError, message
     end
   end
 
@@ -76,6 +81,28 @@ class UserGroupsController < ApplicationController
       redirect_to :back, notice: "Your request has been sent"
     else
       raise Pundit::NotAuthorizedError, "you can not request an invite to this team"
+    end
+  end
+
+  def approve_request
+    group_user = UserGroupUser.find(params[:id])
+
+    if UserGroupPolicy.new(current_user, group_user).approve_request?
+      group_user.accept_request!
+      redirect_to :back, notice: "The request was approved"
+    else
+      raise Pundit::NotAuthorizedError, "we couldn't authorise that request"
+    end
+  end
+
+  def reject_request
+    group_user = UserGroupUser.find(params[:id])
+
+    if UserGroupPolicy.new(current_user, group_user).reject_request?
+      group_user.reject_request!
+      redirect_to :back, notice: "The request was rejected"
+    else
+      raise Pundit::NotAuthorizedError, "we couldn't authorise that request"
     end
   end
 

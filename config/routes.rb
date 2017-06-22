@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       post 'reject', as: "reject_invitation_to"
       post 'remove', as: "remove_invitation_to"
       post 'request_invite', as: "request_invitation_to"
-      post 'approve_invite', as: "approve_request_to_join"
+      post 'approve_request', as: "approve_request_to_join"
+      post 'reject_request', as: "reject_request_to_join"
     end
 
     collection do

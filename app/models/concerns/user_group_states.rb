@@ -3,7 +3,7 @@ module UserGroupStates
     invitations("accepted")
   end
 
-  def invitations(invitation_state = "invited")
+  def invitations(invitation_state = ["invited", "requested"])
     where({user_group_users: {invitation_state: invitation_state}})
   end
 

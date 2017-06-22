@@ -80,13 +80,14 @@
                     </p>
                 <% end %>
               
-                <% if current_user.user_groups.primary_user_with_pending_requests.any? %>
+                <% if current_user.primary_user_group_users_with_pending_requests.any? %>
                     <h3>Invitations received</h3>
                     
-                    <% current_user.user_groups.primary_user_with_pending_requests.each do |group| %>
+                    <% current_user.primary_user_group_users_with_pending_requests.each do |group_user| %>
                         <ul>
                             <li>
-                                <%= link_to group.name, approve_request_to_join_user_group_path(group) %>
+                                <%= group_user.user_group.name %>
+                                <%= link_to "Approve", approve_request_to_join_user_group_path(group_user), method: :post %>/<%= link_to "Reject", reject_request_to_join_user_group_path(group_user), method: :post %>
                             </li>
                         </ul>
                     <% end %>
@@ -100,11 +101,16 @@
 
                 <% if current_user.user_groups.invitations.any? %>
                     <ul>
-                        <% current_user.user_groups.invitations.each do |group| %>
+                        <% current_user.user_group_users.invitations.each do |user_group_user| %>
                             <li>
-                                <%= link_to "Accept", accept_invitation_to_user_group_path(group), class: "accept-invitation", method: :post %>
+                                <% if UserGroupPolicy.new(current_user, user_group_user).accept? %>
+                                    <%= link_to "Accept", accept_invitation_to_user_group_path(user_group_user), class: "accept-invitation", method: :post %>
+                                <% else %>
+                                    <%= link_to "Pending", "#" %>
+                                <% end %>
+                                
                                 <span>
-                                    <%= group.name %>
+                                    <%= user_group_user.user_group.name %>
                                 </span>
                             </li>
                         <% end %>

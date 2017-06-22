@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def has_invite_to_group?(group)
     user_groups.group_invitation(group).present?
   end
+
+  def primary_user_group_users_with_pending_requests
+    UserGroupUser.includes(:user_group).where({user_groups: {primary_user_id: self.id}, user_group_users: {invitation_state: "requested"}})
+  end
 end
