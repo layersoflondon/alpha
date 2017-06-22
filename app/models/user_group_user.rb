@@ -5,7 +5,7 @@ class UserGroupUser < ActiveRecord::Base
   belongs_to :user_group
 
   validates :user, :user_group, presence: true
-  validates :user, uniqueness: {scope: :user_group_id, message: "already a member of this group"}
+  validates :user, uniqueness: {scope: [:user_group_id, :invitation_state], message: "already a member of this group"}
 
   aasm column: :invitation_state do
     state :invited, initial: true # user is invited to a group (this is the pending state)

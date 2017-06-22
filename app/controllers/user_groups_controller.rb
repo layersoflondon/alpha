@@ -68,7 +68,7 @@ class UserGroupsController < ApplicationController
 
     if UserGroupPolicy.new(current_user, invite).accept?
       invite.accept!
-      redirect_to :back, notice: "You are now a member of the <strong>#{invite.user_group.name} team</strong>!"
+      redirect_to :back, notice: "You are now a member of the <strong>#{invite.user_group.name}</strong> team!"
     else
       message = invite.invitation_state=="requested" ? "can't approve your own request" : "not invited to this team"
       raise Pundit::NotAuthorizedError, message
