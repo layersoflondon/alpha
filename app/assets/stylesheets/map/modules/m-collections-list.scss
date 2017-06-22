@@ -9,9 +9,7 @@
   position: relative;
 }
 
-.m-collections-list .collections-results {
-  @include unlist;
-  @include element-list;
+.m-collections-list .collections-popout {
   position: absolute;
   z-index: 1000;
   background: white;
@@ -23,7 +21,7 @@
   @include shadow;
 }
 
-.m-collections-list .collections-results:before {
+.m-collections-list .collections-popout:before {
   content:"";
   position:absolute;
   left: 32%;
@@ -38,20 +36,90 @@
   border-bottom:20px solid white;
 }
 
-.m-collections-list .collections-results li {
+// Windowed mode - .is-windowed should be applied to .collections-popout if the content is bigger then the screen height
+
+.m-collections-list .collections-popout.is-visible.is-windowed {
+  height:2000px;
+}
+
+.m-collections-list .collections-popout.is-windowed {
+  .collections-results {
+    height: 47%;
+  }
+  .collections-results ul {
+    overflow:auto;
+    height:calc(100% - 47px);
+  }
+}
+
+// Remove this once .is-windowed is being applied dynamically
+
+.m-collections-list .collections-popout { 
+  height:2000px;
+}
+
+.m-collections-list .collections-popout {
+  .collections-results {
+    height: 47%;
+  }
+  .collections-results ul {
+    overflow:auto;
+    height:calc(100% - 47px);
+  }
+}
+
+// …down to here
+
+.m-collections-list .collections-popout .collections-nav {
+  font-size:11px;
+  text-transform:uppercase;
+  @include unlist;
+  margin-bottom:1em;
+  overflow: hidden;
+}
+
+.m-collections-list .collections-popout .collections-nav li {
+  float:left;
+}
+
+.m-collections-list .collections-popout .collections-nav li a {
+  color:#008365;
+  @include transition(all .2s);
+}
+
+.m-collections-list .collections-popout .collections-nav li a:hover {
+  color:lighten(#008365, 10%);
+}
+
+.m-collections-list .collections-popout .collections-nav li + li {
+  margin-left:10px;
+}
+
+
+.m-collections-list .collections-results {
+  margin-bottom:20px;
+}
+
+.m-collections-list .collections-results:last-child {
+  margin-bottom:0;
+}
+
+.m-collections-list .collections-results ul {
+  @include unlist;
+  @include element-list;
+  background: #f0faff;
+}
+
+.m-collections-list .collections-results ul li {
   clear: both;
 }
 
-.m-collections-list .collections-results > li > a, .m-collections-list .collections-results > li > span {
+.m-collections-list .collections-results ul > li > a, .m-collections-list .collections-results ul > li > span {
   padding-left:6px;
 }
 
-.m-collections-list .collections-results form {
+.m-collections-list .collections-popout form {
   height: 0;
-}
-
-.m-collections-list .collections-results h3 {
-  color:$lol-navy;
 }
 
 .m-collections-list .show-collections {
@@ -71,10 +139,9 @@
   background:lighten($lol-navy, 10%);
 }
 
-.m-collections-list .collections-results .m-overlay-opacity-control {
+.m-collections-list .collections-popout .m-overlay-opacity-control {
   padding: 0 0 25px 35px;
 }
-
 
 .m-collections-list .home-link {
   text-align: center;
