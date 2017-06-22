@@ -13,7 +13,6 @@ class UserGroupsController < ApplicationController
   end
 
   def show
-    render plain: "OK"
   end
 
   def create
