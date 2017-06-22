@@ -30,7 +30,7 @@ class AddPinControl extends React.Component {
         <div className="create-collection">
           <button>Create collection</button>
         </div>
-      </div>
+      </div>      
       );
   }
 }
