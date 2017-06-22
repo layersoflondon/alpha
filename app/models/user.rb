@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :pins
 
-  has_many :user_group_users
-  has_many :user_groups, through: :user_group_users
+  has_many :user_group_users, -> {extending UserGroupStates}
+  has_many :user_groups, -> {extending UserGroupStates}, through: :user_group_users
   has_many :primary_user_groups, class_name: "UserGroup", foreign_key: :primary_user_id
 
   has_many :user_collections, inverse_of: :user, dependent: :destroy
@@ -17,5 +17,9 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def has_invite_to_group?(group)
+    user_groups.group_invitation(group).present?
   end
 end

@@ -22,6 +22,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user_groups, except: [:new] do
+    member do
+      post 'invite', as: "invite_user_to"
+      post 'accept', as: "accept_invitation_to"
+      post 'reject', as: "reject_invitation_to"
+      post 'remove', as: "remove_invitation_to"
+    end
+  end
+
   post "/overlays/*id/flag", to: "overlays#flag", as: :flag_overlay, defaults: {format: :json}
   post "/pins/*id/flag", to: "pins#flag", as: :flag_pin, defaults: {format: :json}
 

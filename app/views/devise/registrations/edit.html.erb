@@ -70,11 +70,19 @@
 
                 <h3>Your teams</h3>
 
-                <ul>
-                    <li><a href="#">Friends of Barking Park</a></li>
-                    <li><a href="#">University of London</a></li>
-                    <li><a href="#">Stoke Newington School</a></li>
-                </ul>
+                <% if current_user.user_groups.current.any? %>
+                    <ul>
+                        <% current_user.user_groups.current.each do |group| %>
+                            <li>
+                                <%= link_to group.name, user_group_path(group) %>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <p>
+                        You're not a member of any teams.
+                    </p>
+                <% end %>
 
             </div>
 
@@ -82,25 +90,30 @@
 
                 <h3>Your invitations</h3>
 
-                <ul>
-                    <li><a href="#">Accept</a><span>Friends of Dagenham Statues</span></li>
-                    <li><a href="#">Accept</a><span>Friends of Dagenham Statues</span></li>
-                </ul>
+                <% if current_user.user_groups.invitations.any? %>
+                    <ul>
+                        <% current_user.user_groups.invitations.each do |group| %>
+                            <li>
+                                <%= link_to "Accept", accept_invitation_to_user_group_path(group), class: "accept-invitation", method: :post %>
+                                <span>
+                                    <%= group.name %>
+                                </span>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <p>
+                        No team invites pending.
+                    </p>
+                <% end %>
 
             </div>
 
             <div class="form">
 
                 <h3>Join a team</h3>
-
-                <div class="field">
-                    <label>Search for a team</label>
-                    <input type="text">
-                </div>
-
-                <div class="actions">
-                    <input type="submit" value="Request to join">
-                </div>
+  
+                <%= react_component("TeamControl", {teams: []}) %>
 
             </div>
 

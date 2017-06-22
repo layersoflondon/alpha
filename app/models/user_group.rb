@@ -9,8 +9,7 @@ class UserGroup < ActiveRecord::Base
   has_many :user_group_collections, inverse_of: :user_group, dependent: :destroy
   has_many :collections, through: :user_group_collections, dependent: :destroy
 
-  # before_destroy do
-  #   collections.destroy_all
-  # end
-
+  def invite_user!(user)
+    user_group_users.create!(user: user)
+  end
 end
