@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Collection.find(params[:id])
+    @collection = Collection.includes(pins: [:user, content_entry: [:content_type]]).find(params[:id])
     @pins = @collection.pins.group_by(&:coords)
   end
 
