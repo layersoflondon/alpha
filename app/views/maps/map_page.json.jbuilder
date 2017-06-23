@@ -20,3 +20,7 @@ end
 json.user_collections do
   json.array! @user_collections, partial: 'collections/collection', as: :collection
 end
+
+json.user_groups do
+  json.array! @user_groups, partial: 'user_groups/group', as: :user_group
+end

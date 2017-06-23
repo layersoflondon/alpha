@@ -36,6 +36,8 @@ class PagesController < ApplicationController
 
     @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
 
+    @user_groups = current_user.user_groups
+
     @data = render_to_string('maps/map_page', layout: false, formats: [:json])
   end
 

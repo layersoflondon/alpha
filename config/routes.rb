@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, only: [:index, :show], defaults: {format: :json} do
+  resources :collections, only: [:index, :show, :create], defaults: {format: :json} do
     collection do
       get 'search'
     end

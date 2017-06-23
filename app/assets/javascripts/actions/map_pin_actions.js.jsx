@@ -8,6 +8,10 @@
       return enable;
     }
 
+    enableCollectionForm(enable) {
+      return enable;
+    }
+
     togglePinForm(visible) {
       return visible;
     }

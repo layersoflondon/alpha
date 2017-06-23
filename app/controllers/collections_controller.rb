@@ -23,4 +23,27 @@ class CollectionsController < ApplicationController
     # return collections sorted by whether they're curated by the current user first, then by the number of pins in the collection
     @collections = collections.sort_by{|c| c.user_collection.try(:user_id)==current_user.try(:id) ? 1 : 0}.sort_by{|c| c.pins.count}
   end
+
+  def create
+    _params = collection_params
+    collections = [current_user.collections, current_user.user_group_collections]
+    if _params.has_key?(:user_group_collection_attributes) # team collection
+      current_user.user_group_collections.build(_params)
+    elsif _params.has_key?(:user_collection_attributes) # user collection. will be either private or open
+      current_user.user_collections.build(_params)
+    end
+    new_collections = [current_user.collections, current_user.user_group_collections]
+  end
+
+  private
+  def collection_params
+    _params = params.require(:collection).permit(:name, :description, user_group_collection_attributes: [:user_group_id], user_collection_attributes: [:privacy])
+
+    # if _params.has_key?(:user_group_collection_attributes)
+    # elsif _params.has_key?(:user_collection_attributes)
+    #   _params[:user_collection_attributes][:user_id] = current_user.id
+    # end
+
+    _params
+  end
 end

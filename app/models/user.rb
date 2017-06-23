@@ -8,9 +8,12 @@ class User < ActiveRecord::Base
 
   has_many :user_group_users, -> {extending UserGroupStates}
   has_many :user_groups, -> {extending UserGroupStates}, through: :user_group_users
+  has_many :user_group_collections, through: :user_groups
+  accepts_nested_attributes_for :user_groups
 
   has_many :user_collections, inverse_of: :user, dependent: :destroy
   has_many :collections, through: :user_collections
+  accepts_nested_attributes_for :collections
 
   validates :first_name, :last_name, presence: true
 

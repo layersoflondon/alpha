@@ -35,6 +35,7 @@
       this.content = "";
       this.pin_content_entry_id = null;
       this.content_entry_id = null;
+      this.collection_form_enabled = false;
 
       this.show_notification = false;
       this.notification = {};
@@ -58,6 +59,7 @@
           onSetAttachedFileField: MapPinActions.SET_ATTACHED_FILE_FIELD,
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
+          onEnableCollectionForm: MapPinActions.ENABLE_COLLECTION_FORM,
           onSetCollections: MapPinActions.SET_COLLECTIONS,
           onSetNotification: MapPinActions.SET_NOTIFICATION,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
@@ -122,6 +124,10 @@
       if(!visible) {
         this.setDefaultState();
       }
+    }
+
+    onEnableCollectionForm(enabled) {
+      this.collection_form_enabled = enabled;
     }
 
     onResetForm() {

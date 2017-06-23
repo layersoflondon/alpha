@@ -63,7 +63,6 @@
     }
 
     onUpdateMarkers(marker_options) {
-      console.log("onUpdateMarkers...", marker_options);
       this.searching = false;
       this.markers = marker_options.markers;
 

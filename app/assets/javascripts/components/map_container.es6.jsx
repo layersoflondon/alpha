@@ -56,10 +56,12 @@ class MapContainer extends React.Component {
         <SideBar menu={this.props.menu} account_menu={this.props.account_menu} />
 
         <AddPinControl />
+        <AddCollectionControl />
 
         <NotificationContainer />
 
         <PinForm all_collections={this.props.data.all_collections} user_collections={this.props.data.user_collections} />
+        <CollectionForm user_groups={this.props.data.user_groups} />
 
         <ModerationForm />
 
