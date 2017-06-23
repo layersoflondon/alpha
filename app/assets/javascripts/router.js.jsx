@@ -27,6 +27,7 @@ $(() => {
 
           Collection.find(params.id).then((collection) => {
             MapContainerActions.updateMarkers(collection.markers);
+            MapPinActions.setNotification({message: `Showing <strong>${collection.name}</strong> collection by`, detail: collection.collection_by});
           });
         }
       )

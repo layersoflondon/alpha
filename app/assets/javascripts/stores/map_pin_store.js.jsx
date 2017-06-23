@@ -36,6 +36,9 @@
       this.pin_content_entry_id = null;
       this.content_entry_id = null;
 
+      this.show_notification = false;
+      this.notification = {};
+
       this.editing = false; //set to true when we're editing a note
       this.advanced = false;
 
@@ -56,6 +59,7 @@
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onSetCollections: MapPinActions.SET_COLLECTIONS,
+          onSetNotification: MapPinActions.SET_NOTIFICATION,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
           onSetErrors: MapPinActions.SET_ERRORS,
           onEditNote: MapPinActions.EDIT_NOTE,
@@ -144,6 +148,12 @@
     onSetCollections(collections) {
       this.collections = collections;
 
+      return true;
+    }
+
+    onSetNotification(notification) {
+      this.show_notification = !_.isEqual(notification, {});
+      this.notification = notification;
       return true;
     }
 

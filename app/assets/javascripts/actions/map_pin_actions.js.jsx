@@ -56,6 +56,10 @@
       return collections;
     }
 
+    setNotification(notification) {
+      return notification;
+    }
+
     submitForm(pin_data) {
       return pin_data;
     }
