@@ -26,7 +26,7 @@ $(() => {
           _.map($(".leaflet-popup-close-button"), (p)=> {p.click()});
 
           Collection.find(params.id).then((collection) => {
-            MapContainerActions.updateMarkers(collection.markers);
+            MapContainerActions.updateMarkers(collection.markers, true);
             MapPinActions.setNotification({message: `Showing <strong>${collection.name}</strong> collection by`, detail: collection.collection_by});
           });
         }

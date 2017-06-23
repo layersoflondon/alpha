@@ -62,9 +62,15 @@
       }
     }
 
-    onUpdateMarkers(markers) {
+    onUpdateMarkers(marker_options) {
+      console.log("onUpdateMarkers...", marker_options);
       this.searching = false;
-      this.markers = markers;
+      this.markers = marker_options.markers;
+
+      if(marker_options.update_coords) {
+        this.lat = marker_options.markers[0].position.lat;
+        this.lng = marker_options.markers[0].position.lng;
+      }
     }
 
     onUpdatePins(pins) {

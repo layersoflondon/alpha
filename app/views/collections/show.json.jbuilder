@@ -14,6 +14,8 @@ else
   json.details "#{pluralize(@collection.users.uniq.count, 'user', 'users')} #{@collection.users.uniq.count==1 ? 'has' : 'have'} contributed #{pluralize(@collection.pins.count, 'pin', 'pins')} to this @collection"
 end
 
+json.collection_by @collection.user_group.try(:name) || @collection.user.try(:name)
+
 json.markers do
   json.array! @pins, partial: 'maps/marker', as: :marker
 end

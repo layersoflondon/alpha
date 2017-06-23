@@ -12,7 +12,7 @@ class CollectionsController < ApplicationController
 
   def search
     search_term = params[:query].try(:[], :term)
-    collections = Collection.includes(:user_collection, :pins).references(:user_collection).where("collections.name LIKE ? OR collections.description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+    collections = Collection.includes(:user_collection, pins: [:user, content_entry: [:content_type]]).references(:user_collection).where("collections.name LIKE ? OR collections.description LIKE ?", "%#{search_term}%", "%#{search_term}%")
 
     if params[:query].has_key?(:public) && params[:query][:public]=="true"
       collections = collections.where("user_collections.privacy = ?", 1)

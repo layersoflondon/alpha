@@ -57,7 +57,7 @@ class MapContainer extends React.Component {
 
         <AddPinControl />
 
-        <CurrentCollection />
+        <NotificationContainer />
 
         <PinForm all_collections={this.props.data.all_collections} user_collections={this.props.data.user_collections} />
 

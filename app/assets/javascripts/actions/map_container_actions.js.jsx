@@ -62,8 +62,8 @@
       return false;
     }
 
-    updateMarkers(markers) {
-      return markers;
+    updateMarkers(markers, update_coords=false) {
+      return {markers: markers, update_coords: update_coords};
     }
 
     updatePins(results) {

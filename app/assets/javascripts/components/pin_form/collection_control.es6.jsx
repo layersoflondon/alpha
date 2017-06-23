@@ -2,7 +2,6 @@ class CollectionControl extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("Construct with state: ", this.state);
     let new_state = {collection_form_mode: 0, initial_state: true};
     this.state = _.merge({}, props, new_state);
 
@@ -49,7 +48,6 @@ class CollectionControl extends React.Component {
   }
 
   render() {
-    console.log("Rendering CollectionControl...");
     let field = [];
 
     let pin_state = MapPinStore.getState();

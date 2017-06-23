@@ -2,10 +2,20 @@ class NotificationContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      notification: props.notification,
-      detail: props.detail
-    }
+    this.mapPinStoreChanged  = this.mapPinStoreChanged.bind(this);
+  }
+
+  componentDidMount() {
+    // map state when adding new pins
+    MapPinStore.listen(this.mapPinStoreChanged);
+  }
+
+  componentWillUnmount() {
+    MapPinStore.unlisten(this.mapPinStoreChanged);
+  }
+
+  mapPinStoreChanged(state) {
+    this.setState({show_notification: state.show_notification, notification: state.notification});
   }
 
   render_text(text) {
@@ -17,11 +27,15 @@ class NotificationContainer extends React.Component {
   }
 
   render () {
-    return (
-      <div className="m-current-collection">
-        <p><span dangerouslySetInnerHTML={this.render_text(this.state.notification)} /> <strong dangerouslySetInnerHTML={this.render_text(this.state.detail)} /></p>
-        <a href="#" onClick={this.hide_notifications.bind(this)}>Clear</a>
-      </div>
-    );
+    let output = <div />;
+
+    if(this.state && this.state.show_notification && !_.isEmpty(this.state.notification)) {
+      output = <div className="m-current-collection">
+        <p><span dangerouslySetInnerHTML={this.render_text(this.state.notification.message)} /> <strong dangerouslySetInnerHTML={this.render_text(this.state.notification.detail)} /></p>
+        <a href="/the-map">Clear</a>
+      </div>;
+    }
+
+    return output;
   }
 }

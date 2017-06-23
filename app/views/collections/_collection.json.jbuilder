@@ -3,6 +3,7 @@ json.description collection.description
 json.public collection.try(:user_collection).try(:open?)
 json.slug collection.name.parameterize
 json.owner collection.user_collection && collection.user_collection.restricted? && collection.user_collection.user_id == current_user.try(:id)
+json.collection_by collection.user_group.try(:name) || collection.user.try(:name)
 
 if collection.user_collection && collection.user_collection.restricted?
   json.name "#{collection.name}"
