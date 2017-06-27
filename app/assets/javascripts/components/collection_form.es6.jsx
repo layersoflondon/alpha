@@ -8,7 +8,8 @@ class CollectionForm extends React.Component {
       collection_form_enabled: false,
       collection_type: "public",
       teams: props.user_groups,
-      submit_disabled: false
+      submit_disabled: false,
+      errors: {}
     };
   }
 
@@ -40,10 +41,18 @@ class CollectionForm extends React.Component {
   submitCollection(event) {
     event.preventDefault();
 
+    let form = $(event.target).closest('form').parsley();
+
+    if(!form.validate()) {
+      return;
+    }
+
     Collection.post(this.state).then((response)=> {
       MapPinActions.setDefaultState();
       this.setState({title: "", description: "", collection_form_enabled: false, collection_type: "public", teams: this.props.user_groups, submit_disabled: false});
       MapPinActions.setNotification({message: "Your collection was created", clear: true});
+    }).catch((response) => {
+      this.setState({errors: {message: response.responseJSON.message, errors: response.responseJSON.errors}});
     });
   }
 
@@ -59,9 +68,21 @@ class CollectionForm extends React.Component {
     let team_options = this.state.teams.map((team) => {return <option key={team.id} value={team.id}>{team.name}</option>;});
     let teams = <select onChange={this.updateAttribute.bind(this)} id="team_id" name="team_id" data-attribute="team_id"><option value="default" selected="selected" disabled>Select a team</option> {team_options}</select>;
 
+    let errors = null;
+    if(!_.isEmpty(this.state.errors)) {
+      console.log(this.state.errors);
+      let error_list = this.state.errors.errors.map((error) => {return <li>{error}</li>});
+      errors = <div><h1>{this.state.errors.message}</h1> <ul>{error_list}</ul></div>;
+      console.log(errors, error_list);
+    }
+
     return <div className="m-add-pin" style={styles}>
-      <form>
+      <form data-parsley-validate={true}>
         <h3>Create Collection</h3>
+
+        <div className="form-errors">
+          {errors}
+        </div>
 
         <div className="form-content">
           <a href="#" className="close" onClick={this.hideCollectionForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>

@@ -55,7 +55,7 @@ class CollectionsController < ApplicationController
         if collection.save
           render json: {message: "Saved"}, status: :ok
         else
-          render json: {message: "Couldn't save collection", errors: collection.errors}, status: :unprocessable_entity
+          render json: {message: "Couldn't save collection", errors: collection.errors.full_messages}, status: :unprocessable_entity
         end
       end
     end

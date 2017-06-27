@@ -12,6 +12,7 @@ class Collection < ActiveRecord::Base
   accepts_nested_attributes_for :user_group_collection
 
   validates :name, presence: {message: "Please make sure you've included a name for your collection"}
+  validates :name, uniqueness: true
 
   def owner(user=nil)
     if user_collection
