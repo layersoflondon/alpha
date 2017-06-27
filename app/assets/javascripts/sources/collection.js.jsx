@@ -36,8 +36,6 @@ class Collection {
       params.collection.user_collection_attributes = {privacy: "restricted"}
     }
 
-    console.log("Posting params", params);
-
     return new Promise((resolve, reject) => {
       $.post('/collections', params).done((response) => {
         resolve(response);
