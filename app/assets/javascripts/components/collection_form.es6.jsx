@@ -41,12 +41,13 @@ class CollectionForm extends React.Component {
     event.preventDefault();
 
     Collection.post(this.state).then((response)=> {
-      console.log("Got response.", response);
+      MapPinActions.setDefaultState();
+      this.setState({title: "", description: "", collection_form_enabled: false, collection_type: "public", teams: this.props.user_groups, submit_disabled: false});
+      MapPinActions.setNotification({message: "Your collection was created", clear: true});
     });
   }
 
   render() {
-    console.log("Rendering collection form...");
     let styles;
 
     if(this.state.collection_form_enabled){

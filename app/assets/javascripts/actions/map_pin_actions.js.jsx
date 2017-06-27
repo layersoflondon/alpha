@@ -1,5 +1,9 @@
 (() => {
   class MapPinActions {
+    setDefaultState() {
+      return true;
+    }
+
     setPinLocation(latlng) {
       return latlng;
     }
