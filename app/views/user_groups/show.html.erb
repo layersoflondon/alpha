@@ -11,22 +11,21 @@
             <div class="collections">
 
                 <h2>Collections</h2>
-
-                <ul>
-                    <li>
-                        <a href="#">
-                            <h4>Sed eleifend metus sed malesuada</h4>
-                            <p>Donec convallis id elit id vulputate. Pellentesque urna metus, facilisis in dui id, condimentum rhoncus purus. Phasellus at nunc non.</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <h4>Mauris vel urna volutpat, tempor est id, malesuada nisl. Mauris.</h4>
-                            <p>Nam tempor bibendum nibh, sagittis maximus ex mollis eget. Curabitur iaculis ante a arcu consectetur, ac malesuada est congue. Praesent.</p>
-                        </a>
-                    </li>
-                </ul>
-
+                
+                <% if @group.collections.any? %>
+                    <ul>
+                        <% @group.collections.each do |group| %>
+                            <li>
+                                <%= link_to group.name, "/the-map#/collections/#{group.id}" %>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <p>
+                        No collections associated with this team.
+                    </p>
+                <% end %>
+                
             </div>
 
         </div>
