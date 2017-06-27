@@ -23,7 +23,7 @@ class Collection {
   static post(state) {
     let params = {
       collection: {
-        name: state.name,
+        name: state.title,
         description: state.description
       }
     };
@@ -35,6 +35,8 @@ class Collection {
     }else if(state.collection_type == "personal") {
       params.collection.user_collection_attributes = {privacy: "restricted"}
     }
+
+    console.log("Posting params", params);
 
     return new Promise((resolve, reject) => {
       $.post('/collections', params).done((response) => {

@@ -25,19 +25,45 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    _params = collection_params
-    collections = [current_user.collections, current_user.user_group_collections]
-    if _params.has_key?(:user_group_collection_attributes) # team collection
-      current_user.user_group_collections.build(_params)
-    elsif _params.has_key?(:user_collection_attributes) # user collection. will be either private or open
-      current_user.user_collections.build(_params)
+    # _params = collection_params
+    # collections = [current_user.collections, current_user.user_group_collections]
+    # if _params.has_key?(:user_group_collection_attributes) # team collection
+    #   current_user.user_group_collections.build(_params)
+    # elsif _params.has_key?(:user_collection_attributes) # user collection. will be either private or open
+    #   current_user.user_collections.build(_params)
+    # end
+    # new_collections = [current_user.collections, current_user.user_group_collections]
+
+
+    new_collection_params = collection_params
+
+    if new_collection_params.has_key?(:user_collection_attributes)
+      user_collection_params = new_collection_params.delete(:user_collection_attributes)
+      collection  = current_user.collections.new(new_collection_params)
+      collection.user_collection.assign_attributes(user_collection_params)
+    else
+      user_collection_params = new_collection_params.delete(:user_group_collection_attributes)
+      collection = Collection.new(new_collection_params)
+      collection.build_user_group_collection(user_collection_params)
     end
-    new_collections = [current_user.collections, current_user.user_group_collections]
+
+    respond_to do |format|
+      format.html do
+        collection.save && redirect_to(:back)
+      end
+      format.json do
+        if collection.save
+          render json: {message: "Saved"}, status: :ok
+        else
+          render json: {message: "Couldn't save collection", errors: collection.errors}, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   private
   def collection_params
-    _params = params.require(:collection).permit(:name, :description, user_group_collection_attributes: [:user_group_id], user_collection_attributes: [:privacy])
+    _params = params.require(:collection).permit(:name, :description, user_collection_attributes: [:id, :privacy, :_destroy], user_group_collection_attributes: [:id, :user_group_id, :_destroy])
 
     # if _params.has_key?(:user_group_collection_attributes)
     # elsif _params.has_key?(:user_collection_attributes)

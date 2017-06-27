@@ -7,4 +7,6 @@ class UserCollection < ActiveRecord::Base
   validates :collection, uniqueness: true
 
   enum privacy: [:restricted, :open]
+
+  after_initialize -> {Rails.logger.info "Got params: #{self.attributes.inspect}"}
 end

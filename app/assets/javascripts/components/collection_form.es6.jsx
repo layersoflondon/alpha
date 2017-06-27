@@ -56,7 +56,7 @@ class CollectionForm extends React.Component {
     }
 
     let team_options = this.state.teams.map((team) => {return <option key={team.id} value={team.id}>{team.name}</option>;});
-    let teams = <select onChange={this.updateAttribute.bind(this)} data-attribute="team_id">{team_options}</select>;
+    let teams = <select onChange={this.updateAttribute.bind(this)} id="team_id" name="team_id" data-attribute="team_id"><option value="default" selected="selected" disabled>Select a team</option> {team_options}</select>;
 
     return <div className="m-add-pin" style={styles}>
       <form>
