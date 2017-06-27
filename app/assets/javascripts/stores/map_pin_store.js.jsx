@@ -51,6 +51,7 @@
       this.setDefaultState();
 
       this.bindListeners({
+          onSetDefaultState: MapPinActions.SET_DEFAULT_STATE,
           onSetPinLocation: MapPinActions.SET_PIN_LOCATION,
           onEnablePinForm: MapPinActions.ENABLE_PIN_FORM,
           onTogglePinForm: MapPinActions.TOGGLE_PIN_FORM,
@@ -69,6 +70,10 @@
           onConfirmMainForm: MapPinActions.CONFIRM_MAIN_FORM,
           onUnconfirmMainForm: MapPinActions.UNCONFIRM_MAIN_FORM
       });
+    }
+
+    onSetDefaultState() {
+      this.setDefaultState();
     }
 
     onConfirmMainForm() {
