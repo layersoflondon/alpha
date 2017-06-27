@@ -13,4 +13,19 @@ class Collection < ActiveRecord::Base
 
   validates :name, presence: {message: "Please make sure you've included a name for your collection"}
 
+  def owner(user=nil)
+    if user_collection
+      user_collection.present? && user_collection.restricted? && user_collection.user_id == user.try(:id)
+    else
+      false
+    end
+  end
+
+  def availability
+    if user_collection
+      user_collection.open?
+    else
+      false
+    end
+  end
 end
