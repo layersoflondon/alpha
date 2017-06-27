@@ -15,3 +15,16 @@ json.position do
   json.lng pin.lng
 end
 json.link_url pin.link_url if pin.link_url.present?
+
+json.content_entry do
+  json.partial! 'maps/content_entry', locals: {content_entry: pin.content_entry}
+end
+
+json.collection do
+  json.partial! 'collections/collection', locals: {collection: pin.collection}
+end if pin.collection.present?
+
+# adding the collections array with this pin's collection as its only member so that when we're editing the note, we can easily render the select
+json.collections do
+  json.array! [pin.collection], partial: 'collections/collection', as: :collection
+end if pin.collection.present?
