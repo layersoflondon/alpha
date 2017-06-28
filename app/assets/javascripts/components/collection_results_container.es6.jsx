@@ -2,7 +2,11 @@ class CollectionResultsContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = MapContainerStore.getState();
+    let user_id = $("head meta[name='user-id']").attr('content');
+    let logged_in = typeof(user_id)!=="undefined";
+    initial_collection_view = logged_in ? "personal" : "public";
+
+    this.state = _.merge(MapContainerStore.getState(), {collection_view: initial_collection_view, logged_in: logged_in});
     this.stateChanged = this.stateChanged.bind(this);
   }
 
@@ -46,13 +50,77 @@ class CollectionResultsContainer extends React.Component {
     }
   }
 
+  switchCollectionsView(event) {
+    let collection_view = event.target.dataset.collectionTabView;
+    this.setState(_.merge(this.state, {collection_view: collection_view}));
+  }
+
+  personalCollections() {
+
+  }
+
+  publicCollections() {
+
+  }
+
   render () {
     const show_collections = this.state.all_collections.length && this.state.show_collections;
+
     let home_link;
     if(/collections\/\d+$/.test(location.href)) {
       home_link = <li className="home-link">
         <a href="/the-map">home</a>
       </li>;
+    }
+
+    let collections;
+    if(this.state.collection_view == "personal") {
+      collections = <div>
+        <div className="collections-results">
+          <h3>Personal</h3>
+          <ul>
+            {this.state.user_collections.map(function(collection) {
+              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+            })}
+            {home_link}
+          </ul>
+        </div>
+
+        <div className="collections-results">
+          <h3>From your team(s):</h3>
+          <ul>
+            {this.state.team_collections.map(function(collection) {
+              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+            })}
+            {home_link}
+          </ul>
+        </div>
+      </div>;
+    }else {
+      collections = <div>
+        <div className="collections-results">
+          <h3>Public</h3>
+          <ul>
+            {this.state.public_collections.map(function(collection) {
+              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+            })}
+            {home_link}
+          </ul>
+        </div>
+      </div>
+    }
+
+    let actions;
+
+    if(this.state.logged_in) {
+      actions = <ul className="collections-nav">
+        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="personal">Your collections</a></li>
+        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
+      </ul>
+    }else {
+      actions = <ul className="collections-nav">
+        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
+      </ul>
     }
 
     return (
@@ -61,44 +129,9 @@ class CollectionResultsContainer extends React.Component {
 
         <div className="collections-popout" style={{display: show_collections ? 'block' : 'none'}}>
 
-          <ul className="collections-nav">
-            <li><a href="#">Your collections</a></li>
-            <li><a href="#">Public collections</a></li>
-          </ul>
+          {actions}
 
-          <div className="collections-results">
-            <h3>Personal</h3>
-            <ul>
-              {this.state.all_collections.map(function(collection) {
-                return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
-              })}
-              {home_link}
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-            </ul>
-          </div>
-
-          <div className="collections-results">
-            <h3>From your team(s):</h3>
-            <ul>
-              {this.state.all_collections.map(function(collection) {
-                return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
-              })}
-              {home_link}
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-              <li class="collection-result" title="1 user has contributed 1 pin to this collection"><a><h3>Mauris sem ante interdum sed</h3><p>Aenean et neque tincidunt, pharetra velit quis, efficitur elit. Donec vitae lacus dictum, ultricies leo.</p></a></li>
-            </ul>
-          </div>
-
+          {collections}
         </div>
 
       </div>
