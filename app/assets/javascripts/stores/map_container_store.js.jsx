@@ -102,8 +102,6 @@
     }
 
     onUpdateCollections(collections) {
-      console.log("Update collections", collections);
-      window.collections = collections;
       this.all_collections = collections;
 
       collections.map((collection) => {
@@ -118,7 +116,6 @@
     }
 
     onUpdateCollection(collection) {
-      console.log("Added a collection");
       let all_collections = this.all_collections.slice();
       let user_collections = this.user_collections.slice();
       let public_collections = this.public_collections.slice();

@@ -6,7 +6,7 @@ class CollectionResultsContainer extends React.Component {
     let logged_in = typeof(user_id)!=="undefined";
     initial_collection_view = logged_in ? "personal" : "public";
 
-    this.state = _.merge(MapContainerStore.getState(), {collection_view: initial_collection_view, logged_in: logged_in});
+    this.state = _.merge(MapContainerStore.getState(), {collection_view: initial_collection_view, logged_in: logged_in, windowed: false});
     this.stateChanged = this.stateChanged.bind(this);
   }
 
@@ -20,6 +20,18 @@ class CollectionResultsContainer extends React.Component {
 
   componentWillUnmount() {
     MapContainerStore.unlisten(this.stateChanged);
+  }
+
+  componentDidUpdate() {
+    $collections_container = $(".m-collections-list .collections-popout");
+    $personal_collections = $collections_container.find(".collections-inner");
+
+    setTimeout(() => {
+      if($collections_container.height() < $personal_collections.height()) {
+        let state = _.merge({}, this.state, {windowed: true});
+        this.setState(state);
+      }
+    }, 15);
   }
 
   toggleShowCollections() {
@@ -55,14 +67,6 @@ class CollectionResultsContainer extends React.Component {
     this.setState(_.merge(this.state, {collection_view: collection_view}));
   }
 
-  personalCollections() {
-
-  }
-
-  publicCollections() {
-
-  }
-
   render () {
     const show_collections = this.state.all_collections.length && this.state.show_collections;
 
@@ -74,9 +78,11 @@ class CollectionResultsContainer extends React.Component {
     }
 
     let collections;
+    let collections_class = `collections-results ${this.state.windowed ? 'is-windowed' : ''}`;
+    
     if(this.state.collection_view == "personal") {
-      collections = <div>
-        <div className="collections-results">
+      collections = <div className="collections-inner">
+        <div className={collections_class}>
           <h3>Personal</h3>
           <ul>
             {this.state.user_collections.map(function(collection) {
@@ -86,7 +92,7 @@ class CollectionResultsContainer extends React.Component {
           </ul>
         </div>
 
-        <div className="collections-results">
+        <div className={collections_class}>
           <h3>From your team(s):</h3>
           <ul>
             {this.state.team_collections.map(function(collection) {
@@ -97,8 +103,8 @@ class CollectionResultsContainer extends React.Component {
         </div>
       </div>;
     }else {
-      collections = <div>
-        <div className="collections-results">
+      collections = <div className="collections-inner">
+        <div className={collections_class}>
           <h3>Public</h3>
           <ul>
             {this.state.public_collections.map(function(collection) {
