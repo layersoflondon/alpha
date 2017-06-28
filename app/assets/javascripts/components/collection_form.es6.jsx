@@ -56,7 +56,27 @@ class CollectionForm extends React.Component {
     });
   }
 
-  render() {
+  loginMessage() {
+    let style = {display: (this.state.collection_form_enabled ? 'block' : 'none')};
+
+    return (
+      <div className="m-add-pin" style={style}>
+        <form>
+          <h3>Adding some new content?</h3>
+
+          <div className="form-content">
+            <a href="#" className="close" onClick={this.hideCollectionForm.bind(this)} style={{float: "right", margin: "-30px -28px 0 0"}}>&times;</a>
+
+            <h2>You'll need to be logged in first.</h2>
+            <p>You can sign in to your account <a href="/users/sign_in">here</a>.</p>
+            <p>Not registered yet? Create a <a href="/users/sign_up">new account</a> to get started!</p>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  mainForm() {
     let styles;
 
     if(this.state.collection_form_enabled){
@@ -122,5 +142,15 @@ class CollectionForm extends React.Component {
         </div>
       </form>
     </div>;
+  }
+
+  render() {
+    const user_id = $("head meta[name='user-id']").attr('content');
+
+    if(!user_id) {
+      return this.loginMessage();
+    }else {
+      return this.mainForm();
+    }
   }
 }

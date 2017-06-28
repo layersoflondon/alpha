@@ -34,9 +34,15 @@ class PagesController < ApplicationController
     earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460
     @filter_date_range = [earliest_pin_year, Date.today.year]
 
-    @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
-
-    @user_groups = current_user.user_groups
+    if user_signed_in?
+      @user_collections  = current_user.collections
+      @group_collections = current_user.user_group_collections
+      @user_groups = current_user.user_groups
+    else
+      @user_groups = []
+      @group_collections = []
+      @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
+    end
 
     @data = render_to_string('maps/map_page', layout: false, formats: [:json])
   end

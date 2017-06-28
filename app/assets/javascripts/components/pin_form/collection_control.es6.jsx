@@ -5,8 +5,6 @@ class CollectionControl extends React.Component {
     let new_state = {collection_form_mode: 0, initial_state: true};
     this.state = _.merge({}, props, new_state);
 
-    // setTimeout(() => {CollectionsStateActions.updateCollections(this.state.all_collections);}, 100);
-
     this.collectionsStateChanged = this.collectionsStateChanged.bind(this);
   }
 
@@ -30,8 +28,9 @@ class CollectionControl extends React.Component {
     }
   }
 
-  setUserCollection(event) {
+  setCollection(event) {
     MapPinActions.setFormAttribute({collection_id: event.target.value});
+    MapPinActions.setFormAttribute({collection_type: event.target.dataset.collectionType});
   }
 
   componentDidMount() {
@@ -39,7 +38,6 @@ class CollectionControl extends React.Component {
   }
 
   collectionsStateChanged(state) {
-    console.log("Collections state changed: ", state);
     this.setState(state.user_collections);
 
     setTimeout(() => {
@@ -53,7 +51,6 @@ class CollectionControl extends React.Component {
     let pin_state = MapPinStore.getState();
 
     let show_user_collections_form   = false;
-    let show_new_collections_form    = false;
     let show_public_collections_form = false;
 
     // use a state flag so we can work out (when editing) whether the user has switched collection form type.
@@ -65,43 +62,49 @@ class CollectionControl extends React.Component {
       let pin_in_private_collection = typeof(_.find(pin_state.collections, (collection) => {return collection.id == pin_state.collection_id}))=="object";
 
       show_user_collections_form   = this.state.collection_form_mode==0 && ((changed_state || pin_in_user_collection) || (!changed_state && this.state.collection_id == null));
-      show_new_collections_form    = this.state.collection_form_mode==1 && changed_state;
-      show_public_collections_form = this.state.collection_form_mode==2 && (changed_state || pin_in_private_collection);
+      show_public_collections_form = this.state.collection_form_mode==1 && (changed_state || pin_in_private_collection);
 
       if(show_user_collections_form) {
         show_user_collections_form = true;
-      }else if(show_new_collections_form) {
-        show_new_collections_form = true;
       }else {
         show_public_collections_form = true;
       }
     }else {
-      show_user_collections_form   = this.state.collection_form_mode==0;
-      show_new_collections_form    = this.state.collection_form_mode==1;
-      show_public_collections_form = this.state.collection_form_mode==2;
+      show_user_collections_form   = this.state.collection_form_mode===0;
+      show_public_collections_form = this.state.collection_form_mode===1;
     }
 
     if(show_user_collections_form) { // no collection, or add to user collection
+      let user_collection_enabled = MapPinStore.getState().collection_type !== "user";
+      let team_collection_enabled = MapPinStore.getState().collection_type !== "team";
+
       field = <div>
         <label>Private Collections</label>
-        <select onChange={this.setUserCollection.bind(this)}>
-          <option value="" disabled selected={MapPinStore.getState().collection_id==null}>Select a collection...</option>
+        <select onChange={this.setCollection.bind(this)} data-collection-type="user">
+          <option value="" disabled selected={user_collection_enabled}>Select a collection...</option>
           {this.state.user_collections.map((collection) => {
-            let selected = collection.id == MapPinStore.getState().collection_id;
+            let selected = (collection.id === MapPinStore.getState().collection_id && MapPinStore.getState().collection_type === "user");
+            return <option key={collection.id} value={collection.id} selected={selected}>{collection.name}</option>
+          })}
+        </select>
+
+        <label>Team Collections</label>
+        <select onChange={this.setCollection.bind(this)} data-collection-type="team">
+          <option value="" disabled selected={team_collection_enabled}>Select a collection...</option>
+          {this.state.team_collections.map((collection) => {
+            let selected = (collection.id === MapPinStore.getState().collection_id && MapPinStore.getState().collection_type === "team");
             return <option key={collection.id} value={collection.id} selected={selected}>{collection.name}</option>
           })}
         </select>
       </div>
-    }else if(show_new_collections_form) { // add to a new collection
-      field = <CollectionItemForm />;
     }else if(show_public_collections_form) { // add to a public collection
       let matched_collections = <div></div>;
 
       if(this.state.collections.length) {
-        matched_collections = <select onChange={this.setUserCollection.bind(this)} data-parsley-required={true} data-parsley-error-message="Choose a collection">
-          <option value="" disabled selected={MapPinStore.getState().collection_id==null}>Select a collection...</option>
+        matched_collections = <select onChange={this.setCollection.bind(this)} data-parsley-required={true} data-parsley-error-message="Choose a collection" data-collection-type="public">
+          <option value="" disabled selected={MapPinStore.getState().collection_id===null}>Select a collection...</option>
           {this.state.collections.map((collection) => {
-            let selected = collection.id == MapPinStore.getState().collection_id;
+            let selected = collection.id === MapPinStore.getState().collection_id;
             return <option key={collection.id} value={collection.id} selected={selected}>{collection.name}</option>
           })}
         </select>;
@@ -128,15 +131,8 @@ class CollectionControl extends React.Component {
 
         <div className="collection-option">
           <label>
-            <input type="radio" name="collection_form_mode" value="1" checked={show_new_collections_form} onChange={this.toggleForm.bind(this)} />
-            Add a new collection
-          </label>
-        </div>
-
-        <div className="collection-option">
-          <label>
-            <input type="radio" name="collection_form_mode" value="2" checked={show_public_collections_form} onChange={this.toggleForm.bind(this)} />
-            Find a public collection
+            <input type="radio" name="collection_form_mode" value="1" checked={show_public_collections_form} onChange={this.toggleForm.bind(this)} />
+            Add to a public collection
           </label>
         </div>
       </div>

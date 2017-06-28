@@ -108,7 +108,7 @@ class PinForm extends React.Component {
             <PinCommonFields />
             <PinTypePicker />
             {fields}
-            <CollectionControl all_collections={this.props.all_collections} user_collections={this.props.user_collections} />
+            <CollectionControl all_collections={this.props.all_collections} team_collections={this.props.team_collections} user_collections={this.props.user_collections} />
           </div>
           <div className="form-actions">
             <div className="form-group">
@@ -270,9 +270,7 @@ PinForm.PropTypes = {
   date_to_year: React.PropTypes.integer,
   collections: React.PropTypes.array,
   collection_id: React.PropTypes.integer,
-  collection_name: React.PropTypes.string,
-  collection_description: React.PropTypes.string,
-  collection_privacy: React.PropTypes.string,
+  collection_type: React.PropTypes.string,
   location: React.PropTypes.string,
   location_object: React.PropTypes.object,
 };

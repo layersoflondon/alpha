@@ -20,9 +20,7 @@
 
       this.collections = [];
       this.collection_id = null;
-      this.collection_name = "";
-      this.collection_description = "";
-      this.collection_privacy = "open";
+      this.collection_type = "";
 
       this.location = '';
       this.pin_form_visible = false;

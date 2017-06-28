@@ -13,12 +13,12 @@ json.overlays do
   json.array! @overlays, partial: 'maps/overlay', as: :overlay
 end
 
-json.all_collections do
-  json.array! @collections, partial: 'maps/collection', as: :collection
-end
-
 json.user_collections do
   json.array! @user_collections, partial: 'collections/collection', as: :collection
+end
+
+json.team_collections do
+  json.array! @group_collections, partial: 'collections/team_collection', as: :user_group_collection
 end
 
 json.user_groups do
