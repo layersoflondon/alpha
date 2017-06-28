@@ -39,23 +39,23 @@ class CollectionsController < ApplicationController
 
     if new_collection_params.has_key?(:user_collection_attributes)
       user_collection_params = new_collection_params.delete(:user_collection_attributes)
-      collection  = current_user.collections.new(new_collection_params)
-      collection.user_collection.assign_attributes(user_collection_params)
+      @collection  = current_user.collections.new(new_collection_params)
+      @collection.user_collection.assign_attributes(user_collection_params)
     else
       user_collection_params = new_collection_params.delete(:user_group_collection_attributes)
-      collection = Collection.new(new_collection_params)
-      collection.build_user_group_collection(user_collection_params)
+      @collection = Collection.new(new_collection_params)
+      @collection.build_user_group_collection(user_collection_params)
     end
 
     respond_to do |format|
       format.html do
-        collection.save && redirect_to(:back)
+        @collection.save && redirect_to(:back)
       end
       format.json do
-        if collection.save
-          render json: {message: "Saved"}, status: :ok
+        if @collection.save
+          render json: {message: "Saved", collection: JSON.parse(render_to_string("collections/show", template: false))}, status: :ok
         else
-          render json: {message: "Couldn't save collection", errors: collection.errors.full_messages}, status: :unprocessable_entity
+          render json: {message: "Couldn't save collection", errors: @collection.errors.full_messages}, status: :unprocessable_entity
         end
       end
     end
