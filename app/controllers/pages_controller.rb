@@ -28,7 +28,7 @@ class PagesController < ApplicationController
   def get_map_content
     @pins        = Pin.latest.group_by(&:coords)
     @overlays    = Overlay.all
-    @collections = Collection.all.order(updated_at: :desc)
+    @collections = [Collection.public_user_collections, Collection.private_user_collections(current_user), Collection.team_collections_for_user(current_user)].flatten
     @places      = []
 
     earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460

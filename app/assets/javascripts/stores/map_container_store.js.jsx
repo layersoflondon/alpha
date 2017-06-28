@@ -83,7 +83,8 @@
     }
 
     onToggleShowOverlays() {
-      this.show_overlays = !this.show_overlays;
+      this.show_overlays    = !this.show_overlays;
+      this.show_collections = false;
     }
 
     onUpdateOverlays(overlays) {
@@ -92,6 +93,7 @@
 
     onToggleShowCollections() {
       this.show_collections = !this.show_collections;
+      this.show_overlays    = false;
     }
 
     onUpdateCollections(collections) {
