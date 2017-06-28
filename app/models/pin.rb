@@ -20,7 +20,7 @@ class Pin < ActiveRecord::Base
   validates :title, :lat, :lng, :date_from, :user, presence: true
 
   scope :latest, -> {
-    all.order(created_at: :desc)
+    all.includes(:collection, :pin_content_entry, content_entry: [:content_type]).order(created_at: :desc)
   }
 
   def coords

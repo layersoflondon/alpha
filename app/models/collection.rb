@@ -15,16 +15,16 @@ class Collection < ActiveRecord::Base
   validates :name, uniqueness: true
 
   scope :public_user_collections, -> {
-    includes(:user_collection).where(user_collections: {privacy: 1})
+    includes(:user, :user_collection, :pins).where(user_collections: {privacy: 1})
   }
 
   scope :private_user_collections, ->(user) {
-    includes(:user_collection).where(user_collections: {privacy: 0, user_id: user.try(:id)})
+    includes(:user, :user_collection, :pins).where(user_collections: {privacy: 0, user_id: user.try(:id)})
   }
 
   scope :team_collections_for_user, ->(user) {
     user_group_ids = (user.try(:user_groups) || []).collect(&:id)
-    includes(:user_group_collection).references(:user_group_collection).where(user_group_collections: {user_group_id: user_group_ids})
+    includes(:user_group, :user_group_collection, :pins).references(:user_group_collection).where(user_group_collections: {user_group_id: user_group_ids})
   }
 
   def owner(user=nil)

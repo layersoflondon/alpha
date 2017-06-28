@@ -27,7 +27,7 @@ class PagesController < ApplicationController
 
   def get_map_content
     @pins        = Pin.latest.group_by(&:coords)
-    @overlays    = Overlay.all
+    @overlays    = Overlay.all.includes(content_entry: [:content_type])
     # the collections that are displayed in the sidebar/dropdown
     @collections = [Collection.public_user_collections, Collection.private_user_collections(current_user), Collection.team_collections_for_user(current_user)].flatten
     @places      = []
@@ -38,13 +38,15 @@ class PagesController < ApplicationController
     # the collections that get rendered in the pin form collection control
     if user_signed_in?
       @user_collections  = current_user.collections
-      @group_collections = current_user.user_group_collections
-      @user_groups       = current_user.user_groups
+      @group_collections = current_user.user_group_collections.includes(:collection)
+      @user_groups       = current_user.user_groups.includes(:collections)
     else
       @user_groups = []
       @group_collections = []
       @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
     end
+
+    Rails.logger.info("\n\n\n\n")
 
     @data = render_to_string('maps/map_page', layout: false, formats: [:json])
   end
