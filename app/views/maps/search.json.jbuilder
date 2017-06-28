@@ -13,5 +13,5 @@ json.overlays do
   json.array! @overlays, partial: 'maps/overlay', as: :overlay
 end
 json.collections do
-  json.array! @collections, partial: 'maps/collection', as: :collection
+  json.array! @collections, partial: 'collections/collection', as: :collection
 end

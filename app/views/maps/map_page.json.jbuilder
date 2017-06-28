@@ -14,7 +14,7 @@ json.overlays do
 end
 
 json.all_collections do
-  json.array! @collections, partial: 'maps/collection', as: :collection
+  json.array! @collections, partial: 'collections/collection', as: :collection
 end
 
 json.user_collections do
