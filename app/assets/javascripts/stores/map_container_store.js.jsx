@@ -14,7 +14,12 @@
       this.show_collections = false;
       this.visible_overlays = [];
       this.overlay_options  = [];
-      this.all_collections = [];
+
+      this.all_collections  = [];
+      this.user_collections = [];
+      this.team_collections = [];
+      this.public_collections = [];
+
       this.markers = [];
       this.pins = [];
       this.notes = [];
@@ -97,14 +102,44 @@
     }
 
     onUpdateCollections(collections) {
+      console.log("Update collections", collections);
+      window.collections = collections;
       this.all_collections = collections;
+
+      collections.map((collection) => {
+        if(collection.public === true) {
+          this.public_collections.push(collection);
+        }else if(collection.public === false && collection.owner === true) {
+          this.user_collections.push(collection);
+        }else if(collection.team_collection === true) {
+          this.team_collections.push(collection);
+        }
+      });
     }
 
     onUpdateCollection(collection) {
+      console.log("Added a collection");
       let all_collections = this.all_collections.slice();
+      let user_collections = this.user_collections.slice();
+      let public_collections = this.public_collections.slice();
+      let team_collections = this.team_collections.slice();
+
       all_collections.unshift(collection);
       all_collections = _.uniqBy(all_collections, (i) => {return i.id});
       this.all_collections = all_collections;
+
+      if(collection.public === true) {
+        user_collections.push(collection);
+        this.user_collections = user_collections;
+
+      }else if(collection.public === false) {
+        public_collections.push(collection);
+        this.public_collections = public_collections;
+
+      }else if(collection.team_collection === true) {
+        team_collections.push(collection);
+        this.team_collections = team_collections;
+      }
     }
 
     onUpdateNotes(notes) {
