@@ -2,7 +2,7 @@ json.id collection.id
 json.description collection.description
 json.public collection.availability
 json.slug collection.name.parameterize
-json.owner collection.owner
+json.owner collection.owner(current_user)
 json.collection_by collection.user_group.try(:name) || collection.user.try(:name)
 
 if collection.user_collection && collection.user_collection.restricted?
@@ -11,4 +11,10 @@ if collection.user_collection && collection.user_collection.restricted?
 else
   json.name collection.name
   json.details "#{pluralize(collection.users.uniq.count, 'user', 'users')} #{collection.users.uniq.count==1 ? 'has' : 'have'} contributed #{pluralize(collection.pins.count, 'pin', 'pins')} to this collection"
+end
+
+if collection.user_collection
+  json.team_collection false
+elsif collection.user_group
+  json.team_collection true
 end
