@@ -28,16 +28,18 @@ class PagesController < ApplicationController
   def get_map_content
     @pins        = Pin.latest.group_by(&:coords)
     @overlays    = Overlay.all
+    # the collections that are displayed in the sidebar/dropdown
     @collections = [Collection.public_user_collections, Collection.private_user_collections(current_user), Collection.team_collections_for_user(current_user)].flatten
     @places      = []
 
     earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460
     @filter_date_range = [earliest_pin_year, Date.today.year]
 
+    # the collections that get rendered in the pin form collection control
     if user_signed_in?
       @user_collections  = current_user.collections
       @group_collections = current_user.user_group_collections
-      @user_groups = current_user.user_groups
+      @user_groups       = current_user.user_groups
     else
       @user_groups = []
       @group_collections = []
