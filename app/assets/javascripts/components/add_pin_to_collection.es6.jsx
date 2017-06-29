@@ -31,9 +31,13 @@ class AddPinToCollection extends React.PureComponent {
     event.preventDefault();
 
     let collection_id = MapPinStore.getState().collection_id;
-    Pin.addToCollection({pin_id: this.state.pin_id, collection_id: collection_id}).then((response) => {
+    let pin_id = this.state.pin_id;
+    Pin.addToCollection({pin_id: pin_id, collection_id: collection_id}).then((response) => {
       this.hidePinCollectionForm();
-      MapPinActions.setNotification({message: "This pin was added to your collection", clear: true});
+
+      //fixme: remove this when we have a single way of managing collections and their relations
+      window.location.hash = `pins/${pin_id}`;
+      window.location.reload();
     }).catch((response) => {
       console.log(response);
       console.log(response.responseJSON.errors);

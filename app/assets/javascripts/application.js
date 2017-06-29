@@ -49,9 +49,9 @@ showCollection = function(id) {
   router.navigate("collections/"+id, true);
 };
 
-triggerAddPinToCollectionForm = function(event) {
+triggerAddPinToCollectionForm = function(link) {
   $("#blueimp-gallery").fadeOut();
-  MapPinActions.showAddPinToCollectionForm(338);
+  MapPinActions.showAddPinToCollectionForm(link.dataset.pinId);
 };
 
 $(function() {

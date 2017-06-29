@@ -4,10 +4,6 @@ class ContentOverlay {
     this.content = content;
   }
 
-  triggerAddPinToCollectionForm(event) {
-    MapPinActions.showAddPinToCollectionForm(this.content.id);
-  }
-
   render() {
     var content = this.content;
     const resource = content.content_entry.resource;
@@ -94,8 +90,6 @@ class ContentOverlay {
       info += `<br/>Link: <a href="${content.link_url}">${content.link_url}</a>`;
     }
 
-    console.log("Rendering collections: ", content.collections);
-    window.content = content;
     if(typeof content.collections == "object" && content.collections.length) {
       let collections = "";
       collections = "<br/>Collections: ";
@@ -106,7 +100,7 @@ class ContentOverlay {
       info += collections;
     }
 
-    info += `<br/><a href="#" class="button" onClick={triggerAddPinToCollectionForm(this)}>Add to collection</a>`;
+    info += `<br/><a href="#" class="button" onClick="triggerAddPinToCollectionForm(this)" data-pin-id=${content.id}>Add to collection</a>`;
 
     // we're embedding a media item from youtube
     if(resource.embedded_resource) {
