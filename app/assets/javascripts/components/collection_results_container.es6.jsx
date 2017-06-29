@@ -80,35 +80,41 @@ class CollectionResultsContainer extends React.Component {
     let collections;
     let collections_class = `collections-results ${this.state.windowed ? 'is-windowed' : ''}`;
     
-    if(this.state.collection_view == "personal") {
+    if(this.state.collection_view === "personal") {
+        let personal_collections = <ul>{
+        this.state.user_collections.map((collection) => {
+          return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+        })
+      }</ul>;
+
+      let team_collections = <ul>{
+        this.state.team_collections.map((collection) => {
+          return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+        })
+      }</ul>;
+
       collections = <div className="collections-inner">
         <div className={collections_class}>
           <h3>Personal</h3>
-          <ul>
-            {this.state.user_collections.map(function(collection) {
-              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
-            })}
-          </ul>
+          {personal_collections.props.children.length ? personal_collections : "No collections"}
         </div>
 
         <div className={collections_class}>
           <h3>From your team(s):</h3>
-          <ul>
-            {this.state.team_collections.map(function(collection) {
-              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
-            })}
-          </ul>
+          {team_collections.props.children.length ? team_collections : "No collections"}
         </div>
       </div>;
     }else {
+      let public_collections = <ul>{
+        this.state.public_collections.map((collection) => {
+          return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
+        })
+      }</ul>;
+
       collections = <div className="collections-inner">
         <div className={collections_class}>
           <h3>Public</h3>
-          <ul>
-            {this.state.public_collections.map(function(collection) {
-              return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
-            })}
-          </ul>
+          {public_collections.props.children.length ? public_collections : "No collections"}
         </div>
       </div>
     }
