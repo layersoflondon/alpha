@@ -6,8 +6,6 @@ class UserGroupsController < ApplicationController
       @groups = @groups.where("name like ?", "%#{params[:query]}%")
     end
 
-    Rails.logger.info("\n\n\n#{request.format} \n\n\n")
-
     respond_to do |format|
       format.html
       format.json do
@@ -31,7 +29,15 @@ class UserGroupsController < ApplicationController
     if @group.save
       @group.invite_user!(current_user).accept!
 
-      redirect_to user_group_path(@group), notice: "Your team was created"
+      if params[:user_group].has_key?(:redirect_to)
+        redirect_path = params[:user_group][:redirect_to]
+        notice = "Welcome! You're signed up and we created your team"
+      else
+        redirect_path = user_group_path(@group)
+        notice ="Your team was created"
+      end
+
+      redirect_to redirect_path, notice: notice
     else
       session[:user_group_errors] = @group.errors
       session[:user_group] = @group

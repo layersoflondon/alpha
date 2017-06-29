@@ -88,7 +88,6 @@ class CollectionResultsContainer extends React.Component {
             {this.state.user_collections.map(function(collection) {
               return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
             })}
-            {home_link}
           </ul>
         </div>
 
@@ -98,7 +97,6 @@ class CollectionResultsContainer extends React.Component {
             {this.state.team_collections.map(function(collection) {
               return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
             })}
-            {home_link}
           </ul>
         </div>
       </div>;
@@ -110,7 +108,6 @@ class CollectionResultsContainer extends React.Component {
             {this.state.public_collections.map(function(collection) {
               return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
             })}
-            {home_link}
           </ul>
         </div>
       </div>
@@ -138,6 +135,8 @@ class CollectionResultsContainer extends React.Component {
           {actions}
 
           {collections}
+
+          {home_link}
         </div>
 
       </div>

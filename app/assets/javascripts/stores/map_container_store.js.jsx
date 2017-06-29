@@ -71,7 +71,7 @@
       this.searching = false;
       this.markers = marker_options.markers;
 
-      if(marker_options.update_coords) {
+      if(marker_options.update_coords && marker_options.markers.length) {
         this.lat = marker_options.markers[0].position.lat;
         this.lng = marker_options.markers[0].position.lng;
       }

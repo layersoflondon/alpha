@@ -1,0 +1,52 @@
+<div class="m-user-function-form m-user-function-form--vertical-align-top">
+  
+  <div class="cell">
+    <div class="wrap">
+      
+      <h2>Join a team</h2>
+      
+      <div class="form">
+        
+        <h3>Join a team</h3>
+        
+        <%= form_for (@user_group_user || UserGroupUser.new), url: request_invitation_to_user_groups_path do |form| %>
+            <%= react_component("TeamControl", {teams: []}) %>
+        <% end %>
+      
+      </div>
+      
+      <div class="form">
+        <%= form_for UserGroup.new do |form| %>
+            <%= form.hidden_field :redirect_to, value: root_path %>
+            <% errors = session.delete(:user_group_errors).try(:with_indifferent_access) %>
+            <% user_group = session.delete(:user_group).try(:with_indifferent_access) %>
+            <% if errors %>
+                <div id="error_explanation">
+                  <h2>Couldn't save team</h2>
+                  <ul>
+                    <%= errors.map { |attr, msg| content_tag(:li, "#{attr.humanize} #{msg.join(', ')}") }.join.html_safe %>
+                  </ul>
+                </div>
+            <% end %>
+            
+            <h3>...or create one</h3>
+            
+            <div class="field <%= errors && errors.has_key?(:name) ? 'field-with-errors' : '' %>">
+              <label>Team name</label>
+              <%= form.text_field :name, value: user_group.try(:[], :name) %>
+            </div>
+            
+            <div class="actions">
+              <%= form.submit value: "Complete sign up" %>
+            </div>
+        <% end %>
+      </div>
+    
+      <%= link_to "Skip this", "/the-map" %>
+    </div>
+  
+  </div>
+
+</div>
+
+

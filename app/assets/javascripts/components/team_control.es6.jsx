@@ -36,6 +36,7 @@ class TeamControl extends React.Component {
     let teams = <div></div>;
 
     if(this.state.teams.length) {
+      console.log("Got teams...");
       teams = <select name="id">
         <option>Select a team...</option>
         {this.state.teams.map((team) => {

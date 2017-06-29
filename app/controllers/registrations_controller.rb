@@ -5,13 +5,15 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def join_team
+  end
 
   private
   def after_sign_up_path_for(user)
     if session[:adding_pin]
       page_path("the-map", anchor: "/add")
     else
-      root_path
+      users_join_team_path
     end
   end
 
