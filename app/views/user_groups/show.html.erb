@@ -71,11 +71,11 @@
     
                     <h3>Delete this team</h3>
     
-                    <p>Ut magna diam, rutrum ut dolor quis, scelerisque dictum magna. Donec lacus dui, egestas vel varius in, dictum sed ante.</p>
+                    <!--<p>Ut magna diam, rutrum ut dolor quis, scelerisque dictum magna. Donec lacus dui, egestas vel varius in, dictum sed ante.</p>-->
                     
                     <%= form_for @group, method: :delete do |form| %>
                         <div class="actions">
-                            <input type="submit" value="Delete team">
+                            <input type="submit" value="Delete team" onclick="return confirm('Are you sure you want to delete this team?');">
                         </div>
                     <% end %>
     

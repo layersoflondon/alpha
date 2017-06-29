@@ -17,7 +17,6 @@
       
       <div class="form">
         <%= form_for UserGroup.new do |form| %>
-            <%= form.hidden_field :redirect_to, value: root_path %>
             <% errors = session.delete(:user_group_errors).try(:with_indifferent_access) %>
             <% user_group = session.delete(:user_group).try(:with_indifferent_access) %>
             <% if errors %>
@@ -29,22 +28,24 @@
                 </div>
             <% end %>
             
-            <h3>...or create one</h3>
+            <h3>Create a team</h3>
             
             <div class="field <%= errors && errors.has_key?(:name) ? 'field-with-errors' : '' %>">
               <label>Team name</label>
               <%= form.text_field :name, value: user_group.try(:[], :name) %>
             </div>
-            
+      
+            <p>This is optional, leave the fields blank if you don't want to be in a team. You can always create and join teams later.</p>
+      
             <div class="actions">
               <%= form.submit value: "Complete sign up" %>
             </div>
         <% end %>
       </div>
-    
-      <%= link_to "Skip this", "/the-map" %>
+      
+      <%= link_to "Skip this step", root_path %>
     </div>
-  
+
   </div>
 
 </div>
