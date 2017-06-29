@@ -4,7 +4,7 @@ class UserGroupPolicy < ApplicationPolicy
   end
 
   def invite?
-    !user.has_invite_to_group?(record)
+    record.users.include?(user)
   end
 
   def request_invite?
@@ -25,6 +25,10 @@ class UserGroupPolicy < ApplicationPolicy
 
   def is_group_admin?
     record.primary_user == user
+  end
+
+  def is_member_of_group?
+    record.users.include?(user)
   end
 
   class Scope < Scope

@@ -51,20 +51,22 @@
 
             <h2>Actions</h2>
 
-            <div class="form">
-                <%= form_tag invite_user_to_user_group_path(params[:id]) do %>
-                    <h3>Send an invite</h3>
-      
-                    <div class="field">
-                        <label>Email</label>
-                        <%= text_field_tag :email %>
-                    </div>
-                    
-                    <div class="actions">
-                        <%= submit_tag "Send invite" %>
-                    </div>
-                <% end %>
-            </div>
+            <% if UserGroupPolicy.new(current_user, @group).is_member_of_group? || UserGroupPolicy.new(current_user, @group).is_group_admin? %>
+                <div class="form">
+                    <%= form_tag invite_user_to_user_group_path(params[:id]) do %>
+                        <h3>Send an invite</h3>
+          
+                        <div class="field">
+                            <label>Email</label>
+                            <%= text_field_tag :email %>
+                        </div>
+                        
+                        <div class="actions">
+                            <%= submit_tag "Send invite" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
           
             <% if UserGroupPolicy.new(current_user, @group).destroy? %>
                 <div class="delete-team">
