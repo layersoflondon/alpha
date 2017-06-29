@@ -4,7 +4,6 @@ class Pin {
       $.get("/maps/" + id).done((response) => {
         resolve(response)
       }).fail((response) => {
-        console.log("FAIL", response);
         reject(response);
       });
     });

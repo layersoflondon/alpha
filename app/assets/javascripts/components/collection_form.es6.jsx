@@ -54,6 +54,7 @@ class CollectionForm extends React.Component {
 
       MapContainerActions.updateCollection(response.collection);
       form.reset();
+      window.location.reload();
     }).catch((response) => {
       this.setState({errors: {message: response.responseJSON.message, errors: response.responseJSON.errors}});
     });

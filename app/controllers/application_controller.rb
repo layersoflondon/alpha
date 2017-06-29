@@ -2,6 +2,13 @@ class ApplicationController < ActionController::Base
   include Pundit
   include SimpleErrors::Rescue
   rescue_with_not_found Rooftop::RecordNotFoundError, Rooftop::Rails::AncestorMismatch, ActionController::RoutingError
+
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    if request.format == "application/json"
+      render json: {errors: [exception.message]}, status: :unprocessable_entity
+    end
+  end
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   before_rescue do
