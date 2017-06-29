@@ -112,6 +112,9 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     draper (2.1.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -322,6 +325,7 @@ DEPENDENCIES
   carrierwave-base64
   coffee-rails (~> 4.1.0)
   devise
+  devise_invitable
   draper
   errorstudio_capistrano_recipes!
   faker

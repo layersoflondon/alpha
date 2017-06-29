@@ -70,6 +70,7 @@ gem 'simple_errors', github: 'errorstudio/simple_errors'
 gem 'pundit'
 
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'aasm'
 

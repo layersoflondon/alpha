@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pins
@@ -21,10 +21,12 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  # user has an invite to the given group?
   def has_invite_to_group?(group)
     user_groups.group_invitation(group).present?
   end
 
+  # get user groups where this user is the primary user
   def primary_user_group_users_with_pending_requests
     UserGroupUser.includes(:user_group).where({user_groups: {primary_user_id: self.id}, user_group_users: {invitation_state: "requested"}})
   end

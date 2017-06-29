@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'overlays/flag'
 
   devise_for :users,
-             controllers: {registrations: 'registrations', sessions: 'sessions'}
+             controllers: {registrations: 'registrations', sessions: 'sessions', invitations: 'invitations'}
   #         IMPORTANT: this is a greedy catchall route - it needs to be the last route in the file.
   devise_scope :user do
     get 'users/join_team', to: 'registrations#join_team'
