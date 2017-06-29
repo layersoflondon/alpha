@@ -97,3 +97,5 @@ gem 'font-awesome-rails'
 gem 'sanitize'
 
 gem 'rollbar'
+
+# gem 'i18n-debug'

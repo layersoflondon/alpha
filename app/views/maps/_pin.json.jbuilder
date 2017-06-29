@@ -20,11 +20,11 @@ json.content_entry do
   json.partial! 'maps/content_entry', locals: {content_entry: pin.content_entry}
 end
 
-json.collection do
-  json.partial! 'collections/collection', locals: {collection: pin.collection}
-end if pin.collection.present?
+# json.collection do
+#   json.partial! 'collections/collection', locals: {collection: pin.collection}
+# end if pin.collection.present?
 
 # adding the collections array with this pin's collection as its only member so that when we're editing the note, we can easily render the select
 json.collections do
-  json.array! [pin.collection], partial: 'collections/collection', as: :collection
-end if pin.collection.present?
+  json.array! pin.collections, partial: 'collections/collection', as: :collection
+end if pin.collections.any?

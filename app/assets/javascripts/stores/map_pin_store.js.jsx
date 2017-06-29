@@ -35,6 +35,9 @@
       this.content_entry_id = null;
       this.collection_form_enabled = false;
 
+      this.show_add_pin_to_collection = false;
+      this.add_pin_to_collection_pin_id = null;
+
       this.show_notification = false;
       this.notification = {};
 
@@ -59,6 +62,7 @@
           onSetPinType: MapPinActions.SET_PIN_TYPE,
           onToggleAdvancedDates: MapPinActions.TOGGLE_ADVANCED_DATES,
           onEnableCollectionForm: MapPinActions.ENABLE_COLLECTION_FORM,
+          onShowAddPinToCollectionForm: MapPinActions.SHOW_ADD_PIN_TO_COLLECTION_FORM,
           onSetCollections: MapPinActions.SET_COLLECTIONS,
           onSetNotification: MapPinActions.SET_NOTIFICATION,
           onSubmitForm: MapPinActions.SUBMIT_FORM,
@@ -131,6 +135,13 @@
 
     onEnableCollectionForm(enabled) {
       this.collection_form_enabled = enabled;
+    }
+
+    onShowAddPinToCollectionForm(pin_id) {
+      let enabled = pin_id ? true : false;
+
+      this.show_add_pin_to_collection = enabled;
+      this.add_pin_to_collection_pin_id = pin_id;
     }
 
     onResetForm() {

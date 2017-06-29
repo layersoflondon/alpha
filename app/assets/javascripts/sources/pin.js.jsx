@@ -63,7 +63,7 @@ class Pin {
     }
 
     if(state.collection_id) {
-      pinData.pin.collection_pin_attributes = {collection_id: state.collection_id};
+      pinData.pin.collection_pins_attributes = [{collection_id: state.collection_id}];
     }
 
     // dont pass the attached_file attribute if the user is just editing the content entry attributes(but not replacing the file)
@@ -84,6 +84,29 @@ class Pin {
         url: route,
         data: JSON.stringify(pinData),
         type: method,
+        dataType: "json",
+        contentType: "application/json"
+      }).done((response) => {
+        resolve(response);
+      }).fail((response) => {
+        reject(response);
+      });
+    });
+  }
+
+  static addToCollection(state) {
+    let pinData = {
+      id: state.pin_id,
+      pin: {
+        collection_pins_attributes: [{collection_id: state.collection_id}]
+      }
+    };
+
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `/pins/${state.pin_id}`,
+        data: JSON.stringify(pinData),
+        type: "PATCH",
         dataType: "json",
         contentType: "application/json"
       }).done((response) => {

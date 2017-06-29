@@ -6,21 +6,22 @@ class Pin < ActiveRecord::Base
   has_one :content_entry, through: :pin_content_entry
   accepts_nested_attributes_for :pin_content_entry
 
-  has_one :collection_pin, dependent: :destroy, inverse_of: :pin
-  has_one :collection, through: :collection_pin, inverse_of: :pins
+  has_many :collection_pins, dependent: :destroy, inverse_of: :pin
+  has_many :collections, through: :collection_pins, inverse_of: :pins
 
-  accepts_nested_attributes_for :collection_pin #... collection_pin_attributes: {collection_attributes: {name: "foo", description: "Bar"}} ...
-  accepts_nested_attributes_for :collection     #... collection_attributes: {collection_id: 3} ...
+  accepts_nested_attributes_for :collection_pins #... collection_pin_attributes: {collection_attributes: {name: "foo", description: "Bar"}} ...
+  accepts_nested_attributes_for :collections     #... collection_attributes: {collection_id: 3} ...
 
   def build_collection(params = {}, opts = {})
-    params[:user_collection_attributes].merge!({user_id: user.id}) if params.has_key?(:user_collection_attributes)
-    self.send(:collection_pin_attributes=, {collection_attributes: params})
+    raise "what?"
+    # params[:user_collection_attributes].merge!({user_id: user.id}) if params.has_key?(:user_collection_attributes)
+    # self.send(:collection_pins_attributes=, {collection_attributes: params})
   end
 
   validates :title, :lat, :lng, :date_from, :user, presence: true
 
   scope :latest, -> {
-    all.includes(:collection, :pin_content_entry, content_entry: [:content_type]).order(created_at: :desc)
+    all.includes(:collections, :pin_content_entry, content_entry: [:content_type]).order(created_at: :desc)
   }
 
   def coords

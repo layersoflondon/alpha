@@ -16,6 +16,10 @@
       return enable;
     }
 
+    showAddPinToCollectionForm(pin_id) {
+      return pin_id;
+    }
+
     togglePinForm(visible) {
       return visible;
     }

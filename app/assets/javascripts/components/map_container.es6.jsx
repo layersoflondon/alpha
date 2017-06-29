@@ -62,6 +62,7 @@ class MapContainer extends React.Component {
 
         <PinForm all_collections={this.props.data.all_collections} team_collections={this.props.data.team_collections} user_collections={this.props.data.user_collections} />
         <CollectionForm user_groups={this.props.data.user_groups} />
+        <AddPinToCollection all_collections={this.props.data.all_collections} team_collections={this.props.data.team_collections} user_collections={this.props.data.user_collections} />
 
         <ModerationForm />
 

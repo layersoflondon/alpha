@@ -43,7 +43,12 @@ Rails.application.routes.draw do
   end
 
   post "/overlays/*id/flag", to: "overlays#flag", as: :flag_overlay, defaults: {format: :json}
-  post "/pins/*id/flag", to: "pins#flag", as: :flag_pin, defaults: {format: :json}
+
+  resources :pins, only: [:update] do
+    member do
+      post :flag
+    end
+  end
 
   resources :posts, only: [:show], path: 'blog'
 

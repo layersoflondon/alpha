@@ -49,6 +49,11 @@ showCollection = function(id) {
   router.navigate("collections/"+id, true);
 };
 
+triggerAddPinToCollectionForm = function(event) {
+  $("#blueimp-gallery").fadeOut();
+  MapPinActions.showAddPinToCollectionForm(338);
+};
+
 $(function() {
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token]").attr('content'));
