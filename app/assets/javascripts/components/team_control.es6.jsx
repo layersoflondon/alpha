@@ -46,7 +46,7 @@ class TeamControl extends React.Component {
     }
 
     return <div>
-      <div className="field">
+      <div className="field team-lookup">
         <label>Search for a team</label>
         <input type="text" onChange={this.searchForTeams.bind(this)} />
 
