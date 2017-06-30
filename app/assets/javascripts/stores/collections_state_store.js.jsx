@@ -16,7 +16,7 @@
     }
 
     onUpdateCollections(collections) {
-      let user_collections = _.filter(collections, (c) => {return !c.public && c.owner});
+      let user_collections = _.filter(collections, (c) => {return !c.public}); // check for c.owner here to filter based on the current user being the owner of the collection
       this.collections = collections;
       this.user_collections = user_collections;
     }

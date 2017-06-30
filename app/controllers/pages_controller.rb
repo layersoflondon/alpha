@@ -26,10 +26,10 @@ class PagesController < ApplicationController
   private
 
   def get_map_content
-    @pins        = Pin.latest.group_by(&:coords)
+    @pins        = Pin.latest.limit(2).group_by(&:coords)
     @overlays    = Overlay.all.includes(content_entry: [:content_type])
     # the collections that are displayed in the sidebar/dropdown
-    @collections = [Collection.public_user_collections, Collection.private_user_collections(current_user), Collection.team_collections_for_user(current_user)].flatten
+    @collections = Collection.includes(pins: [:user, content_entry: [:content_type]]).all
     @places      = []
 
     earliest_pin_year = Pin.limit(1).order(date_from: :asc).first.try(:date_from).try(:year) || 1460
@@ -41,12 +41,10 @@ class PagesController < ApplicationController
       @group_collections = current_user.user_group_collections.includes(:collection)
       @user_groups       = current_user.user_groups.includes(:collections)
     else
-      @user_groups = []
-      @group_collections = []
-      @user_collections = Collection.includes(:user_collection, :pins).references(:user_collection).where(user_collections: {user_id: current_user.try(:id), privacy: 0})
+      @user_groups = UserGroup.includes(collections: [:pins])
+      @group_collections = Collection.joins(:user_group_collection).collect(&:user_group_collection)
+      @user_collections = Collection.joins(:user_collection).includes(:pins)
     end
-
-    Rails.logger.info("\n\n\n\n")
 
     @data = render_to_string('maps/map_page', layout: false, formats: [:json])
   end

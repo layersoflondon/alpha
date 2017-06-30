@@ -4,9 +4,8 @@ class CollectionResultsContainer extends React.Component {
 
     let user_id = $("head meta[name='user-id']").attr('content');
     let logged_in = typeof(user_id)!=="undefined";
-    initial_collection_view = logged_in ? "personal" : "public";
 
-    this.state = _.merge(MapContainerStore.getState(), {collection_view: initial_collection_view, logged_in: logged_in, windowed: false});
+    this.state = _.merge(MapContainerStore.getState(), {collection_view: "personal", logged_in: logged_in, windowed: false});
     this.stateChanged = this.stateChanged.bind(this);
   }
 
@@ -79,9 +78,11 @@ class CollectionResultsContainer extends React.Component {
 
     let collections;
     let collections_class = `collections-results ${this.state.windowed ? 'is-windowed' : ''}`;
-    
+
+    console.log(this.state);
+
     if(this.state.collection_view === "personal") {
-        let personal_collections = <ul>{
+      let personal_collections = <ul>{
         this.state.user_collections.map((collection) => {
           return (<CollectionResult id={collection.id} key={collection.id} collection={collection} />);
         })
@@ -93,6 +94,7 @@ class CollectionResultsContainer extends React.Component {
         })
       }</ul>;
 
+      let team_collections_label = this.state.logged_in ? "From your team(s)" : "Team Collections";
       collections = <div className="collections-inner">
         <div className={collections_class}>
           <h3>Personal</h3>
@@ -100,7 +102,7 @@ class CollectionResultsContainer extends React.Component {
         </div>
 
         <div className={collections_class}>
-          <h3>From your team(s):</h3>
+          <h3>{team_collections_label}:</h3>
           {team_collections.props.children.length ? team_collections : "No collections"}
         </div>
       </div>;
@@ -121,16 +123,11 @@ class CollectionResultsContainer extends React.Component {
 
     let actions;
 
-    if(this.state.logged_in) {
-      actions = <ul className="collections-nav">
-        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="personal">Your collections</a></li>
-        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
-      </ul>
-    }else {
-      actions = <ul className="collections-nav">
-        <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
-      </ul>
-    }
+    let personal_collections_label = this.state.logged_in ? "Your collections" : "User & Team collections";
+    actions = <ul className="collections-nav">
+      <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="personal">{personal_collections_label}</a></li>
+      <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
+    </ul>;
 
     return (
       <div className="m-collections-list">

@@ -35,6 +35,11 @@ class CollectionForm extends React.Component {
     let new_state = {};
     new_state[event.target.dataset.attribute] = event.target.value;
     _.merge(state, new_state);
+
+    if(event.target.dataset.attribute === "team_id") {
+      new_state.collection_type = "team";
+    }
+
     this.setState(state);
   }
 
@@ -94,10 +99,8 @@ class CollectionForm extends React.Component {
 
     let errors = null;
     if(!_.isEmpty(this.state.errors)) {
-      console.log(this.state.errors);
       let error_list = this.state.errors.errors.map((error) => {return <li>{error}</li>});
       errors = <div><h1>{this.state.errors.message}</h1> <ul>{error_list}</ul></div>;
-      console.log(errors, error_list);
     }
 
     return <div className="m-add-pin" style={styles}>
@@ -122,14 +125,14 @@ class CollectionForm extends React.Component {
 
           <div className="form-group">
             <div className="collection-option">
-              <label><input type="radio" name="collection_type" value="public" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type=="public"}/> Public</label>
+              <label><input type="radio" name="collection_type" value="public" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="public"}/> Public</label>
             </div>
             <div className="collection-option">
-              <label><input type="radio" name="collection_type" value="personal" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type=="personal"}/> Personal</label>
+              <label><input type="radio" name="collection_type" value="personal" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="personal"}/> Personal</label>
             </div>
             <div className="collection-option">
               <label>
-                <input type="radio" name="collection_type" value="team" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type=="team"}/>
+                <input type="radio" name="collection_type" value="team" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="team"}/>
                 Team
               </label>
               <span>

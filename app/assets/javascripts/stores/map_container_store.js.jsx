@@ -107,7 +107,7 @@
       collections.map((collection) => {
         if(collection.public === true) {
           this.public_collections.push(collection);
-        }else if(collection.public === false && collection.owner === true) {
+        }else if(collection.public === false && !collection.team_collection) {
           this.user_collections.push(collection);
         }else if(collection.team_collection === true) {
           this.team_collections.push(collection);
