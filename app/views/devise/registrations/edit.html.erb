@@ -87,7 +87,8 @@
                         <ul>
                             <li>
                                 <%= group_user.user_group.name %>
-                                <%= link_to "Approve", approve_request_to_join_user_group_path(group_user), method: :post %>/<%= link_to "Reject", reject_request_to_join_user_group_path(group_user), method: :post %>
+                                <%= link_to "Approve", approve_request_to_join_user_group_path(group_user), method: :post %>
+                                <%= link_to "Reject", reject_request_to_join_user_group_path(group_user), method: :post %>
                             </li>
                         </ul>
                     <% end %>
@@ -103,6 +104,10 @@
                     <ul>
                         <% current_user.user_group_users.invitations.each do |user_group_user| %>
                             <li>
+                                <% if UserGroupPolicy.new(current_user, user_group_user).reject? %>
+                                    <%= link_to "Reject", reject_invitation_to_user_group_path(user_group_user), class: "reject-invitation", method: :post %>
+                                <% end %>
+                                
                                 <% if UserGroupPolicy.new(current_user, user_group_user).accept? %>
                                     <%= link_to "Accept", accept_invitation_to_user_group_path(user_group_user), class: "accept-invitation", method: :post %>
                                 <% else %>

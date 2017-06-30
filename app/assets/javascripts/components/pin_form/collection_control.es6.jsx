@@ -79,7 +79,7 @@ class CollectionControl extends React.Component {
       let team_collection_enabled = MapPinStore.getState().collection_type !== "team";
 
       field = <div>
-        <label>Private Collections</label>
+        <label>Personal Collections</label>
         <select onChange={this.setCollection.bind(this)} data-collection-type="user">
           <option value="" disabled selected={user_collection_enabled}>Select a collection...</option>
           {this.state.user_collections.map((collection) => {

@@ -3,6 +3,10 @@ class UserGroupPolicy < ApplicationPolicy
     user.has_invite_to_group?(record.user_group) && record.invitation_state=="invited"
   end
 
+  def reject?
+    accept?
+  end
+
   def invite?
     record.users.include?(user)
   end

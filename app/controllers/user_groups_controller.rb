@@ -89,7 +89,15 @@ class UserGroupsController < ApplicationController
   end
 
   def reject
-    render json: {}, status: :ok
+    invite = UserGroupUser.find(params[:id])
+
+    if UserGroupPolicy.new(current_user, invite).reject?
+      invite.reject!
+      redirect_to :back
+    else
+      message = invite.invitation_state=="requested" ? "can't reject that request" : "not invited to this team"
+      raise Pundit::NotAuthorizedError, message
+    end
   end
 
   def remove
