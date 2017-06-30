@@ -125,16 +125,22 @@ class CollectionForm extends React.Component {
 
           <div className="form-group">
             <div className="collection-option">
-              <label><input type="radio" name="collection_type" value="public" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="public"}/> Public</label>
+              <input type="radio" name="collection_type" value="public" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="public"}/>
+              <label>Public</label>
+              <span>
+                Anyone can add pins (theirs or others) to this collection
+              </span>
             </div>
             <div className="collection-option">
-              <label><input type="radio" name="collection_type" value="personal" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="personal"}/> Personal</label>
+              <input type="radio" name="collection_type" value="personal" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="personal"}/>
+              <label>Personal</label>
+              <span>
+                Only you can add pins (yours or others) to this collection
+              </span>
             </div>
             <div className="collection-option">
-              <label>
-                <input type="radio" name="collection_type" value="team" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="team"}/>
-                Team
-              </label>
+              <input type="radio" name="collection_type" value="team" onChange={this.updateAttribute.bind(this)} data-attribute="collection_type" checked={this.state.collection_type==="team"}/>
+              <label>Team</label>
               <span>
                   Anyone in team: {teams} can add pins (theirs or others) to this collection
               </span>

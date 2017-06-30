@@ -1,0 +1,19 @@
+.m-add-pin .form-group .collection-option > * {
+  display: inline;
+}
+
+.m-add-pin .form-group .collection-option input {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.m-add-pin .form-group .collection-option input + label {
+  display: inline-block;
+  width: 10%;
+}
+
+.m-add-pin .form-group .collection-option input + label + span {
+  color: $lol-mint;
+}
