@@ -11,8 +11,11 @@ class Collection < ActiveRecord::Base
   has_one :user_group, through: :user_group_collection
   accepts_nested_attributes_for :user_group_collection
 
+  before_validation -> {
+    self.slug = name.squish.parameterize
+  }
   validates :name, presence: {message: "Please make sure you've included a name for your collection"}
-  validates :name, uniqueness: true
+  validates :slug, uniqueness: true
 
   scope :public_user_collections, -> {
     includes(:user, :user_collection, :pins).where(user_collections: {privacy: 1})
