@@ -1,3 +1,4 @@
+<% content_for(:body_class) {'my-account'} %>
 <div class="m-user-function-form m-user-function-form--vertical-align-top">
 
     <div class="cell">
@@ -142,6 +143,9 @@
                 <%= form_for UserGroup.new do |form| %>
                     <% errors = session.delete(:user_group_errors).try(:with_indifferent_access) %>
                     <% user_group = session.delete(:user_group).try(:with_indifferent_access) %>
+                    
+                    <h3>Create a team</h3>
+      
                     <% if errors %>
                         <div id="error_explanation">
                             <h2>Couldn't save team</h2>
@@ -150,9 +154,6 @@
                             </ul>
                         </div>
                     <% end %>
-                    
-                    <h3>Create a team</h3>
-                    
                     <div class="field <%= errors && errors.has_key?(:name) ? 'field-with-errors' : '' %>">
                         <label>Team name</label>
                         <%= form.text_field :name, value: user_group.try(:[], :name) %>
