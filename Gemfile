@@ -94,6 +94,7 @@ gem 'browserify-rails'
 gem 'react-rails'
 gem 'leaflet-rails'
 gem 'font-awesome-rails'
+gem 'kaminari'
 
 gem 'sanitize'
 

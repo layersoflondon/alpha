@@ -1,4 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
+  def edit
+    @notes = current_user.pins.page(params[:page]).per(6)
+  end
 
   def new
     session[:adding_pin] = true if params[:adding_pin].present?

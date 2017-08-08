@@ -36,6 +36,10 @@
   vertical-align:top;
 }
 
+.m-user-function-form .wrap .m-notes-container ul li h4 {
+  margin-top: 0;
+}
+
 .m-user-function-form .form {
   @include clearfix;
 }

@@ -166,21 +166,44 @@
 
         </div>
 
-        <div class="wrap"> 
+        <div class="wrap">
 
             <div class="notes">
 
-            <h2>Your notes</h2>
-                <ul>
-                    <% current_user.pins.each do |pin|%>
-                    <li>
-                        <%= link_to page_path("the-map", anchor: "/pins/#{pin.id}") do %>
-                        <h4><%= pin.title %></h4>
-                        <p><%= pin.location %></p>
+            <h2>Notes & collections</h2>
+                <div class="m-notes-container">
+                    <h3>
+                      Notes
+                    </h3>
+                    <ul>
+                        <% @notes.each do |pin|%>
+                        <li>
+                            <%= link_to page_path("the-map", anchor: "/pins/#{pin.id}") do %>
+                            <h4><%= pin.title %></h4>
+                            <p><%= pin.location %></p>
+                            <% end %>
+                        </li>
                         <% end %>
-                    </li>
-                    <% end %>
-                </ul>
+                    </ul>
+                  
+                    <%= paginate @notes %>
+                </div>
+             
+                <% if current_user.collections.any? %>
+                    <br><br>
+                    <div class="m-collections-container">
+                        <h3>Collections</h3>
+                        <ul>
+                            <% current_user.collections.each do |collection| %>
+                                <li>
+                                    <%= link_to page_path("the-map", anchor: "/collections/#{collection.id}") do %>
+                                        <%= collection.name %>
+                                    <% end %>
+                                </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
 
             </div>
 
