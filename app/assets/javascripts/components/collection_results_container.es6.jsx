@@ -102,7 +102,7 @@ class CollectionResultsContainer extends React.Component {
         </div>
 
         <div className={collections_class}>
-          <h3>{team_collections_label}:</h3>
+          <h3>{team_collections_label}</h3>
           {team_collections.props.children.length ? team_collections : "No collections"}
         </div>
       </div>;
@@ -123,7 +123,7 @@ class CollectionResultsContainer extends React.Component {
 
     let actions;
 
-    let personal_collections_label = this.state.logged_in ? "Your collections" : "User & Team collections";
+    let personal_collections_label = this.state.logged_in ? "Your collections" : "Curated collections";
     actions = <ul className="collections-nav">
       <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="personal">{personal_collections_label}</a></li>
       <li><a href="#" onClick={this.switchCollectionsView.bind(this)} data-collection-tab-view="public">Public collections</a></li>
