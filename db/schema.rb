@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808100821) do
+ActiveRecord::Schema.define(version: 20170808124437) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20170808100821) do
     t.text     "description",     limit: 65535
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.string   "slug",            limit: 255
   end
 
   add_index "user_groups", ["primary_user_id"], name: "index_user_groups_on_primary_user_id", using: :btree

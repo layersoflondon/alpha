@@ -1,4 +1,6 @@
 class Collection < ActiveRecord::Base
+  include Sluggable
+
   has_many :collection_pins, dependent: :destroy, inverse_of: :collection
   has_many :pins, through: :collection_pins, inverse_of: :collections, dependent: :nullify
   has_many :users, through: :pins
@@ -11,11 +13,7 @@ class Collection < ActiveRecord::Base
   has_one :user_group, through: :user_group_collection
   accepts_nested_attributes_for :user_group_collection
 
-  before_validation -> {
-    generate_slug unless persisted? || self.slug.present?
-  }
   validates :name, presence: {message: "Please make sure you've included a name for your collection"}
-  validates :slug, uniqueness: true
 
   scope :public_user_collections, -> {
     includes(:user, :user_collection, :pins).where(user_collections: {privacy: 1})
@@ -44,9 +42,5 @@ class Collection < ActiveRecord::Base
     else
       false
     end
-  end
-
-  def generate_slug
-    self.slug = name.squish.parameterize
   end
 end

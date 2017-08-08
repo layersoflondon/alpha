@@ -1,4 +1,6 @@
 class UserGroup < ActiveRecord::Base
+  include Sluggable
+
   belongs_to :primary_user, class_name: "User"
   has_many :pins, through: :users
   has_many :user_group_users, -> {extending UserGroupStates}, dependent: :destroy
