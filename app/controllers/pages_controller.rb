@@ -71,6 +71,7 @@ class PagesController < ApplicationController
 
   def get_homepage_content
     # This is where you put homepage-specific stuff - usually other calls to Rooftop which you assign to instance variables.
+    @posts = PostDecorator.decorate_collection(Post.latest)
   end
 
 
