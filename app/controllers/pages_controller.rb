@@ -26,7 +26,7 @@ class PagesController < ApplicationController
   private
 
   def get_map_content
-    @pins        = Pin.latest.limit(2).group_by(&:coords)
+    @pins        = Pin.latest.group_by(&:coords)
     @overlays    = Overlay.all.includes(content_entry: [:content_type])
     # the collections that are displayed in the sidebar/dropdown
     @collections = Collection.includes(pins: [:user, content_entry: [:content_type]]).all
