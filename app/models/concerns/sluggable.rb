@@ -15,7 +15,6 @@ module Sluggable
   end
 
   def generate_slug
-    puts "Generating slug..."
     self.slug = name.squish.parameterize
   end
 end
