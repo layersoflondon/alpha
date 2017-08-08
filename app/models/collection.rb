@@ -12,7 +12,7 @@ class Collection < ActiveRecord::Base
   accepts_nested_attributes_for :user_group_collection
 
   before_validation -> {
-    self.slug = name.squish.parameterize
+    generate_slug unless persisted? || self.slug.present?
   }
   validates :name, presence: {message: "Please make sure you've included a name for your collection"}
   validates :slug, uniqueness: true
@@ -44,5 +44,9 @@ class Collection < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def generate_slug
+    self.slug = name.squish.parameterize
   end
 end
