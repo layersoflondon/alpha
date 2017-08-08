@@ -11,6 +11,8 @@ class TeamControl extends React.Component {
         console.log("Error when looking up teams");
       })
     }, 250, true).bind(this);
+
+    this.state = {team_id: null};
   }
 
   componentWillMount() {
@@ -32,18 +34,24 @@ class TeamControl extends React.Component {
     }
   }
 
+  setTeamId(event) {
+    this.setState({team_id: event.target.value});
+  }
+
   render() {
     let teams = <div></div>;
 
     if(this.state.teams.length) {
       console.log("Got teams...");
-      teams = <select name="id">
+      teams = <select name="id" onChange={this.setTeamId.bind(this)}>
         <option>Select a team...</option>
         {this.state.teams.map((team) => {
           return <option key={team.id} value={team.id}>{team.name}</option>
         })}
       </select>;
     }
+
+    let disabled = this.state.team_id === null;
 
     return <div>
       <div className="field team-lookup">
@@ -54,7 +62,7 @@ class TeamControl extends React.Component {
       </div>
 
       <div className="actions">
-        <input type="submit" value="Request to join" />
+        <input type="submit" value="Request to join" disabled={disabled} />
       </div>
     </div>;
   }
