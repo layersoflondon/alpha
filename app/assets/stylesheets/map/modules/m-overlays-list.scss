@@ -10,10 +10,11 @@
 }
 
 .m-overlays-list .overlays-results {
+  border-left: 1px solid #fbfbfb;
   @include unlist;
   @include element-list;
   position: absolute;
-  z-index: 1000;
+  z-index: 1000000;
   background: white;
   top: 93px;
   right: 11px;

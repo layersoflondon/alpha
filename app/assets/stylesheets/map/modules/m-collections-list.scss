@@ -10,8 +10,9 @@
 }
 
 .m-collections-list .collections-popout {
+  border-left: 1px solid #fbfbfb;
   position: absolute;
-  z-index: 1000;
+  z-index: 1000000;
   background: white;
   top: 93px;
   right: -100%;
