@@ -4,7 +4,7 @@ var Map         = ReactLeaflet.Map,
     TileLayer   = ReactLeaflet.TileLayer,
     ZoomControl = ReactLeaflet.ZoomControl;
 
-class MapView extends React.Component {
+class MapView extends React.PureComponent {
   constructor(props) {
     super(props);
 
