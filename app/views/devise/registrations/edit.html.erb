@@ -80,21 +80,23 @@
                         You're not a member of any teams.
                     </p>
                 <% end %>
-              
+            </div>
+            
+            <div class="invitations">
                 <% if current_user.primary_user_group_users_with_pending_requests.any? %>
                     <h3>Invitations received</h3>
                     
                     <% current_user.primary_user_group_users_with_pending_requests.each do |group_user| %>
                         <ul>
                             <li>
-                                <%= group_user.user_group.name %>
+                                <%= content_tag(:span, group_user.user.name, title: group_user.user.email) %>
+                                
                                 <%= link_to "Approve", approve_request_to_join_user_group_path(group_user), method: :post %>
                                 <%= link_to "Reject", reject_request_to_join_user_group_path(group_user), method: :post %>
                             </li>
                         </ul>
                     <% end %>
                 <% end %>
-
             </div>
 
             <div class="invitations">
