@@ -79,8 +79,6 @@ class CollectionResultsContainer extends React.Component {
     let collections;
     let collections_class = `collections-results ${this.state.windowed ? 'is-windowed' : ''}`;
 
-    console.log(this.state);
-
     if(this.state.collection_view === "personal") {
       let personal_collections = <ul>{
         this.state.user_collections.map((collection) => {
