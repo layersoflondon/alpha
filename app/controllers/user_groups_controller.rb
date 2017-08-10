@@ -24,6 +24,8 @@ class UserGroupsController < ApplicationController
   end
 
   def create
+    return redirect_to root_path, notice: "Welcome to Layers of London" if (request.referrer=~/users\/join_team/ && !params[:user_group][:name].present?)
+
     @group = UserGroup.new(user_group_params.merge({primary_user_id: current_user.id}))
 
     if @group.save
