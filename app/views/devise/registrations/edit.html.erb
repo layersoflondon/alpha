@@ -178,34 +178,45 @@
                     <h3>
                       Notes
                     </h3>
-                    <ul>
-                        <% @notes.each do |pin|%>
-                        <li>
-                            <%= link_to page_path("the-map", anchor: "/pins/#{pin.id}") do %>
-                            <h4><%= pin.title %></h4>
-                            <p><%= pin.location %></p>
+                    
+                    <% if @notes.any? %>
+                        <ul>
+                            <% @notes.each do |pin|%>
+                            <li>
+                                <%= link_to page_path("the-map", anchor: "/pins/#{pin.id}") do %>
+                                <h4><%= pin.title %></h4>
+                                <p><%= pin.location %></p>
+                                <% end %>
+                            </li>
                             <% end %>
-                        </li>
-                        <% end %>
-                    </ul>
-                  
-                    <%= paginate @notes %>
+                        </ul>
+                      
+                        <%= paginate @notes %>
+                    <% else %>
+                        <p>No notes added</p>
+                    <% end %>
                 </div>
              
-                <% if current_user.collections.any? %>
-                    <br><br>
+                <br><br>
+                <h3>Collections</h3>
+                <% if current_user.collections.any? || Collection.team_collections_for_user(current_user).any? %>
                     <div class="m-collections-container">
-                        <h3>Collections</h3>
                         <ul>
-                            <% current_user.collections.each do |collection| %>
+                            <% [Collection.team_collections_for_user(current_user), current_user.collections].flatten.each do |collection| %>
                                 <li>
                                     <%= link_to page_path("the-map", anchor: "/collections/#{collection.id}") do %>
                                         <%= collection.name %>
+                                    <% end %>
+                                    
+                                    <% if collection.user_group.present? %>
+                                        (membership via the <strong><%= collection.user_group.name %></strong> team)
                                     <% end %>
                                 </li>
                             <% end %>
                         </ul>
                     </div>
+                <% else %>
+                    <p>No collections added</p>
                 <% end %>
 
             </div>
