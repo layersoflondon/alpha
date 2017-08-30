@@ -65,7 +65,7 @@ group :development, :test do
   gem 'capistrano-npm'
 end
 
-gem 'simple_errors', github: 'errorstudio/simple_errors'
+gem 'simple_errors', git: 'https://github.com/errorstudio/simple_errors'
 
 gem 'pundit'
 
@@ -101,3 +101,5 @@ gem 'sanitize'
 gem 'rollbar'
 
 # gem 'i18n-debug'
+
+gem 'bundler-audit'
