@@ -25,6 +25,14 @@ class GeoreferencedImage < ActiveRecord::Base
   end
   before_validation :parse_wmts, on: :create
 
+  def tile_url
+    if metadata["tile_url"].present?
+      metadata["tile_url"].gsub('TileMatrix','z').gsub('TileCol','x').gsub('TileRow','y')
+    else
+      nil
+    end
+  end
+
   private
   def parse_wmts
     begin
@@ -37,7 +45,16 @@ class GeoreferencedImage < ActiveRecord::Base
       self.georeferencer_id = tile_url.split("/")[4]
       self.north_east = ne.join(",")
       self.south_west = sw.join(",")
+
+      # calculate the centroid
+      msw = Matrix[sw.collect(&:to_f)]
+      mne = Matrix[ne.collect(&:to_f)]
+      center = (msw + ((mne - msw) / 2)).round(6)
+      self.center = center.to_a.flatten.join(",")
+
       self.aasm_state = :published
+
+
     rescue => e
       self.errors.add :base, "Couldn't parse WMTS info: #{e}"
     end
