@@ -63,6 +63,8 @@ gem 'passenger'
 group :development, :test do
   gem 'errorstudio_capistrano_recipes', git: 'ssh://git@bitbucket.org/errorstudio/errorstudio_capistrano_recipes'
   gem 'capistrano-npm'
+  
+  gem 'rack-mini-profiler', require: false
 end
 
 gem 'simple_errors', git: 'https://github.com/errorstudio/simple_errors'

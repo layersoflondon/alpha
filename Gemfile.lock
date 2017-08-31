@@ -193,6 +193,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.6.8)
+    rack-mini-profiler (0.10.5)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.7.1)
@@ -355,6 +357,7 @@ DEPENDENCIES
   mysql2
   passenger
   pundit
+  rack-mini-profiler
   rails (= 4.2.7.1)
   rails-assets-alt!
   rails-assets-es6-promise-polyfill!
