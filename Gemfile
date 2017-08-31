@@ -103,3 +103,5 @@ gem 'rollbar'
 # gem 'i18n-debug'
 
 gem 'bundler-audit'
+
+gem 'highline'
