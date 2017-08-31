@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808124437) do
+ActiveRecord::Schema.define(version: 20170830143730) do
 
   create_table "collection_pins", force: :cascade do |t|
     t.integer  "pin_id",        limit: 4
@@ -57,18 +57,25 @@ ActiveRecord::Schema.define(version: 20170808124437) do
     t.integer  "suitability", limit: 4
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",           limit: 255, null: false
-    t.integer  "sluggable_id",   limit: 4,   null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope",          limit: 255
-    t.datetime "created_at"
+  create_table "georeferenced_images", force: :cascade do |t|
+    t.integer  "georeferencer_id",  limit: 8
+    t.string   "georeferencer_ref", limit: 255
+    t.string   "wmts_url",          limit: 255
+    t.string   "title",             limit: 255
+    t.string   "creator",           limit: 255
+    t.string   "publisher",         limit: 255
+    t.string   "aasm_state",        limit: 255
+    t.string   "center",            limit: 255
+    t.string   "north_east",        limit: 255
+    t.string   "south_west",        limit: 255
+    t.text     "metadata",          limit: 65535
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  add_index "georeferenced_images", ["aasm_state"], name: "index_georeferenced_images_on_aasm_state", using: :btree
+  add_index "georeferenced_images", ["georeferencer_id"], name: "index_georeferenced_images_on_georeferencer_id", using: :btree
+  add_index "georeferenced_images", ["georeferencer_ref"], name: "index_georeferenced_images_on_georeferencer_ref", using: :btree
 
   create_table "overlay_content_entries", force: :cascade do |t|
     t.integer  "overlay_id",       limit: 4
