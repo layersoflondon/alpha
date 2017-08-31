@@ -36,11 +36,11 @@ class GeoreferencedTileGroup extends React.Component {
            let icon = L.divIcon({html: '<i class="fa fa-flag"></i> '});
 
            let marker = (
-             <Marker icon={icon} key={"marker-"+image_item_data.georeferencer_id} position={bounds.getCenter()} id={"marker-"+"marker-"+image_item_data.georeferencer_id} onClick={this.flagImage.bind(this,image_item_data)}></Marker>
+             <Marker icon={icon} key={"marker-"+image_item_data.georeferencer_id} opacity='0.5' position={bounds.getCenter()} id={"marker-"+"marker-"+image_item_data.georeferencer_id} onClick={this.flagImage.bind(this,image_item_data)}></Marker>
            );
 
            let tile_layer = (
-             <TileLayer key={image_item_data.georeferencer_id} url={this.props.tileserver_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>
+             <TileLayer key={image_item_data.georeferencer_id} url={image_item_data.tile_url} opacity={opacity} entity_id={image_item_data.georeferencer_id} reuseTiles={true} bounds={bounds}></TileLayer>
            );
 
            return(
