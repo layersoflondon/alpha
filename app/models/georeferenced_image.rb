@@ -27,7 +27,7 @@ class GeoreferencedImage < ActiveRecord::Base
 
   def tile_url
     if metadata["tile_url"].present?
-      metadata["tile_url"].gsub('TileMatrix','z').gsub('TileCol','x').gsub('TileRow','y')
+      metadata["tile_url"].gsub('TileMatrix','z').gsub('TileCol','x').gsub('TileRow','y').gsub("maps", "maps-#{rand(0..3)}")
     else
       nil
     end
