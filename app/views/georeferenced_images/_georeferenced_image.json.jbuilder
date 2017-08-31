@@ -1,0 +1,1 @@
+json.(image, :georeferencer_id, :south_west, :north_east, :center, :tile_url)

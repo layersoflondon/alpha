@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :georeferenced_images, only: :index, defaults: {format: :json}
+
   resources :user_groups, except: [:new] do
     member do
       post 'invite', as: "invite_user_to"
