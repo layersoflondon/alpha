@@ -1,9 +1,9 @@
 class OverlaysController < ApplicationController
   def flag
     begin
-      if GeoreferencedImage.find_by(georeferencer_id: params[:id]).try(:flag!)
+      # if GeoreferencedImage.find_by(georeferencer_id: params[:id]).try(:flag!)
         ModerationMailer.georeferenced_overlay_flagged(params[:id]).deliver_later
-      end
+      # end
 
     ensure
 
