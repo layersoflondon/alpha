@@ -382,7 +382,7 @@
                       <tr>
                         <td valign="top">
                           <div mc:edit="std_content00">
-                            <%= yield :mail %>
+                            <%= content_for?(:mail) ? yield(:mail) : yield %>
                           </div>
                         </td>
                       </tr>
