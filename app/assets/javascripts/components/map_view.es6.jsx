@@ -1,4 +1,4 @@
-var Map         = ReactLeaflet.Map,
+var RMap        = ReactLeaflet.Map,
     Marker      = ReactLeaflet.Marker,
     Popup       = ReactLeaflet.Popup,
     TileLayer   = ReactLeaflet.TileLayer,
@@ -115,13 +115,13 @@ class MapView extends React.PureComponent {
       mapClasses += " add-pin-mode";
     }
 
-    this.map = <Map center={position} zoom={this.state.zoom} zoomControl={false} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
+    this.map = <RMap center={position} zoom={this.state.zoom} zoomControl={false} ref='map' onDragEnd={this.handleMoved.bind(this)} onZoomEnd={this.handleZoomed.bind(this)} onClick={this.triggerAddPinDialog.bind(this)}>
                  <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'></TileLayer>
                  <ZoomControl position='bottomleft' />
                  {note_marker_containers}
                  {pin_marker_containers}
                  {overlays}
-               </Map>;
+               </RMap>;
 
     return (
       <div className={mapClasses}>
