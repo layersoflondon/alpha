@@ -1,5 +1,7 @@
-# Layers of London Alpha
-This was the proof-of-concept application for the alpha (pilot) phase of the Layers of London project. It's a Ruby application to allow the mapping of the history of London. **Development in this repository has finished**. See the main application repo.
+# Layers of London Alpha - development has finished on this project.
+**Development in this repository has finished**. See the main application repo.
+
+This was the proof-of-concept application for the alpha (pilot) phase of the Layers of London project. It's a Ruby application to allow the mapping of the history of London. 
 
 # License
     Layers of London is an application to map the history of london
