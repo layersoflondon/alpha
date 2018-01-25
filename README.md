@@ -1,5 +1,5 @@
-# Layers of London
-This is the application for the beta phase of the Layers of London project. It's a Ruby application to allow the mapping of the history of London. At this stage it focuses on Barking and Dagenham.
+# Layers of London Alpha
+This was the proof-of-concept application for the alpha (pilot) phase of the Layers of London project. It's a Ruby application to allow the mapping of the history of London. **Development in this repository has finished**. See the main application repo.
 
 # License
     Layers of London is an application to map the history of london
