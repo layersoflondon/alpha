@@ -3,7 +3,7 @@ class MapsController < ApplicationController
 
   def index
     @pins        = Pin.all.limit(4).group_by(&:coords)
-    @overlays    = Overlay.all.limit(4)
+    @overlays    = Overlay.all
     @collections = Collection.all.limit(4)
   end
 
