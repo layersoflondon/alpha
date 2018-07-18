@@ -1,6 +1,6 @@
 class ContentEntryPolicy < ApplicationPolicy
   def download?
-    user.present?
+    # user.present?
   end
 
   class Scope < Scope
